@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-09-19 23:16:34
+# Generated at: 2017-09-20 15:31:04
 #
 
 # ~~~> start load path setup
@@ -125,7 +125,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 8:5: 'as'
+      # at line 14:5: 'as'
       match( "as" )
 
 
@@ -153,7 +153,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 9:6: 'and'
+      # at line 15:6: 'and'
       match( "and" )
 
 
@@ -181,7 +181,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 10:9: 'bool'
+      # at line 16:9: 'bool'
       match( "bool" )
 
 
@@ -209,7 +209,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 11:9: 'define'
+      # at line 17:9: 'define'
       match( "define" )
 
 
@@ -237,7 +237,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 12:8: 'end'
+      # at line 18:8: 'end'
       match( "end" )
 
 
@@ -265,7 +265,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 13:7: 'else'
+      # at line 19:7: 'else'
       match( "else" )
 
 
@@ -293,7 +293,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 14:10: 'float'
+      # at line 20:10: 'float'
       match( "float" )
 
 
@@ -321,7 +321,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 15:6: 'for'
+      # at line 21:6: 'for'
       match( "for" )
 
 
@@ -349,7 +349,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 16:11: 'function'
+      # at line 22:11: 'function'
       match( "function" )
 
 
@@ -377,8 +377,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 17:5: 'IF'
-      match( "IF" )
+      # at line 23:5: 'if'
+      match( "if" )
 
 
 
@@ -405,8 +405,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 18:5: 'IN'
-      match( "IN" )
+      # at line 24:5: 'in'
+      match( "in" )
 
 
 
@@ -433,7 +433,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 19:12: 'integer'
+      # at line 25:12: 'integer'
       match( "integer" )
 
 
@@ -461,7 +461,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 20:5: 'or'
+      # at line 26:5: 'or'
       match( "or" )
 
 
@@ -489,7 +489,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 21:8: 'print'
+      # at line 27:8: 'print'
       match( "print" )
 
 
@@ -517,7 +517,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 22:10: 'program'
+      # at line 28:10: 'program'
       match( "program" )
 
 
@@ -545,7 +545,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 23:7: 'read'
+      # at line 29:7: 'read'
       match( "read" )
 
 
@@ -573,7 +573,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 24:9: 'return'
+      # at line 30:9: 'return'
       match( "return" )
 
 
@@ -601,7 +601,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 25:11: 'string'
+      # at line 31:11: 'string'
       match( "string" )
 
 
@@ -629,7 +629,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 26:7: 'void'
+      # at line 32:7: 'void'
       match( "void" )
 
 
@@ -657,7 +657,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 27:8: 'while'
+      # at line 33:8: 'while'
       match( "while" )
 
 
@@ -685,8 +685,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 33:7: ( 'true' | 'false' )
-      # at line 33:7: ( 'true' | 'false' )
+      # at line 39:7: ( 'true' | 'false' )
+      # at line 39:7: ( 'true' | 'false' )
       alt_1 = 2
       look_1_0 = @input.peek( 1 )
 
@@ -700,12 +700,12 @@ module Hephaestus
       end
       case alt_1
       when 1
-        # at line 33:9: 'true'
+        # at line 39:9: 'true'
         match( "true" )
 
 
       when 2
-        # at line 33:18: 'false'
+        # at line 39:18: 'false'
         match( "false" )
 
 
@@ -735,8 +735,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 34:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
-      # at file 34:8: ( '0' .. '9' )+
+      # at line 40:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
+      # at file 40:8: ( '0' .. '9' )+
       match_count_2 = 0
       while true
         alt_2 = 2
@@ -772,7 +772,7 @@ module Hephaestus
 
 
       match( 0x2e )
-      # at file 34:28: ( '0' .. '9' )+
+      # at file 40:28: ( '0' .. '9' )+
       match_count_3 = 0
       while true
         alt_3 = 2
@@ -832,7 +832,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 35:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
+      # at line 41:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
       alt_6 = 2
       look_6_0 = @input.peek( 1 )
 
@@ -846,9 +846,9 @@ module Hephaestus
       end
       case alt_6
       when 1
-        # at line 35:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
+        # at line 41:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
         match( 0x27 )
-        # at line 35:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
+        # at line 41:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
         while true # decision 4
           alt_4 = 3
           look_4_0 = @input.peek( 1 )
@@ -861,7 +861,7 @@ module Hephaestus
           end
           case alt_4
           when 1
-            # at line 35:16: ~ ( '\\'' | '\\\\' )
+            # at line 41:16: ~ ( '\\'' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x26 ) || @input.peek( 1 ).between?( 0x28, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -874,7 +874,7 @@ module Hephaestus
 
 
           when 2
-            # at line 35:35: '\\\\' .
+            # at line 41:35: '\\\\' .
             match( 0x5c )
             match_any
 
@@ -886,9 +886,9 @@ module Hephaestus
         match( 0x27 )
 
       when 2
-        # at line 35:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
+        # at line 41:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
         match( 0x22 )
-        # at line 35:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
+        # at line 41:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
         while true # decision 5
           alt_5 = 3
           look_5_0 = @input.peek( 1 )
@@ -901,7 +901,7 @@ module Hephaestus
           end
           case alt_5
           when 1
-            # at line 35:59: ~ ( '\"' | '\\\\' )
+            # at line 41:59: ~ ( '\"' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x21 ) || @input.peek( 1 ).between?( 0x23, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -914,7 +914,7 @@ module Hephaestus
 
 
           when 2
-            # at line 35:78: '\\\\' .
+            # at line 41:78: '\\\\' .
             match( 0x5c )
             match_any
 
@@ -950,7 +950,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 36:5: ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+      # at line 42:5: ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
       if @input.peek(1) == 0x5f || @input.peek( 1 ).between?( 0x61, 0x7a )
         @input.consume
       else
@@ -961,7 +961,7 @@ module Hephaestus
       end
 
 
-      # at line 36:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+      # at line 42:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
       while true # decision 7
         alt_7 = 2
         look_7_0 = @input.peek( 1 )
@@ -1014,8 +1014,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 37:10: ( '0' .. '9' )+
-      # at file 37:10: ( '0' .. '9' )+
+      # at line 43:10: ( '0' .. '9' )+
+      # at file 43:10: ( '0' .. '9' )+
       match_count_8 = 0
       while true
         alt_8 = 2
@@ -1075,7 +1075,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 43:7: '='
+      # at line 49:7: '='
       match( 0x3d )
 
 
@@ -1102,7 +1102,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 44:8: ':'
+      # at line 50:8: ':'
       match( 0x3a )
 
 
@@ -1129,7 +1129,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 45:8: ','
+      # at line 51:8: ','
       match( 0x2c )
 
 
@@ -1156,7 +1156,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 46:6: '.'
+      # at line 52:6: '.'
       match( 0x2e )
 
 
@@ -1183,7 +1183,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 47:9: '['
+      # at line 53:9: '['
       match( 0x5b )
 
 
@@ -1210,7 +1210,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 48:7: '('
+      # at line 54:7: '('
       match( 0x28 )
 
 
@@ -1237,7 +1237,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 49:9: ']'
+      # at line 55:9: ']'
       match( 0x5d )
 
 
@@ -1264,7 +1264,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 50:7: ')'
+      # at line 56:7: ')'
       match( 0x29 )
 
 
@@ -1291,7 +1291,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 56:6: '/'
+      # at line 62:6: '/'
       match( 0x2f )
 
 
@@ -1318,7 +1318,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 57:5: '=='
+      # at line 63:5: '=='
       match( "==" )
 
 
@@ -1346,7 +1346,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 58:10: '>'
+      # at line 64:10: '>'
       match( 0x3e )
 
 
@@ -1373,7 +1373,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 59:7: '<'
+      # at line 65:7: '<'
       match( 0x3c )
 
 
@@ -1400,7 +1400,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 60:8: '-'
+      # at line 66:8: '-'
       match( 0x2d )
 
 
@@ -1427,7 +1427,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 61:7: '*'
+      # at line 67:7: '*'
       match( 0x2a )
 
 
@@ -1454,7 +1454,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 62:6: '<>'
+      # at line 68:6: '<>'
       match( "<>" )
 
 
@@ -1482,7 +1482,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 63:7: '+'
+      # at line 69:7: '+'
       match( 0x2b )
 
 
@@ -1509,8 +1509,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 69:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
-      # at file 69:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at line 75:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at file 75:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
       match_count_9 = 0
       while true
         alt_9 = 2
@@ -1546,6 +1546,11 @@ module Hephaestus
 
 
 
+      # --> action
+       channel = HIDDEN 
+      # <-- action
+
+
 
       @state.type = type
       @state.channel = channel
@@ -1570,8 +1575,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 70:10: ( '\\n' | '\\r' )+
-      # at file 70:10: ( '\\n' | '\\r' )+
+      # at line 76:10: ( '\\n' | '\\r' )+
+      # at file 76:10: ( '\\n' | '\\r' )+
       match_count_10 = 0
       while true
         alt_10 = 2
@@ -1605,6 +1610,11 @@ module Hephaestus
         match_count_10 += 1
       end
 
+
+
+      # --> action
+       channel = HIDDEN 
+      # <-- action
 
 
 
@@ -1850,79 +1860,88 @@ module Hephaestus
 
     # - - - - - - - - - - DFA definitions - - - - - - - - - - -
     class DFA11 < ANTLR3::DFA
-      EOT = unpack( 1, -1, 5, 17, 1, -1, 8, 17, 1, 55, 2, -1, 1, 57, 9, 
-                    -1, 1, 59, 5, -1, 1, 60, 9, 17, 2, -1, 1, 17, 1, 71, 
-                    6, 17, 7, -1, 1, 80, 2, 17, 1, 83, 2, 17, 1, 86, 3, 
-                    17, 1, -1, 8, 17, 1, -1, 1, 98, 1, 17, 1, -1, 1, 100, 
-                    1, 17, 1, -1, 5, 17, 1, 107, 2, 17, 1, 110, 1, 17, 1, 
-                    112, 1, -1, 1, 17, 1, -1, 1, 114, 1, 17, 1, 112, 1, 
-                    17, 1, 117, 1, 17, 1, -1, 2, 17, 1, -1, 1, 121, 1, -1, 
-                    1, 122, 1, -1, 2, 17, 1, -1, 1, 17, 1, 126, 1, 127, 
-                    2, -1, 1, 17, 1, 129, 1, 130, 2, -1, 1, 131, 3, -1 )
+      EOT = unpack( 1, -1, 13, 16, 1, 53, 2, -1, 1, 55, 9, -1, 1, 57, 5, 
+                    -1, 1, 58, 9, 16, 1, 68, 1, 70, 1, 71, 6, 16, 7, -1, 
+                    1, 80, 2, 16, 1, 83, 2, 16, 1, 86, 2, 16, 1, -1, 1, 
+                    16, 2, -1, 8, 16, 1, -1, 1, 98, 1, 16, 1, -1, 1, 100, 
+                    1, 16, 1, -1, 5, 16, 1, 107, 2, 16, 1, 110, 1, 16, 1, 
+                    112, 1, -1, 1, 16, 1, -1, 1, 114, 1, 16, 1, 112, 1, 
+                    16, 1, 117, 1, 16, 1, -1, 2, 16, 1, -1, 1, 121, 1, -1, 
+                    1, 122, 1, -1, 2, 16, 1, -1, 1, 16, 1, 126, 1, 127, 
+                    2, -1, 1, 16, 1, 129, 1, 130, 2, -1, 1, 131, 3, -1 )
       EOF = unpack( 132, -1 )
-      MIN = unpack( 1, 9, 1, 110, 1, 111, 1, 101, 1, 108, 1, 97, 1, 70, 
-                    1, 110, 2, 114, 1, 101, 1, 116, 1, 111, 1, 104, 1, 114, 
-                    1, 46, 2, -1, 1, 61, 9, -1, 1, 62, 5, -1, 1, 48, 1, 
-                    100, 1, 111, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 
-                    1, 110, 1, 108, 2, -1, 1, 116, 1, 48, 1, 105, 1, 97, 
-                    1, 114, 2, 105, 1, 117, 7, -1, 1, 48, 1, 108, 1, 105, 
-                    1, 48, 1, 101, 1, 97, 1, 48, 1, 99, 1, 115, 1, 101, 
-                    1, -1, 1, 110, 1, 103, 1, 100, 1, 117, 1, 105, 1, 100, 
-                    1, 108, 1, 101, 1, -1, 1, 48, 1, 110, 1, -1, 1, 48, 
-                    1, 116, 1, -1, 1, 116, 1, 101, 1, 103, 1, 116, 1, 114, 
-                    1, 48, 1, 114, 1, 110, 1, 48, 1, 101, 1, 48, 1, -1, 
-                    1, 101, 1, -1, 1, 48, 1, 105, 1, 48, 1, 101, 1, 48, 
-                    1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 48, 1, -1, 1, 
-                    48, 1, -1, 1, 111, 1, 114, 1, -1, 1, 109, 2, 48, 2, 
-                    -1, 1, 110, 2, 48, 2, -1, 1, 48, 3, -1 )
-      MAX = unpack( 1, 160, 1, 115, 1, 111, 1, 101, 1, 110, 1, 117, 1, 78, 
-                    1, 110, 2, 114, 1, 101, 1, 116, 1, 111, 1, 104, 1, 114, 
-                    1, 57, 2, -1, 1, 61, 9, -1, 1, 62, 5, -1, 1, 122, 1, 
-                    100, 1, 111, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 
-                    1, 110, 1, 108, 2, -1, 1, 116, 1, 122, 1, 111, 1, 116, 
-                    1, 114, 2, 105, 1, 117, 7, -1, 1, 122, 1, 108, 1, 105, 
-                    1, 122, 1, 101, 1, 97, 1, 122, 1, 99, 1, 115, 1, 101, 
-                    1, -1, 1, 110, 1, 103, 1, 100, 1, 117, 1, 105, 1, 100, 
-                    1, 108, 1, 101, 1, -1, 1, 122, 1, 110, 1, -1, 1, 122, 
-                    1, 116, 1, -1, 1, 116, 1, 101, 1, 103, 1, 116, 1, 114, 
-                    1, 122, 1, 114, 1, 110, 1, 122, 1, 101, 1, 122, 1, -1, 
-                    1, 101, 1, -1, 1, 122, 1, 105, 1, 122, 1, 101, 1, 122, 
-                    1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 122, 1, -1, 
-                    1, 122, 1, -1, 1, 111, 1, 114, 1, -1, 1, 109, 2, 122, 
-                    2, -1, 1, 110, 2, 122, 2, -1, 1, 122, 3, -1 )
-      ACCEPT = unpack( 16, -1, 1, 23, 1, 24, 1, -1, 1, 27, 1, 28, 1, 29, 
+      MIN = unpack( 1, 9, 1, 110, 1, 111, 1, 101, 1, 108, 1, 97, 1, 102, 
+                    2, 114, 1, 101, 1, 116, 1, 111, 1, 104, 1, 114, 1, 46, 
+                    2, -1, 1, 61, 9, -1, 1, 62, 5, -1, 1, 48, 1, 100, 1, 
+                    111, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 1, 110, 
+                    1, 108, 3, 48, 1, 105, 1, 97, 1, 114, 2, 105, 1, 117, 
+                    7, -1, 1, 48, 1, 108, 1, 105, 1, 48, 1, 101, 1, 97, 
+                    1, 48, 1, 99, 1, 115, 1, -1, 1, 101, 2, -1, 1, 110, 
+                    1, 103, 1, 100, 1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 
+                    1, -1, 1, 48, 1, 110, 1, -1, 1, 48, 1, 116, 1, -1, 1, 
+                    116, 1, 101, 1, 103, 1, 116, 1, 114, 1, 48, 1, 114, 
+                    1, 110, 1, 48, 1, 101, 1, 48, 1, -1, 1, 101, 1, -1, 
+                    1, 48, 1, 105, 1, 48, 1, 101, 1, 48, 1, 97, 1, -1, 1, 
+                    110, 1, 103, 1, -1, 1, 48, 1, -1, 1, 48, 1, -1, 1, 111, 
+                    1, 114, 1, -1, 1, 109, 2, 48, 2, -1, 1, 110, 2, 48, 
+                    2, -1, 1, 48, 3, -1 )
+      MAX = unpack( 1, 160, 1, 115, 1, 111, 1, 101, 1, 110, 1, 117, 1, 110, 
+                    2, 114, 1, 101, 1, 116, 1, 111, 1, 104, 1, 114, 1, 57, 
+                    2, -1, 1, 61, 9, -1, 1, 62, 5, -1, 1, 122, 1, 100, 1, 
+                    111, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 1, 110, 
+                    1, 108, 3, 122, 1, 111, 1, 116, 1, 114, 2, 105, 1, 117, 
+                    7, -1, 1, 122, 1, 108, 1, 105, 1, 122, 1, 101, 1, 97, 
+                    1, 122, 1, 99, 1, 115, 1, -1, 1, 101, 2, -1, 1, 110, 
+                    1, 103, 1, 100, 1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 
+                    1, -1, 1, 122, 1, 110, 1, -1, 1, 122, 1, 116, 1, -1, 
+                    1, 116, 1, 101, 1, 103, 1, 116, 1, 114, 1, 122, 1, 114, 
+                    1, 110, 1, 122, 1, 101, 1, 122, 1, -1, 1, 101, 1, -1, 
+                    1, 122, 1, 105, 1, 122, 1, 101, 1, 122, 1, 97, 1, -1, 
+                    1, 110, 1, 103, 1, -1, 1, 122, 1, -1, 1, 122, 1, -1, 
+                    1, 111, 1, 114, 1, -1, 1, 109, 2, 122, 2, -1, 1, 110, 
+                    2, 122, 2, -1, 1, 122, 3, -1 )
+      ACCEPT = unpack( 15, -1, 1, 23, 1, 24, 1, -1, 1, 27, 1, 28, 1, 29, 
                        1, 30, 1, 31, 1, 32, 1, 33, 1, 34, 1, 36, 1, -1, 
-                       1, 38, 1, 39, 1, 41, 1, 42, 1, 43, 10, -1, 1, 10, 
-                       1, 11, 8, -1, 1, 22, 1, 25, 1, 35, 1, 26, 1, 40, 
-                       1, 37, 1, 1, 10, -1, 1, 13, 8, -1, 1, 2, 2, -1, 1, 
-                       5, 2, -1, 1, 8, 11, -1, 1, 3, 1, -1, 1, 6, 6, -1, 
-                       1, 16, 2, -1, 1, 19, 1, -1, 1, 21, 1, -1, 1, 7, 2, 
-                       -1, 1, 14, 3, -1, 1, 20, 1, 4, 3, -1, 1, 17, 1, 18, 
-                       1, -1, 1, 12, 1, 15, 1, 9 )
+                       1, 38, 1, 39, 1, 41, 1, 42, 1, 43, 19, -1, 1, 22, 
+                       1, 25, 1, 35, 1, 26, 1, 40, 1, 37, 1, 1, 9, -1, 1, 
+                       10, 1, -1, 1, 11, 1, 13, 8, -1, 1, 2, 2, -1, 1, 5, 
+                       2, -1, 1, 8, 11, -1, 1, 3, 1, -1, 1, 6, 6, -1, 1, 
+                       16, 2, -1, 1, 19, 1, -1, 1, 21, 1, -1, 1, 7, 2, -1, 
+                       1, 14, 3, -1, 1, 20, 1, 4, 3, -1, 1, 17, 1, 18, 1, 
+                       -1, 1, 12, 1, 15, 1, 9 )
       SPECIAL = unpack( 132, -1 )
       TRANSITION = [
-        unpack( 1, 32, 1, 33, 1, -1, 1, 32, 1, 33, 18, -1, 1, 32, 1, -1, 
-                1, 16, 4, -1, 1, 16, 1, 23, 1, 25, 1, 30, 1, 31, 1, 20, 
-                1, 29, 1, 21, 1, 26, 10, 15, 1, 19, 1, -1, 1, 28, 1, 18, 
-                1, 27, 10, -1, 1, 6, 17, -1, 1, 22, 1, -1, 1, 24, 1, -1, 
-                1, 17, 1, -1, 1, 1, 1, 2, 1, 17, 1, 3, 1, 4, 1, 5, 2, 17, 
-                1, 7, 5, 17, 1, 8, 1, 9, 1, 17, 1, 10, 1, 11, 1, 14, 1, 
-                17, 1, 12, 1, 13, 3, 17, 37, -1, 1, 32 ),
-        unpack( 1, 35, 4, -1, 1, 34 ),
+        unpack( 1, 31, 1, 32, 1, -1, 1, 31, 1, 32, 18, -1, 1, 31, 1, -1, 
+                1, 15, 4, -1, 1, 15, 1, 22, 1, 24, 1, 29, 1, 30, 1, 19, 
+                1, 28, 1, 20, 1, 25, 10, 14, 1, 18, 1, -1, 1, 27, 1, 17, 
+                1, 26, 28, -1, 1, 21, 1, -1, 1, 23, 1, -1, 1, 16, 1, -1, 
+                1, 1, 1, 2, 1, 16, 1, 3, 1, 4, 1, 5, 2, 16, 1, 6, 5, 16, 
+                1, 7, 1, 8, 1, 16, 1, 9, 1, 10, 1, 13, 1, 16, 1, 11, 1, 
+                12, 3, 16, 37, -1, 1, 31 ),
+        unpack( 1, 34, 4, -1, 1, 33 ),
+        unpack( 1, 35 ),
         unpack( 1, 36 ),
-        unpack( 1, 37 ),
-        unpack( 1, 39, 1, -1, 1, 38 ),
-        unpack( 1, 43, 10, -1, 1, 40, 2, -1, 1, 41, 5, -1, 1, 42 ),
-        unpack( 1, 44, 7, -1, 1, 45 ),
+        unpack( 1, 38, 1, -1, 1, 37 ),
+        unpack( 1, 42, 10, -1, 1, 39, 2, -1, 1, 40, 5, -1, 1, 41 ),
+        unpack( 1, 43, 7, -1, 1, 44 ),
+        unpack( 1, 45 ),
         unpack( 1, 46 ),
         unpack( 1, 47 ),
         unpack( 1, 48 ),
         unpack( 1, 49 ),
         unpack( 1, 50 ),
         unpack( 1, 51 ),
-        unpack( 1, 52 ),
-        unpack( 1, 53 ),
-        unpack( 1, 54, 1, -1, 10, 15 ),
+        unpack( 1, 52, 1, -1, 10, 14 ),
+        unpack(  ),
+        unpack(  ),
+        unpack( 1, 54 ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
         unpack(  ),
         unpack(  ),
         unpack( 1, 56 ),
@@ -1931,17 +1950,9 @@ module Hephaestus
         unpack(  ),
         unpack(  ),
         unpack(  ),
-        unpack(  ),
-        unpack(  ),
-        unpack(  ),
-        unpack(  ),
-        unpack( 1, 58 ),
-        unpack(  ),
-        unpack(  ),
-        unpack(  ),
-        unpack(  ),
-        unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
+        unpack( 1, 59 ),
+        unpack( 1, 60 ),
         unpack( 1, 61 ),
         unpack( 1, 62 ),
         unpack( 1, 63 ),
@@ -1949,12 +1960,10 @@ module Hephaestus
         unpack( 1, 65 ),
         unpack( 1, 66 ),
         unpack( 1, 67 ),
-        unpack( 1, 68 ),
-        unpack( 1, 69 ),
-        unpack(  ),
-        unpack(  ),
-        unpack( 1, 70 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 19, 16, 1, 
+                 69, 6, 16 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 72, 5, -1, 1, 73 ),
         unpack( 1, 74, 18, -1, 1, 75 ),
         unpack( 1, 76 ),
@@ -1968,16 +1977,18 @@ module Hephaestus
         unpack(  ),
         unpack(  ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 81 ),
         unpack( 1, 82 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 84 ),
         unpack( 1, 85 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 87 ),
         unpack( 1, 88 ),
+        unpack(  ),
         unpack( 1, 89 ),
+        unpack(  ),
         unpack(  ),
         unpack( 1, 90 ),
         unpack( 1, 91 ),
@@ -1988,10 +1999,10 @@ module Hephaestus
         unpack( 1, 96 ),
         unpack( 1, 97 ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 99 ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 101 ),
         unpack(  ),
         unpack( 1, 102 ),
@@ -1999,43 +2010,43 @@ module Hephaestus
         unpack( 1, 104 ),
         unpack( 1, 105 ),
         unpack( 1, 106 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 108 ),
         unpack( 1, 109 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 111 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack(  ),
         unpack( 1, 113 ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 115 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 116 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack( 1, 118 ),
         unpack(  ),
         unpack( 1, 119 ),
         unpack( 1, 120 ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack(  ),
         unpack( 1, 123 ),
         unpack( 1, 124 ),
         unpack(  ),
         unpack( 1, 125 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack(  ),
         unpack(  ),
         unpack( 1, 128 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack(  ),
         unpack(  ),
-        unpack( 10, 17, 7, -1, 26, 17, 4, -1, 1, 17, 1, -1, 26, 17 ),
+        unpack( 10, 16, 7, -1, 26, 16, 4, -1, 1, 16, 1, -1, 26, 16 ),
         unpack(  ),
         unpack(  ),
         unpack(  )
