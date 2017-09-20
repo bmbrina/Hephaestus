@@ -3,11 +3,38 @@ lexer grammar Hephaestus;
 options { language = Ruby; }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// RESERVED WORDS
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+AS: 'as';
+AND: 'and';
+R_BOOL: 'bool';
+DEFINE: 'define';
+R_END: 'end';
+ELSE: 'else';
+R_FLOAT: 'float';
+FOR: 'for';
+FUNCTION: 'function';
+IF: 'IF';
+IN: 'IN';
+R_INTEGER: 'integer';
+OR: 'or';
+PRINT: 'print';
+PROGRAM: 'program';
+READ: 'read';
+RETURN: 'return';
+R_STRING: 'string';
+VOID: 'void';
+WHILE: 'while';
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // TYPES
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
-INTEGER: ( '0' .. '9' )+;
 BOOL: ( 'true' | 'false');
+FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
+STRING: '\'' ( ~( '\'' | '\\' ) | '\\' . )* '\'' | '"'  ( ~( '"'  | '\\' ) | '\\' . )* '"';
+ID: ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*;
+INTEGER: ( '0' .. '9' )+;
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -37,17 +64,7 @@ PLUS: '+';
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// RESERVED WORDS
+// SPECIAL
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-AND: 'and';
-DEFINE: 'define';
-END: 'end';
-ELSE: 'else';
-FOR: 'for';
-FUNCTION: 'function';
-IF: 'IF';
-IN: 'IN';
-OR: 'or';
-RETURN: 'return';
-VOID: 'void';
-WHILE: 'while';
+WS: ( '\t' | '\f' | ' ' | '\u00A0' )+;
+NEWLINE: ( '\n' | '\r' )+;
