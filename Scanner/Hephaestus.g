@@ -2,48 +2,52 @@ lexer grammar Hephaestus;
 
 options { language = Ruby; }
 
-/*
-tokens {
-  AND='and';
-  ASSIGNMENT='=';
-  COLON=':';
-  COMMA=',';
-  DEFINE='define';
-  END='end';
-  ELSE='else';
-  EQ='==';
-  FALSE='false';
-  FOR='for';
-  FUNCTION='function';
-  GREATER='>';
-  IF='IF";
-  IN='IN";
-  LBRACK='[';
-  LESS='<';
-  LPAREN='(';
-  MINUS='-';
-  NEQ='<>';
-  OR='or';
-  PLUS='+';
-  RBRACK=']';
-  RETURN='return';
-  RPAREN=')';
-  TRUE='true';
-  VOID='void';
-  WHILE='while';
-}
-*/
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // TYPES
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
 INTEGER: ( '0' .. '9' )+;
+BOOL: ( 'true' | 'false');
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // CHARACTERS
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-PARENTESIS: ( '(' | ')' )
+ASGN: '=';
+COLON: ':';
+COMMA: ',';
+DOT: '.';
+LBRACK: '[';
+LPAR: '(';
+RBRACK: ']';
+RPAR: ')';
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// OPERATORS
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DIV: '/';
+EQ: '==';
+GREATER: '>';
+LESS: '<';
+MINUS: '-';
+MULT: '*';
+NEQ: '<>';
+PLUS: '+';
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// RESERVED WORDS
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+AND: 'and';
+DEFINE: 'define';
+END: 'end';
+ELSE: 'else';
+FOR: 'for';
+FUNCTION: 'function';
+IF: 'IF';
+IN: 'IN';
+OR: 'or';
+RETURN: 'return';
+VOID: 'void';
+WHILE: 'while';
