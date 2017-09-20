@@ -18,4 +18,8 @@ program hola:
     end for
   end function
 
+  if(a):
+    return a.
+  end if
+
 end program

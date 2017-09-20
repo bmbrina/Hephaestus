@@ -96,7 +96,7 @@ reading: READ LPAR value RPAR DOT;
 
 writing: PRINT LPAR expresion RPAR DOT;
 
-condition: IF LPAR expresion RPAR COLON estatute ( RETURN ID )? ( ELSE block | R_END ) IF;
+condition: IF LPAR expresion RPAR COLON ( estatute )? ( RETURN ID DOT )? ( ELSE block | R_END ) IF;
 
 loops: while_loop | for_loop;
 
