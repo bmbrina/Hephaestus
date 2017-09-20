@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-09-20 12:20:43
+# Generated at: 2017-09-20 12:42:11
 #
 
 # ~~~> start load path setup
@@ -118,7 +118,7 @@ module Hephaestus
     # parser rule program
     #
     # (in Hephaestus.g)
-    # 80:2: program : PROGRAM ID block PROGRAM ;
+    # 85:2: program : PROGRAM ID block PROGRAM ;
     #
     def program
       # -> uncomment the next line to manually enable rule tracing
@@ -126,13 +126,13 @@ module Hephaestus
 
 
       begin
-      # at line 80:11: PROGRAM ID block PROGRAM
-      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_473 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_program_475 )
-      @state.following.push( TOKENS_FOLLOWING_block_IN_program_477 )
+      # at line 85:11: PROGRAM ID block PROGRAM
+      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_482 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_program_484 )
+      @state.following.push( TOKENS_FOLLOWING_block_IN_program_486 )
       block
       @state.following.pop
-      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_479 )
+      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_488 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -154,7 +154,7 @@ module Hephaestus
     # parser rule block
     #
     # (in Hephaestus.g)
-    # 82:2: block : COLON R_END ;
+    # 87:2: block : COLON R_END ;
     #
     def block
       # -> uncomment the next line to manually enable rule tracing
@@ -162,9 +162,9 @@ module Hephaestus
 
 
       begin
-      # at line 82:9: COLON R_END
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_block_487 )
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_block_489 )
+      # at line 87:9: COLON R_END
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_block_496 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_block_498 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -182,12 +182,12 @@ module Hephaestus
 
 
 
-    TOKENS_FOLLOWING_PROGRAM_IN_program_473 = Set[ 19 ]
-    TOKENS_FOLLOWING_ID_IN_program_475 = Set[ 8 ]
-    TOKENS_FOLLOWING_block_IN_program_477 = Set[ 33 ]
-    TOKENS_FOLLOWING_PROGRAM_IN_program_479 = Set[ 1 ]
-    TOKENS_FOLLOWING_COLON_IN_block_487 = Set[ 39 ]
-    TOKENS_FOLLOWING_R_END_IN_block_489 = Set[ 1 ]
+    TOKENS_FOLLOWING_PROGRAM_IN_program_482 = Set[ 19 ]
+    TOKENS_FOLLOWING_ID_IN_program_484 = Set[ 8 ]
+    TOKENS_FOLLOWING_block_IN_program_486 = Set[ 33 ]
+    TOKENS_FOLLOWING_PROGRAM_IN_program_488 = Set[ 1 ]
+    TOKENS_FOLLOWING_COLON_IN_block_496 = Set[ 39 ]
+    TOKENS_FOLLOWING_R_END_IN_block_498 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 
