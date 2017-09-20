@@ -8,7 +8,8 @@ lexer.each do |token|
  puts "#{token.name} = #{token}"
 end
 
-#tokens = ANTLR3::CommonTokenStream.new( lexer )
-#parser = Hephaestus::Parser.new( lexer )
+# tokens = ANTLR3::CommonTokenStream.new( lexer )
+# parser = Hephaestus::Parser.new( tokens )
+
 parser = open( 'code.txt' ) { | f | Hephaestus::Parser.new( f ) }
-puts parser.ast
+puts parser.program

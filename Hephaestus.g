@@ -1,9 +1,6 @@
 grammar Hephaestus;
 
-options { 
-  language = Ruby;
-  output   = AST;
-}
+options { language = Ruby; }
 
 // ******************************************************************************
 // ******************************************************************************
@@ -23,8 +20,8 @@ ELSE: 'else';
 R_FLOAT: 'float';
 FOR: 'for';
 FUNCTION: 'function';
-IF: 'IF';
-IN: 'IN';
+IF: 'if';
+IN: 'in';
 R_INTEGER: 'integer';
 OR: 'or';
 PRINT: 'print';
@@ -85,6 +82,38 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
- program: PROGRAM ID block PROGRAM;
+program: PROGRAM ID block PROGRAM;
 
- block: COLON R_END; 
+block: COLON ( ( estatute )* ( ( RETURN ) ( ID ) DOT )? ) R_END; 
+
+estatute: declaration | condition | reading | writing | assignment | loops | function;
+
+declaration: DEFINE ID AS type (ASGN expresion)? DOT;
+
+assignment: ID ASGN expresion DOT;
+
+reading: READ LPAR value RPAR DOT;
+
+writing: PRINT LPAR expresion RPAR DOT;
+
+condition: IF LPAR expresion RPAR COLON estatute ( RETURN ID )? ( ELSE block | R_END ) IF;
+
+loops: while_loop | for_loop;
+
+while_loop: WHILE LPAR expresion RPAR block WHILE;
+
+for_loop: FOR ID IN ID block FOR;
+
+type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER;
+
+function: FUNCTION ( type | VOID ) ID LPAR ( ID | ( ID COMMA )+ ID )? RPAR block FUNCTION;
+
+expresion: exp ( ( GREATER | LESS | NEQ | EQ ) exp )?;
+
+exp: term ( ( PLUS | MINUS ) term )*;
+
+term: factor ( ( MULT | DIV ) factor )*;
+
+factor: ID | value | LPAR expresion RPAR;
+
+value: STRING | FLOAT | INTEGER | BOOL;
