@@ -14,6 +14,7 @@ options { language = Ruby; }
 AS: 'as';
 AND: 'and';
 R_BOOL: 'bool';
+CLASS: 'class';
 DEFINE: 'define';
 R_END: 'end';
 ELSE: 'else';
@@ -67,6 +68,7 @@ MINUS: '-';
 MULT: '*';
 NEQ: '<>';
 PLUS: '+';
+HER: '<<';
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,21 +84,19 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
-program: PROGRAM ID block PROGRAM;
+start: ( class )* program;
 
-block: COLON ( ( estatute )* ( ( RETURN ) ( ID ) DOT )? ) R_END; 
+program: PROGRAM ID COLON ( estatute | var_dec )+ R_END PROGRAM;
 
-estatute: declaration | condition | reading | writing | assignment | loops | function;
+estatute: func_call | condition | reading | writing | assignment | loops | method_call;
 
-declaration: DEFINE ID AS type (ASGN expresion)? DOT;
+var_dec: DEFINE ID AS type ( ASGN expresion | array_dec )? DOT;
 
-assignment: ID ASGN expresion DOT;
+assignment: ID ( ASGN ( expresion | func_call ) | array_dec ASGN type ) DOT;
 
-reading: READ LPAR value RPAR DOT;
+array_dec: LBRACK exp ( COMMA exp )* RBRACK;
 
-writing: PRINT LPAR expresion RPAR DOT;
-
-condition: IF LPAR expresion RPAR COLON ( estatute )? ( RETURN ID DOT )? ( ELSE block | R_END ) IF;
+condition: IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block | R_END ) IF;
 
 loops: while_loop | for_loop;
 
@@ -104,16 +104,30 @@ while_loop: WHILE LPAR expresion RPAR block WHILE;
 
 for_loop: FOR ID IN ID block FOR;
 
-type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER;
+reading: READ LPAR value RPAR DOT;
 
-function: FUNCTION ( type | VOID ) ID LPAR ( ID | ( ID COMMA )+ ID )? RPAR block FUNCTION;
+writing: PRINT LPAR expresion RPAR DOT;
 
-expresion: exp ( ( GREATER | LESS | NEQ | EQ ) exp )?;
+parameters: LPAR type ID ( COMMA type ID )* RPAR;
+
+function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* RETURN expresion DOT R_END FUNCTION;
+
+block: COLON ( estatute )* ( RETURN expresion DOT )? R_END;
+
+func_call: ID parameters DOT;
+
+expresion: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR) exp )?;
 
 exp: term ( ( PLUS | MINUS ) term )*;
 
+factor: ID array_dec | LPAR expresion RPAR;
+
 term: factor ( ( MULT | DIV ) factor )*;
 
-factor: ID | value | LPAR expresion RPAR;
+type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER;
 
 value: STRING | FLOAT | INTEGER | BOOL;
+
+class: CLASS ID ( HER ID )? COLON ( func_call| var_dec )+ R_END CLASS;
+
+method_call: ID DOT (func_call | ID) DOT;
