@@ -108,7 +108,7 @@ reading: READ LPAR value RPAR DOT;
 
 writing: PRINT LPAR expresion RPAR DOT;
 
-parameters: LPAR type ID ( COMMA type ID )* RPAR;
+parameters: LPAR ( type ID ( COMMA type ID )* )? RPAR;
 
 function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* ( RETURN expresion DOT )? R_END FUNCTION;
 
@@ -120,7 +120,7 @@ expresion: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR) exp )?;
 
 exp: term ( ( PLUS | MINUS ) term )*;
 
-factor: ID array_dec | LPAR expresion RPAR;
+factor: ID ( array_dec )? | LPAR expresion RPAR | value;
 
 term: factor ( ( MULT | DIV ) factor )*;
 
