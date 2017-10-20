@@ -12,4 +12,4 @@ end
 # parser = Hephaestus::Parser.new( tokens )
 
 parser = open( 'code.txt' ) { | f | Hephaestus::Parser.new( f ) }
-puts parser.program
+puts parser.start

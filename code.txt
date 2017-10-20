@@ -1,25 +1,23 @@
+function void bye():
+  print("hola").
+end function
+
+function integer sum():
+  define cars as string.
+  for car in cars:
+    print(car).
+  end for
+end function
+
+function integer show():
+  define cars as string.
+  for car in cars:
+    print(car).
+  end for
+end function
+
 program hola:
-
-  function void bye():
-    print("hola").
-  end function
-
-  function integer sum():
-    define cars as string.
-    for car in cars:
-      print(car).
-    end for
-  end function
-
-  function integer show():
-    define cars as string.
-    for car in cars:
-      print(car).
-    end for
-  end function
-
   if(a):
-    return a.
+    return a + b.
   end if
-
 end program

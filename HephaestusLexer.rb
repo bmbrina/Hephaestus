@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-10-19 20:34:35
+# Generated at: 2017-10-19 20:49:17
 #
 
 # ~~~> start load path setup
@@ -66,16 +66,16 @@ module Hephaestus
 
     # define the token constants
     define_tokens( :EOF => -1, :AND => 4, :AS => 5, :ASGN => 6, :BOOL => 7, 
-                   :CLASS => 8, :COLON => 9, :COMMA => 10, :DEFINE => 11, 
-                   :DIV => 12, :DOT => 13, :ELSE => 14, :EQ => 15, :FLOAT => 16, 
-                   :FOR => 17, :FUNCTION => 18, :GREATER => 19, :HER => 20, 
-                   :ID => 21, :IF => 22, :IN => 23, :INTEGER => 24, :LBRACK => 25, 
-                   :LESS => 26, :LPAR => 27, :MINUS => 28, :MULT => 29, 
-                   :NEQ => 30, :NEWLINE => 31, :OR => 32, :PLUS => 33, :PRINT => 34, 
-                   :PROGRAM => 35, :RBRACK => 36, :READ => 37, :RETURN => 38, 
-                   :RPAR => 39, :R_BOOL => 40, :R_END => 41, :R_FLOAT => 42, 
-                   :R_INTEGER => 43, :R_STRING => 44, :STRING => 45, :VOID => 46, 
-                   :WHILE => 47, :WS => 48 )
+                   :COLON => 8, :COMMA => 9, :DEFINE => 10, :DIV => 11, 
+                   :DOT => 12, :ELSE => 13, :EQ => 14, :FLOAT => 15, :FOR => 16, 
+                   :FUNCTION => 17, :GREATER => 18, :HER => 19, :ID => 20, 
+                   :IF => 21, :IN => 22, :INTEGER => 23, :LBRACK => 24, 
+                   :LESS => 25, :LPAR => 26, :MINUS => 27, :MULT => 28, 
+                   :NEQ => 29, :NEWLINE => 30, :OR => 31, :PLUS => 32, :PRINT => 33, 
+                   :PROGRAM => 34, :RBRACK => 35, :READ => 36, :RETURN => 37, 
+                   :RPAR => 38, :R_BOOL => 39, :R_CLASS => 40, :R_END => 41, 
+                   :R_FLOAT => 42, :R_INTEGER => 43, :R_STRING => 44, :STRING => 45, 
+                   :VOID => 46, :WHILE => 47, :WS => 48 )
 
   end
 
@@ -90,14 +90,14 @@ module Hephaestus
       # ignore
     end
 
-    RULE_NAMES   = [ "AS", "AND", "R_BOOL", "CLASS", "DEFINE", "R_END", 
+    RULE_NAMES   = [ "AS", "AND", "R_BOOL", "R_CLASS", "DEFINE", "R_END", 
                      "ELSE", "R_FLOAT", "FOR", "FUNCTION", "IF", "IN", "R_INTEGER", 
                      "OR", "PRINT", "PROGRAM", "READ", "RETURN", "R_STRING", 
                      "VOID", "WHILE", "BOOL", "FLOAT", "STRING", "ID", "INTEGER", 
                      "ASGN", "COLON", "COMMA", "DOT", "LBRACK", "LPAR", 
                      "RBRACK", "RPAR", "DIV", "EQ", "GREATER", "LESS", "MINUS", 
                      "MULT", "NEQ", "PLUS", "HER", "WS", "NEWLINE" ].freeze
-    RULE_METHODS = [ :as!, :and!, :r_bool!, :class!, :define!, :r_end!, 
+    RULE_METHODS = [ :as!, :and!, :r_bool!, :r_class!, :define!, :r_end!, 
                      :else!, :r_float!, :for!, :function!, :if!, :in!, :r_integer!, 
                      :or!, :print!, :program!, :read!, :return!, :r_string!, 
                      :void!, :while!, :bool!, :float!, :string!, :id!, :integer!, 
@@ -195,21 +195,21 @@ module Hephaestus
 
     end
 
-    # lexer rule class! (CLASS)
+    # lexer rule r_class! (R_CLASS)
     # (in Hephaestus.g)
-    def class!
+    def r_class!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 4 )
 
 
 
-      type = CLASS
+      type = R_CLASS
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 17:8: 'class'
+      # at line 17:10: 'class'
       match( "class" )
 
 
@@ -1691,7 +1691,7 @@ module Hephaestus
     # but instead use the next_token method, which will
     # build and emit the actual next token
     def token!
-      # at line 1:8: ( AS | AND | R_BOOL | CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | BOOL | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | HER | WS | NEWLINE )
+      # at line 1:8: ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | BOOL | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | HER | WS | NEWLINE )
       alt_11 = 45
       alt_11 = @dfa11.predict( @input )
       case alt_11
@@ -1711,212 +1711,212 @@ module Hephaestus
 
 
       when 4
-        # at line 1:24: CLASS
-        class!
+        # at line 1:24: R_CLASS
+        r_class!
 
 
       when 5
-        # at line 1:30: DEFINE
+        # at line 1:32: DEFINE
         define!
 
 
       when 6
-        # at line 1:37: R_END
+        # at line 1:39: R_END
         r_end!
 
 
       when 7
-        # at line 1:43: ELSE
+        # at line 1:45: ELSE
         else!
 
 
       when 8
-        # at line 1:48: R_FLOAT
+        # at line 1:50: R_FLOAT
         r_float!
 
 
       when 9
-        # at line 1:56: FOR
+        # at line 1:58: FOR
         for!
 
 
       when 10
-        # at line 1:60: FUNCTION
+        # at line 1:62: FUNCTION
         function!
 
 
       when 11
-        # at line 1:69: IF
+        # at line 1:71: IF
         if!
 
 
       when 12
-        # at line 1:72: IN
+        # at line 1:74: IN
         in!
 
 
       when 13
-        # at line 1:75: R_INTEGER
+        # at line 1:77: R_INTEGER
         r_integer!
 
 
       when 14
-        # at line 1:85: OR
+        # at line 1:87: OR
         or!
 
 
       when 15
-        # at line 1:88: PRINT
+        # at line 1:90: PRINT
         print!
 
 
       when 16
-        # at line 1:94: PROGRAM
+        # at line 1:96: PROGRAM
         program!
 
 
       when 17
-        # at line 1:102: READ
+        # at line 1:104: READ
         read!
 
 
       when 18
-        # at line 1:107: RETURN
+        # at line 1:109: RETURN
         return!
 
 
       when 19
-        # at line 1:114: R_STRING
+        # at line 1:116: R_STRING
         r_string!
 
 
       when 20
-        # at line 1:123: VOID
+        # at line 1:125: VOID
         void!
 
 
       when 21
-        # at line 1:128: WHILE
+        # at line 1:130: WHILE
         while!
 
 
       when 22
-        # at line 1:134: BOOL
+        # at line 1:136: BOOL
         bool!
 
 
       when 23
-        # at line 1:139: FLOAT
+        # at line 1:141: FLOAT
         float!
 
 
       when 24
-        # at line 1:145: STRING
+        # at line 1:147: STRING
         string!
 
 
       when 25
-        # at line 1:152: ID
+        # at line 1:154: ID
         id!
 
 
       when 26
-        # at line 1:155: INTEGER
+        # at line 1:157: INTEGER
         integer!
 
 
       when 27
-        # at line 1:163: ASGN
+        # at line 1:165: ASGN
         asgn!
 
 
       when 28
-        # at line 1:168: COLON
+        # at line 1:170: COLON
         colon!
 
 
       when 29
-        # at line 1:174: COMMA
+        # at line 1:176: COMMA
         comma!
 
 
       when 30
-        # at line 1:180: DOT
+        # at line 1:182: DOT
         dot!
 
 
       when 31
-        # at line 1:184: LBRACK
+        # at line 1:186: LBRACK
         lbrack!
 
 
       when 32
-        # at line 1:191: LPAR
+        # at line 1:193: LPAR
         lpar!
 
 
       when 33
-        # at line 1:196: RBRACK
+        # at line 1:198: RBRACK
         rbrack!
 
 
       when 34
-        # at line 1:203: RPAR
+        # at line 1:205: RPAR
         rpar!
 
 
       when 35
-        # at line 1:208: DIV
+        # at line 1:210: DIV
         div!
 
 
       when 36
-        # at line 1:212: EQ
+        # at line 1:214: EQ
         eq!
 
 
       when 37
-        # at line 1:215: GREATER
+        # at line 1:217: GREATER
         greater!
 
 
       when 38
-        # at line 1:223: LESS
+        # at line 1:225: LESS
         less!
 
 
       when 39
-        # at line 1:228: MINUS
+        # at line 1:230: MINUS
         minus!
 
 
       when 40
-        # at line 1:234: MULT
+        # at line 1:236: MULT
         mult!
 
 
       when 41
-        # at line 1:239: NEQ
+        # at line 1:241: NEQ
         neq!
 
 
       when 42
-        # at line 1:243: PLUS
+        # at line 1:245: PLUS
         plus!
 
 
       when 43
-        # at line 1:248: HER
+        # at line 1:250: HER
         her!
 
 
       when 44
-        # at line 1:252: WS
+        # at line 1:254: WS
         ws!
 
 
       when 45
-        # at line 1:255: NEWLINE
+        # at line 1:257: NEWLINE
         newline!
 
 
@@ -2139,7 +2139,7 @@ module Hephaestus
 
       def description
         <<-'__dfa_description__'.strip!
-          1:1: Tokens : ( AS | AND | R_BOOL | CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | BOOL | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | HER | WS | NEWLINE );
+          1:1: Tokens : ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | BOOL | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | HER | WS | NEWLINE );
         __dfa_description__
       end
 

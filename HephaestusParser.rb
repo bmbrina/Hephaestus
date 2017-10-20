@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-10-19 20:34:34
+# Generated at: 2017-10-19 20:49:16
 #
 
 # ~~~> start load path setup
@@ -66,16 +66,16 @@ module Hephaestus
 
     # define the token constants
     define_tokens( :EOF => -1, :AND => 4, :AS => 5, :ASGN => 6, :BOOL => 7, 
-                   :CLASS => 8, :COLON => 9, :COMMA => 10, :DEFINE => 11, 
-                   :DIV => 12, :DOT => 13, :ELSE => 14, :EQ => 15, :FLOAT => 16, 
-                   :FOR => 17, :FUNCTION => 18, :GREATER => 19, :HER => 20, 
-                   :ID => 21, :IF => 22, :IN => 23, :INTEGER => 24, :LBRACK => 25, 
-                   :LESS => 26, :LPAR => 27, :MINUS => 28, :MULT => 29, 
-                   :NEQ => 30, :NEWLINE => 31, :OR => 32, :PLUS => 33, :PRINT => 34, 
-                   :PROGRAM => 35, :RBRACK => 36, :READ => 37, :RETURN => 38, 
-                   :RPAR => 39, :R_BOOL => 40, :R_END => 41, :R_FLOAT => 42, 
-                   :R_INTEGER => 43, :R_STRING => 44, :STRING => 45, :VOID => 46, 
-                   :WHILE => 47, :WS => 48 )
+                   :COLON => 8, :COMMA => 9, :DEFINE => 10, :DIV => 11, 
+                   :DOT => 12, :ELSE => 13, :EQ => 14, :FLOAT => 15, :FOR => 16, 
+                   :FUNCTION => 17, :GREATER => 18, :HER => 19, :ID => 20, 
+                   :IF => 21, :IN => 22, :INTEGER => 23, :LBRACK => 24, 
+                   :LESS => 25, :LPAR => 26, :MINUS => 27, :MULT => 28, 
+                   :NEQ => 29, :NEWLINE => 30, :OR => 31, :PLUS => 32, :PRINT => 33, 
+                   :PROGRAM => 34, :RBRACK => 35, :READ => 36, :RETURN => 37, 
+                   :RPAR => 38, :R_BOOL => 39, :R_CLASS => 40, :R_END => 41, 
+                   :R_FLOAT => 42, :R_INTEGER => 43, :R_STRING => 44, :STRING => 45, 
+                   :VOID => 46, :WHILE => 47, :WS => 48 )
 
 
     # register the proper human-readable name or literal value
@@ -84,12 +84,12 @@ module Hephaestus
     # this is necessary because anonymous tokens, which are
     # created from literal values in the grammar, do not
     # have descriptive names
-    register_names( "AND", "AS", "ASGN", "BOOL", "CLASS", "COLON", "COMMA", 
-                    "DEFINE", "DIV", "DOT", "ELSE", "EQ", "FLOAT", "FOR", 
-                    "FUNCTION", "GREATER", "HER", "ID", "IF", "IN", "INTEGER", 
-                    "LBRACK", "LESS", "LPAR", "MINUS", "MULT", "NEQ", "NEWLINE", 
-                    "OR", "PLUS", "PRINT", "PROGRAM", "RBRACK", "READ", 
-                    "RETURN", "RPAR", "R_BOOL", "R_END", "R_FLOAT", "R_INTEGER", 
+    register_names( "AND", "AS", "ASGN", "BOOL", "COLON", "COMMA", "DEFINE", 
+                    "DIV", "DOT", "ELSE", "EQ", "FLOAT", "FOR", "FUNCTION", 
+                    "GREATER", "HER", "ID", "IF", "IN", "INTEGER", "LBRACK", 
+                    "LESS", "LPAR", "MINUS", "MULT", "NEQ", "NEWLINE", "OR", 
+                    "PLUS", "PRINT", "PROGRAM", "RBRACK", "READ", "RETURN", 
+                    "RPAR", "R_BOOL", "R_CLASS", "R_END", "R_FLOAT", "R_INTEGER", 
                     "R_STRING", "STRING", "VOID", "WHILE", "WS" )
 
 
@@ -103,7 +103,7 @@ module Hephaestus
                      :array_dec, :condition, :loops, :while_loop, :for_loop, 
                      :reading, :writing, :parameters, :function, :block, 
                      :func_call, :expresion, :exp, :factor, :term, :type, 
-                     :value, :class, :method_call ].freeze
+                     :value, :r_class, :method_call ].freeze
 
     include TokenData
 
@@ -122,7 +122,7 @@ module Hephaestus
     # parser rule start
     #
     # (in Hephaestus.g)
-    # 87:1: start : ( class )* program ;
+    # 87:1: start : ( r_class )* ( function )* program ;
     #
     def start
       # -> uncomment the next line to manually enable rule tracing
@@ -130,21 +130,21 @@ module Hephaestus
 
 
       begin
-      # at line 87:8: ( class )* program
-      # at line 87:8: ( class )*
+      # at line 87:8: ( r_class )* ( function )* program
+      # at line 87:8: ( r_class )*
       while true # decision 1
         alt_1 = 2
         look_1_0 = @input.peek( 1 )
 
-        if ( look_1_0 == CLASS )
+        if ( look_1_0 == R_CLASS )
           alt_1 = 1
 
         end
         case alt_1
         when 1
-          # at line 87:10: class
-          @state.following.push( TOKENS_FOLLOWING_class_IN_start_495 )
-          class
+          # at line 87:10: r_class
+          @state.following.push( TOKENS_FOLLOWING_r_class_IN_start_495 )
+          r_class
           @state.following.pop
 
         else
@@ -152,7 +152,28 @@ module Hephaestus
         end
       end # loop for decision 1
 
-      @state.following.push( TOKENS_FOLLOWING_program_IN_start_500 )
+      # at line 87:21: ( function )*
+      while true # decision 2
+        alt_2 = 2
+        look_2_0 = @input.peek( 1 )
+
+        if ( look_2_0 == FUNCTION )
+          alt_2 = 1
+
+        end
+        case alt_2
+        when 1
+          # at line 87:23: function
+          @state.following.push( TOKENS_FOLLOWING_function_IN_start_502 )
+          function
+          @state.following.pop
+
+        else
+          break # out of loop for decision 2
+        end
+      end # loop for decision 2
+
+      @state.following.push( TOKENS_FOLLOWING_program_IN_start_507 )
       program
       @state.following.pop
 
@@ -185,47 +206,47 @@ module Hephaestus
 
       begin
       # at line 89:10: PROGRAM ID COLON ( estatute | var_dec )+ R_END PROGRAM
-      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_507 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_program_509 )
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_program_511 )
+      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_514 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_program_516 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_program_518 )
       # at file 89:27: ( estatute | var_dec )+
-      match_count_2 = 0
+      match_count_3 = 0
       while true
-        alt_2 = 3
-        look_2_0 = @input.peek( 1 )
+        alt_3 = 3
+        look_3_0 = @input.peek( 1 )
 
-        if ( look_2_0 == FOR || look_2_0.between?( ID, IF ) || look_2_0 == PRINT || look_2_0 == READ || look_2_0 == WHILE )
-          alt_2 = 1
-        elsif ( look_2_0 == DEFINE )
-          alt_2 = 2
+        if ( look_3_0 == FOR || look_3_0.between?( ID, IF ) || look_3_0 == PRINT || look_3_0 == READ || look_3_0 == WHILE )
+          alt_3 = 1
+        elsif ( look_3_0 == DEFINE )
+          alt_3 = 2
 
         end
-        case alt_2
+        case alt_3
         when 1
           # at line 89:29: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_program_515 )
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_program_522 )
           estatute
           @state.following.pop
 
         when 2
           # at line 89:40: var_dec
-          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_program_519 )
+          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_program_526 )
           var_dec
           @state.following.pop
 
         else
-          match_count_2 > 0 and break
-          eee = EarlyExit(2)
+          match_count_3 > 0 and break
+          eee = EarlyExit(3)
 
 
           raise eee
         end
-        match_count_2 += 1
+        match_count_3 += 1
       end
 
 
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_program_524 )
-      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_526 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_program_531 )
+      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_533 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -256,64 +277,64 @@ module Hephaestus
 
       begin
       # at line 91:9: ( func_call | condition | reading | writing | assignment | loops | method_call )
-      alt_3 = 7
-      case look_3 = @input.peek( 1 )
-      when ID then case look_3 = @input.peek( 2 )
-      when DOT then alt_3 = 7
-      when LPAR then alt_3 = 1
-      when ASGN, LBRACK then alt_3 = 5
+      alt_4 = 7
+      case look_4 = @input.peek( 1 )
+      when ID then case look_4 = @input.peek( 2 )
+      when DOT then alt_4 = 7
+      when LPAR then alt_4 = 1
+      when ASGN, LBRACK then alt_4 = 5
       else
-        raise NoViableAlternative( "", 3, 1 )
+        raise NoViableAlternative( "", 4, 1 )
 
       end
-      when IF then alt_3 = 2
-      when READ then alt_3 = 3
-      when PRINT then alt_3 = 4
-      when FOR, WHILE then alt_3 = 6
+      when IF then alt_4 = 2
+      when READ then alt_4 = 3
+      when PRINT then alt_4 = 4
+      when FOR, WHILE then alt_4 = 6
       else
-        raise NoViableAlternative( "", 3, 0 )
+        raise NoViableAlternative( "", 4, 0 )
 
       end
-      case alt_3
+      case alt_4
       when 1
         # at line 91:11: func_call
-        @state.following.push( TOKENS_FOLLOWING_func_call_IN_estatute_533 )
+        @state.following.push( TOKENS_FOLLOWING_func_call_IN_estatute_540 )
         func_call
         @state.following.pop
 
       when 2
         # at line 91:23: condition
-        @state.following.push( TOKENS_FOLLOWING_condition_IN_estatute_537 )
+        @state.following.push( TOKENS_FOLLOWING_condition_IN_estatute_544 )
         condition
         @state.following.pop
 
       when 3
         # at line 91:35: reading
-        @state.following.push( TOKENS_FOLLOWING_reading_IN_estatute_541 )
+        @state.following.push( TOKENS_FOLLOWING_reading_IN_estatute_548 )
         reading
         @state.following.pop
 
       when 4
         # at line 91:45: writing
-        @state.following.push( TOKENS_FOLLOWING_writing_IN_estatute_545 )
+        @state.following.push( TOKENS_FOLLOWING_writing_IN_estatute_552 )
         writing
         @state.following.pop
 
       when 5
         # at line 91:55: assignment
-        @state.following.push( TOKENS_FOLLOWING_assignment_IN_estatute_549 )
+        @state.following.push( TOKENS_FOLLOWING_assignment_IN_estatute_556 )
         assignment
         @state.following.pop
 
       when 6
         # at line 91:68: loops
-        @state.following.push( TOKENS_FOLLOWING_loops_IN_estatute_553 )
+        @state.following.push( TOKENS_FOLLOWING_loops_IN_estatute_560 )
         loops
         @state.following.pop
 
       when 7
         # at line 91:76: method_call
-        @state.following.push( TOKENS_FOLLOWING_method_call_IN_estatute_557 )
+        @state.following.push( TOKENS_FOLLOWING_method_call_IN_estatute_564 )
         method_call
         @state.following.pop
 
@@ -347,37 +368,37 @@ module Hephaestus
 
       begin
       # at line 93:10: DEFINE ID AS type ( ASGN expresion | array_dec )? DOT
-      match( DEFINE, TOKENS_FOLLOWING_DEFINE_IN_var_dec_564 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_var_dec_566 )
-      match( AS, TOKENS_FOLLOWING_AS_IN_var_dec_568 )
-      @state.following.push( TOKENS_FOLLOWING_type_IN_var_dec_570 )
+      match( DEFINE, TOKENS_FOLLOWING_DEFINE_IN_var_dec_571 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_var_dec_573 )
+      match( AS, TOKENS_FOLLOWING_AS_IN_var_dec_575 )
+      @state.following.push( TOKENS_FOLLOWING_type_IN_var_dec_577 )
       type
       @state.following.pop
       # at line 93:28: ( ASGN expresion | array_dec )?
-      alt_4 = 3
-      look_4_0 = @input.peek( 1 )
+      alt_5 = 3
+      look_5_0 = @input.peek( 1 )
 
-      if ( look_4_0 == ASGN )
-        alt_4 = 1
-      elsif ( look_4_0 == LBRACK )
-        alt_4 = 2
+      if ( look_5_0 == ASGN )
+        alt_5 = 1
+      elsif ( look_5_0 == LBRACK )
+        alt_5 = 2
       end
-      case alt_4
+      case alt_5
       when 1
         # at line 93:30: ASGN expresion
-        match( ASGN, TOKENS_FOLLOWING_ASGN_IN_var_dec_574 )
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_var_dec_576 )
+        match( ASGN, TOKENS_FOLLOWING_ASGN_IN_var_dec_581 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_var_dec_583 )
         expresion
         @state.following.pop
 
       when 2
         # at line 93:47: array_dec
-        @state.following.push( TOKENS_FOLLOWING_array_dec_IN_var_dec_580 )
+        @state.following.push( TOKENS_FOLLOWING_array_dec_IN_var_dec_587 )
         array_dec
         @state.following.pop
 
       end
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_var_dec_585 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_var_dec_592 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -408,54 +429,54 @@ module Hephaestus
 
       begin
       # at line 95:13: ID ( ASGN ( expresion | func_call ) | array_dec ASGN type ) DOT
-      match( ID, TOKENS_FOLLOWING_ID_IN_assignment_592 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_assignment_599 )
       # at line 95:16: ( ASGN ( expresion | func_call ) | array_dec ASGN type )
-      alt_6 = 2
-      look_6_0 = @input.peek( 1 )
+      alt_7 = 2
+      look_7_0 = @input.peek( 1 )
 
-      if ( look_6_0 == ASGN )
-        alt_6 = 1
-      elsif ( look_6_0 == LBRACK )
-        alt_6 = 2
+      if ( look_7_0 == ASGN )
+        alt_7 = 1
+      elsif ( look_7_0 == LBRACK )
+        alt_7 = 2
       else
-        raise NoViableAlternative( "", 6, 0 )
+        raise NoViableAlternative( "", 7, 0 )
 
       end
-      case alt_6
+      case alt_7
       when 1
         # at line 95:18: ASGN ( expresion | func_call )
-        match( ASGN, TOKENS_FOLLOWING_ASGN_IN_assignment_596 )
+        match( ASGN, TOKENS_FOLLOWING_ASGN_IN_assignment_603 )
         # at line 95:23: ( expresion | func_call )
-        alt_5 = 2
-        look_5_0 = @input.peek( 1 )
+        alt_6 = 2
+        look_6_0 = @input.peek( 1 )
 
-        if ( look_5_0 == ID )
-          look_5_1 = @input.peek( 2 )
+        if ( look_6_0 == ID )
+          look_6_1 = @input.peek( 2 )
 
-          if ( look_5_1 == LBRACK )
-            alt_5 = 1
-          elsif ( look_5_1 == LPAR )
-            alt_5 = 2
+          if ( look_6_1 == LBRACK )
+            alt_6 = 1
+          elsif ( look_6_1 == LPAR )
+            alt_6 = 2
           else
-            raise NoViableAlternative( "", 5, 1 )
+            raise NoViableAlternative( "", 6, 1 )
 
           end
-        elsif ( look_5_0 == LPAR )
-          alt_5 = 1
+        elsif ( look_6_0 == LPAR )
+          alt_6 = 1
         else
-          raise NoViableAlternative( "", 5, 0 )
+          raise NoViableAlternative( "", 6, 0 )
 
         end
-        case alt_5
+        case alt_6
         when 1
           # at line 95:25: expresion
-          @state.following.push( TOKENS_FOLLOWING_expresion_IN_assignment_600 )
+          @state.following.push( TOKENS_FOLLOWING_expresion_IN_assignment_607 )
           expresion
           @state.following.pop
 
         when 2
           # at line 95:37: func_call
-          @state.following.push( TOKENS_FOLLOWING_func_call_IN_assignment_604 )
+          @state.following.push( TOKENS_FOLLOWING_func_call_IN_assignment_611 )
           func_call
           @state.following.pop
 
@@ -463,16 +484,16 @@ module Hephaestus
 
       when 2
         # at line 95:51: array_dec ASGN type
-        @state.following.push( TOKENS_FOLLOWING_array_dec_IN_assignment_610 )
+        @state.following.push( TOKENS_FOLLOWING_array_dec_IN_assignment_617 )
         array_dec
         @state.following.pop
-        match( ASGN, TOKENS_FOLLOWING_ASGN_IN_assignment_612 )
-        @state.following.push( TOKENS_FOLLOWING_type_IN_assignment_614 )
+        match( ASGN, TOKENS_FOLLOWING_ASGN_IN_assignment_619 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_assignment_621 )
         type
         @state.following.pop
 
       end
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_assignment_618 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_assignment_625 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -503,33 +524,33 @@ module Hephaestus
 
       begin
       # at line 97:12: LBRACK exp ( COMMA exp )* RBRACK
-      match( LBRACK, TOKENS_FOLLOWING_LBRACK_IN_array_dec_625 )
-      @state.following.push( TOKENS_FOLLOWING_exp_IN_array_dec_627 )
+      match( LBRACK, TOKENS_FOLLOWING_LBRACK_IN_array_dec_632 )
+      @state.following.push( TOKENS_FOLLOWING_exp_IN_array_dec_634 )
       exp
       @state.following.pop
       # at line 97:23: ( COMMA exp )*
-      while true # decision 7
-        alt_7 = 2
-        look_7_0 = @input.peek( 1 )
+      while true # decision 8
+        alt_8 = 2
+        look_8_0 = @input.peek( 1 )
 
-        if ( look_7_0 == COMMA )
-          alt_7 = 1
+        if ( look_8_0 == COMMA )
+          alt_8 = 1
 
         end
-        case alt_7
+        case alt_8
         when 1
           # at line 97:25: COMMA exp
-          match( COMMA, TOKENS_FOLLOWING_COMMA_IN_array_dec_631 )
-          @state.following.push( TOKENS_FOLLOWING_exp_IN_array_dec_633 )
+          match( COMMA, TOKENS_FOLLOWING_COMMA_IN_array_dec_638 )
+          @state.following.push( TOKENS_FOLLOWING_exp_IN_array_dec_640 )
           exp
           @state.following.pop
 
         else
-          break # out of loop for decision 7
+          break # out of loop for decision 8
         end
-      end # loop for decision 7
+      end # loop for decision 8
 
-      match( RBRACK, TOKENS_FOLLOWING_RBRACK_IN_array_dec_638 )
+      match( RBRACK, TOKENS_FOLLOWING_RBRACK_IN_array_dec_645 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -560,71 +581,71 @@ module Hephaestus
 
       begin
       # at line 99:12: IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block | R_END ) IF
-      match( IF, TOKENS_FOLLOWING_IF_IN_condition_645 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_condition_647 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_649 )
+      match( IF, TOKENS_FOLLOWING_IF_IN_condition_652 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_condition_654 )
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_656 )
       expresion
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_condition_651 )
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_condition_653 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_condition_658 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_condition_660 )
       # at line 99:41: ( estatute )?
-      alt_8 = 2
-      look_8_0 = @input.peek( 1 )
+      alt_9 = 2
+      look_9_0 = @input.peek( 1 )
 
-      if ( look_8_0 == FOR || look_8_0.between?( ID, IF ) || look_8_0 == PRINT || look_8_0 == READ || look_8_0 == WHILE )
-        alt_8 = 1
+      if ( look_9_0 == FOR || look_9_0.between?( ID, IF ) || look_9_0 == PRINT || look_9_0 == READ || look_9_0 == WHILE )
+        alt_9 = 1
       end
-      case alt_8
+      case alt_9
       when 1
         # at line 99:43: estatute
-        @state.following.push( TOKENS_FOLLOWING_estatute_IN_condition_657 )
+        @state.following.push( TOKENS_FOLLOWING_estatute_IN_condition_664 )
         estatute
         @state.following.pop
 
       end
       # at line 99:55: ( RETURN expresion DOT )?
-      alt_9 = 2
-      look_9_0 = @input.peek( 1 )
-
-      if ( look_9_0 == RETURN )
-        alt_9 = 1
-      end
-      case alt_9
-      when 1
-        # at line 99:57: RETURN expresion DOT
-        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_condition_664 )
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_666 )
-        expresion
-        @state.following.pop
-        match( DOT, TOKENS_FOLLOWING_DOT_IN_condition_668 )
-
-      end
-      # at line 99:81: ( ELSE block | R_END )
       alt_10 = 2
       look_10_0 = @input.peek( 1 )
 
-      if ( look_10_0 == ELSE )
+      if ( look_10_0 == RETURN )
         alt_10 = 1
-      elsif ( look_10_0 == R_END )
-        alt_10 = 2
-      else
-        raise NoViableAlternative( "", 10, 0 )
-
       end
       case alt_10
       when 1
+        # at line 99:57: RETURN expresion DOT
+        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_condition_671 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_673 )
+        expresion
+        @state.following.pop
+        match( DOT, TOKENS_FOLLOWING_DOT_IN_condition_675 )
+
+      end
+      # at line 99:81: ( ELSE block | R_END )
+      alt_11 = 2
+      look_11_0 = @input.peek( 1 )
+
+      if ( look_11_0 == ELSE )
+        alt_11 = 1
+      elsif ( look_11_0 == R_END )
+        alt_11 = 2
+      else
+        raise NoViableAlternative( "", 11, 0 )
+
+      end
+      case alt_11
+      when 1
         # at line 99:83: ELSE block
-        match( ELSE, TOKENS_FOLLOWING_ELSE_IN_condition_675 )
-        @state.following.push( TOKENS_FOLLOWING_block_IN_condition_677 )
+        match( ELSE, TOKENS_FOLLOWING_ELSE_IN_condition_682 )
+        @state.following.push( TOKENS_FOLLOWING_block_IN_condition_684 )
         block
         @state.following.pop
 
       when 2
         # at line 99:96: R_END
-        match( R_END, TOKENS_FOLLOWING_R_END_IN_condition_681 )
+        match( R_END, TOKENS_FOLLOWING_R_END_IN_condition_688 )
 
       end
-      match( IF, TOKENS_FOLLOWING_IF_IN_condition_685 )
+      match( IF, TOKENS_FOLLOWING_IF_IN_condition_692 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -655,27 +676,27 @@ module Hephaestus
 
       begin
       # at line 101:6: ( while_loop | for_loop )
-      alt_11 = 2
-      look_11_0 = @input.peek( 1 )
+      alt_12 = 2
+      look_12_0 = @input.peek( 1 )
 
-      if ( look_11_0 == WHILE )
-        alt_11 = 1
-      elsif ( look_11_0 == FOR )
-        alt_11 = 2
+      if ( look_12_0 == WHILE )
+        alt_12 = 1
+      elsif ( look_12_0 == FOR )
+        alt_12 = 2
       else
-        raise NoViableAlternative( "", 11, 0 )
+        raise NoViableAlternative( "", 12, 0 )
 
       end
-      case alt_11
+      case alt_12
       when 1
         # at line 101:8: while_loop
-        @state.following.push( TOKENS_FOLLOWING_while_loop_IN_loops_692 )
+        @state.following.push( TOKENS_FOLLOWING_while_loop_IN_loops_699 )
         while_loop
         @state.following.pop
 
       when 2
         # at line 101:21: for_loop
-        @state.following.push( TOKENS_FOLLOWING_for_loop_IN_loops_696 )
+        @state.following.push( TOKENS_FOLLOWING_for_loop_IN_loops_703 )
         for_loop
         @state.following.pop
 
@@ -709,16 +730,16 @@ module Hephaestus
 
       begin
       # at line 103:13: WHILE LPAR expresion RPAR block WHILE
-      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_703 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_while_loop_705 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_while_loop_707 )
+      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_710 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_while_loop_712 )
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_while_loop_714 )
       expresion
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_while_loop_709 )
-      @state.following.push( TOKENS_FOLLOWING_block_IN_while_loop_711 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_while_loop_716 )
+      @state.following.push( TOKENS_FOLLOWING_block_IN_while_loop_718 )
       block
       @state.following.pop
-      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_713 )
+      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_720 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -749,14 +770,14 @@ module Hephaestus
 
       begin
       # at line 105:11: FOR ID IN ID block FOR
-      match( FOR, TOKENS_FOLLOWING_FOR_IN_for_loop_720 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_for_loop_722 )
-      match( IN, TOKENS_FOLLOWING_IN_IN_for_loop_724 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_for_loop_726 )
-      @state.following.push( TOKENS_FOLLOWING_block_IN_for_loop_728 )
+      match( FOR, TOKENS_FOLLOWING_FOR_IN_for_loop_727 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_for_loop_729 )
+      match( IN, TOKENS_FOLLOWING_IN_IN_for_loop_731 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_for_loop_733 )
+      @state.following.push( TOKENS_FOLLOWING_block_IN_for_loop_735 )
       block
       @state.following.pop
-      match( FOR, TOKENS_FOLLOWING_FOR_IN_for_loop_730 )
+      match( FOR, TOKENS_FOLLOWING_FOR_IN_for_loop_737 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -787,13 +808,13 @@ module Hephaestus
 
       begin
       # at line 107:10: READ LPAR value RPAR DOT
-      match( READ, TOKENS_FOLLOWING_READ_IN_reading_737 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_reading_739 )
-      @state.following.push( TOKENS_FOLLOWING_value_IN_reading_741 )
+      match( READ, TOKENS_FOLLOWING_READ_IN_reading_744 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_reading_746 )
+      @state.following.push( TOKENS_FOLLOWING_value_IN_reading_748 )
       value
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_reading_743 )
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_reading_745 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_reading_750 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_reading_752 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -824,13 +845,13 @@ module Hephaestus
 
       begin
       # at line 109:10: PRINT LPAR expresion RPAR DOT
-      match( PRINT, TOKENS_FOLLOWING_PRINT_IN_writing_752 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_writing_754 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_writing_756 )
+      match( PRINT, TOKENS_FOLLOWING_PRINT_IN_writing_759 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_writing_761 )
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_writing_763 )
       expresion
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_writing_758 )
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_writing_760 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_writing_765 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_writing_767 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -861,35 +882,35 @@ module Hephaestus
 
       begin
       # at line 111:13: LPAR type ID ( COMMA type ID )* RPAR
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_parameters_767 )
-      @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_769 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_parameters_774 )
+      @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_776 )
       type
       @state.following.pop
-      match( ID, TOKENS_FOLLOWING_ID_IN_parameters_771 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_parameters_778 )
       # at line 111:26: ( COMMA type ID )*
-      while true # decision 12
-        alt_12 = 2
-        look_12_0 = @input.peek( 1 )
+      while true # decision 13
+        alt_13 = 2
+        look_13_0 = @input.peek( 1 )
 
-        if ( look_12_0 == COMMA )
-          alt_12 = 1
+        if ( look_13_0 == COMMA )
+          alt_13 = 1
 
         end
-        case alt_12
+        case alt_13
         when 1
           # at line 111:28: COMMA type ID
-          match( COMMA, TOKENS_FOLLOWING_COMMA_IN_parameters_775 )
-          @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_777 )
+          match( COMMA, TOKENS_FOLLOWING_COMMA_IN_parameters_782 )
+          @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_784 )
           type
           @state.following.pop
-          match( ID, TOKENS_FOLLOWING_ID_IN_parameters_779 )
+          match( ID, TOKENS_FOLLOWING_ID_IN_parameters_786 )
 
         else
-          break # out of loop for decision 12
+          break # out of loop for decision 13
         end
-      end # loop for decision 12
+      end # loop for decision 13
 
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_parameters_784 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_parameters_791 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -911,7 +932,7 @@ module Hephaestus
     # parser rule function
     #
     # (in Hephaestus.g)
-    # 113:1: function : FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* RETURN expresion DOT R_END FUNCTION ;
+    # 113:1: function : FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* ( RETURN expresion DOT )? R_END FUNCTION ;
     #
     def function
       # -> uncomment the next line to manually enable rule tracing
@@ -919,73 +940,85 @@ module Hephaestus
 
 
       begin
-      # at line 113:11: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* RETURN expresion DOT R_END FUNCTION
-      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_791 )
+      # at line 113:11: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* ( RETURN expresion DOT )? R_END FUNCTION
+      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_798 )
       # at line 113:20: ( type | VOID )
-      alt_13 = 2
-      look_13_0 = @input.peek( 1 )
+      alt_14 = 2
+      look_14_0 = @input.peek( 1 )
 
-      if ( look_13_0 == R_BOOL || look_13_0.between?( R_FLOAT, R_STRING ) )
-        alt_13 = 1
-      elsif ( look_13_0 == VOID )
-        alt_13 = 2
+      if ( look_14_0 == R_BOOL || look_14_0.between?( R_FLOAT, R_STRING ) )
+        alt_14 = 1
+      elsif ( look_14_0 == VOID )
+        alt_14 = 2
       else
-        raise NoViableAlternative( "", 13, 0 )
+        raise NoViableAlternative( "", 14, 0 )
 
       end
-      case alt_13
+      case alt_14
       when 1
         # at line 113:22: type
-        @state.following.push( TOKENS_FOLLOWING_type_IN_function_795 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_function_802 )
         type
         @state.following.pop
 
       when 2
         # at line 113:29: VOID
-        match( VOID, TOKENS_FOLLOWING_VOID_IN_function_799 )
+        match( VOID, TOKENS_FOLLOWING_VOID_IN_function_806 )
 
       end
-      match( ID, TOKENS_FOLLOWING_ID_IN_function_803 )
-      @state.following.push( TOKENS_FOLLOWING_parameters_IN_function_805 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_function_810 )
+      @state.following.push( TOKENS_FOLLOWING_parameters_IN_function_812 )
       parameters
       @state.following.pop
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_function_807 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_function_814 )
       # at line 113:56: ( estatute | var_dec )*
-      while true # decision 14
-        alt_14 = 3
-        look_14_0 = @input.peek( 1 )
+      while true # decision 15
+        alt_15 = 3
+        look_15_0 = @input.peek( 1 )
 
-        if ( look_14_0 == FOR || look_14_0.between?( ID, IF ) || look_14_0 == PRINT || look_14_0 == READ || look_14_0 == WHILE )
-          alt_14 = 1
-        elsif ( look_14_0 == DEFINE )
-          alt_14 = 2
+        if ( look_15_0 == FOR || look_15_0.between?( ID, IF ) || look_15_0 == PRINT || look_15_0 == READ || look_15_0 == WHILE )
+          alt_15 = 1
+        elsif ( look_15_0 == DEFINE )
+          alt_15 = 2
 
         end
-        case alt_14
+        case alt_15
         when 1
           # at line 113:58: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_function_811 )
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_function_818 )
           estatute
           @state.following.pop
 
         when 2
           # at line 113:69: var_dec
-          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_function_815 )
+          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_function_822 )
           var_dec
           @state.following.pop
 
         else
-          break # out of loop for decision 14
+          break # out of loop for decision 15
         end
-      end # loop for decision 14
+      end # loop for decision 15
 
-      match( RETURN, TOKENS_FOLLOWING_RETURN_IN_function_820 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_function_822 )
-      expresion
-      @state.following.pop
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_function_824 )
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_function_826 )
-      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_828 )
+      # at line 113:80: ( RETURN expresion DOT )?
+      alt_16 = 2
+      look_16_0 = @input.peek( 1 )
+
+      if ( look_16_0 == RETURN )
+        alt_16 = 1
+      end
+      case alt_16
+      when 1
+        # at line 113:82: RETURN expresion DOT
+        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_function_829 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_function_831 )
+        expresion
+        @state.following.pop
+        match( DOT, TOKENS_FOLLOWING_DOT_IN_function_833 )
+
+      end
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_function_838 )
+      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_840 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1016,46 +1049,46 @@ module Hephaestus
 
       begin
       # at line 115:8: COLON ( estatute )* ( RETURN expresion DOT )? R_END
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_block_835 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_block_847 )
       # at line 115:14: ( estatute )*
-      while true # decision 15
-        alt_15 = 2
-        look_15_0 = @input.peek( 1 )
+      while true # decision 17
+        alt_17 = 2
+        look_17_0 = @input.peek( 1 )
 
-        if ( look_15_0 == FOR || look_15_0.between?( ID, IF ) || look_15_0 == PRINT || look_15_0 == READ || look_15_0 == WHILE )
-          alt_15 = 1
+        if ( look_17_0 == FOR || look_17_0.between?( ID, IF ) || look_17_0 == PRINT || look_17_0 == READ || look_17_0 == WHILE )
+          alt_17 = 1
 
         end
-        case alt_15
+        case alt_17
         when 1
           # at line 115:16: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_block_839 )
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_block_851 )
           estatute
           @state.following.pop
 
         else
-          break # out of loop for decision 15
+          break # out of loop for decision 17
         end
-      end # loop for decision 15
+      end # loop for decision 17
 
       # at line 115:28: ( RETURN expresion DOT )?
-      alt_16 = 2
-      look_16_0 = @input.peek( 1 )
+      alt_18 = 2
+      look_18_0 = @input.peek( 1 )
 
-      if ( look_16_0 == RETURN )
-        alt_16 = 1
+      if ( look_18_0 == RETURN )
+        alt_18 = 1
       end
-      case alt_16
+      case alt_18
       when 1
         # at line 115:30: RETURN expresion DOT
-        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_block_846 )
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_block_848 )
+        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_block_858 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_block_860 )
         expresion
         @state.following.pop
-        match( DOT, TOKENS_FOLLOWING_DOT_IN_block_850 )
+        match( DOT, TOKENS_FOLLOWING_DOT_IN_block_862 )
 
       end
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_block_855 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_block_867 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1086,11 +1119,11 @@ module Hephaestus
 
       begin
       # at line 117:12: ID parameters DOT
-      match( ID, TOKENS_FOLLOWING_ID_IN_func_call_862 )
-      @state.following.push( TOKENS_FOLLOWING_parameters_IN_func_call_864 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_func_call_874 )
+      @state.following.push( TOKENS_FOLLOWING_parameters_IN_func_call_876 )
       parameters
       @state.following.pop
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_func_call_866 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_func_call_878 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1121,17 +1154,17 @@ module Hephaestus
 
       begin
       # at line 119:12: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )?
-      @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_873 )
+      @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_885 )
       exp
       @state.following.pop
       # at line 119:16: ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )?
-      alt_17 = 2
-      look_17_0 = @input.peek( 1 )
+      alt_19 = 2
+      look_19_0 = @input.peek( 1 )
 
-      if ( look_17_0 == AND || look_17_0 == EQ || look_17_0 == GREATER || look_17_0 == LESS || look_17_0 == NEQ || look_17_0 == OR )
-        alt_17 = 1
+      if ( look_19_0 == AND || look_19_0 == EQ || look_19_0 == GREATER || look_19_0 == LESS || look_19_0 == NEQ || look_19_0 == OR )
+        alt_19 = 1
       end
-      case alt_17
+      case alt_19
       when 1
         # at line 119:18: ( GREATER | LESS | NEQ | EQ | AND | OR ) exp
         if @input.peek(1) == AND || @input.peek(1) == EQ || @input.peek(1) == GREATER || @input.peek(1) == LESS || @input.peek(1) == NEQ || @input.peek(1) == OR
@@ -1145,7 +1178,7 @@ module Hephaestus
         end
 
 
-        @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_902 )
+        @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_914 )
         exp
         @state.following.pop
 
@@ -1180,19 +1213,19 @@ module Hephaestus
 
       begin
       # at line 121:6: term ( ( PLUS | MINUS ) term )*
-      @state.following.push( TOKENS_FOLLOWING_term_IN_exp_912 )
+      @state.following.push( TOKENS_FOLLOWING_term_IN_exp_924 )
       term
       @state.following.pop
       # at line 121:11: ( ( PLUS | MINUS ) term )*
-      while true # decision 18
-        alt_18 = 2
-        look_18_0 = @input.peek( 1 )
+      while true # decision 20
+        alt_20 = 2
+        look_20_0 = @input.peek( 1 )
 
-        if ( look_18_0 == MINUS || look_18_0 == PLUS )
-          alt_18 = 1
+        if ( look_20_0 == MINUS || look_20_0 == PLUS )
+          alt_20 = 1
 
         end
-        case alt_18
+        case alt_20
         when 1
           # at line 121:13: ( PLUS | MINUS ) term
           if @input.peek(1) == MINUS || @input.peek(1) == PLUS
@@ -1206,14 +1239,14 @@ module Hephaestus
           end
 
 
-          @state.following.push( TOKENS_FOLLOWING_term_IN_exp_926 )
+          @state.following.push( TOKENS_FOLLOWING_term_IN_exp_938 )
           term
           @state.following.pop
 
         else
-          break # out of loop for decision 18
+          break # out of loop for decision 20
         end
-      end # loop for decision 18
+      end # loop for decision 20
 
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -1245,32 +1278,32 @@ module Hephaestus
 
       begin
       # at line 123:7: ( ID array_dec | LPAR expresion RPAR )
-      alt_19 = 2
-      look_19_0 = @input.peek( 1 )
+      alt_21 = 2
+      look_21_0 = @input.peek( 1 )
 
-      if ( look_19_0 == ID )
-        alt_19 = 1
-      elsif ( look_19_0 == LPAR )
-        alt_19 = 2
+      if ( look_21_0 == ID )
+        alt_21 = 1
+      elsif ( look_21_0 == LPAR )
+        alt_21 = 2
       else
-        raise NoViableAlternative( "", 19, 0 )
+        raise NoViableAlternative( "", 21, 0 )
 
       end
-      case alt_19
+      case alt_21
       when 1
         # at line 123:9: ID array_dec
-        match( ID, TOKENS_FOLLOWING_ID_IN_factor_936 )
-        @state.following.push( TOKENS_FOLLOWING_array_dec_IN_factor_938 )
+        match( ID, TOKENS_FOLLOWING_ID_IN_factor_948 )
+        @state.following.push( TOKENS_FOLLOWING_array_dec_IN_factor_950 )
         array_dec
         @state.following.pop
 
       when 2
         # at line 123:24: LPAR expresion RPAR
-        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_942 )
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_factor_944 )
+        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_954 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_factor_956 )
         expresion
         @state.following.pop
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_946 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_958 )
 
       end
       rescue ANTLR3::Error::RecognitionError => re
@@ -1302,19 +1335,19 @@ module Hephaestus
 
       begin
       # at line 125:7: factor ( ( MULT | DIV ) factor )*
-      @state.following.push( TOKENS_FOLLOWING_factor_IN_term_953 )
+      @state.following.push( TOKENS_FOLLOWING_factor_IN_term_965 )
       factor
       @state.following.pop
       # at line 125:14: ( ( MULT | DIV ) factor )*
-      while true # decision 20
-        alt_20 = 2
-        look_20_0 = @input.peek( 1 )
+      while true # decision 22
+        alt_22 = 2
+        look_22_0 = @input.peek( 1 )
 
-        if ( look_20_0 == DIV || look_20_0 == MULT )
-          alt_20 = 1
+        if ( look_22_0 == DIV || look_22_0 == MULT )
+          alt_22 = 1
 
         end
-        case alt_20
+        case alt_22
         when 1
           # at line 125:16: ( MULT | DIV ) factor
           if @input.peek(1) == DIV || @input.peek(1) == MULT
@@ -1328,14 +1361,14 @@ module Hephaestus
           end
 
 
-          @state.following.push( TOKENS_FOLLOWING_factor_IN_term_967 )
+          @state.following.push( TOKENS_FOLLOWING_factor_IN_term_979 )
           factor
           @state.following.pop
 
         else
-          break # out of loop for decision 20
+          break # out of loop for decision 22
         end
-      end # loop for decision 20
+      end # loop for decision 22
 
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -1437,73 +1470,73 @@ module Hephaestus
 
 
     #
-    # parser rule class
+    # parser rule r_class
     #
     # (in Hephaestus.g)
-    # 131:1: class : CLASS ID ( HER ID )? COLON ( func_call | var_dec )+ R_END CLASS ;
+    # 131:1: r_class : R_CLASS ID ( HER ID )? COLON ( function | var_dec )+ R_END R_CLASS ;
     #
-    def class
+    def r_class
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 23 )
 
 
       begin
-      # at line 131:8: CLASS ID ( HER ID )? COLON ( func_call | var_dec )+ R_END CLASS
-      match( CLASS, TOKENS_FOLLOWING_CLASS_IN_class_1015 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_class_1017 )
-      # at line 131:17: ( HER ID )?
-      alt_21 = 2
-      look_21_0 = @input.peek( 1 )
+      # at line 131:10: R_CLASS ID ( HER ID )? COLON ( function | var_dec )+ R_END R_CLASS
+      match( R_CLASS, TOKENS_FOLLOWING_R_CLASS_IN_r_class_1027 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_r_class_1029 )
+      # at line 131:21: ( HER ID )?
+      alt_23 = 2
+      look_23_0 = @input.peek( 1 )
 
-      if ( look_21_0 == HER )
-        alt_21 = 1
+      if ( look_23_0 == HER )
+        alt_23 = 1
       end
-      case alt_21
+      case alt_23
       when 1
-        # at line 131:19: HER ID
-        match( HER, TOKENS_FOLLOWING_HER_IN_class_1021 )
-        match( ID, TOKENS_FOLLOWING_ID_IN_class_1023 )
+        # at line 131:23: HER ID
+        match( HER, TOKENS_FOLLOWING_HER_IN_r_class_1033 )
+        match( ID, TOKENS_FOLLOWING_ID_IN_r_class_1035 )
 
       end
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_class_1028 )
-      # at file 131:35: ( func_call | var_dec )+
-      match_count_22 = 0
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_r_class_1040 )
+      # at file 131:39: ( function | var_dec )+
+      match_count_24 = 0
       while true
-        alt_22 = 3
-        look_22_0 = @input.peek( 1 )
+        alt_24 = 3
+        look_24_0 = @input.peek( 1 )
 
-        if ( look_22_0 == ID )
-          alt_22 = 1
-        elsif ( look_22_0 == DEFINE )
-          alt_22 = 2
+        if ( look_24_0 == FUNCTION )
+          alt_24 = 1
+        elsif ( look_24_0 == DEFINE )
+          alt_24 = 2
 
         end
-        case alt_22
+        case alt_24
         when 1
-          # at line 131:37: func_call
-          @state.following.push( TOKENS_FOLLOWING_func_call_IN_class_1032 )
-          func_call
+          # at line 131:41: function
+          @state.following.push( TOKENS_FOLLOWING_function_IN_r_class_1044 )
+          function
           @state.following.pop
 
         when 2
-          # at line 131:48: var_dec
-          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_class_1035 )
+          # at line 131:52: var_dec
+          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_r_class_1048 )
           var_dec
           @state.following.pop
 
         else
-          match_count_22 > 0 and break
-          eee = EarlyExit(22)
+          match_count_24 > 0 and break
+          eee = EarlyExit(24)
 
 
           raise eee
         end
-        match_count_22 += 1
+        match_count_24 += 1
       end
 
 
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_class_1040 )
-      match( CLASS, TOKENS_FOLLOWING_CLASS_IN_class_1042 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_r_class_1053 )
+      match( R_CLASS, TOKENS_FOLLOWING_R_CLASS_IN_r_class_1055 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1534,40 +1567,40 @@ module Hephaestus
 
       begin
       # at line 133:14: ID DOT ( func_call | ID ) DOT
-      match( ID, TOKENS_FOLLOWING_ID_IN_method_call_1049 )
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_1051 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_method_call_1062 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_1064 )
       # at line 133:21: ( func_call | ID )
-      alt_23 = 2
-      look_23_0 = @input.peek( 1 )
+      alt_25 = 2
+      look_25_0 = @input.peek( 1 )
 
-      if ( look_23_0 == ID )
-        look_23_1 = @input.peek( 2 )
+      if ( look_25_0 == ID )
+        look_25_1 = @input.peek( 2 )
 
-        if ( look_23_1 == LPAR )
-          alt_23 = 1
-        elsif ( look_23_1 == DOT )
-          alt_23 = 2
+        if ( look_25_1 == LPAR )
+          alt_25 = 1
+        elsif ( look_25_1 == DOT )
+          alt_25 = 2
         else
-          raise NoViableAlternative( "", 23, 1 )
+          raise NoViableAlternative( "", 25, 1 )
 
         end
       else
-        raise NoViableAlternative( "", 23, 0 )
+        raise NoViableAlternative( "", 25, 0 )
 
       end
-      case alt_23
+      case alt_25
       when 1
         # at line 133:22: func_call
-        @state.following.push( TOKENS_FOLLOWING_func_call_IN_method_call_1054 )
+        @state.following.push( TOKENS_FOLLOWING_func_call_IN_method_call_1067 )
         func_call
         @state.following.pop
 
       when 2
         # at line 133:34: ID
-        match( ID, TOKENS_FOLLOWING_ID_IN_method_call_1058 )
+        match( ID, TOKENS_FOLLOWING_ID_IN_method_call_1071 )
 
       end
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_1061 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_1074 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1585,137 +1618,138 @@ module Hephaestus
 
 
 
-    TOKENS_FOLLOWING_class_IN_start_495 = Set[ 8, 35 ]
-    TOKENS_FOLLOWING_program_IN_start_500 = Set[ 1 ]
-    TOKENS_FOLLOWING_PROGRAM_IN_program_507 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_program_509 = Set[ 9 ]
-    TOKENS_FOLLOWING_COLON_IN_program_511 = Set[ 11, 17, 21, 22, 34, 37, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_program_515 = Set[ 11, 17, 21, 22, 34, 37, 41, 47 ]
-    TOKENS_FOLLOWING_var_dec_IN_program_519 = Set[ 11, 17, 21, 22, 34, 37, 41, 47 ]
-    TOKENS_FOLLOWING_R_END_IN_program_524 = Set[ 35 ]
-    TOKENS_FOLLOWING_PROGRAM_IN_program_526 = Set[ 1 ]
-    TOKENS_FOLLOWING_func_call_IN_estatute_533 = Set[ 1 ]
-    TOKENS_FOLLOWING_condition_IN_estatute_537 = Set[ 1 ]
-    TOKENS_FOLLOWING_reading_IN_estatute_541 = Set[ 1 ]
-    TOKENS_FOLLOWING_writing_IN_estatute_545 = Set[ 1 ]
-    TOKENS_FOLLOWING_assignment_IN_estatute_549 = Set[ 1 ]
-    TOKENS_FOLLOWING_loops_IN_estatute_553 = Set[ 1 ]
-    TOKENS_FOLLOWING_method_call_IN_estatute_557 = Set[ 1 ]
-    TOKENS_FOLLOWING_DEFINE_IN_var_dec_564 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_var_dec_566 = Set[ 5 ]
-    TOKENS_FOLLOWING_AS_IN_var_dec_568 = Set[ 40, 42, 43, 44 ]
-    TOKENS_FOLLOWING_type_IN_var_dec_570 = Set[ 6, 13, 25 ]
-    TOKENS_FOLLOWING_ASGN_IN_var_dec_574 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_var_dec_576 = Set[ 13 ]
-    TOKENS_FOLLOWING_array_dec_IN_var_dec_580 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_var_dec_585 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_assignment_592 = Set[ 6, 25 ]
-    TOKENS_FOLLOWING_ASGN_IN_assignment_596 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_assignment_600 = Set[ 13 ]
-    TOKENS_FOLLOWING_func_call_IN_assignment_604 = Set[ 13 ]
-    TOKENS_FOLLOWING_array_dec_IN_assignment_610 = Set[ 6 ]
-    TOKENS_FOLLOWING_ASGN_IN_assignment_612 = Set[ 40, 42, 43, 44 ]
-    TOKENS_FOLLOWING_type_IN_assignment_614 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_assignment_618 = Set[ 1 ]
-    TOKENS_FOLLOWING_LBRACK_IN_array_dec_625 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_exp_IN_array_dec_627 = Set[ 10, 36 ]
-    TOKENS_FOLLOWING_COMMA_IN_array_dec_631 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_exp_IN_array_dec_633 = Set[ 10, 36 ]
-    TOKENS_FOLLOWING_RBRACK_IN_array_dec_638 = Set[ 1 ]
-    TOKENS_FOLLOWING_IF_IN_condition_645 = Set[ 27 ]
-    TOKENS_FOLLOWING_LPAR_IN_condition_647 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_condition_649 = Set[ 39 ]
-    TOKENS_FOLLOWING_RPAR_IN_condition_651 = Set[ 9 ]
-    TOKENS_FOLLOWING_COLON_IN_condition_653 = Set[ 14, 17, 21, 22, 34, 37, 38, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_condition_657 = Set[ 14, 38, 41 ]
-    TOKENS_FOLLOWING_RETURN_IN_condition_664 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_condition_666 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_condition_668 = Set[ 14, 41 ]
-    TOKENS_FOLLOWING_ELSE_IN_condition_675 = Set[ 9 ]
-    TOKENS_FOLLOWING_block_IN_condition_677 = Set[ 22 ]
-    TOKENS_FOLLOWING_R_END_IN_condition_681 = Set[ 22 ]
-    TOKENS_FOLLOWING_IF_IN_condition_685 = Set[ 1 ]
-    TOKENS_FOLLOWING_while_loop_IN_loops_692 = Set[ 1 ]
-    TOKENS_FOLLOWING_for_loop_IN_loops_696 = Set[ 1 ]
-    TOKENS_FOLLOWING_WHILE_IN_while_loop_703 = Set[ 27 ]
-    TOKENS_FOLLOWING_LPAR_IN_while_loop_705 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_while_loop_707 = Set[ 39 ]
-    TOKENS_FOLLOWING_RPAR_IN_while_loop_709 = Set[ 9 ]
-    TOKENS_FOLLOWING_block_IN_while_loop_711 = Set[ 47 ]
-    TOKENS_FOLLOWING_WHILE_IN_while_loop_713 = Set[ 1 ]
-    TOKENS_FOLLOWING_FOR_IN_for_loop_720 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_for_loop_722 = Set[ 23 ]
-    TOKENS_FOLLOWING_IN_IN_for_loop_724 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_for_loop_726 = Set[ 9 ]
-    TOKENS_FOLLOWING_block_IN_for_loop_728 = Set[ 17 ]
-    TOKENS_FOLLOWING_FOR_IN_for_loop_730 = Set[ 1 ]
-    TOKENS_FOLLOWING_READ_IN_reading_737 = Set[ 27 ]
-    TOKENS_FOLLOWING_LPAR_IN_reading_739 = Set[ 7, 16, 24, 45 ]
-    TOKENS_FOLLOWING_value_IN_reading_741 = Set[ 39 ]
-    TOKENS_FOLLOWING_RPAR_IN_reading_743 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_reading_745 = Set[ 1 ]
-    TOKENS_FOLLOWING_PRINT_IN_writing_752 = Set[ 27 ]
-    TOKENS_FOLLOWING_LPAR_IN_writing_754 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_writing_756 = Set[ 39 ]
-    TOKENS_FOLLOWING_RPAR_IN_writing_758 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_writing_760 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_parameters_767 = Set[ 40, 42, 43, 44 ]
-    TOKENS_FOLLOWING_type_IN_parameters_769 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_parameters_771 = Set[ 10, 39 ]
-    TOKENS_FOLLOWING_COMMA_IN_parameters_775 = Set[ 40, 42, 43, 44 ]
-    TOKENS_FOLLOWING_type_IN_parameters_777 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_parameters_779 = Set[ 10, 39 ]
-    TOKENS_FOLLOWING_RPAR_IN_parameters_784 = Set[ 1 ]
-    TOKENS_FOLLOWING_FUNCTION_IN_function_791 = Set[ 40, 42, 43, 44, 46 ]
-    TOKENS_FOLLOWING_type_IN_function_795 = Set[ 21 ]
-    TOKENS_FOLLOWING_VOID_IN_function_799 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_function_803 = Set[ 27 ]
-    TOKENS_FOLLOWING_parameters_IN_function_805 = Set[ 9 ]
-    TOKENS_FOLLOWING_COLON_IN_function_807 = Set[ 11, 17, 21, 22, 34, 37, 38, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_function_811 = Set[ 11, 17, 21, 22, 34, 37, 38, 47 ]
-    TOKENS_FOLLOWING_var_dec_IN_function_815 = Set[ 11, 17, 21, 22, 34, 37, 38, 47 ]
-    TOKENS_FOLLOWING_RETURN_IN_function_820 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_function_822 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_function_824 = Set[ 41 ]
-    TOKENS_FOLLOWING_R_END_IN_function_826 = Set[ 18 ]
-    TOKENS_FOLLOWING_FUNCTION_IN_function_828 = Set[ 1 ]
-    TOKENS_FOLLOWING_COLON_IN_block_835 = Set[ 17, 21, 22, 34, 37, 38, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_block_839 = Set[ 17, 21, 22, 34, 37, 38, 41, 47 ]
-    TOKENS_FOLLOWING_RETURN_IN_block_846 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_block_848 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_block_850 = Set[ 41 ]
-    TOKENS_FOLLOWING_R_END_IN_block_855 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_func_call_862 = Set[ 27 ]
-    TOKENS_FOLLOWING_parameters_IN_func_call_864 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_func_call_866 = Set[ 1 ]
-    TOKENS_FOLLOWING_exp_IN_expresion_873 = Set[ 1, 4, 15, 19, 26, 30, 32 ]
-    TOKENS_FOLLOWING_set_IN_expresion_877 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_exp_IN_expresion_902 = Set[ 1 ]
-    TOKENS_FOLLOWING_term_IN_exp_912 = Set[ 1, 28, 33 ]
-    TOKENS_FOLLOWING_set_IN_exp_916 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_term_IN_exp_926 = Set[ 1, 28, 33 ]
-    TOKENS_FOLLOWING_ID_IN_factor_936 = Set[ 25 ]
-    TOKENS_FOLLOWING_array_dec_IN_factor_938 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_factor_942 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_expresion_IN_factor_944 = Set[ 39 ]
-    TOKENS_FOLLOWING_RPAR_IN_factor_946 = Set[ 1 ]
-    TOKENS_FOLLOWING_factor_IN_term_953 = Set[ 1, 12, 29 ]
-    TOKENS_FOLLOWING_set_IN_term_957 = Set[ 21, 27 ]
-    TOKENS_FOLLOWING_factor_IN_term_967 = Set[ 1, 12, 29 ]
-    TOKENS_FOLLOWING_CLASS_IN_class_1015 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_class_1017 = Set[ 9, 20 ]
-    TOKENS_FOLLOWING_HER_IN_class_1021 = Set[ 21 ]
-    TOKENS_FOLLOWING_ID_IN_class_1023 = Set[ 9 ]
-    TOKENS_FOLLOWING_COLON_IN_class_1028 = Set[ 11, 21 ]
-    TOKENS_FOLLOWING_func_call_IN_class_1032 = Set[ 11, 21, 41 ]
-    TOKENS_FOLLOWING_var_dec_IN_class_1035 = Set[ 11, 21, 41 ]
-    TOKENS_FOLLOWING_R_END_IN_class_1040 = Set[ 8 ]
-    TOKENS_FOLLOWING_CLASS_IN_class_1042 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_method_call_1049 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_method_call_1051 = Set[ 21 ]
-    TOKENS_FOLLOWING_func_call_IN_method_call_1054 = Set[ 13 ]
-    TOKENS_FOLLOWING_ID_IN_method_call_1058 = Set[ 13 ]
-    TOKENS_FOLLOWING_DOT_IN_method_call_1061 = Set[ 1 ]
+    TOKENS_FOLLOWING_r_class_IN_start_495 = Set[ 17, 34, 40 ]
+    TOKENS_FOLLOWING_function_IN_start_502 = Set[ 17, 34 ]
+    TOKENS_FOLLOWING_program_IN_start_507 = Set[ 1 ]
+    TOKENS_FOLLOWING_PROGRAM_IN_program_514 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_program_516 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_program_518 = Set[ 10, 16, 20, 21, 33, 36, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_program_522 = Set[ 10, 16, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_var_dec_IN_program_526 = Set[ 10, 16, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_R_END_IN_program_531 = Set[ 34 ]
+    TOKENS_FOLLOWING_PROGRAM_IN_program_533 = Set[ 1 ]
+    TOKENS_FOLLOWING_func_call_IN_estatute_540 = Set[ 1 ]
+    TOKENS_FOLLOWING_condition_IN_estatute_544 = Set[ 1 ]
+    TOKENS_FOLLOWING_reading_IN_estatute_548 = Set[ 1 ]
+    TOKENS_FOLLOWING_writing_IN_estatute_552 = Set[ 1 ]
+    TOKENS_FOLLOWING_assignment_IN_estatute_556 = Set[ 1 ]
+    TOKENS_FOLLOWING_loops_IN_estatute_560 = Set[ 1 ]
+    TOKENS_FOLLOWING_method_call_IN_estatute_564 = Set[ 1 ]
+    TOKENS_FOLLOWING_DEFINE_IN_var_dec_571 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_var_dec_573 = Set[ 5 ]
+    TOKENS_FOLLOWING_AS_IN_var_dec_575 = Set[ 39, 42, 43, 44 ]
+    TOKENS_FOLLOWING_type_IN_var_dec_577 = Set[ 6, 12, 24 ]
+    TOKENS_FOLLOWING_ASGN_IN_var_dec_581 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_var_dec_583 = Set[ 12 ]
+    TOKENS_FOLLOWING_array_dec_IN_var_dec_587 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_var_dec_592 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_assignment_599 = Set[ 6, 24 ]
+    TOKENS_FOLLOWING_ASGN_IN_assignment_603 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_assignment_607 = Set[ 12 ]
+    TOKENS_FOLLOWING_func_call_IN_assignment_611 = Set[ 12 ]
+    TOKENS_FOLLOWING_array_dec_IN_assignment_617 = Set[ 6 ]
+    TOKENS_FOLLOWING_ASGN_IN_assignment_619 = Set[ 39, 42, 43, 44 ]
+    TOKENS_FOLLOWING_type_IN_assignment_621 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_assignment_625 = Set[ 1 ]
+    TOKENS_FOLLOWING_LBRACK_IN_array_dec_632 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_exp_IN_array_dec_634 = Set[ 9, 35 ]
+    TOKENS_FOLLOWING_COMMA_IN_array_dec_638 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_exp_IN_array_dec_640 = Set[ 9, 35 ]
+    TOKENS_FOLLOWING_RBRACK_IN_array_dec_645 = Set[ 1 ]
+    TOKENS_FOLLOWING_IF_IN_condition_652 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_condition_654 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_condition_656 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_condition_658 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_condition_660 = Set[ 13, 16, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_condition_664 = Set[ 13, 37, 41 ]
+    TOKENS_FOLLOWING_RETURN_IN_condition_671 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_condition_673 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_condition_675 = Set[ 13, 41 ]
+    TOKENS_FOLLOWING_ELSE_IN_condition_682 = Set[ 8 ]
+    TOKENS_FOLLOWING_block_IN_condition_684 = Set[ 21 ]
+    TOKENS_FOLLOWING_R_END_IN_condition_688 = Set[ 21 ]
+    TOKENS_FOLLOWING_IF_IN_condition_692 = Set[ 1 ]
+    TOKENS_FOLLOWING_while_loop_IN_loops_699 = Set[ 1 ]
+    TOKENS_FOLLOWING_for_loop_IN_loops_703 = Set[ 1 ]
+    TOKENS_FOLLOWING_WHILE_IN_while_loop_710 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_while_loop_712 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_while_loop_714 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_while_loop_716 = Set[ 8 ]
+    TOKENS_FOLLOWING_block_IN_while_loop_718 = Set[ 47 ]
+    TOKENS_FOLLOWING_WHILE_IN_while_loop_720 = Set[ 1 ]
+    TOKENS_FOLLOWING_FOR_IN_for_loop_727 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_for_loop_729 = Set[ 22 ]
+    TOKENS_FOLLOWING_IN_IN_for_loop_731 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_for_loop_733 = Set[ 8 ]
+    TOKENS_FOLLOWING_block_IN_for_loop_735 = Set[ 16 ]
+    TOKENS_FOLLOWING_FOR_IN_for_loop_737 = Set[ 1 ]
+    TOKENS_FOLLOWING_READ_IN_reading_744 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_reading_746 = Set[ 7, 15, 23, 45 ]
+    TOKENS_FOLLOWING_value_IN_reading_748 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_reading_750 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_reading_752 = Set[ 1 ]
+    TOKENS_FOLLOWING_PRINT_IN_writing_759 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_writing_761 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_writing_763 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_writing_765 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_writing_767 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_parameters_774 = Set[ 39, 42, 43, 44 ]
+    TOKENS_FOLLOWING_type_IN_parameters_776 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_parameters_778 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_COMMA_IN_parameters_782 = Set[ 39, 42, 43, 44 ]
+    TOKENS_FOLLOWING_type_IN_parameters_784 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_parameters_786 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_parameters_791 = Set[ 1 ]
+    TOKENS_FOLLOWING_FUNCTION_IN_function_798 = Set[ 39, 42, 43, 44, 46 ]
+    TOKENS_FOLLOWING_type_IN_function_802 = Set[ 20 ]
+    TOKENS_FOLLOWING_VOID_IN_function_806 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_function_810 = Set[ 26 ]
+    TOKENS_FOLLOWING_parameters_IN_function_812 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_function_814 = Set[ 10, 16, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_function_818 = Set[ 10, 16, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_var_dec_IN_function_822 = Set[ 10, 16, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_RETURN_IN_function_829 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_function_831 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_function_833 = Set[ 41 ]
+    TOKENS_FOLLOWING_R_END_IN_function_838 = Set[ 17 ]
+    TOKENS_FOLLOWING_FUNCTION_IN_function_840 = Set[ 1 ]
+    TOKENS_FOLLOWING_COLON_IN_block_847 = Set[ 16, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_block_851 = Set[ 16, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_RETURN_IN_block_858 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_block_860 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_block_862 = Set[ 41 ]
+    TOKENS_FOLLOWING_R_END_IN_block_867 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_func_call_874 = Set[ 26 ]
+    TOKENS_FOLLOWING_parameters_IN_func_call_876 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_func_call_878 = Set[ 1 ]
+    TOKENS_FOLLOWING_exp_IN_expresion_885 = Set[ 1, 4, 14, 18, 25, 29, 31 ]
+    TOKENS_FOLLOWING_set_IN_expresion_889 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_exp_IN_expresion_914 = Set[ 1 ]
+    TOKENS_FOLLOWING_term_IN_exp_924 = Set[ 1, 27, 32 ]
+    TOKENS_FOLLOWING_set_IN_exp_928 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_term_IN_exp_938 = Set[ 1, 27, 32 ]
+    TOKENS_FOLLOWING_ID_IN_factor_948 = Set[ 24 ]
+    TOKENS_FOLLOWING_array_dec_IN_factor_950 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_factor_954 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_expresion_IN_factor_956 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_factor_958 = Set[ 1 ]
+    TOKENS_FOLLOWING_factor_IN_term_965 = Set[ 1, 11, 28 ]
+    TOKENS_FOLLOWING_set_IN_term_969 = Set[ 20, 26 ]
+    TOKENS_FOLLOWING_factor_IN_term_979 = Set[ 1, 11, 28 ]
+    TOKENS_FOLLOWING_R_CLASS_IN_r_class_1027 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_r_class_1029 = Set[ 8, 19 ]
+    TOKENS_FOLLOWING_HER_IN_r_class_1033 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_r_class_1035 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_r_class_1040 = Set[ 10, 17 ]
+    TOKENS_FOLLOWING_function_IN_r_class_1044 = Set[ 10, 17, 41 ]
+    TOKENS_FOLLOWING_var_dec_IN_r_class_1048 = Set[ 10, 17, 41 ]
+    TOKENS_FOLLOWING_R_END_IN_r_class_1053 = Set[ 40 ]
+    TOKENS_FOLLOWING_R_CLASS_IN_r_class_1055 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_method_call_1062 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_method_call_1064 = Set[ 20 ]
+    TOKENS_FOLLOWING_func_call_IN_method_call_1067 = Set[ 12 ]
+    TOKENS_FOLLOWING_ID_IN_method_call_1071 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_method_call_1074 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 

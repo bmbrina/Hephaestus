@@ -14,7 +14,7 @@ options { language = Ruby; }
 AS: 'as';
 AND: 'and';
 R_BOOL: 'bool';
-CLASS: 'class';
+R_CLASS: 'class';
 DEFINE: 'define';
 R_END: 'end';
 ELSE: 'else';
@@ -84,7 +84,7 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
-start: ( class )* program;
+start: ( r_class )* ( function )* program;
 
 program: PROGRAM ID COLON ( estatute | var_dec )+ R_END PROGRAM;
 
@@ -110,7 +110,7 @@ writing: PRINT LPAR expresion RPAR DOT;
 
 parameters: LPAR type ID ( COMMA type ID )* RPAR;
 
-function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* RETURN expresion DOT R_END FUNCTION;
+function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* ( RETURN expresion DOT )? R_END FUNCTION;
 
 block: COLON ( estatute )* ( RETURN expresion DOT )? R_END;
 
@@ -128,6 +128,6 @@ type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER;
 
 value: STRING | FLOAT | INTEGER | BOOL;
 
-class: CLASS ID ( HER ID )? COLON ( func_call| var_dec )+ R_END CLASS;
+r_class: R_CLASS ID ( HER ID )? COLON ( function | var_dec )+ R_END R_CLASS;
 
 method_call: ID DOT (func_call | ID) DOT;
