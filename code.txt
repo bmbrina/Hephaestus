@@ -1,23 +1,24 @@
+
+class Student inherits Persons:
+  define name as String.
+
+  function String getPersonName():
+    return name.
+  end function
+
+  function void setPersonName(String personName):
+    name = personName.
+  end function
+
+end class
+
 function void bye():
-  print("hola").
+  print("bye!!!").
 end function
 
-function integer sum():
-  define cars as string.
-  for car in cars:
-    print(car).
-  end for
-end function
+program people:
 
-function integer show():
-  define cars as string.
-  for car in cars:
-    print(car).
-  end for
-end function
+  define jorge as Student.
+  jorge.setPersonName(String "Jorge").
 
-program hola:
-  if(a):
-    return a + b.
-  end if
 end program

@@ -13,12 +13,12 @@ options { language = Ruby; }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 AS: 'as';
 AND: 'and';
-R_BOOL: 'bool';
+R_BOOL: 'Bool';
 R_CLASS: 'class';
 DEFINE: 'define';
 R_END: 'end';
 ELSE: 'else';
-R_FLOAT: 'float';
+R_FLOAT: 'Float';
 FOR: 'for';
 FUNCTION: 'function';
 IF: 'if';
@@ -29,19 +29,34 @@ PRINT: 'print';
 PROGRAM: 'program';
 READ: 'read';
 RETURN: 'return';
-R_STRING: 'string';
+R_STRING: 'String';
 VOID: 'void';
 WHILE: 'while';
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// OPERATORS
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DIV: '/';
+EQ: '==';
+GREATER: '>';
+LESS: '<';
+MINUS: '-';
+MULT: '*';
+NEQ: '<>';
+PLUS: '+';
+HER: 'inherits';
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // TYPES
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 BOOL: ( 'true' | 'false');
+DIGIT: ('0' .. '9');
+LETTER: ( 'a' .. 'z' | 'A' .. 'Z' );
 FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
 STRING: '\'' ( ~( '\'' | '\\' ) | '\\' . )* '\'' | '"'  ( ~( '"'  | '\\' ) | '\\' . )* '"';
-ID: ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*;
-INTEGER: ( '0' .. '9' )+;
+ID: LETTER ( LETTER | '_' | DIGIT )*;
+INTEGER: ( DIGIT )+;
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -55,20 +70,6 @@ LBRACK: '[';
 LPAR: '(';
 RBRACK: ']';
 RPAR: ')';
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// OPERATORS
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DIV: '/';
-EQ: '==';
-GREATER: '>';
-LESS: '<';
-MINUS: '-';
-MULT: '*';
-NEQ: '<>';
-PLUS: '+';
-HER: '<<';
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -86,7 +87,7 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 
 start: ( r_class )* ( function )* program;
 
-program: PROGRAM ID COLON ( estatute | var_dec )+ R_END PROGRAM;
+program: PROGRAM ID COLON ( estatute | var_dec )* R_END PROGRAM;
 
 estatute: func_call | condition | reading | writing | assignment | loops | method_call;
 
@@ -108,7 +109,7 @@ reading: READ LPAR value RPAR DOT;
 
 writing: PRINT LPAR expresion RPAR DOT;
 
-parameters: LPAR ( type ID ( COMMA type ID )* )? RPAR;
+parameters: LPAR ( type (ID | value ) ( COMMA type (ID | value ) )* )? RPAR;
 
 function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* ( RETURN expresion DOT )? R_END FUNCTION;
 
@@ -124,10 +125,10 @@ factor: ID ( array_dec )? | LPAR expresion RPAR | value;
 
 term: factor ( ( MULT | DIV ) factor )*;
 
-type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER;
+type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER | ID;
 
 value: STRING | FLOAT | INTEGER | BOOL;
 
-r_class: R_CLASS ID ( HER ID )? COLON ( function | var_dec )+ R_END R_CLASS;
+r_class: R_CLASS ID ( HER ID )? COLON ( function | var_dec )* R_END R_CLASS;
 
-method_call: ID DOT (func_call | ID) DOT;
+method_call: ID DOT (func_call | ID DOT);
