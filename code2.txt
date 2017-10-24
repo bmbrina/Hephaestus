@@ -1,0 +1,5 @@
+program people:
+
+  define hello as String.
+
+end program

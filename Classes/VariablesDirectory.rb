@@ -7,7 +7,7 @@ class VariablesDirectory
     @variables = {}
   end
 
-  def register(name, type, value)
+  def register(name, type, value = nil)
     @variables[name] = Variable.new(name,type,value)
   end
 

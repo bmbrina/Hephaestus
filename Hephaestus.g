@@ -7,8 +7,9 @@ options { language = Ruby; }
 }
 
 @members {
-  program = Program.new()
+  \$program = Program.new()
 }
+
 // ******************************************************************************
 // ******************************************************************************
 //                                  SCANNER
@@ -30,7 +31,7 @@ FOR: 'for';
 FUNCTION: 'function';
 IF: 'if';
 IN: 'in';
-R_INTEGER: 'integer';
+R_INTEGER: 'Integer';
 OR: 'or';
 PRINT: 'print';
 PROGRAM: 'program';
@@ -98,7 +99,7 @@ program: PROGRAM ID COLON ( estatute | var_dec | function )* R_END PROGRAM;
 
 estatute: func_call DOT | condition | reading | writing | assignment | loops | method_call;
 
-var_dec: DEFINE ID AS type ( ASGN ( expresion | array_dec | func_call ) )? DOT;
+var_dec: DEFINE ID AS type ( ASGN ( expresion | func_call ) )? DOT { \$program.add_variable($ID.text, $type.text , 5 ) } ;
 
 assignment: ID ( ASGN ( expresion | func_call ) | array_dec ASGN type ) DOT;
 
