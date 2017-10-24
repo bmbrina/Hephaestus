@@ -85,7 +85,7 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
-start: ( r_class )* program;
+start: { Program.new() } ( r_class )* program;
 
 program: PROGRAM ID COLON ( estatute | var_dec | function )* R_END PROGRAM;
 
