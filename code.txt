@@ -2,23 +2,19 @@
 class Student inherits Persons:
   define name as String.
 
-  function String getPersonName():
+  function String getName():
     return name.
   end function
 
-  function void setPersonName(String personName):
+  function void setName(String personName):
     name = personName.
   end function
 
 end class
 
-function void bye():
-  print("bye!!!").
-end function
-
 program people:
 
   define jorge as Student.
-  jorge.setPersonName(String "Jorge").
-
+  jorge.setName(String "Jorge").
+  
 end program

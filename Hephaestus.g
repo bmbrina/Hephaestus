@@ -51,12 +51,12 @@ HER: 'inherits';
 // TYPES
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 BOOL: ( 'true' | 'false');
-DIGIT: ('0' .. '9');
+
 LETTER: ( 'a' .. 'z' | 'A' .. 'Z' );
 FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
 STRING: '\'' ( ~( '\'' | '\\' ) | '\\' . )* '\'' | '"'  ( ~( '"'  | '\\' ) | '\\' . )* '"';
-ID: LETTER ( LETTER | '_' | DIGIT )*;
-INTEGER: ( DIGIT )+;
+ID: LETTER ( LETTER | '_' | ('0' .. '9') )*;
+INTEGER: ('0' .. '9')+;
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -121,14 +121,14 @@ expresion: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR) exp )?;
 
 exp: term ( ( PLUS | MINUS ) term )*;
 
-factor: ID ( array_dec )? | LPAR expresion RPAR | value;
-
 term: factor ( ( MULT | DIV ) factor )*;
+
+factor: ID ( array_dec )? | LPAR expresion RPAR | value;
 
 type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER | ID;
 
 value: STRING | FLOAT | INTEGER | BOOL;
 
-r_class: R_CLASS ID ( HER ID )? COLON ( function | var_dec )* R_END R_CLASS;
+r_class: R_CLASS ID  ( HER ID )? COLON ( function | var_dec )* R_END R_CLASS;
 
 method_call: ID DOT (func_call | ID DOT);
