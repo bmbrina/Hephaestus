@@ -1,5 +1,5 @@
 
-class Student inherits Persons:
+class Student inherits Person:
   define name as String.
 
   function String getName():
@@ -14,7 +14,12 @@ end class
 
 program people:
 
-  define jorge as Student.
-  jorge.setName(String "Jorge").
+  function Student createStudent():
+    define jorge as Student.
+    jorge.setName(String "Jorge").
+    return jorge.
+  end function 
+
+  define newStudent as Student = createStudent().
   
 end program

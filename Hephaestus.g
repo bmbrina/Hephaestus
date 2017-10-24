@@ -85,13 +85,13 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
-start: ( r_class )* ( function )* program;
+start: ( r_class )* program;
 
-program: PROGRAM ID COLON ( estatute | var_dec )* R_END PROGRAM;
+program: PROGRAM ID COLON ( estatute | var_dec | function )* R_END PROGRAM;
 
-estatute: func_call | condition | reading | writing | assignment | loops | method_call;
+estatute: func_call DOT | condition | reading | writing | assignment | loops | method_call;
 
-var_dec: DEFINE ID AS type ( ASGN expresion | array_dec )? DOT;
+var_dec: DEFINE ID AS type ( ASGN ( expresion | array_dec | func_call ) )? DOT;
 
 assignment: ID ( ASGN ( expresion | func_call ) | array_dec ASGN type ) DOT;
 
@@ -115,7 +115,7 @@ function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* (
 
 block: COLON ( estatute )* ( RETURN expresion DOT )? R_END;
 
-func_call: ID parameters DOT;
+func_call: ID parameters;
 
 expresion: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR) exp )?;
 
@@ -131,4 +131,4 @@ value: STRING | FLOAT | INTEGER | BOOL;
 
 r_class: R_CLASS ID  ( HER ID )? COLON ( function | var_dec )* R_END R_CLASS;
 
-method_call: ID DOT (func_call | ID DOT);
+method_call: ID DOT ( func_call | ID ) DOT;
