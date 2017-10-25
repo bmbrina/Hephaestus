@@ -90,6 +90,7 @@ class QuadrupleFactory
       @counter += 1
     else
       puts "ERROR: type mismatched, expecting Bool got #{type}."
+      exit
     end
   end
 
@@ -138,7 +139,8 @@ private
       current_context.variables_directory.register(temp, @sem_cube.invert[type_res])
       @counter += 1
     else
-      puts "ERROR: variable type mismatched."
+      puts "ERROR: variable type mismatched, received: #{match_value(left_side)} and #{match_value(right_side)}."
+      exit
     end
   end
 
@@ -157,6 +159,7 @@ private
   end
 
   def match_value(value)
+    value = value.to_s
     if value == "true" || value == "false"
       "Bool"
     elsif value.include? '.'
