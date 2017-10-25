@@ -12,6 +12,7 @@ class QuadrupleFactory
     @types_stack = []
     @jumps_stack = []
     @counter = 0
+    @temp_counter = 1
     @sem_cube = SemanticCube.new()
   end
 
@@ -130,7 +131,8 @@ private
     left_side_type = @sem_cube.convert[@types_stack.pop()]
     type_res = @sem_cube.semantic_cube[[left_side_type, right_side_type, operator_type]]
     if type_res != nil
-      temp = "temp#{@counter}"
+      temp = "temp#{@temp_counter}"
+      @temp_counter += 1
       quad = Quadruple.new(operator, left_side, right_side, temp)
       @program.add_quadruples(quad)
       @ids_stack.push(temp)
