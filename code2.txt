@@ -1,6 +1,0 @@
-program people:
-
-  define hello as String = hola().
-  define jugador as String = "babs".
-
-end program
