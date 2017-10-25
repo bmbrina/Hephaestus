@@ -13,6 +13,15 @@ class VariablesDirectory
     print_variables()
   end
 
+  def variable_exists?(id)
+    @variables.key?(id)
+  end
+
+  def get_variable(id)
+    @variables[id]
+  end
+
+private
   def print_variables()
     puts "\tVariables directory:"
 
@@ -21,6 +30,6 @@ class VariablesDirectory
       puts("\t|Name: #{variable.name}, Type: #{variable.type}, Value: #{variable.value}|")
     end
     puts "\t------------------------------------------------------ \n"
-  end
+  end 
 
 end

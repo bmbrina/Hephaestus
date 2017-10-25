@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-10-24 20:20:37
+# Generated at: 2017-10-25 01:05:58
 #
 
 # ~~~> start load path setup
@@ -127,7 +127,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 22:5: 'as'
+      # at line 24:5: 'as'
       match( "as" )
 
 
@@ -155,7 +155,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 23:6: 'and'
+      # at line 25:6: 'and'
       match( "and" )
 
 
@@ -183,7 +183,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 24:9: 'Bool'
+      # at line 26:9: 'Bool'
       match( "Bool" )
 
 
@@ -211,7 +211,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 25:10: 'class'
+      # at line 27:10: 'class'
       match( "class" )
 
 
@@ -239,7 +239,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 26:9: 'define'
+      # at line 28:9: 'define'
       match( "define" )
 
 
@@ -267,7 +267,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 27:8: 'end'
+      # at line 29:8: 'end'
       match( "end" )
 
 
@@ -295,7 +295,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 28:7: 'else'
+      # at line 30:7: 'else'
       match( "else" )
 
 
@@ -323,7 +323,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 29:10: 'Float'
+      # at line 31:10: 'Float'
       match( "Float" )
 
 
@@ -351,7 +351,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 30:6: 'for'
+      # at line 32:6: 'for'
       match( "for" )
 
 
@@ -379,7 +379,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 31:11: 'function'
+      # at line 33:11: 'function'
       match( "function" )
 
 
@@ -407,7 +407,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 32:6: 'inherits'
+      # at line 34:6: 'inherits'
       match( "inherits" )
 
 
@@ -435,7 +435,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 33:5: 'if'
+      # at line 35:5: 'if'
       match( "if" )
 
 
@@ -463,7 +463,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 34:5: 'in'
+      # at line 36:5: 'in'
       match( "in" )
 
 
@@ -491,7 +491,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 35:12: 'Integer'
+      # at line 37:12: 'Integer'
       match( "Integer" )
 
 
@@ -519,7 +519,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 36:5: 'or'
+      # at line 38:5: 'or'
       match( "or" )
 
 
@@ -547,7 +547,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 37:8: 'print'
+      # at line 39:8: 'print'
       match( "print" )
 
 
@@ -575,7 +575,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 38:10: 'program'
+      # at line 40:10: 'program'
       match( "program" )
 
 
@@ -603,7 +603,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 39:7: 'read'
+      # at line 41:7: 'read'
       match( "read" )
 
 
@@ -631,7 +631,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 40:9: 'return'
+      # at line 42:9: 'return'
       match( "return" )
 
 
@@ -659,7 +659,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 41:11: 'String'
+      # at line 43:11: 'String'
       match( "String" )
 
 
@@ -687,7 +687,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 42:7: 'Void'
+      # at line 44:7: 'Void'
       match( "Void" )
 
 
@@ -715,7 +715,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 43:8: 'while'
+      # at line 45:8: 'while'
       match( "while" )
 
 
@@ -743,7 +743,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 48:6: '/'
+      # at line 50:6: '/'
       match( 0x2f )
 
 
@@ -770,7 +770,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 49:5: '=='
+      # at line 51:5: '=='
       match( "==" )
 
 
@@ -798,7 +798,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 50:10: '>'
+      # at line 52:10: '>'
       match( 0x3e )
 
 
@@ -825,7 +825,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 51:7: '<'
+      # at line 53:7: '<'
       match( 0x3c )
 
 
@@ -852,7 +852,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 52:8: '-'
+      # at line 54:8: '-'
       match( 0x2d )
 
 
@@ -879,7 +879,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 53:7: '*'
+      # at line 55:7: '*'
       match( 0x2a )
 
 
@@ -906,7 +906,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 54:6: '<>'
+      # at line 56:6: '<>'
       match( "<>" )
 
 
@@ -934,7 +934,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 55:7: '+'
+      # at line 57:7: '+'
       match( 0x2b )
 
 
@@ -1047,8 +1047,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 65:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
-      # at file 65:8: ( '0' .. '9' )+
+      # at line 64:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
+      # at file 64:8: ( '0' .. '9' )+
       match_count_2 = 0
       while true
         alt_2 = 2
@@ -1084,7 +1084,7 @@ module Hephaestus
 
 
       match( 0x2e )
-      # at file 65:28: ( '0' .. '9' )+
+      # at file 64:28: ( '0' .. '9' )+
       match_count_3 = 0
       while true
         alt_3 = 2
@@ -1144,7 +1144,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 66:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
+      # at line 65:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
       alt_6 = 2
       look_6_0 = @input.peek( 1 )
 
@@ -1158,9 +1158,9 @@ module Hephaestus
       end
       case alt_6
       when 1
-        # at line 66:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
+        # at line 65:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
         match( 0x27 )
-        # at line 66:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
+        # at line 65:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
         while true # decision 4
           alt_4 = 3
           look_4_0 = @input.peek( 1 )
@@ -1173,7 +1173,7 @@ module Hephaestus
           end
           case alt_4
           when 1
-            # at line 66:16: ~ ( '\\'' | '\\\\' )
+            # at line 65:16: ~ ( '\\'' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x26 ) || @input.peek( 1 ).between?( 0x28, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -1186,7 +1186,7 @@ module Hephaestus
 
 
           when 2
-            # at line 66:35: '\\\\' .
+            # at line 65:35: '\\\\' .
             match( 0x5c )
             match_any
 
@@ -1198,9 +1198,9 @@ module Hephaestus
         match( 0x27 )
 
       when 2
-        # at line 66:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
+        # at line 65:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
         match( 0x22 )
-        # at line 66:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
+        # at line 65:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
         while true # decision 5
           alt_5 = 3
           look_5_0 = @input.peek( 1 )
@@ -1213,7 +1213,7 @@ module Hephaestus
           end
           case alt_5
           when 1
-            # at line 66:59: ~ ( '\"' | '\\\\' )
+            # at line 65:59: ~ ( '\"' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x21 ) || @input.peek( 1 ).between?( 0x23, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -1226,7 +1226,7 @@ module Hephaestus
 
 
           when 2
-            # at line 66:78: '\\\\' .
+            # at line 65:78: '\\\\' .
             match( 0x5c )
             match_any
 
@@ -1262,10 +1262,10 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 67:5: LETTER ( LETTER | '_' | ( '0' .. '9' ) )*
+      # at line 66:5: LETTER ( LETTER | '_' | ( '0' .. '9' ) )*
       letter!
 
-      # at line 67:12: ( LETTER | '_' | ( '0' .. '9' ) )*
+      # at line 66:12: ( LETTER | '_' | ( '0' .. '9' ) )*
       while true # decision 7
         alt_7 = 2
         look_7_0 = @input.peek( 1 )
@@ -1318,8 +1318,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 68:10: ( '0' .. '9' )+
-      # at file 68:10: ( '0' .. '9' )+
+      # at line 67:10: ( '0' .. '9' )+
+      # at file 67:10: ( '0' .. '9' )+
       match_count_8 = 0
       while true
         alt_8 = 2
@@ -1379,7 +1379,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 74:7: '='
+      # at line 73:7: '='
       match( 0x3d )
 
 
@@ -1406,7 +1406,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 75:8: ':'
+      # at line 74:8: ':'
       match( 0x3a )
 
 
@@ -1433,7 +1433,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 76:8: ','
+      # at line 75:8: ','
       match( 0x2c )
 
 
@@ -1460,7 +1460,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 77:6: '.'
+      # at line 76:6: '.'
       match( 0x2e )
 
 
@@ -1487,7 +1487,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 78:9: '['
+      # at line 77:9: '['
       match( 0x5b )
 
 
@@ -1514,7 +1514,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 79:7: '('
+      # at line 78:7: '('
       match( 0x28 )
 
 
@@ -1541,7 +1541,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 80:9: ']'
+      # at line 79:9: ']'
       match( 0x5d )
 
 
@@ -1568,7 +1568,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 81:7: ')'
+      # at line 80:7: ')'
       match( 0x29 )
 
 
@@ -1595,8 +1595,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 87:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
-      # at file 87:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at line 86:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at file 86:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
       match_count_9 = 0
       while true
         alt_9 = 2
@@ -1661,8 +1661,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 88:10: ( '\\n' | '\\r' )+
-      # at file 88:10: ( '\\n' | '\\r' )+
+      # at line 87:10: ( '\\n' | '\\r' )+
+      # at file 87:10: ( '\\n' | '\\r' )+
       match_count_10 = 0
       while true
         alt_10 = 2

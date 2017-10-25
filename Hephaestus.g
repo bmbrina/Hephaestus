@@ -4,10 +4,12 @@ options { language = Ruby; }
 
 @header {
   require "Classes/Program"
+  require "Classes/QuadrupleFactory"
 }
 
 @members {
   \$program = Program.new()
+  \$quads = QuadrupleFactory.new(\$program)
 }
 
 // ******************************************************************************
@@ -58,7 +60,6 @@ PLUS: '+';
 // TYPES
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 BOOL: ( 'true' | 'false');
-
 LETTER: ( 'a' .. 'z' | 'A' .. 'Z' );
 FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
 STRING: '\'' ( ~( '\'' | '\\' ) | '\\' . )* '\'' | '"'  ( ~( '"'  | '\\' ) | '\\' . )* '"';
@@ -130,7 +131,7 @@ assignment
   ;
 
 array_dec
-  : LBRACK exp ( COMMA exp )* RBRACK
+  : LBRACK exp ( COMMA exp )? RBRACK
   ;
 
 condition
@@ -186,35 +187,36 @@ func_call
   ;
 
 expresion
-  : exp ( ( GREATER 
-          | LESS 
-          | NEQ 
-          | EQ 
-          | AND 
-          | OR 
+  : exp ( ( GREATER { \$quads.add_operator($GREATER.text) }
+          | LESS { \$quads.add_operator($LESS.text) }
+          | NEQ { \$quads.add_operator($NEQ.text) }
+          | EQ { \$quads.add_operator($EQ.text) }
+          | AND { \$quads.add_operator($AND.text) }
+          | OR { \$quads.add_operator($OR.text) }
           ) exp 
-        )?
+        )? { \$quads.is_expresion_pending() }
   ;
 
 exp
-  : term ( ( PLUS 
-           | MINUS 
+  : term ( ( PLUS { \$quads.add_operator($PLUS.text) }
+           | MINUS { \$quads.add_operator($MINUS.text) }
            ) term 
-         )*
+         )* { \$quads.is_exp_pending() }
   ;
 
 term
-  : factor ( ( MULT 
-             | DIV 
+  : factor ( ( MULT { \$quads.add_operator($MULT.text) }
+             | DIV { \$quads.add_operator($DIV.text) }
              ) factor 
-           )*
+           )* { \$quads.is_term_pending() }
   ;
 
 factor
-  : ID ( array_dec )? 
-    | LPAR expresion RPAR 
-    | value
+  : ID ( array_dec )? { \$quads.add_id($ID.text, nil) }
+    | LPAR { \$quads.add_false_bottom($LPAR.text) } expresion RPAR { \$quads.remove_false_bottom() }
+    | value { \$quads.add_id(nil, $value.text) }
   ;
+  
 
 type
   : R_STRING 

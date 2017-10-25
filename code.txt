@@ -11,5 +11,6 @@ program people:
   end function
 
   define newStudent as Student = createStudent().
+  print (2 + (3 * 2)).
   
 end program

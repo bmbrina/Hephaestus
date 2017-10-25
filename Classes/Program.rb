@@ -6,6 +6,7 @@ class Program
   def initialize()
     @main_context = Context.new('GLOBAL')
     @current_context = @main_context
+    @quadruples = []
   end
 
   def reset_context()
@@ -22,4 +23,9 @@ class Program
     @main_context.variables_directory.register(name, type, value)
   end
 
+  def quadruples(quad)
+    @quadruples.push(quad)
+    puts "New quadruple: \n"
+    puts "Operator: #{quad.operator}, Left Side: #{quad.left_side}, Right Side: #{quad.right_side}, Result: #{quad.result}"
+  end
 end

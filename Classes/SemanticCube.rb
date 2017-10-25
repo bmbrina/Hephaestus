@@ -30,7 +30,7 @@ class SemanticCube
     @invert = @convert.invert
   end
 
-private
+#private
   def generate_cube()
     add_types()
   end
