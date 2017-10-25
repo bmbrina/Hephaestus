@@ -39,7 +39,7 @@ PROGRAM: 'program';
 READ: 'read';
 RETURN: 'return';
 R_STRING: 'String';
-VOID: 'void';
+VOID: 'Void';
 WHILE: 'while';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -117,9 +117,9 @@ estatute
 
 var_dec 
   : DEFINE ID AS type ( ASGN ( expresion 
-                               { \$program.add_variable($ID.text, $type.text , $expresion.text ) }
+                               { \$program.add_variable($ID.text, $type.text , $expresion.text) }
                              | func_call 
-                               { \$program.add_variable($ID.text, $type.text , $func_call.text ) }
+                               { \$program.add_variable($ID.text, $type.text , $func_call.text) }
                              ) 
                       )? DOT  
   ;
@@ -173,11 +173,10 @@ parameters
   ;
 
 function
-  : FUNCTION ( type 
-             | VOID 
-             ) ID parameters COLON ( estatute 
-                                   | var_dec 
-                                   )* ( RETURN expresion DOT )? R_END FUNCTION
+  : FUNCTION ( type ) ID parameters COLON { \$program.add_function($ID.text, $parameters.text, $type.text)}
+                                          ( estatute 
+                                          | var_dec 
+                                          )* ( RETURN expresion DOT )? R_END FUNCTION { \$program.reset_context() }                                     
 ;
 
 block
@@ -224,6 +223,7 @@ type
   | R_BOOL 
   | R_FLOAT 
   | R_INTEGER 
+  | VOID
   | ID
   ;
 
