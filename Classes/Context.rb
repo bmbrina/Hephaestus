@@ -21,6 +21,9 @@ class Context
   end
 
   def print_tables()
+    if @classes_directory != nil
+      @classes_directory.print_classes()
+    end
     if @functions_directory != nil
       @functions_directory.print_functions()
     end

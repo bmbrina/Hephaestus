@@ -10,6 +10,8 @@ options { language = Ruby; }
 @members {
   \$program = Program.new()
   \$quads = QuadrupleFactory.new(\$program)
+  \$class_aux
+
 }
 
 // ******************************************************************************
@@ -144,7 +146,7 @@ loops
   ;
 
 while_loop
-  : WHILE LPAR expresion RPAR block WHILE
+  : WHILE { \$quads.add_jump() } LPAR expresion RPAR { \$quads.gotof() } block WHILE { \$quads.goto_while()}
   ;
 
 for_loop
@@ -233,9 +235,13 @@ value
   ;
 
 r_class
-  : R_CLASS ID ( HER ID )? COLON ( function
-                                 | var_dec
-                                 )* R_END R_CLASS
+  : R_CLASS ID { \$class_aux = $ID.text } { \$program.add_class($ID.text, nil) } heritage?  COLON ( function
+                                                                       | var_dec
+                                                                       )* R_END R_CLASS { \$program.reset_class_context() }
+  ;
+
+heritage
+  : ( HER ID ) { \$program.main_context.classes_directory.classes[\$class_aux].inherits_of = $ID.text }
   ;
 
 method_call

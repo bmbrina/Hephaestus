@@ -95,13 +95,26 @@ class QuadrupleFactory
 
   def fill_quad()
     position = @jumps_stack.pop()
-    @program.quadruples[position].result = @counter
+    @program.quadruples[position].result = @counter + 1
   end
 
   def goto()
     quad = Quadruple.new('GOTO', nil, nil, nil)
     @program.add_quadruples(quad)
     fill_quad()
+    @jumps_stack.push(@counter)
+    @counter += 1
+  end
+
+  def add_jump()
+    @jumps_stack.push(@counter)
+  end
+
+  def goto_while()
+    fill_quad()
+    position = @jumps_stack.pop()
+    quad = Quadruple.new('GOTO', nil, nil, position)
+    @program.add_quadruples(quad)
     @jumps_stack.push(@counter)
     @counter += 1
   end

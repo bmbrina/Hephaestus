@@ -1,3 +1,16 @@
+class Person:
+  define name as String.
+
+  function Void setName(String personName):
+    name = personName.
+  end function
+  
+end class
+
+class Student inherits Person:
+  
+end class
+
 program people:
 
   function Student createStudent():
@@ -13,6 +26,10 @@ program people:
       print(3).
     end if
   end function
+
+  while( 2 > 0):
+    print("hola").
+  end while
 
   define newStudent as Student = createStudent().
   print (2 + (3 * 2)).
