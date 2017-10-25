@@ -10,6 +10,7 @@ class QuadrupleFactory
     @operators_stack = []
     @ids_stack = []
     @types_stack = []
+    @jumps_stack = []
     @counter = 0
     @sem_cube = SemanticCube.new()
   end
@@ -71,6 +72,41 @@ class QuadrupleFactory
     end
   end
 
+  def write()
+    temp = @ids_stack.pop()
+    type = @types_stack.pop()
+    quad = Quadruple.new('print', temp, nil, nil)
+    @program.add_quadruples(quad)
+    @counter += 1
+  end
+
+  def gotof()
+    type = @types_stack.pop()
+    if type == "Bool"
+      result = @ids_stack.pop()
+      quad = Quadruple.new('GOTOF', result, nil, nil)
+      @program.add_quadruples(quad)
+      @jumps_stack.push(@counter)
+      @counter += 1
+    else
+      puts "ERROR: type mismatched, expecting Bool got #{type}."
+    end
+  end
+
+  def fill_quad()
+    position = @jumps_stack.pop()
+    @program.quadruples[position].result = @counter
+  end
+
+  def goto()
+    quad = Quadruple.new('GOTO', nil, nil, nil)
+    @program.add_quadruples(quad)
+    fill_quad()
+    @jumps_stack.push(@counter)
+    @counter += 1
+  end
+
+private
   def generate_quad()
     operator = @operators_stack.pop()
     operator_type = @sem_cube.convert[operator]
@@ -82,7 +118,7 @@ class QuadrupleFactory
     if type_res != nil
       temp = "temp#{@counter}"
       quad = Quadruple.new(operator, left_side, right_side, temp)
-      @program.quadruples(quad)
+      @program.add_quadruples(quad)
       @ids_stack.push(temp)
       @types_stack.push(@sem_cube.invert[type_res])
       current_context = @program.current_context
@@ -93,7 +129,6 @@ class QuadrupleFactory
     end
   end
 
-private
   def extract_value(value)
     if value == "true"
       true

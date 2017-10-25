@@ -101,7 +101,7 @@ program
   : PROGRAM ID COLON ( estatute
                      | var_dec
                      | function
-                     )* R_END PROGRAM {\$program.print_quadruples()}
+                     )* R_END PROGRAM { \$program.print_quadruples() }
                      ;
 
 estatute
@@ -134,9 +134,8 @@ array_dec
   ;
 
 condition
-  : IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block
-                                                                         | R_END
-                                                                         ) IF
+  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE { \$quads.goto() } block 
+                                                                                             | R_END ) { \$quads.fill_quad() } IF 
   ;
 
 loops
@@ -157,7 +156,7 @@ reading
   ;
 
 writing
-  : PRINT LPAR expresion RPAR DOT
+  : PRINT LPAR expresion RPAR DOT { \$quads.write()}
   ;
 
 parameters
