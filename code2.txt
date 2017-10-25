@@ -1,5 +1,5 @@
 program people:
 
-  define hello as String.
+  define hello as String = hola().
 
 end program

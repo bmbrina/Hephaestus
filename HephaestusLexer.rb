@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-10-24 18:42:55
+# Generated at: 2017-10-24 19:17:35
 #
 
 # ~~~> start load path setup
@@ -91,19 +91,21 @@ module Hephaestus
     end
 
     RULE_NAMES   = [ "AS", "AND", "R_BOOL", "R_CLASS", "DEFINE", "R_END", 
-                     "ELSE", "R_FLOAT", "FOR", "FUNCTION", "IF", "IN", "R_INTEGER", 
-                     "OR", "PRINT", "PROGRAM", "READ", "RETURN", "R_STRING", 
-                     "VOID", "WHILE", "DIV", "EQ", "GREATER", "LESS", "MINUS", 
-                     "MULT", "NEQ", "PLUS", "HER", "BOOL", "LETTER", "FLOAT", 
-                     "STRING", "ID", "INTEGER", "ASGN", "COLON", "COMMA", 
-                     "DOT", "LBRACK", "LPAR", "RBRACK", "RPAR", "WS", "NEWLINE" ].freeze
+                     "ELSE", "R_FLOAT", "FOR", "FUNCTION", "HER", "IF", 
+                     "IN", "R_INTEGER", "OR", "PRINT", "PROGRAM", "READ", 
+                     "RETURN", "R_STRING", "VOID", "WHILE", "DIV", "EQ", 
+                     "GREATER", "LESS", "MINUS", "MULT", "NEQ", "PLUS", 
+                     "BOOL", "LETTER", "FLOAT", "STRING", "ID", "INTEGER", 
+                     "ASGN", "COLON", "COMMA", "DOT", "LBRACK", "LPAR", 
+                     "RBRACK", "RPAR", "WS", "NEWLINE" ].freeze
     RULE_METHODS = [ :as!, :and!, :r_bool!, :r_class!, :define!, :r_end!, 
-                     :else!, :r_float!, :for!, :function!, :if!, :in!, :r_integer!, 
-                     :or!, :print!, :program!, :read!, :return!, :r_string!, 
-                     :void!, :while!, :div!, :eq!, :greater!, :less!, :minus!, 
-                     :mult!, :neq!, :plus!, :her!, :bool!, :letter!, :float!, 
-                     :string!, :id!, :integer!, :asgn!, :colon!, :comma!, 
-                     :dot!, :lbrack!, :lpar!, :rbrack!, :rpar!, :ws!, :newline! ].freeze
+                     :else!, :r_float!, :for!, :function!, :her!, :if!, 
+                     :in!, :r_integer!, :or!, :print!, :program!, :read!, 
+                     :return!, :r_string!, :void!, :while!, :div!, :eq!, 
+                     :greater!, :less!, :minus!, :mult!, :neq!, :plus!, 
+                     :bool!, :letter!, :float!, :string!, :id!, :integer!, 
+                     :asgn!, :colon!, :comma!, :dot!, :lbrack!, :lpar!, 
+                     :rbrack!, :rpar!, :ws!, :newline! ].freeze
 
     def initialize( input=nil, options = {} )
       super( input, options )
@@ -391,22 +393,22 @@ module Hephaestus
 
     end
 
-    # lexer rule if! (IF)
+    # lexer rule her! (HER)
     # (in Hephaestus.g)
-    def if!
+    def her!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 11 )
 
 
 
-      type = IF
+      type = HER
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 32:5: 'if'
-      match( "if" )
+      # at line 32:6: 'inherits'
+      match( "inherits" )
 
 
 
@@ -419,22 +421,22 @@ module Hephaestus
 
     end
 
-    # lexer rule in! (IN)
+    # lexer rule if! (IF)
     # (in Hephaestus.g)
-    def in!
+    def if!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 12 )
 
 
 
-      type = IN
+      type = IF
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 33:5: 'in'
-      match( "in" )
+      # at line 33:5: 'if'
+      match( "if" )
 
 
 
@@ -447,22 +449,22 @@ module Hephaestus
 
     end
 
-    # lexer rule r_integer! (R_INTEGER)
+    # lexer rule in! (IN)
     # (in Hephaestus.g)
-    def r_integer!
+    def in!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 13 )
 
 
 
-      type = R_INTEGER
+      type = IN
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 34:12: 'Integer'
-      match( "Integer" )
+      # at line 34:5: 'in'
+      match( "in" )
 
 
 
@@ -475,22 +477,22 @@ module Hephaestus
 
     end
 
-    # lexer rule or! (OR)
+    # lexer rule r_integer! (R_INTEGER)
     # (in Hephaestus.g)
-    def or!
+    def r_integer!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 14 )
 
 
 
-      type = OR
+      type = R_INTEGER
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 35:5: 'or'
-      match( "or" )
+      # at line 35:12: 'Integer'
+      match( "Integer" )
 
 
 
@@ -503,22 +505,22 @@ module Hephaestus
 
     end
 
-    # lexer rule print! (PRINT)
+    # lexer rule or! (OR)
     # (in Hephaestus.g)
-    def print!
+    def or!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 15 )
 
 
 
-      type = PRINT
+      type = OR
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 36:8: 'print'
-      match( "print" )
+      # at line 36:5: 'or'
+      match( "or" )
 
 
 
@@ -531,22 +533,22 @@ module Hephaestus
 
     end
 
-    # lexer rule program! (PROGRAM)
+    # lexer rule print! (PRINT)
     # (in Hephaestus.g)
-    def program!
+    def print!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 16 )
 
 
 
-      type = PROGRAM
+      type = PRINT
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 37:10: 'program'
-      match( "program" )
+      # at line 37:8: 'print'
+      match( "print" )
 
 
 
@@ -559,22 +561,22 @@ module Hephaestus
 
     end
 
-    # lexer rule read! (READ)
+    # lexer rule program! (PROGRAM)
     # (in Hephaestus.g)
-    def read!
+    def program!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 17 )
 
 
 
-      type = READ
+      type = PROGRAM
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 38:7: 'read'
-      match( "read" )
+      # at line 38:10: 'program'
+      match( "program" )
 
 
 
@@ -587,22 +589,22 @@ module Hephaestus
 
     end
 
-    # lexer rule return! (RETURN)
+    # lexer rule read! (READ)
     # (in Hephaestus.g)
-    def return!
+    def read!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 18 )
 
 
 
-      type = RETURN
+      type = READ
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 39:9: 'return'
-      match( "return" )
+      # at line 39:7: 'read'
+      match( "read" )
 
 
 
@@ -615,22 +617,22 @@ module Hephaestus
 
     end
 
-    # lexer rule r_string! (R_STRING)
+    # lexer rule return! (RETURN)
     # (in Hephaestus.g)
-    def r_string!
+    def return!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 19 )
 
 
 
-      type = R_STRING
+      type = RETURN
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 40:11: 'String'
-      match( "String" )
+      # at line 40:9: 'return'
+      match( "return" )
 
 
 
@@ -643,22 +645,22 @@ module Hephaestus
 
     end
 
-    # lexer rule void! (VOID)
+    # lexer rule r_string! (R_STRING)
     # (in Hephaestus.g)
-    def void!
+    def r_string!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 20 )
 
 
 
-      type = VOID
+      type = R_STRING
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 41:7: 'void'
-      match( "void" )
+      # at line 41:11: 'String'
+      match( "String" )
 
 
 
@@ -671,22 +673,22 @@ module Hephaestus
 
     end
 
-    # lexer rule while! (WHILE)
+    # lexer rule void! (VOID)
     # (in Hephaestus.g)
-    def while!
+    def void!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 21 )
 
 
 
-      type = WHILE
+      type = VOID
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 42:8: 'while'
-      match( "while" )
+      # at line 42:7: 'void'
+      match( "void" )
 
 
 
@@ -699,22 +701,23 @@ module Hephaestus
 
     end
 
-    # lexer rule div! (DIV)
+    # lexer rule while! (WHILE)
     # (in Hephaestus.g)
-    def div!
+    def while!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 22 )
 
 
 
-      type = DIV
+      type = WHILE
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 47:6: '/'
-      match( 0x2f )
+      # at line 43:8: 'while'
+      match( "while" )
+
 
 
       @state.type = type
@@ -726,23 +729,22 @@ module Hephaestus
 
     end
 
-    # lexer rule eq! (EQ)
+    # lexer rule div! (DIV)
     # (in Hephaestus.g)
-    def eq!
+    def div!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 23 )
 
 
 
-      type = EQ
+      type = DIV
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 48:5: '=='
-      match( "==" )
-
+      # at line 48:6: '/'
+      match( 0x2f )
 
 
       @state.type = type
@@ -754,22 +756,23 @@ module Hephaestus
 
     end
 
-    # lexer rule greater! (GREATER)
+    # lexer rule eq! (EQ)
     # (in Hephaestus.g)
-    def greater!
+    def eq!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 24 )
 
 
 
-      type = GREATER
+      type = EQ
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 49:10: '>'
-      match( 0x3e )
+      # at line 49:5: '=='
+      match( "==" )
+
 
 
       @state.type = type
@@ -781,22 +784,22 @@ module Hephaestus
 
     end
 
-    # lexer rule less! (LESS)
+    # lexer rule greater! (GREATER)
     # (in Hephaestus.g)
-    def less!
+    def greater!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 25 )
 
 
 
-      type = LESS
+      type = GREATER
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 50:7: '<'
-      match( 0x3c )
+      # at line 50:10: '>'
+      match( 0x3e )
 
 
       @state.type = type
@@ -808,22 +811,22 @@ module Hephaestus
 
     end
 
-    # lexer rule minus! (MINUS)
+    # lexer rule less! (LESS)
     # (in Hephaestus.g)
-    def minus!
+    def less!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 26 )
 
 
 
-      type = MINUS
+      type = LESS
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 51:8: '-'
-      match( 0x2d )
+      # at line 51:7: '<'
+      match( 0x3c )
 
 
       @state.type = type
@@ -835,22 +838,22 @@ module Hephaestus
 
     end
 
-    # lexer rule mult! (MULT)
+    # lexer rule minus! (MINUS)
     # (in Hephaestus.g)
-    def mult!
+    def minus!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 27 )
 
 
 
-      type = MULT
+      type = MINUS
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 52:7: '*'
-      match( 0x2a )
+      # at line 52:8: '-'
+      match( 0x2d )
 
 
       @state.type = type
@@ -862,23 +865,22 @@ module Hephaestus
 
     end
 
-    # lexer rule neq! (NEQ)
+    # lexer rule mult! (MULT)
     # (in Hephaestus.g)
-    def neq!
+    def mult!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 28 )
 
 
 
-      type = NEQ
+      type = MULT
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 53:6: '<>'
-      match( "<>" )
-
+      # at line 53:7: '*'
+      match( 0x2a )
 
 
       @state.type = type
@@ -890,22 +892,23 @@ module Hephaestus
 
     end
 
-    # lexer rule plus! (PLUS)
+    # lexer rule neq! (NEQ)
     # (in Hephaestus.g)
-    def plus!
+    def neq!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 29 )
 
 
 
-      type = PLUS
+      type = NEQ
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 54:7: '+'
-      match( 0x2b )
+      # at line 54:6: '<>'
+      match( "<>" )
+
 
 
       @state.type = type
@@ -917,23 +920,22 @@ module Hephaestus
 
     end
 
-    # lexer rule her! (HER)
+    # lexer rule plus! (PLUS)
     # (in Hephaestus.g)
-    def her!
+    def plus!
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 30 )
 
 
 
-      type = HER
+      type = PLUS
       channel = ANTLR3::DEFAULT_CHANNEL
     # - - - - label initialization - - - -
 
 
       # - - - - main rule block - - - -
-      # at line 55:6: 'inherits'
-      match( "inherits" )
-
+      # at line 55:7: '+'
+      match( 0x2b )
 
 
       @state.type = type
@@ -959,8 +961,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 61:7: ( 'true' | 'false' )
-      # at line 61:7: ( 'true' | 'false' )
+      # at line 62:7: ( 'true' | 'false' )
+      # at line 62:7: ( 'true' | 'false' )
       alt_1 = 2
       look_1_0 = @input.peek( 1 )
 
@@ -974,12 +976,12 @@ module Hephaestus
       end
       case alt_1
       when 1
-        # at line 61:9: 'true'
+        # at line 62:9: 'true'
         match( "true" )
 
 
       when 2
-        # at line 61:18: 'false'
+        # at line 62:18: 'false'
         match( "false" )
 
 
@@ -1045,8 +1047,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 64:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
-      # at file 64:8: ( '0' .. '9' )+
+      # at line 65:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
+      # at file 65:8: ( '0' .. '9' )+
       match_count_2 = 0
       while true
         alt_2 = 2
@@ -1082,7 +1084,7 @@ module Hephaestus
 
 
       match( 0x2e )
-      # at file 64:28: ( '0' .. '9' )+
+      # at file 65:28: ( '0' .. '9' )+
       match_count_3 = 0
       while true
         alt_3 = 2
@@ -1142,7 +1144,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 65:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
+      # at line 66:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
       alt_6 = 2
       look_6_0 = @input.peek( 1 )
 
@@ -1156,9 +1158,9 @@ module Hephaestus
       end
       case alt_6
       when 1
-        # at line 65:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
+        # at line 66:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
         match( 0x27 )
-        # at line 65:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
+        # at line 66:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
         while true # decision 4
           alt_4 = 3
           look_4_0 = @input.peek( 1 )
@@ -1171,7 +1173,7 @@ module Hephaestus
           end
           case alt_4
           when 1
-            # at line 65:16: ~ ( '\\'' | '\\\\' )
+            # at line 66:16: ~ ( '\\'' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x26 ) || @input.peek( 1 ).between?( 0x28, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -1184,7 +1186,7 @@ module Hephaestus
 
 
           when 2
-            # at line 65:35: '\\\\' .
+            # at line 66:35: '\\\\' .
             match( 0x5c )
             match_any
 
@@ -1196,9 +1198,9 @@ module Hephaestus
         match( 0x27 )
 
       when 2
-        # at line 65:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
+        # at line 66:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
         match( 0x22 )
-        # at line 65:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
+        # at line 66:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
         while true # decision 5
           alt_5 = 3
           look_5_0 = @input.peek( 1 )
@@ -1211,7 +1213,7 @@ module Hephaestus
           end
           case alt_5
           when 1
-            # at line 65:59: ~ ( '\"' | '\\\\' )
+            # at line 66:59: ~ ( '\"' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x21 ) || @input.peek( 1 ).between?( 0x23, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -1224,7 +1226,7 @@ module Hephaestus
 
 
           when 2
-            # at line 65:78: '\\\\' .
+            # at line 66:78: '\\\\' .
             match( 0x5c )
             match_any
 
@@ -1260,10 +1262,10 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 66:5: LETTER ( LETTER | '_' | ( '0' .. '9' ) )*
+      # at line 67:5: LETTER ( LETTER | '_' | ( '0' .. '9' ) )*
       letter!
 
-      # at line 66:12: ( LETTER | '_' | ( '0' .. '9' ) )*
+      # at line 67:12: ( LETTER | '_' | ( '0' .. '9' ) )*
       while true # decision 7
         alt_7 = 2
         look_7_0 = @input.peek( 1 )
@@ -1316,8 +1318,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 67:10: ( '0' .. '9' )+
-      # at file 67:10: ( '0' .. '9' )+
+      # at line 68:10: ( '0' .. '9' )+
+      # at file 68:10: ( '0' .. '9' )+
       match_count_8 = 0
       while true
         alt_8 = 2
@@ -1377,7 +1379,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 73:7: '='
+      # at line 74:7: '='
       match( 0x3d )
 
 
@@ -1404,7 +1406,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 74:8: ':'
+      # at line 75:8: ':'
       match( 0x3a )
 
 
@@ -1431,7 +1433,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 75:8: ','
+      # at line 76:8: ','
       match( 0x2c )
 
 
@@ -1458,7 +1460,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 76:6: '.'
+      # at line 77:6: '.'
       match( 0x2e )
 
 
@@ -1485,7 +1487,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 77:9: '['
+      # at line 78:9: '['
       match( 0x5b )
 
 
@@ -1512,7 +1514,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 78:7: '('
+      # at line 79:7: '('
       match( 0x28 )
 
 
@@ -1539,7 +1541,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 79:9: ']'
+      # at line 80:9: ']'
       match( 0x5d )
 
 
@@ -1566,7 +1568,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 80:7: ')'
+      # at line 81:7: ')'
       match( 0x29 )
 
 
@@ -1593,8 +1595,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 86:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
-      # at file 86:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at line 87:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at file 87:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
       match_count_9 = 0
       while true
         alt_9 = 2
@@ -1659,8 +1661,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 87:10: ( '\\n' | '\\r' )+
-      # at file 87:10: ( '\\n' | '\\r' )+
+      # at line 88:10: ( '\\n' | '\\r' )+
+      # at file 88:10: ( '\\n' | '\\r' )+
       match_count_10 = 0
       while true
         alt_10 = 2
@@ -1719,7 +1721,7 @@ module Hephaestus
     # but instead use the next_token method, which will
     # build and emit the actual next token
     def token!
-      # at line 1:8: ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | HER | BOOL | LETTER | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE )
+      # at line 1:8: ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | HER | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | BOOL | LETTER | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE )
       alt_11 = 46
       alt_11 = @dfa11.predict( @input )
       case alt_11
@@ -1774,103 +1776,103 @@ module Hephaestus
 
 
       when 11
-        # at line 1:71: IF
-        if!
+        # at line 1:71: HER
+        her!
 
 
       when 12
-        # at line 1:74: IN
-        in!
+        # at line 1:75: IF
+        if!
 
 
       when 13
-        # at line 1:77: R_INTEGER
-        r_integer!
+        # at line 1:78: IN
+        in!
 
 
       when 14
-        # at line 1:87: OR
-        or!
+        # at line 1:81: R_INTEGER
+        r_integer!
 
 
       when 15
-        # at line 1:90: PRINT
-        print!
+        # at line 1:91: OR
+        or!
 
 
       when 16
-        # at line 1:96: PROGRAM
-        program!
+        # at line 1:94: PRINT
+        print!
 
 
       when 17
-        # at line 1:104: READ
-        read!
+        # at line 1:100: PROGRAM
+        program!
 
 
       when 18
-        # at line 1:109: RETURN
-        return!
+        # at line 1:108: READ
+        read!
 
 
       when 19
-        # at line 1:116: R_STRING
-        r_string!
+        # at line 1:113: RETURN
+        return!
 
 
       when 20
-        # at line 1:125: VOID
-        void!
+        # at line 1:120: R_STRING
+        r_string!
 
 
       when 21
-        # at line 1:130: WHILE
-        while!
+        # at line 1:129: VOID
+        void!
 
 
       when 22
-        # at line 1:136: DIV
-        div!
+        # at line 1:134: WHILE
+        while!
 
 
       when 23
-        # at line 1:140: EQ
-        eq!
+        # at line 1:140: DIV
+        div!
 
 
       when 24
-        # at line 1:143: GREATER
-        greater!
+        # at line 1:144: EQ
+        eq!
 
 
       when 25
-        # at line 1:151: LESS
-        less!
+        # at line 1:147: GREATER
+        greater!
 
 
       when 26
-        # at line 1:156: MINUS
-        minus!
+        # at line 1:155: LESS
+        less!
 
 
       when 27
-        # at line 1:162: MULT
-        mult!
+        # at line 1:160: MINUS
+        minus!
 
 
       when 28
-        # at line 1:167: NEQ
-        neq!
+        # at line 1:166: MULT
+        mult!
 
 
       when 29
-        # at line 1:171: PLUS
-        plus!
+        # at line 1:171: NEQ
+        neq!
 
 
       when 30
-        # at line 1:176: HER
-        her!
+        # at line 1:175: PLUS
+        plus!
 
 
       when 31
@@ -1960,16 +1962,16 @@ module Hephaestus
     # - - - - - - - - - - DFA definitions - - - - - - - - - - -
     class DFA11 < ANTLR3::DFA
       EOT = unpack( 1, -1, 15, 38, 1, -1, 1, 59, 1, -1, 1, 61, 3, -1, 2, 
-                    38, 1, 64, 10, -1, 1, 65, 1, 39, 2, -1, 9, 39, 1, 76, 
+                    38, 1, 64, 10, -1, 1, 65, 1, 39, 2, -1, 9, 39, 1, 77, 
                     1, 78, 1, 39, 1, 80, 5, 39, 4, -1, 1, 39, 3, -1, 1, 
-                    89, 3, 39, 1, 93, 2, 39, 1, 96, 2, 39, 1, -1, 1, 39, 
-                    1, -1, 1, 39, 1, -1, 8, 39, 1, -1, 1, 109, 2, 39, 1, 
-                    -1, 1, 112, 1, 39, 1, -1, 6, 39, 1, 120, 2, 39, 1, 123, 
-                    1, 39, 1, 125, 1, -1, 1, 126, 1, 39, 1, -1, 1, 128, 
-                    1, 39, 1, 125, 2, 39, 1, 132, 1, 39, 1, -1, 2, 39, 1, 
-                    -1, 1, 136, 2, -1, 1, 137, 1, -1, 3, 39, 1, -1, 1, 39, 
-                    1, 142, 1, 143, 2, -1, 2, 39, 1, 146, 1, 147, 2, -1, 
-                    1, 148, 1, 149, 4, -1 )
+                    89, 3, 39, 1, 93, 2, 39, 1, 96, 3, 39, 2, -1, 1, 39, 
+                    1, -1, 8, 39, 1, -1, 1, 109, 2, 39, 1, -1, 1, 112, 1, 
+                    39, 1, -1, 6, 39, 1, 120, 2, 39, 1, 123, 1, 39, 1, 125, 
+                    1, -1, 1, 126, 1, 39, 1, -1, 1, 128, 1, 39, 1, 125, 
+                    2, 39, 1, 132, 1, 39, 1, -1, 2, 39, 1, -1, 1, 136, 2, 
+                    -1, 1, 137, 1, -1, 3, 39, 1, -1, 1, 39, 1, 142, 1, 143, 
+                    2, -1, 2, 39, 1, 146, 1, 147, 2, -1, 1, 148, 1, 149, 
+                    4, -1 )
       EOF = unpack( 150, -1 )
       MIN = unpack( 1, 9, 15, 48, 1, -1, 1, 61, 1, -1, 1, 62, 3, -1, 2, 
                     48, 1, 46, 10, -1, 1, 48, 1, 100, 2, -1, 1, 111, 1, 
@@ -1977,42 +1979,41 @@ module Hephaestus
                     1, 108, 2, 48, 1, 116, 1, 48, 1, 105, 1, 97, 1, 114, 
                     2, 105, 4, -1, 1, 117, 3, -1, 1, 48, 1, 108, 1, 115, 
                     1, 105, 1, 48, 1, 101, 1, 97, 1, 48, 1, 99, 1, 115, 
-                    1, -1, 1, 101, 1, -1, 1, 101, 1, -1, 1, 110, 1, 103, 
-                    1, 100, 1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 1, -1, 
-                    1, 48, 1, 115, 1, 110, 1, -1, 1, 48, 1, 116, 1, -1, 
-                    1, 116, 1, 101, 1, 114, 1, 103, 1, 116, 1, 114, 1, 48, 
-                    1, 114, 1, 110, 1, 48, 1, 101, 1, 48, 1, -1, 1, 48, 
-                    1, 101, 1, -1, 1, 48, 1, 105, 1, 48, 1, 105, 1, 101, 
-                    1, 48, 1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 48, 2, 
-                    -1, 1, 48, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 1, 
-                    109, 2, 48, 2, -1, 1, 110, 1, 115, 2, 48, 2, -1, 2, 
-                    48, 4, -1 )
+                    1, 101, 2, -1, 1, 101, 1, -1, 1, 110, 1, 103, 1, 100, 
+                    1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 1, -1, 1, 48, 
+                    1, 115, 1, 110, 1, -1, 1, 48, 1, 116, 1, -1, 1, 116, 
+                    1, 101, 1, 114, 1, 103, 1, 116, 1, 114, 1, 48, 1, 114, 
+                    1, 110, 1, 48, 1, 101, 1, 48, 1, -1, 1, 48, 1, 101, 
+                    1, -1, 1, 48, 1, 105, 1, 48, 1, 105, 1, 101, 1, 48, 
+                    1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 48, 2, -1, 1, 
+                    48, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 1, 109, 2, 
+                    48, 2, -1, 1, 110, 1, 115, 2, 48, 2, -1, 2, 48, 4, -1 )
       MAX = unpack( 1, 160, 15, 122, 1, -1, 1, 61, 1, -1, 1, 62, 3, -1, 
                     2, 122, 1, 57, 10, -1, 1, 122, 1, 100, 2, -1, 1, 111, 
                     1, 97, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 1, 110, 
                     1, 108, 2, 122, 1, 116, 1, 122, 1, 111, 1, 116, 1, 114, 
                     2, 105, 4, -1, 1, 117, 3, -1, 1, 122, 1, 108, 1, 115, 
                     1, 105, 1, 122, 1, 101, 1, 97, 1, 122, 1, 99, 1, 115, 
-                    1, -1, 1, 101, 1, -1, 1, 101, 1, -1, 1, 110, 1, 103, 
-                    1, 100, 1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 1, -1, 
-                    1, 122, 1, 115, 1, 110, 1, -1, 1, 122, 1, 116, 1, -1, 
-                    1, 116, 1, 101, 1, 114, 1, 103, 1, 116, 1, 114, 1, 122, 
-                    1, 114, 1, 110, 1, 122, 1, 101, 1, 122, 1, -1, 1, 122, 
-                    1, 101, 1, -1, 1, 122, 1, 105, 1, 122, 1, 105, 1, 101, 
-                    1, 122, 1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 122, 
-                    2, -1, 1, 122, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 
-                    1, 109, 2, 122, 2, -1, 1, 110, 1, 115, 2, 122, 2, -1, 
-                    2, 122, 4, -1 )
-      ACCEPT = unpack( 16, -1, 1, 22, 1, -1, 1, 24, 1, -1, 1, 26, 1, 27, 
-                       1, 29, 3, -1, 1, 34, 1, 38, 1, 39, 1, 40, 1, 41, 
+                    1, 101, 2, -1, 1, 101, 1, -1, 1, 110, 1, 103, 1, 100, 
+                    1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 1, -1, 1, 122, 
+                    1, 115, 1, 110, 1, -1, 1, 122, 1, 116, 1, -1, 1, 116, 
+                    1, 101, 1, 114, 1, 103, 1, 116, 1, 114, 1, 122, 1, 114, 
+                    1, 110, 1, 122, 1, 101, 1, 122, 1, -1, 1, 122, 1, 101, 
+                    1, -1, 1, 122, 1, 105, 1, 122, 1, 105, 1, 101, 1, 122, 
+                    1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 122, 2, -1, 
+                    1, 122, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 1, 109, 
+                    2, 122, 2, -1, 1, 110, 1, 115, 2, 122, 2, -1, 2, 122, 
+                    4, -1 )
+      ACCEPT = unpack( 16, -1, 1, 23, 1, -1, 1, 25, 1, -1, 1, 27, 1, 28, 
+                       1, 30, 3, -1, 1, 34, 1, 38, 1, 39, 1, 40, 1, 41, 
                        1, 42, 1, 43, 1, 44, 1, 45, 1, 46, 2, -1, 1, 32, 
-                       1, 35, 18, -1, 1, 23, 1, 37, 1, 28, 1, 25, 1, -1, 
-                       1, 33, 1, 36, 1, 1, 10, -1, 1, 11, 1, -1, 1, 12, 
-                       1, -1, 1, 14, 8, -1, 1, 2, 3, -1, 1, 6, 2, -1, 1, 
-                       9, 12, -1, 1, 3, 2, -1, 1, 7, 7, -1, 1, 17, 2, -1, 
-                       1, 20, 1, -1, 1, 31, 1, 4, 1, -1, 1, 8, 3, -1, 1, 
-                       15, 3, -1, 1, 21, 1, 5, 4, -1, 1, 18, 1, 19, 2, -1, 
-                       1, 13, 1, 16, 1, 10, 1, 30 )
+                       1, 35, 18, -1, 1, 24, 1, 37, 1, 29, 1, 26, 1, -1, 
+                       1, 33, 1, 36, 1, 1, 11, -1, 1, 13, 1, 12, 1, -1, 
+                       1, 15, 8, -1, 1, 2, 3, -1, 1, 6, 2, -1, 1, 9, 12, 
+                       -1, 1, 3, 2, -1, 1, 7, 7, -1, 1, 18, 2, -1, 1, 21, 
+                       1, -1, 1, 31, 1, 4, 1, -1, 1, 8, 3, -1, 1, 16, 3, 
+                       -1, 1, 22, 1, 5, 4, -1, 1, 19, 1, 20, 2, -1, 1, 14, 
+                       1, 17, 1, 10, 1, 11 )
       SPECIAL = unpack( 150, -1 )
       TRANSITION = [
         unpack( 1, 34, 1, 35, 1, -1, 1, 34, 1, 35, 18, -1, 1, 34, 1, -1, 
@@ -2037,8 +2038,8 @@ module Hephaestus
                  45, 14, 39 ),
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 1, 48, 13, 
                  39, 1, 46, 5, 39, 1, 47, 5, 39 ),
-        unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 5, 39, 1, 49, 
-                 7, 39, 1, 50, 12, 39 ),
+        unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 5, 39, 1, 50, 
+                 7, 39, 1, 49, 12, 39 ),
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 13, 39, 1, 
                  51, 12, 39 ),
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 17, 39, 1, 
@@ -2087,9 +2088,9 @@ module Hephaestus
         unpack( 1, 73 ),
         unpack( 1, 74 ),
         unpack( 1, 75 ),
-        unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 26, 39 ),
-        unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 7, 39, 1, 77, 
+        unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 7, 39, 1, 76, 
                  18, 39 ),
+        unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 26, 39 ),
         unpack( 1, 79 ),
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 26, 39 ),
         unpack( 1, 81, 5, -1, 1, 82 ),
@@ -2115,8 +2116,8 @@ module Hephaestus
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 26, 39 ),
         unpack( 1, 97 ),
         unpack( 1, 98 ),
-        unpack(  ),
         unpack( 1, 99 ),
+        unpack(  ),
         unpack(  ),
         unpack( 1, 100 ),
         unpack(  ),
@@ -2202,7 +2203,7 @@ module Hephaestus
 
       def description
         <<-'__dfa_description__'.strip!
-          1:1: Tokens : ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | HER | BOOL | LETTER | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE );
+          1:1: Tokens : ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | HER | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | BOOL | LETTER | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE );
         __dfa_description__
       end
 

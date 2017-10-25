@@ -8,7 +8,8 @@ class VariablesDirectory
   end
 
   def register(name, type, value = nil)
-    @variables[name] = Variable.new(name,type,value)
+    puts("Name:#{name}, Type:#{type}, Value:#{value}")
+    @variables[name] = Variable.new(name, type, value)
   end
 
 end

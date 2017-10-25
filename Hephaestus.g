@@ -29,6 +29,7 @@ ELSE: 'else';
 R_FLOAT: 'Float';
 FOR: 'for';
 FUNCTION: 'function';
+HER: 'inherits';
 IF: 'if';
 IN: 'in';
 R_INTEGER: 'Integer';
@@ -52,7 +53,7 @@ MINUS: '-';
 MULT: '*';
 NEQ: '<>';
 PLUS: '+';
-HER: 'inherits';
+
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -93,50 +94,154 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
-start: ( r_class )* program;
+start 
+  : ( r_class )* program
+  ;
 
-program: PROGRAM ID COLON ( estatute | var_dec | function )* R_END PROGRAM;
+program 
+  : PROGRAM ID COLON ( estatute 
+                     | var_dec 
+                     | function 
+                     )* R_END PROGRAM
+                     ;
 
-estatute: func_call DOT | condition | reading | writing | assignment | loops | method_call;
+estatute 
+  : func_call DOT 
+  | condition 
+  | reading 
+  | writing 
+  | assignment 
+  | loops 
+  | method_call
+  ;
 
-var_dec: DEFINE ID AS type ( ASGN ( expresion | func_call ) )? DOT { \$program.add_variable($ID.text, $type.text , 5 ) } ;
+var_dec 
+  : DEFINE ID AS type ( ASGN ( expresion 
+                               { \$program.add_variable($ID.text, $type.text , $expresion.text ) }
+                             | func_call 
+                               { \$program.add_variable($ID.text, $type.text , $func_call.text ) }
+                             ) 
+                      )? DOT  
+  ;
 
-assignment: ID ( ASGN ( expresion | func_call ) | array_dec ASGN type ) DOT;
+assignment 
+  : ID ( ASGN ( expresion 
+              | func_call ) 
+              | array_dec ASGN type 
+       ) DOT
+  ;
 
-array_dec: LBRACK exp ( COMMA exp )* RBRACK;
+array_dec
+  : LBRACK exp ( COMMA exp )* RBRACK
+  ;
 
-condition: IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block | R_END ) IF;
+condition
+  : IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block 
+                                                                         | R_END 
+                                                                         ) IF
+  ;
 
-loops: while_loop | for_loop;
+loops
+  : while_loop 
+  | for_loop
+  ;
 
-while_loop: WHILE LPAR expresion RPAR block WHILE;
+while_loop
+  : WHILE LPAR expresion RPAR block WHILE
+  ;
 
-for_loop: FOR ID IN ID block FOR;
+for_loop
+  : FOR ID IN ID block FOR
+  ;
 
-reading: READ LPAR value RPAR DOT;
+reading
+  : READ LPAR value RPAR DOT
+  ;
 
-writing: PRINT LPAR expresion RPAR DOT;
+writing
+  : PRINT LPAR expresion RPAR DOT
+  ;
 
-parameters: LPAR ( type (ID | value ) ( COMMA type (ID | value ) )* )? RPAR;
+parameters
+  : LPAR ( type ( ID 
+                | value 
+                ) ( COMMA type ( ID 
+                               | value 
+                               ) 
+                  )* 
+         )? RPAR
+  ;
 
-function: FUNCTION ( type | VOID ) ID parameters COLON ( estatute | var_dec )* ( RETURN expresion DOT )? R_END FUNCTION;
+function
+  : FUNCTION ( type 
+             | VOID 
+             ) ID parameters COLON ( estatute 
+                                   | var_dec 
+                                   )* ( RETURN expresion DOT )? R_END FUNCTION
+;
 
-block: COLON ( estatute )* ( RETURN expresion DOT )? R_END;
+block
+  : COLON ( estatute )* ( RETURN expresion DOT )? R_END
+  ;
 
-func_call: ID parameters;
+func_call
+  : ID parameters
+  ;
 
-expresion: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR) exp )?;
+expresion
+  : exp ( ( GREATER 
+          | LESS 
+          | NEQ 
+          | EQ 
+          | AND 
+          | OR 
+          ) exp 
+        )?
+  ;
 
-exp: term ( ( PLUS | MINUS ) term )*;
+exp
+  : term ( ( PLUS 
+           | MINUS 
+           ) term 
+         )*
+  ;
 
-term: factor ( ( MULT | DIV ) factor )*;
+term
+  : factor ( ( MULT 
+             | DIV 
+             ) factor 
+           )*
+  ;
 
-factor: ID ( array_dec )? | LPAR expresion RPAR | value;
+factor
+  : ID ( array_dec )? 
+    | LPAR expresion RPAR 
+    | value
+  ;
 
-type: R_STRING | R_BOOL | R_FLOAT | R_INTEGER | ID;
+type
+  : R_STRING 
+  | R_BOOL 
+  | R_FLOAT 
+  | R_INTEGER 
+  | ID
+  ;
 
-value: STRING | FLOAT | INTEGER | BOOL;
+value
+  : STRING 
+  | FLOAT 
+  | INTEGER 
+  | BOOL
+  ;
 
-r_class: R_CLASS ID  ( HER ID )? COLON ( function | var_dec )* R_END R_CLASS;
+r_class
+  : R_CLASS ID ( HER ID )? COLON ( function 
+                                 | var_dec 
+                                 )* R_END R_CLASS
+  ;
 
-method_call: ID DOT ( func_call | ID ) DOT;
+method_call
+  : ID DOT ( func_call 
+           | ID 
+           ) DOT
+  ;
