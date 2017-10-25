@@ -10,22 +10,31 @@ class Program
   end
 
   def reset_context()
+    puts "\n**#{@current_context.name}**\n"
+    @current_context.print_tables()
     @current_context = @main_context
-    puts "\n*** Context: #{@current_context.name} ***\n"
   end
 
   def add_function(header, parameters, return_type)
+    @current_context.functions_directory.register(header, parameters, return_type)
     @current_context = Context.new("#{header} context","function")
-    @main_context.functions_directory.register(header, parameters, return_type)
   end
 
   def add_variable(name, type, value)
-    @main_context.variables_directory.register(name, type, value)
+    @current_context.variables_directory.register(name, type, value)
   end
 
   def quadruples(quad)
     @quadruples.push(quad)
-    puts "New quadruple: \n"
-    puts "Operator: #{quad.operator}, Left Side: #{quad.left_side}, Right Side: #{quad.right_side}, Result: #{quad.result}"
+  end
+
+  def print_quadruples()
+    puts "\n\n** GLOBAL Context **\n\n"
+    @main_context.print_tables()
+    puts "\n===================================="
+    @quadruples.each_with_index do |quad, index|
+      puts "#{index}: #{quad.operator},#{quad.left_side}, #{quad.right_side}, #{quad.result}"
+    end
+    puts "===================================="
   end
 end

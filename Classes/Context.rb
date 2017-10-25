@@ -10,16 +10,20 @@ class Context
     case context_type
     when "function"
       @variables_directory = VariablesDirectory.new()
-      puts "\n\t*** Context: #{name} ***\n"
     when "class"
       @variables_directory = VariablesDirectory.new()
       @functions_directory = FunctionsDirectory.new()
-      puts "\n\t*** Context: #{name} ***\n"
     else
       @variables_directory = VariablesDirectory.new()
       @functions_directory = FunctionsDirectory.new()
       @classes_directory = ClassesDirectory.new()
-      puts "\n*** Context: #{name} ***\n"
     end
+  end
+
+  def print_tables()
+    if @functions_directory != nil
+      @functions_directory.print_functions()
+    end
+    @variables_directory.print_variables()
   end
 end

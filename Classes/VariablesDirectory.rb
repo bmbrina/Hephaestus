@@ -8,9 +8,7 @@ class VariablesDirectory
   end
 
   def register(name, type, value = nil)
-    puts("\n\tNew variable: " + "Name: #{name}, Type: #{type}, Value: #{value} \n")
     @variables[name] = Variable.new(name, type, value)
-    print_variables()
   end
 
   def variable_exists?(id)
@@ -21,15 +19,13 @@ class VariablesDirectory
     @variables[id]
   end
 
-private
   def print_variables()
     puts "\tVariables directory:"
-
     @variables.each do |key, variable|
       puts "\t------------------------------------------------------"
       puts("\t|Name: #{variable.name}, Type: #{variable.type}, Value: #{variable.value}|")
     end
     puts "\t------------------------------------------------------ \n"
-  end 
+  end
 
 end

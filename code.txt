@@ -4,7 +4,7 @@ program people:
     define jorge as Student.
     jorge.setName(String "Jorge").
     return jorge.
-  end function 
+  end function
 
   function Void printInfo(String name, Integer age):
     print(name).
@@ -12,5 +12,5 @@ program people:
 
   define newStudent as Student = createStudent().
   print (2 + (3 * 2)).
-  
+
 end program

@@ -93,40 +93,39 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 // ******************************************************************************
 
-start 
+start
   : ( r_class )* program
   ;
 
-program 
-  : PROGRAM ID COLON ( estatute 
-                     | var_dec 
-                     | function 
-                     )* R_END PROGRAM
+program
+  : PROGRAM ID COLON ( estatute
+                     | var_dec
+                     | function
+                     )* R_END PROGRAM {\$program.print_quadruples()}
                      ;
 
-estatute 
-  : func_call DOT 
-  | condition 
-  | reading 
-  | writing 
-  | assignment 
-  | loops 
+estatute
+  : func_call DOT
+  | condition
+  | reading
+  | writing
+  | assignment
+  | loops
   | method_call
   ;
 
-var_dec 
-  : DEFINE ID AS type ( ASGN ( expresion 
-                               { \$program.add_variable($ID.text, $type.text , $expresion.text) }
-                             | func_call 
-                               { \$program.add_variable($ID.text, $type.text , $func_call.text) }
-                             ) 
-                      )? DOT  
+var_dec
+  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text,nil) }
+                             ( ASGN ( expresion
+                             | func_call
+                             )
+                      )? DOT
   ;
 
-assignment 
-  : ID ( ASGN ( expresion 
-              | func_call ) 
-              | array_dec ASGN type 
+assignment
+  : ID ( ASGN ( expresion
+              | func_call )
+              | array_dec ASGN type
        ) DOT
   ;
 
@@ -135,13 +134,13 @@ array_dec
   ;
 
 condition
-  : IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block 
-                                                                         | R_END 
+  : IF LPAR expresion RPAR COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE block
+                                                                         | R_END
                                                                          ) IF
   ;
 
 loops
-  : while_loop 
+  : while_loop
   | for_loop
   ;
 
@@ -162,20 +161,20 @@ writing
   ;
 
 parameters
-  : LPAR ( type ( ID 
-                | value 
-                ) ( COMMA type ( ID 
-                               | value 
-                               ) 
-                  )* 
+  : LPAR ( type ( ID
+                | value
+                ) ( COMMA type ( ID
+                               | value
+                               )
+                  )*
          )? RPAR
   ;
 
 function
   : FUNCTION ( type ) ID parameters COLON { \$program.add_function($ID.text, $parameters.text, $type.text)}
-                                          ( estatute 
-                                          | var_dec 
-                                          )* ( RETURN expresion DOT )? R_END FUNCTION { \$program.reset_context() }                                     
+                                          ( estatute
+                                          | var_dec
+                                          )* ( RETURN expresion DOT )? R_END FUNCTION { \$program.reset_context() }
 ;
 
 block
@@ -193,21 +192,21 @@ expresion
           | EQ { \$quads.add_operator($EQ.text) }
           | AND { \$quads.add_operator($AND.text) }
           | OR { \$quads.add_operator($OR.text) }
-          ) exp 
+          ) exp
         )? { \$quads.is_expresion_pending() }
   ;
 
 exp
   : term ( ( PLUS { \$quads.add_operator($PLUS.text) }
            | MINUS { \$quads.add_operator($MINUS.text) }
-           ) term 
+           ) term
          )* { \$quads.is_exp_pending() }
   ;
 
 term
   : factor ( ( MULT { \$quads.add_operator($MULT.text) }
              | DIV { \$quads.add_operator($DIV.text) }
-             ) factor 
+             ) factor
            )* { \$quads.is_term_pending() }
   ;
 
@@ -216,32 +215,32 @@ factor
     | LPAR { \$quads.add_false_bottom($LPAR.text) } expresion RPAR { \$quads.remove_false_bottom() }
     | value { \$quads.add_id(nil, $value.text) }
   ;
-  
+
 
 type
-  : R_STRING 
-  | R_BOOL 
-  | R_FLOAT 
-  | R_INTEGER 
+  : R_STRING
+  | R_BOOL
+  | R_FLOAT
+  | R_INTEGER
   | VOID
   | ID
   ;
 
 value
-  : STRING 
-  | FLOAT 
-  | INTEGER 
+  : STRING
+  | FLOAT
+  | INTEGER
   | BOOL
   ;
 
 r_class
-  : R_CLASS ID ( HER ID )? COLON ( function 
-                                 | var_dec 
+  : R_CLASS ID ( HER ID )? COLON ( function
+                                 | var_dec
                                  )* R_END R_CLASS
   ;
 
 method_call
-  : ID DOT ( func_call 
-           | ID 
+  : ID DOT ( func_call
+           | ID
            ) DOT
   ;
