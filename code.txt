@@ -16,11 +16,10 @@ program people:
   define hola as String.
 
   hola = 5.1.
-  bye = 3 .
 
   function Student createStudent():
     define jorge as Student.
-    jorge.setName(String "Jorge").
+    jorge.setName("Jorge").
     return jorge.
   end function
 

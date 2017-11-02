@@ -182,7 +182,13 @@ block
   ;
 
 func_call
-  : ID parameters
+  : ID LPAR ( ( ID
+              | value
+              ) ( COMMA type ( ID
+                            | value
+                            )
+                )*
+            )? RPAR
   ;
 
 expresion
