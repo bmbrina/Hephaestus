@@ -63,11 +63,10 @@ PLUS: '+';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 BOOL: ( 'true' | 'false');
 LETTER: ( 'a' .. 'z' | 'A' .. 'Z' );
-FLOAT: ( '0' .. '9' )+ '.' ( '0' .. '9' )+;
 STRING: '\'' ( ~( '\'' | '\\' ) | '\\' . )* '\'' | '"'  ( ~( '"'  | '\\' ) | '\\' . )* '"';
 ID: LETTER ( LETTER | '_' | ('0' .. '9') )*;
+FLOAT: ('0' .. '9')+ '.' ('0' .. '9')+;
 INTEGER: ('0' .. '9')+;
-
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // CHARACTERS
@@ -80,7 +79,6 @@ LBRACK: '[';
 LPAR: '(';
 RBRACK: ']';
 RPAR: ')';
-
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // SPECIAL CHARACTERS
@@ -125,7 +123,8 @@ var_dec
   ;
 
 assignment
-  : ID ( ASGN ( expresion
+  : ID ( ASGN { \$quads.variable_exists?($ID.text) } 
+              ( expresion
               | func_call )
               | array_dec ASGN type
        ) DOT
@@ -154,7 +153,7 @@ for_loop
   ;
 
 reading
-  : READ LPAR value RPAR DOT
+  : READ LPAR value COMMA ID RPAR DOT
   ;
 
 writing

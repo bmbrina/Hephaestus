@@ -121,6 +121,17 @@ class QuadrupleFactory
     @counter += 1
   end
 
+  def variable_exists?(id)
+    exists_in_current_context = @program.current_context.variables_directory.variables[id] != nil
+    exists_in_past_context = @program.past_context.variables_directory.variables[id] != nil
+    exists_in_main_context = @program.main_context.variables_directory.variables[id] != nil
+
+    if exists_in_current_context == false && exists_in_main_context == false && exists_in_past_context == false
+      puts "ERROR: undeclared variable #{id}."
+      exit
+    end
+  end
+
 private
   def generate_quad()
     operator = @operators_stack.pop()
@@ -171,5 +182,5 @@ private
     else
       "String"
     end
-  end
+  end 
 end

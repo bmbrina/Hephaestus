@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-10-25 13:11:37
+# Generated at: 2017-11-01 18:30:48
 #
 
 # ~~~> start load path setup
@@ -95,7 +95,7 @@ module Hephaestus
                      "IN", "R_INTEGER", "OR", "PRINT", "PROGRAM", "READ", 
                      "RETURN", "R_STRING", "VOID", "WHILE", "DIV", "EQ", 
                      "GREATER", "LESS", "MINUS", "MULT", "NEQ", "PLUS", 
-                     "BOOL", "LETTER", "FLOAT", "STRING", "ID", "INTEGER", 
+                     "BOOL", "LETTER", "STRING", "ID", "FLOAT", "INTEGER", 
                      "ASGN", "COLON", "COMMA", "DOT", "LBRACK", "LPAR", 
                      "RBRACK", "RPAR", "WS", "NEWLINE" ].freeze
     RULE_METHODS = [ :as!, :and!, :r_bool!, :r_class!, :define!, :r_end!, 
@@ -103,7 +103,7 @@ module Hephaestus
                      :in!, :r_integer!, :or!, :print!, :program!, :read!, 
                      :return!, :r_string!, :void!, :while!, :div!, :eq!, 
                      :greater!, :less!, :minus!, :mult!, :neq!, :plus!, 
-                     :bool!, :letter!, :float!, :string!, :id!, :integer!, 
+                     :bool!, :letter!, :string!, :id!, :float!, :integer!, 
                      :asgn!, :colon!, :comma!, :dot!, :lbrack!, :lpar!, 
                      :rbrack!, :rpar!, :ws!, :newline! ].freeze
 
@@ -1033,108 +1033,11 @@ module Hephaestus
 
     end
 
-    # lexer rule float! (FLOAT)
-    # (in Hephaestus.g)
-    def float!
-      # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 33 )
-
-
-
-      type = FLOAT
-      channel = ANTLR3::DEFAULT_CHANNEL
-    # - - - - label initialization - - - -
-
-
-      # - - - - main rule block - - - -
-      # at line 66:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
-      # at file 66:8: ( '0' .. '9' )+
-      match_count_2 = 0
-      while true
-        alt_2 = 2
-        look_2_0 = @input.peek( 1 )
-
-        if ( look_2_0.between?( 0x30, 0x39 ) )
-          alt_2 = 1
-
-        end
-        case alt_2
-        when 1
-          # at line 
-          if @input.peek( 1 ).between?( 0x30, 0x39 )
-            @input.consume
-          else
-            mse = MismatchedSet( nil )
-            recover mse
-            raise mse
-
-          end
-
-
-
-        else
-          match_count_2 > 0 and break
-          eee = EarlyExit(2)
-
-
-          raise eee
-        end
-        match_count_2 += 1
-      end
-
-
-      match( 0x2e )
-      # at file 66:28: ( '0' .. '9' )+
-      match_count_3 = 0
-      while true
-        alt_3 = 2
-        look_3_0 = @input.peek( 1 )
-
-        if ( look_3_0.between?( 0x30, 0x39 ) )
-          alt_3 = 1
-
-        end
-        case alt_3
-        when 1
-          # at line 
-          if @input.peek( 1 ).between?( 0x30, 0x39 )
-            @input.consume
-          else
-            mse = MismatchedSet( nil )
-            recover mse
-            raise mse
-
-          end
-
-
-
-        else
-          match_count_3 > 0 and break
-          eee = EarlyExit(3)
-
-
-          raise eee
-        end
-        match_count_3 += 1
-      end
-
-
-
-
-      @state.type = type
-      @state.channel = channel
-    ensure
-      # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 33 )
-
-
-    end
-
     # lexer rule string! (STRING)
     # (in Hephaestus.g)
     def string!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 34 )
+      # trace_in( __method__, 33 )
 
 
 
@@ -1144,36 +1047,36 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 67:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
-      alt_6 = 2
-      look_6_0 = @input.peek( 1 )
+      # at line 66:7: ( '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\'' | '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"' )
+      alt_4 = 2
+      look_4_0 = @input.peek( 1 )
 
-      if ( look_6_0 == 0x27 )
-        alt_6 = 1
-      elsif ( look_6_0 == 0x22 )
-        alt_6 = 2
+      if ( look_4_0 == 0x27 )
+        alt_4 = 1
+      elsif ( look_4_0 == 0x22 )
+        alt_4 = 2
       else
-        raise NoViableAlternative( "", 6, 0 )
+        raise NoViableAlternative( "", 4, 0 )
 
       end
-      case alt_6
+      case alt_4
       when 1
-        # at line 67:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
+        # at line 66:9: '\\'' (~ ( '\\'' | '\\\\' ) | '\\\\' . )* '\\''
         match( 0x27 )
-        # at line 67:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
-        while true # decision 4
-          alt_4 = 3
-          look_4_0 = @input.peek( 1 )
+        # at line 66:14: (~ ( '\\'' | '\\\\' ) | '\\\\' . )*
+        while true # decision 2
+          alt_2 = 3
+          look_2_0 = @input.peek( 1 )
 
-          if ( look_4_0.between?( 0x0, 0x26 ) || look_4_0.between?( 0x28, 0x5b ) || look_4_0.between?( 0x5d, 0xffff ) )
-            alt_4 = 1
-          elsif ( look_4_0 == 0x5c )
-            alt_4 = 2
+          if ( look_2_0.between?( 0x0, 0x26 ) || look_2_0.between?( 0x28, 0x5b ) || look_2_0.between?( 0x5d, 0xffff ) )
+            alt_2 = 1
+          elsif ( look_2_0 == 0x5c )
+            alt_2 = 2
 
           end
-          case alt_4
+          case alt_2
           when 1
-            # at line 67:16: ~ ( '\\'' | '\\\\' )
+            # at line 66:16: ~ ( '\\'' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x26 ) || @input.peek( 1 ).between?( 0x28, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -1186,34 +1089,34 @@ module Hephaestus
 
 
           when 2
-            # at line 67:35: '\\\\' .
+            # at line 66:35: '\\\\' .
             match( 0x5c )
             match_any
 
           else
-            break # out of loop for decision 4
+            break # out of loop for decision 2
           end
-        end # loop for decision 4
+        end # loop for decision 2
 
         match( 0x27 )
 
       when 2
-        # at line 67:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
+        # at line 66:52: '\"' (~ ( '\"' | '\\\\' ) | '\\\\' . )* '\"'
         match( 0x22 )
-        # at line 67:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
-        while true # decision 5
-          alt_5 = 3
-          look_5_0 = @input.peek( 1 )
+        # at line 66:57: (~ ( '\"' | '\\\\' ) | '\\\\' . )*
+        while true # decision 3
+          alt_3 = 3
+          look_3_0 = @input.peek( 1 )
 
-          if ( look_5_0.between?( 0x0, 0x21 ) || look_5_0.between?( 0x23, 0x5b ) || look_5_0.between?( 0x5d, 0xffff ) )
-            alt_5 = 1
-          elsif ( look_5_0 == 0x5c )
-            alt_5 = 2
+          if ( look_3_0.between?( 0x0, 0x21 ) || look_3_0.between?( 0x23, 0x5b ) || look_3_0.between?( 0x5d, 0xffff ) )
+            alt_3 = 1
+          elsif ( look_3_0 == 0x5c )
+            alt_3 = 2
 
           end
-          case alt_5
+          case alt_3
           when 1
-            # at line 67:59: ~ ( '\"' | '\\\\' )
+            # at line 66:59: ~ ( '\"' | '\\\\' )
             if @input.peek( 1 ).between?( 0x0, 0x21 ) || @input.peek( 1 ).between?( 0x23, 0x5b ) || @input.peek( 1 ).between?( 0x5d, 0xff )
               @input.consume
             else
@@ -1226,14 +1129,14 @@ module Hephaestus
 
 
           when 2
-            # at line 67:78: '\\\\' .
+            # at line 66:78: '\\\\' .
             match( 0x5c )
             match_any
 
           else
-            break # out of loop for decision 5
+            break # out of loop for decision 3
           end
-        end # loop for decision 5
+        end # loop for decision 3
 
         match( 0x22 )
 
@@ -1243,7 +1146,7 @@ module Hephaestus
       @state.channel = channel
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 34 )
+      # trace_out( __method__, 33 )
 
 
     end
@@ -1252,7 +1155,7 @@ module Hephaestus
     # (in Hephaestus.g)
     def id!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 35 )
+      # trace_in( __method__, 34 )
 
 
 
@@ -1262,19 +1165,19 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 68:5: LETTER ( LETTER | '_' | ( '0' .. '9' ) )*
+      # at line 67:5: LETTER ( LETTER | '_' | ( '0' .. '9' ) )*
       letter!
 
-      # at line 68:12: ( LETTER | '_' | ( '0' .. '9' ) )*
-      while true # decision 7
-        alt_7 = 2
-        look_7_0 = @input.peek( 1 )
+      # at line 67:12: ( LETTER | '_' | ( '0' .. '9' ) )*
+      while true # decision 5
+        alt_5 = 2
+        look_5_0 = @input.peek( 1 )
 
-        if ( look_7_0.between?( 0x30, 0x39 ) || look_7_0.between?( 0x41, 0x5a ) || look_7_0 == 0x5f || look_7_0.between?( 0x61, 0x7a ) )
-          alt_7 = 1
+        if ( look_5_0.between?( 0x30, 0x39 ) || look_5_0.between?( 0x41, 0x5a ) || look_5_0 == 0x5f || look_5_0.between?( 0x61, 0x7a ) )
+          alt_5 = 1
 
         end
-        case alt_7
+        case alt_5
         when 1
           # at line 
           if @input.peek( 1 ).between?( 0x30, 0x39 ) || @input.peek( 1 ).between?( 0x41, 0x5a ) || @input.peek(1) == 0x5f || @input.peek( 1 ).between?( 0x61, 0x7a )
@@ -1289,9 +1192,106 @@ module Hephaestus
 
 
         else
-          break # out of loop for decision 7
+          break # out of loop for decision 5
         end
-      end # loop for decision 7
+      end # loop for decision 5
+
+
+
+      @state.type = type
+      @state.channel = channel
+    ensure
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_out( __method__, 34 )
+
+
+    end
+
+    # lexer rule float! (FLOAT)
+    # (in Hephaestus.g)
+    def float!
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 35 )
+
+
+
+      type = FLOAT
+      channel = ANTLR3::DEFAULT_CHANNEL
+    # - - - - label initialization - - - -
+
+
+      # - - - - main rule block - - - -
+      # at line 68:8: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
+      # at file 68:8: ( '0' .. '9' )+
+      match_count_6 = 0
+      while true
+        alt_6 = 2
+        look_6_0 = @input.peek( 1 )
+
+        if ( look_6_0.between?( 0x30, 0x39 ) )
+          alt_6 = 1
+
+        end
+        case alt_6
+        when 1
+          # at line 
+          if @input.peek( 1 ).between?( 0x30, 0x39 )
+            @input.consume
+          else
+            mse = MismatchedSet( nil )
+            recover mse
+            raise mse
+
+          end
+
+
+
+        else
+          match_count_6 > 0 and break
+          eee = EarlyExit(6)
+
+
+          raise eee
+        end
+        match_count_6 += 1
+      end
+
+
+      match( 0x2e )
+      # at file 68:26: ( '0' .. '9' )+
+      match_count_7 = 0
+      while true
+        alt_7 = 2
+        look_7_0 = @input.peek( 1 )
+
+        if ( look_7_0.between?( 0x30, 0x39 ) )
+          alt_7 = 1
+
+        end
+        case alt_7
+        when 1
+          # at line 
+          if @input.peek( 1 ).between?( 0x30, 0x39 )
+            @input.consume
+          else
+            mse = MismatchedSet( nil )
+            recover mse
+            raise mse
+
+          end
+
+
+
+        else
+          match_count_7 > 0 and break
+          eee = EarlyExit(7)
+
+
+          raise eee
+        end
+        match_count_7 += 1
+      end
+
 
 
 
@@ -1379,7 +1379,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 75:7: '='
+      # at line 74:7: '='
       match( 0x3d )
 
 
@@ -1406,7 +1406,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 76:8: ':'
+      # at line 75:8: ':'
       match( 0x3a )
 
 
@@ -1433,7 +1433,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 77:8: ','
+      # at line 76:8: ','
       match( 0x2c )
 
 
@@ -1460,7 +1460,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 78:6: '.'
+      # at line 77:6: '.'
       match( 0x2e )
 
 
@@ -1487,7 +1487,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 79:9: '['
+      # at line 78:9: '['
       match( 0x5b )
 
 
@@ -1514,7 +1514,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 80:7: '('
+      # at line 79:7: '('
       match( 0x28 )
 
 
@@ -1541,7 +1541,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 81:9: ']'
+      # at line 80:9: ']'
       match( 0x5d )
 
 
@@ -1568,7 +1568,7 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 82:7: ')'
+      # at line 81:7: ')'
       match( 0x29 )
 
 
@@ -1595,8 +1595,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 88:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
-      # at file 88:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at line 86:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
+      # at file 86:5: ( '\\t' | '\\f' | ' ' | '\\u00A0' )+
       match_count_9 = 0
       while true
         alt_9 = 2
@@ -1661,8 +1661,8 @@ module Hephaestus
 
 
       # - - - - main rule block - - - -
-      # at line 89:10: ( '\\n' | '\\r' )+
-      # at file 89:10: ( '\\n' | '\\r' )+
+      # at line 87:10: ( '\\n' | '\\r' )+
+      # at file 87:10: ( '\\n' | '\\r' )+
       match_count_10 = 0
       while true
         alt_10 = 2
@@ -1721,7 +1721,7 @@ module Hephaestus
     # but instead use the next_token method, which will
     # build and emit the actual next token
     def token!
-      # at line 1:8: ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | HER | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | BOOL | LETTER | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE )
+      # at line 1:8: ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | HER | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | BOOL | LETTER | STRING | ID | FLOAT | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE )
       alt_11 = 46
       alt_11 = @dfa11.predict( @input )
       case alt_11
@@ -1886,18 +1886,18 @@ module Hephaestus
 
 
       when 33
-        # at line 1:192: FLOAT
-        float!
-
-
-      when 34
-        # at line 1:198: STRING
+        # at line 1:192: STRING
         string!
 
 
-      when 35
-        # at line 1:205: ID
+      when 34
+        # at line 1:199: ID
         id!
+
+
+      when 35
+        # at line 1:202: FLOAT
+        float!
 
 
       when 36
@@ -1962,20 +1962,20 @@ module Hephaestus
     # - - - - - - - - - - DFA definitions - - - - - - - - - - -
     class DFA11 < ANTLR3::DFA
       EOT = unpack( 1, -1, 15, 38, 1, -1, 1, 59, 1, -1, 1, 61, 3, -1, 2, 
-                    38, 1, 64, 10, -1, 1, 65, 1, 39, 2, -1, 9, 39, 1, 77, 
-                    1, 78, 1, 39, 1, 80, 5, 39, 4, -1, 1, 39, 3, -1, 1, 
-                    89, 3, 39, 1, 93, 2, 39, 1, 96, 3, 39, 2, -1, 1, 39, 
-                    1, -1, 8, 39, 1, -1, 1, 109, 2, 39, 1, -1, 1, 112, 1, 
-                    39, 1, -1, 6, 39, 1, 120, 2, 39, 1, 123, 1, 39, 1, 125, 
-                    1, -1, 1, 126, 1, 39, 1, -1, 1, 128, 1, 39, 1, 125, 
-                    2, 39, 1, 132, 1, 39, 1, -1, 2, 39, 1, -1, 1, 136, 2, 
-                    -1, 1, 137, 1, -1, 3, 39, 1, -1, 1, 39, 1, 142, 1, 143, 
-                    2, -1, 2, 39, 1, 146, 1, 147, 2, -1, 1, 148, 1, 149, 
-                    4, -1 )
+                    38, 1, -1, 1, 64, 9, -1, 1, 65, 1, 39, 2, -1, 9, 39, 
+                    1, 77, 1, 78, 1, 39, 1, 80, 5, 39, 4, -1, 1, 39, 3, 
+                    -1, 1, 89, 3, 39, 1, 93, 2, 39, 1, 96, 3, 39, 2, -1, 
+                    1, 39, 1, -1, 8, 39, 1, -1, 1, 109, 2, 39, 1, -1, 1, 
+                    112, 1, 39, 1, -1, 6, 39, 1, 120, 2, 39, 1, 123, 1, 
+                    39, 1, 125, 1, -1, 1, 126, 1, 39, 1, -1, 1, 128, 1, 
+                    39, 1, 125, 2, 39, 1, 132, 1, 39, 1, -1, 2, 39, 1, -1, 
+                    1, 136, 2, -1, 1, 137, 1, -1, 3, 39, 1, -1, 1, 39, 1, 
+                    142, 1, 143, 2, -1, 2, 39, 1, 146, 1, 147, 2, -1, 1, 
+                    148, 1, 149, 4, -1 )
       EOF = unpack( 150, -1 )
       MIN = unpack( 1, 9, 15, 48, 1, -1, 1, 61, 1, -1, 1, 62, 3, -1, 2, 
-                    48, 1, 46, 10, -1, 1, 48, 1, 100, 2, -1, 1, 111, 1, 
-                    97, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 1, 110, 
+                    48, 1, -1, 1, 46, 9, -1, 1, 48, 1, 100, 2, -1, 1, 111, 
+                    1, 97, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 1, 110, 
                     1, 108, 2, 48, 1, 116, 1, 48, 1, 105, 1, 97, 1, 114, 
                     2, 105, 4, -1, 1, 117, 3, -1, 1, 48, 1, 108, 1, 115, 
                     1, 105, 1, 48, 1, 101, 1, 97, 1, 48, 1, 99, 1, 115, 
@@ -1989,36 +1989,36 @@ module Hephaestus
                     48, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 1, 109, 2, 
                     48, 2, -1, 1, 110, 1, 115, 2, 48, 2, -1, 2, 48, 4, -1 )
       MAX = unpack( 1, 160, 15, 122, 1, -1, 1, 61, 1, -1, 1, 62, 3, -1, 
-                    2, 122, 1, 57, 10, -1, 1, 122, 1, 100, 2, -1, 1, 111, 
-                    1, 97, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 1, 110, 
-                    1, 108, 2, 122, 1, 116, 1, 122, 1, 111, 1, 116, 1, 114, 
-                    2, 105, 4, -1, 1, 117, 3, -1, 1, 122, 1, 108, 1, 115, 
-                    1, 105, 1, 122, 1, 101, 1, 97, 1, 122, 1, 99, 1, 115, 
-                    1, 101, 2, -1, 1, 101, 1, -1, 1, 110, 1, 103, 1, 100, 
-                    1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 1, -1, 1, 122, 
-                    1, 115, 1, 110, 1, -1, 1, 122, 1, 116, 1, -1, 1, 116, 
-                    1, 101, 1, 114, 1, 103, 1, 116, 1, 114, 1, 122, 1, 114, 
-                    1, 110, 1, 122, 1, 101, 1, 122, 1, -1, 1, 122, 1, 101, 
-                    1, -1, 1, 122, 1, 105, 1, 122, 1, 105, 1, 101, 1, 122, 
-                    1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 122, 2, -1, 
-                    1, 122, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 1, 109, 
-                    2, 122, 2, -1, 1, 110, 1, 115, 2, 122, 2, -1, 2, 122, 
-                    4, -1 )
+                    2, 122, 1, -1, 1, 57, 9, -1, 1, 122, 1, 100, 2, -1, 
+                    1, 111, 1, 97, 1, 102, 1, 100, 1, 115, 1, 111, 1, 114, 
+                    1, 110, 1, 108, 2, 122, 1, 116, 1, 122, 1, 111, 1, 116, 
+                    1, 114, 2, 105, 4, -1, 1, 117, 3, -1, 1, 122, 1, 108, 
+                    1, 115, 1, 105, 1, 122, 1, 101, 1, 97, 1, 122, 1, 99, 
+                    1, 115, 1, 101, 2, -1, 1, 101, 1, -1, 1, 110, 1, 103, 
+                    1, 100, 1, 117, 1, 105, 1, 100, 1, 108, 1, 101, 1, -1, 
+                    1, 122, 1, 115, 1, 110, 1, -1, 1, 122, 1, 116, 1, -1, 
+                    1, 116, 1, 101, 1, 114, 1, 103, 1, 116, 1, 114, 1, 122, 
+                    1, 114, 1, 110, 1, 122, 1, 101, 1, 122, 1, -1, 1, 122, 
+                    1, 101, 1, -1, 1, 122, 1, 105, 1, 122, 1, 105, 1, 101, 
+                    1, 122, 1, 97, 1, -1, 1, 110, 1, 103, 1, -1, 1, 122, 
+                    2, -1, 1, 122, 1, -1, 1, 111, 1, 116, 1, 114, 1, -1, 
+                    1, 109, 2, 122, 2, -1, 1, 110, 1, 115, 2, 122, 2, -1, 
+                    2, 122, 4, -1 )
       ACCEPT = unpack( 16, -1, 1, 23, 1, -1, 1, 25, 1, -1, 1, 27, 1, 28, 
-                       1, 30, 3, -1, 1, 34, 1, 38, 1, 39, 1, 40, 1, 41, 
-                       1, 42, 1, 43, 1, 44, 1, 45, 1, 46, 2, -1, 1, 32, 
-                       1, 35, 18, -1, 1, 24, 1, 37, 1, 29, 1, 26, 1, -1, 
-                       1, 33, 1, 36, 1, 1, 11, -1, 1, 13, 1, 12, 1, -1, 
-                       1, 15, 8, -1, 1, 2, 3, -1, 1, 6, 2, -1, 1, 9, 12, 
-                       -1, 1, 3, 2, -1, 1, 7, 7, -1, 1, 18, 2, -1, 1, 21, 
-                       1, -1, 1, 31, 1, 4, 1, -1, 1, 8, 3, -1, 1, 16, 3, 
-                       -1, 1, 22, 1, 5, 4, -1, 1, 19, 1, 20, 2, -1, 1, 14, 
-                       1, 17, 1, 10, 1, 11 )
+                       1, 30, 2, -1, 1, 33, 1, -1, 1, 38, 1, 39, 1, 40, 
+                       1, 41, 1, 42, 1, 43, 1, 44, 1, 45, 1, 46, 2, -1, 
+                       1, 32, 1, 34, 18, -1, 1, 24, 1, 37, 1, 29, 1, 26, 
+                       1, -1, 1, 35, 1, 36, 1, 1, 11, -1, 1, 13, 1, 12, 
+                       1, -1, 1, 15, 8, -1, 1, 2, 3, -1, 1, 6, 2, -1, 1, 
+                       9, 12, -1, 1, 3, 2, -1, 1, 7, 7, -1, 1, 18, 2, -1, 
+                       1, 21, 1, -1, 1, 31, 1, 4, 1, -1, 1, 8, 3, -1, 1, 
+                       16, 3, -1, 1, 22, 1, 5, 4, -1, 1, 19, 1, 20, 2, -1, 
+                       1, 14, 1, 17, 1, 10, 1, 11 )
       SPECIAL = unpack( 150, -1 )
       TRANSITION = [
         unpack( 1, 34, 1, 35, 1, -1, 1, 34, 1, 35, 18, -1, 1, 34, 1, -1, 
-                1, 26, 4, -1, 1, 26, 1, 31, 1, 33, 1, 21, 1, 22, 1, 28, 
-                1, 20, 1, 29, 1, 16, 10, 25, 1, 27, 1, -1, 1, 19, 1, 17, 
+                1, 25, 4, -1, 1, 25, 1, 31, 1, 33, 1, 21, 1, 22, 1, 28, 
+                1, 20, 1, 29, 1, 16, 10, 26, 1, 27, 1, -1, 1, 19, 1, 17, 
                 1, 18, 2, -1, 1, 24, 1, 2, 3, 24, 1, 6, 2, 24, 1, 9, 9, 
                 24, 1, 13, 2, 24, 1, 14, 4, 24, 1, 30, 1, -1, 1, 32, 3, 
                 -1, 1, 1, 1, 24, 1, 3, 1, 4, 1, 5, 1, 7, 2, 24, 1, 8, 5, 
@@ -2064,8 +2064,8 @@ module Hephaestus
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 17, 39, 1, 
                  62, 8, 39 ),
         unpack( 10, 39, 7, -1, 26, 39, 4, -1, 1, 39, 1, -1, 26, 39 ),
-        unpack( 1, 63, 1, -1, 10, 25 ),
         unpack(  ),
+        unpack( 1, 63, 1, -1, 10, 26 ),
         unpack(  ),
         unpack(  ),
         unpack(  ),
@@ -2203,7 +2203,7 @@ module Hephaestus
 
       def description
         <<-'__dfa_description__'.strip!
-          1:1: Tokens : ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | HER | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | BOOL | LETTER | FLOAT | STRING | ID | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE );
+          1:1: Tokens : ( AS | AND | R_BOOL | R_CLASS | DEFINE | R_END | ELSE | R_FLOAT | FOR | FUNCTION | HER | IF | IN | R_INTEGER | OR | PRINT | PROGRAM | READ | RETURN | R_STRING | VOID | WHILE | DIV | EQ | GREATER | LESS | MINUS | MULT | NEQ | PLUS | BOOL | LETTER | STRING | ID | FLOAT | INTEGER | ASGN | COLON | COMMA | DOT | LBRACK | LPAR | RBRACK | RPAR | WS | NEWLINE );
         __dfa_description__
       end
 

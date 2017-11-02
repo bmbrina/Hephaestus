@@ -13,7 +13,7 @@ def printTokens()
   puts "-------------------------------"
 end
 
-# printTokens()
+printTokens()
 
 # tokens = ANTLR3::CommonTokenStream.new( lexer )
 # parser = Hephaestus::Parser.new( tokens )

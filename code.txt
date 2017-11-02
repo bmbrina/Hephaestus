@@ -12,7 +12,11 @@ class Student inherits Person:
 end class
 
 program people:
-  print(2.5 + 2).
+
+  define hola as String.
+
+  hola = 5.1.
+  bye = 3 .
 
   function Student createStudent():
     define jorge as Student.
