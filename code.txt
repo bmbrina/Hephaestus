@@ -2,6 +2,8 @@ class Person:
   define name as String.
 
   function Void blah(Integer dos, String hola):
+    print("barbs").
+
   end function
 
   function Void setName(String personName):
@@ -26,13 +28,9 @@ program people:
 
   define hola as String.
   define barbara as Person.
+  define jorge as Student.
 
   hola = 5.1.
-
-  function Student createStudent():
-    define jorge as Student.
-    return jorge.
-  end function
 
   function Void printInfo(String name, Integer age):
     if ( 5 > 3):
@@ -42,7 +40,7 @@ program people:
     end if
   end function
 
-  printInfo("jorge", 10).
+  jorge.setName("jorge").
 
   while( 2 > 0):
     print("hola").

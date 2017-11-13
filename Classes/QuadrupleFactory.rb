@@ -18,6 +18,13 @@ class QuadrupleFactory
     @param_index = 0
   end
 
+  def goto_program()
+    quad = Quadruple.new('GOTO', nil, nil, nil)
+    @program.add_quadruples(quad)
+    @jumps_stack.push(@counter)
+    @counter += 1
+  end
+
   def add_id(id, value)
     if id != nil
       if find_variable(id)
@@ -152,7 +159,7 @@ class QuadrupleFactory
     elsif exists_in_past_context == true 
       var_type = @program.past_context.variables_directory.variables[var_name].type
     else
-      puts "ERROR: undeclared varible #{id}."
+      puts "ERROR: undeclared varible #{var_name}."
       exit
     end
 
@@ -163,6 +170,8 @@ class QuadrupleFactory
       puts "ERROR: undeclared method #{func_name} for object #{var_name}."
       exit
     end
+
+    class_context
   end
 
   def era(func_name)
@@ -175,9 +184,7 @@ class QuadrupleFactory
   def parameter(func_name)
     arg = @ids_stack.pop()
     arg_type = @types_stack.pop()
-    puts func_name
-    puts arg_type
-    puts arg
+
     if @program.past_context.functions_directory.functions[func_name].parameters[@param_index] == arg_type
       quad = Quadruple.new('PARAM', arg, nil, "param#{param_index}")
       @program.add_quadruples(quad)
@@ -196,6 +203,21 @@ class QuadrupleFactory
     quad = Quadruple.new('GOSUB', func_name, nil, nil)
     @program.add_quadruples(quad)
     @counter += 1
+  end
+
+  def method_parameter(var_name, func_name)
+    arg = @ids_stack.pop()
+    arg_type = @types_stack.pop()
+    context = method_exists?(var_name, func_name)
+
+    if context.functions_directory.functions[func_name].parameters[@param_index] == arg_type
+      quad = Quadruple.new('PARAM', arg, nil, "param#{param_index}")
+      @program.add_quadruples(quad)
+      @counter += 1
+    else
+      puts "ERROR parameter #{param_index} of value #{arg} is of type mismatched."
+      exit
+    end
   end
 
 private

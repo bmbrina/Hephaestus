@@ -96,15 +96,15 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 
 start
-  : ( r_class )* program
+  : { \$quads.goto_program()} ( r_class )* program
   ;
 
 program
-  : PROGRAM ID COLON ( estatute
-                     | var_dec
-                     | function
-                     )* R_END PROGRAM { \$program.print_quadruples() }
-                     ;
+  : PROGRAM { \$quads.fill_quad() } ID COLON ( estatute
+                                            | var_dec
+                                            | function
+                                            )* R_END PROGRAM { \$program.print_quadruples() }
+  ;
 
 estatute
   : func_call DOT
@@ -254,5 +254,9 @@ method_call
   ;
 
 method_call_2
-  : ID func_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
+  : ID { \$func_aux = $ID.text } { \$quads.era($ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
+  ;
+
+method_call_parameters
+  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  RPAR { \$quads.go_sub(\$func_aux) }
   ;

@@ -7,8 +7,8 @@ class FunctionsDirectory
     @functions = {}
   end
 
-  def register(header, parameters = nil, return_type)
-    @functions[header] = Function.new(header, parameters, return_type)
+  def register(header, parameters = nil, return_type, quad_number)
+    @functions[header] = Function.new(header, parameters, return_type, quad_number)
   end
 
   def print_functions()
@@ -16,7 +16,7 @@ class FunctionsDirectory
 
     @functions.each do |key, function|
       puts "\t-------------------#{key}-----------------------"
-      puts("\t|Header: #{function.header}, Parameters: #{function.parameters}, Return Type: #{function.return_type}|")
+      puts("\t|Header: #{function.header}, Parameters: #{function.parameters}, Return Type: #{function.return_type}, Quad Jump: #{function.quad_number}|")
     end
     puts "\t------------------------------------------------------ \n"
   end

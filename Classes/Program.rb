@@ -33,7 +33,7 @@ class Program
   end
 
   def add_function(header, parameters, return_type)
-    @current_context.functions_directory.register(header, parameters, return_type)
+    @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count + 1)
     @past_context = @current_context
     @current_context = Context.new("#{header} context", "function")
   end
