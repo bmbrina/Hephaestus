@@ -11,6 +11,8 @@ options { language = Ruby; }
   \$program = Program.new()
   \$quads = QuadrupleFactory.new(\$program)
   \$class_aux
+  \$method_aux
+  \$func_aux
 
 }
 
@@ -115,7 +117,7 @@ estatute
   ;
 
 var_dec
-  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text,nil) }
+  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text, nil) }
                              ( ASGN ( expresion
                              | func_call
                              )
@@ -182,13 +184,11 @@ block
   ;
 
 func_call
-  : ID LPAR ( ( ID
-              | value
-              ) ( COMMA type ( ID
-                            | value
-                            )
-                )*
-            )? RPAR
+  : ID { \$quads.function_exists?($ID.text) } { \$func_aux = $ID.text } { \$quads.era($ID.text) } func_call_parameters
+  ;
+
+func_call_parameters
+  : LPAR ( ( expresion ) { \$quads.parameter(\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.parameter(\$func_aux) } )* )?  RPAR { \$quads.go_sub(\$func_aux) }
   ;
 
 expresion
@@ -246,11 +246,13 @@ r_class
   ;
 
 heritage
-  : ( HER ID ) { \$program.main_context.classes_directory.classes[\$class_aux].inherits_of = $ID.text }
+  : ( HER ID ) { \$program.main_context.classes_directory.classes[\$class_aux].inherits_of = $ID.text } { \$program.inherits_class_context($ID.text) }
   ;
 
 method_call
-  : ID DOT ( func_call
-           | ID
-           ) DOT
+  : ID {\$method_aux = $ID.text} DOT method_call_2
+  ;
+
+method_call_2
+  : ID func_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
   ;

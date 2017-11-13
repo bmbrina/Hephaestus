@@ -10,8 +10,8 @@ class Program
   end
 
   def reset_context()
-    puts "\n** FUNCTION #{@current_context.name} **\n"
-    @current_context.print_tables()
+    # puts "\n** FUNCTION #{@current_context.name} **\n"
+    # @current_context.print_tables()
     @current_context = @past_context
   end
 
@@ -22,8 +22,14 @@ class Program
   end
 
    def add_class(name, inherits_of)
-    @current_context.classes_directory.register(name, inherits_of)
-    @current_context = Context.new("#{name} context", "class")
+    @current_context.classes_directory.register(name, inherits_of, Context.new("#{name} context", "class"))
+    @current_context = @current_context.classes_directory.classes[name].context
+  end
+
+  def inherits_class_context(parent_class)
+    parent_context = @main_context.classes_directory.classes[parent_class].context
+    @current_context.functions_directory = parent_context.functions_directory.clone
+    @current_context.variables_directory = parent_context.variables_directory.clone
   end
 
   def add_function(header, parameters, return_type)

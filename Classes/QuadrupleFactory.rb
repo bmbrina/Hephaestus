@@ -4,6 +4,7 @@ require_relative 'Program'
 
 class QuadrupleFactory
   #attr_accessor :operators_stack, :ids_stack, :types_stack, :counter
+  attr_accessor :param_index
 
   def initialize(program)
     @program = program
@@ -14,6 +15,7 @@ class QuadrupleFactory
     @counter = 0
     @temp_counter = 1
     @sem_cube = SemanticCube.new()
+    @param_index = 0
   end
 
   def add_id(id, value)
@@ -130,6 +132,70 @@ class QuadrupleFactory
       puts "ERROR: undeclared variable #{id}."
       exit
     end
+  end
+
+  def function_exists?(id)
+    exists_in_past_context = @program.past_context.functions_directory.functions[id] != nil
+
+    if exists_in_past_context == false
+      puts "ERROR: undeclared function #{id}."
+      exit
+    end
+  end
+
+  def method_exists?(var_name, func_name)
+    exists_in_current_context = @program.current_context.variables_directory.variables[var_name] != nil
+    exists_in_past_context = @program.past_context.variables_directory.variables[var_name] != nil
+
+    if exists_in_current_context == true
+      var_type = @program.current_context.variables_directory.variables[var_name].type
+    elsif exists_in_past_context == true 
+      var_type = @program.past_context.variables_directory.variables[var_name].type
+    else
+      puts "ERROR: undeclared varible #{id}."
+      exit
+    end
+
+    class_context = @program.main_context.classes_directory.classes[var_type].context
+    exists_in_function_directory = class_context.functions_directory.functions[func_name] != nil
+
+    if exists_in_function_directory == false
+      puts "ERROR: undeclared method #{func_name} for object #{var_name}."
+      exit
+    end
+  end
+
+  def era(func_name)
+    quad = Quadruple.new('ERA', nil, nil, func_name)
+    @program.add_quadruples(quad)
+    @counter += 1
+    @param_index = 0
+  end
+
+  def parameter(func_name)
+    arg = @ids_stack.pop()
+    arg_type = @types_stack.pop()
+    puts func_name
+    puts arg_type
+    puts arg
+    if @program.past_context.functions_directory.functions[func_name].parameters[@param_index] == arg_type
+      quad = Quadruple.new('PARAM', arg, nil, "param#{param_index}")
+      @program.add_quadruples(quad)
+      @counter += 1
+    else
+      puts "ERROR parameter #{param_index} of value #{arg} is of type mismatched."
+      exit
+    end
+  end
+
+  def increase_param_index()
+    @param_index += 1
+  end
+
+  def go_sub(func_name)
+    quad = Quadruple.new('GOSUB', func_name, nil, nil)
+    @program.add_quadruples(quad)
+    @counter += 1
   end
 
 private
