@@ -159,7 +159,7 @@ class QuadrupleFactory
     elsif exists_in_past_context == true 
       var_type = @program.past_context.variables_directory.variables[var_name].type
     else
-      puts "ERROR: undeclared varible #{var_name}."
+      puts "ERROR: undeclared variable #{var_name}."
       exit
     end
 
@@ -201,6 +201,20 @@ class QuadrupleFactory
 
   def go_sub(func_name)
     quad = Quadruple.new('GOSUB', func_name, nil, nil)
+    @program.add_quadruples(quad)
+    @counter += 1
+  end
+
+  def return()
+    temp = @ids_stack.pop()
+    @types_stack.pop()
+    quad = Quadruple.new('return', temp, nil, nil)
+    @program.add_quadruples(quad)
+    @counter += 1
+  end
+
+  def end_function()
+    quad = Quadruple.new('ENDFUNC', nil, nil, nil)
     @program.add_quadruples(quad)
     @counter += 1
   end

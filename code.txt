@@ -1,36 +1,21 @@
 class Person:
-  define name as String.
+  define name as String = "Barbara".
+  define uno as Integer = 1 .
+  define dos as Integer = 2 .
 
-  function Void blah(Integer dos, String hola):
-    print("barbs").
-
+  function Integer add():
+    return uno + dos.
   end function
 
   function Void setName(String personName):
     name = personName.
     print("hola").
-    blah(2, "bai").
   end function
 
-end class
-
-class Student inherits Person:
-  function Void setName(String studentName):
-    name = studentName.
-  end function
-
-  function String getName():
-  end function
-  
 end class
 
 program people:
-
-  define hola as String.
   define barbara as Person.
-  define jorge as Student.
-
-  hola = 5.1.
 
   function Void printInfo(String name, Integer age):
     if ( 5 > 3):
@@ -40,7 +25,8 @@ program people:
     end if
   end function
 
-  jorge.setName("jorge").
+  barbara.setName("jorge").
+  barbara.add().
 
   while( 2 > 0):
     print("hola").

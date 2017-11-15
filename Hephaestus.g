@@ -117,9 +117,9 @@ estatute
   ;
 
 var_dec
-  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text, nil) }
+  : DEFINE ID AS type (array_dec)? { \$program.add_variable($ID.text, $type.text, nil) }
                              ( ASGN ( expresion
-                             | func_call
+                                    | func_call
                              )
                       )? DOT
   ;
@@ -128,7 +128,7 @@ assignment
   : ID ( ASGN { \$quads.variable_exists?($ID.text) } 
               ( expresion
               | func_call )
-              | array_dec ASGN type
+              | array_dec
        ) DOT
   ;
 
@@ -137,7 +137,7 @@ array_dec
   ;
 
 condition
-  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )? ( RETURN expresion DOT )? ( ELSE { \$quads.goto() } block 
+  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )? ( ELSE { \$quads.goto() } block 
                                                                                              | R_END ) { \$quads.fill_quad() } IF 
   ;
 
@@ -176,11 +176,11 @@ function
   : FUNCTION ( type ) ID parameters COLON { \$program.add_function($ID.text, $parameters.text, $type.text)}
                                           ( estatute
                                           | var_dec
-                                          )* ( RETURN expresion DOT )? R_END FUNCTION { \$program.reset_context() }
+                                          )* ( RETURN expresion { \$quads.return() } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
 ;
 
 block
-  : COLON ( estatute )* ( RETURN expresion DOT )? R_END
+  : COLON ( estatute )*  R_END
   ;
 
 func_call
