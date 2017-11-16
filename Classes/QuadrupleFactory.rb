@@ -31,6 +31,9 @@ class QuadrupleFactory
         variable = get_variable(id)
         @ids_stack.push(variable.name)
         @types_stack.push(variable.type)
+      else
+        puts "ERROR: #{id} is not declared."
+        exit
       end
     elsif value != nil
       variable_type = match_value(value)
@@ -50,12 +53,29 @@ class QuadrupleFactory
 
   def find_variable(id)
     current_context = @program.current_context
-    current_context.variables_directory.variable_exists?(id)
+    past_context = @program.past_context
+
+    if current_context.variables_directory.variable_exists?(id)
+      true
+    elsif past_context.variables_directory.variable_exists?(id)
+      true
+    else
+      false
+    end
   end
 
   def get_variable(id)
     current_context = @program.current_context
-    current_context.variables_directory.get_variable(id)
+    past_context = @program.past_context
+
+    if current_context.variables_directory.variable_exists?(id)
+      current_context.variables_directory.get_variable(id)
+    elsif past_context.variables_directory.variable_exists?(id)
+      past_context.variables_directory.get_variable(id)
+    else
+      puts "ERROR: #{id} is not declared."
+      exit
+    end
   end
 
   def add_operator(operator)
@@ -102,6 +122,11 @@ class QuadrupleFactory
       puts "ERROR: type mismatched, expecting Bool got #{type}."
       exit
     end
+  end
+
+  def fill_program_quad()
+    position = @jumps_stack.pop()
+    @program.quadruples[position].result = @counter
   end
 
   def fill_quad()
@@ -223,13 +248,29 @@ class QuadrupleFactory
     arg = @ids_stack.pop()
     arg_type = @types_stack.pop()
     context = method_exists?(var_name, func_name)
-
-    if context.functions_directory.functions[func_name].parameters[@param_index] == arg_type
+    if context.functions_directory.functions[func_name].parameters[@param_index].type == arg_type
       quad = Quadruple.new('PARAM', arg, nil, "param#{param_index}")
       @program.add_quadruples(quad)
       @counter += 1
     else
       puts "ERROR parameter #{param_index} of value #{arg} is of type mismatched."
+      exit
+    end
+  end
+
+  def assgn_quad()
+    result = @ids_stack.pop()
+    result_type = @types_stack.pop()
+    id = @ids_stack.pop()
+    id_type = @types_stack.pop()
+    op = @operators_stack.pop()
+
+    if result_type == id_type
+      quad = Quadruple.new(op, result, nil, id)
+      @program.add_quadruples(quad)
+      @counter += 1
+    else
+      puts "Error type mismatched, received #{id_type} and #{result_type}."
       exit
     end
   end

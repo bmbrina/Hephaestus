@@ -1,4 +1,4 @@
-require_relative "Variables"
+require_relative "Variable"
 
 class VariablesDirectory
   attr_accessor :variables

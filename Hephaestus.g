@@ -96,11 +96,11 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 
 start
-  : { \$quads.goto_program()} ( r_class )* program
+  : { \$quads.goto_program() } ( r_class )* program
   ;
 
 program
-  : PROGRAM { \$quads.fill_quad() } ID COLON ( estatute
+  : PROGRAM { \$quads.fill_program_quad() } ID COLON ( estatute
                                             | var_dec
                                             | function
                                             )* R_END PROGRAM { \$program.print_quadruples() }
@@ -125,11 +125,11 @@ var_dec
   ;
 
 assignment
-  : ID ( ASGN { \$quads.variable_exists?($ID.text) } 
+  : ID { \$quads.add_id($ID.text, nil) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
               ( expresion
               | func_call )
               | array_dec
-       ) DOT
+       ) { \$quads.assgn_quad() } DOT
   ;
 
 array_dec
@@ -163,13 +163,7 @@ writing
   ;
 
 parameters
-  : LPAR ( type ( ID
-                | value
-                ) ( COMMA type ( ID
-                               | value
-                               )
-                  )*
-         )? RPAR
+  : LPAR ( type ID {} ( COMMA type ID {})* )? RPAR
   ;
 
 function

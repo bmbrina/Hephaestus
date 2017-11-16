@@ -1,7 +1,7 @@
 class Person:
   define name as String = "Barbara".
-  define uno as Integer = 1 .
-  define dos as Integer = 2 .
+  define uno as Integer.
+  define dos as Integer.
 
   function Integer add():
     return uno + dos.

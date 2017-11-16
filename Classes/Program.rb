@@ -34,8 +34,12 @@ class Program
 
   def add_function(header, parameters, return_type)
     @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count + 1)
+    params = @current_context.functions_directory.functions[header].parameters
     @past_context = @current_context
     @current_context = Context.new("#{header} context", "function")
+    params.each do | param |
+      @current_context.variables_directory.register(param.name, param.type, nil)
+    end
   end
 
   def add_variable(name, type, value)

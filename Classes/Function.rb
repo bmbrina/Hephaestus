@@ -1,3 +1,5 @@
+require_relative "Variable"
+
 class Function
   attr_accessor :header, :parameters, :return_type, :quad_number
 
@@ -13,8 +15,8 @@ class Function
     parameters = parameters.tr('()', '').split(',')
     parameters.each do | param |
       param = param.split(' ')
-      type = param[0]
-      aux.push(type)
+      var = Variable.new(param[1], param[0], nil)
+      aux.push(var)
     end
     aux
   end
