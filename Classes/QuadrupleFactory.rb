@@ -3,7 +3,6 @@ require_relative 'Quadruple'
 require_relative 'Program'
 
 class QuadrupleFactory
-  #attr_accessor :operators_stack, :ids_stack, :types_stack, :counter
   attr_accessor :param_index
 
   def initialize(program)

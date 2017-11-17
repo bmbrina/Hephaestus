@@ -1,4 +1,5 @@
 class Person:
+  define arr as Integer[5].
   define name as String = "Barbara".
   define uno as Integer.
   define dos as Integer.

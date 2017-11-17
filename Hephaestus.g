@@ -10,6 +10,7 @@ options { language = Ruby; }
 @members {
   \$program = Program.new()
   \$quads = QuadrupleFactory.new(\$program)
+  \$dim = DimensionFactory.new(\$program)
   \$class_aux
   \$method_aux
   \$func_aux
@@ -101,6 +102,7 @@ start
 
 program
   : PROGRAM { \$quads.fill_program_quad() } ID COLON ( estatute
+                                            | dim_dec
                                             | var_dec
                                             | function
                                             )* R_END PROGRAM { \$program.print_quadruples() }
@@ -116,24 +118,26 @@ estatute
   | method_call
   ;
 
+dim_dec
+  : DEFINE ID AS type LBRACK { \$program.add_dim_variable($ID.text, $type.text, true) } INTEGER ( COMMA INTEGER )? RBRACK DOT
+  ;  
+
+dim_struct
+  : LBRACK exp ( COMMA exp )? RBRACK
+  ;
+
 var_dec
-  : DEFINE ID AS type (array_dec)? { \$program.add_variable($ID.text, $type.text, nil) }
-                             ( ASGN ( expresion
-                                    | func_call
-                             )
-                      )? DOT
+  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion 
+                                                                                   | func_call 
+                                                                                   ) { \$quads.assgn_quad() } )? DOT
   ;
 
 assignment
-  : ID { \$quads.add_id($ID.text, nil) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
+  : ID ( dim_struct )? { \$quads.add_id($ID.text, nil) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
               ( expresion
-              | func_call )
-              | array_dec
+              | func_call
+              )
        ) { \$quads.assgn_quad() } DOT
-  ;
-
-array_dec
-  : LBRACK exp ( COMMA exp )? RBRACK
   ;
 
 condition
@@ -211,7 +215,7 @@ term
   ;
 
 factor
-  : ID ( array_dec )? { \$quads.add_id($ID.text, nil) }
+  : ID ( dim_struct )? { \$quads.add_id($ID.text, nil) }
     | LPAR { \$quads.add_false_bottom($LPAR.text) } expresion RPAR { \$quads.remove_false_bottom() }
     | value { \$quads.add_id(nil, $value.text) }
   ;
@@ -235,6 +239,7 @@ value
 
 r_class
   : R_CLASS ID { \$class_aux = $ID.text } { \$program.add_class($ID.text, nil) } heritage?  COLON ( function
+                                                                       | dim_dec
                                                                        | var_dec
                                                                        )* R_END R_CLASS { \$program.reset_class_context() }
   ;

@@ -1,9 +1,10 @@
-class Variable
-  attr_accessor :name, :type, :value
+require_relative 'DimensionFactory'
 
-  def initialize(name, type, value)
+class Variable
+  attr_accessor :name, :type, :value, :is_dim, :dim_structures
+
+  def initialize(name, type)
     @name = name
     @type = type
-    @value = value
   end
 end

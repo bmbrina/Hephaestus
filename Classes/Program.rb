@@ -38,12 +38,17 @@ class Program
     @past_context = @current_context
     @current_context = Context.new("#{header} context", "function")
     params.each do | param |
-      @current_context.variables_directory.register(param.name, param.type, nil)
+      @current_context.variables_directory.register(param.name, param.type)
     end
   end
 
-  def add_variable(name, type, value)
-    @current_context.variables_directory.register(name, type, value)
+  def add_variable(name, type)
+    @current_context.variables_directory.register(name, type)
+  end
+
+  def add_dim_variable(name, type, is_dim)
+    add_variable(name, type)
+    @current_context.variables_directory.variables[name].is_dim = is_dim
   end
 
   def add_quadruples(quad)

@@ -15,7 +15,7 @@ class Function
     parameters = parameters.tr('()', '').split(',')
     parameters.each do | param |
       param = param.split(' ')
-      var = Variable.new(param[1], param[0], nil)
+      var = Variable.new(param[1], param[0])
       aux.push(var)
     end
     aux
