@@ -1,7 +1,3 @@
 class DimensionStructure
-  attr_accessor limit, m
-
-  def initialize(limit)
-    @limit = limit
-  end
+  attr_accessor :limit, :m
 end

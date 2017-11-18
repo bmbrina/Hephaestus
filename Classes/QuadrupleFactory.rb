@@ -11,6 +11,7 @@ class QuadrupleFactory
     @ids_stack = []
     @types_stack = []
     @jumps_stack = []
+    @dim_stack = []
     @counter = 0
     @temp_counter = 1
     @sem_cube = SemanticCube.new()
@@ -272,6 +273,80 @@ class QuadrupleFactory
       puts "Error type mismatched, received #{id_type} and #{result_type}."
       exit
     end
+  end
+
+  # Dimensional Structures
+  def is_dim()
+    id = @ids_stack.pop()
+    @types_stack.pop()
+    if !get_variable(id).is_dim
+      puts "Error #{id} is not a dimensional variable."
+      exit
+    end
+    dim = 0
+    @dim_stack.push([id, dim])
+    add_false_bottom('(')
+  end
+
+  def generate_limit_quad()
+    id = @ids_stack.last()
+    dim = @dim_stack.last()[1]
+    dim_id = @dim_stack.last()[0]
+    var_dim_structures = get_variable(dim_id).dim_structures
+    limit = var_dim_structures[dim].limit
+    m = var_dim_structures[dim].m
+    quad = Quadruple.new("VERIFICAR", id, 0, limit)
+    @program.add_quadruples(quad)
+    @counter += 1
+
+    if var_dim_structures[dim + 1] != nil
+      aux = @ids_stack.pop()
+      @types_stack.pop()
+      temp = "temp#{@temp_counter}"
+      quad = Quadruple.new('*', aux, m, temp)
+      @program.add_quadruples(quad)
+      @counter += 1
+      @temp_counter += 1
+      @ids_stack.push(temp)
+      @ids_stack.push('Integer')
+    elsif dim > 0
+      aux2 = @ids_stack.pop()
+      @types_stack.pop()
+      aux1 = @ids_stack.pop()
+      @types_stack.pop()
+      temp = "temp#{@temp_counter}"
+      quad = Quadruple.new('+', aux1, aux2, temp)
+      @program.add_quadruples(quad)
+      @counter += 1
+      @temp_counter += 1
+      @ids_stack.push(temp)
+      @ids_stack.push('Integer')
+    end
+  end
+
+  def update_dim()
+    @dim_stack.last()[1] += 1
+  end
+
+  def generate_dim_quads()
+    aux = @ids_stack.pop()
+    @types_stack.pop()
+    temp = "temp#{@temp_counter}"
+    quad = Quadruple.new('+', aux, 0, temp)
+    @program.add_quadruples(quad)
+    @counter += 1
+    @temp_counter += 1
+    dim_id = @dim_stack.last()[0]
+    temp = "temp#{@temp_counter}"
+    quad = Quadruple.new('+', temp, "BASE:#{dim_id}", temp)
+    @program.add_quadruples(quad)
+    @counter += 1
+    @temp_counter += 1
+    @ids_stack.push("(#{temp})")
+    id_type = get_variable(dim_id).type
+    @types_stack.push(id_type)
+    @operators_stack.pop()
+    @dim_stack.pop()
   end
 
 private

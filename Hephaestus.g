@@ -15,6 +15,7 @@ options { language = Ruby; }
   \$class_aux
   \$method_aux
   \$func_aux
+  \$dim_aux
 }
 
 // ******************************************************************************
@@ -120,11 +121,15 @@ program
   ;
 
 dim_dec
-  : DEFINE ID AS type LBRACK { \$program.add_dim_variable($ID.text, $type.text, true) } INTEGER ( COMMA INTEGER )? RBRACK DOT
+  : DEFINE ID { \$dim_aux = $ID.text } AS type { \$program.add_dim_variable($ID.text, $type.text, true) } LBRACK { \$dim.generate_dim_structure($ID.text) } INTEGER { \$dim.add_limit($ID.text, $INTEGER.text) } ( mat_dim )? RBRACK { \$dim.calculate_m($ID.text) } DOT { \$dim.reset_r()}
+  ;
+
+mat_dim
+  : COMMA { \$dim.generate_dim_structure(\$dim_aux) } INTEGER { \$dim.add_limit(\$dim_aux, $INTEGER.text) }
   ;  
 
 dim_struct
-  : LBRACK exp ( COMMA exp )? RBRACK
+  : LBRACK { \$quads.is_dim() } exp { \$quads.generate_limit_quad() } ( COMMA { \$quads.update_dim() } exp { \$quads.generate_limit_quad() } )? RBRACK { \$quads.generate_dim_quads() }
   ;
 
 var_dec
@@ -137,6 +142,7 @@ function
   : FUNCTION ( type ) ID parameters COLON { \$program.add_function($ID.text, $parameters.text, $type.text)}
                                           ( estatute
                                           | var_dec
+                                          | dim_dec
                                           )* ( RETURN expresion { \$quads.return() } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
   ;
 
@@ -167,7 +173,7 @@ method_call_parameters
   ;
 
 assignment
-  : ID ( dim_struct )? { \$quads.add_id($ID.text, nil) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
+  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
               ( expresion
               | func_call
               )
@@ -229,7 +235,7 @@ term
   ;
 
 factor
-  : ID ( dim_struct )? { \$quads.add_id($ID.text, nil) }
+  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )?
     | LPAR { \$quads.add_false_bottom($LPAR.text) } expresion RPAR { \$quads.remove_false_bottom() }
     | value { \$quads.add_id(nil, $value.text) }
   ;

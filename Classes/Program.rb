@@ -22,8 +22,13 @@ class Program
   end
 
    def add_class(name, inherits_of)
-    @current_context.classes_directory.register(name, inherits_of, Context.new("#{name} context", "class"))
-    @current_context = @current_context.classes_directory.classes[name].context
+    if @current_context.classes_directory.classes[name] != nil
+      puts "ERROR: redefinition of class #{name}."
+      exit
+    else
+      @current_context.classes_directory.register(name, inherits_of, Context.new("#{name} context", "class"))
+      @current_context = @current_context.classes_directory.classes[name].context
+    end
   end
 
   def inherits_class_context(parent_class)
@@ -33,17 +38,27 @@ class Program
   end
 
   def add_function(header, parameters, return_type)
-    @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count + 1)
-    params = @current_context.functions_directory.functions[header].parameters
-    @past_context = @current_context
-    @current_context = Context.new("#{header} context", "function")
-    params.each do | param |
-      @current_context.variables_directory.register(param.name, param.type)
+    if @current_context.functions_directory.functions[header] != nil
+      puts "ERROR: redefinition of function #{header}."
+      exit
+    else
+      @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count + 1)
+      params = @current_context.functions_directory.functions[header].parameters
+      @past_context = @current_context
+      @current_context = Context.new("#{header} context", "function")
+      params.each do | param |
+        @current_context.variables_directory.register(param.name, param.type)
+      end
     end
   end
 
   def add_variable(name, type)
-    @current_context.variables_directory.register(name, type)
+    if @current_context.variables_directory.variables[name] != nil
+      puts "ERROR: redefinition of variable #{name}."
+      exit
+    else
+      @current_context.variables_directory.register(name, type)
+    end
   end
 
   def add_dim_variable(name, type, is_dim)

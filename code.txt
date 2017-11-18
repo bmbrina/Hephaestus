@@ -1,10 +1,12 @@
 class Person:
   define arr as Integer[5].
+  define mat as Integer[2,2].
   define name as String = "Barbara".
   define uno as Integer.
   define dos as Integer.
 
   function Integer add():
+    arr[1+2] = 2 .
     return uno + dos.
   end function
 
@@ -17,7 +19,6 @@ end class
 
 program people:
   define barbara as Person.
-
   function Void printInfo(String name, Integer age):
     if ( 5 > 3):
       print(5).

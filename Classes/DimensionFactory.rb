@@ -10,7 +10,7 @@ class DimensionFactory
   end
 
   def generate_dim_structure(id)
-    dim_struct = DimensionStructure.new(nil)
+    dim_struct = DimensionStructure.new()
     get_dim_structures(id).push(dim_struct)
   end
 
@@ -19,18 +19,24 @@ class DimensionFactory
   end
 
   def add_limit(id, limit)
-    get_dim_structures.last().limit = limit
+    limit = limit.to_i - 1
+    get_dim_structures(id).last().limit = limit
     @r = calc_r(limit)
   end
 
   def calc_r(limit)
-    @r * limit + 1
+    @r * (limit + 1)
   end
 
-  def calculate_m()
-    get_dim_structures.each do | structure |
-      structure.m = @r / structure.limit + 1
+  def calculate_m(id)
+    get_dim_structures(id).each do | structure |
+      structure.m = @r / (structure.limit + 1)
+      @r = structure.m
     end
-    get_dim_structures.last().m = 0
+    get_dim_structures(id).last().m = 0
+  end
+
+  def reset_r()
+    @r = 1
   end
 end

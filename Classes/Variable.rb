@@ -6,5 +6,6 @@ class Variable
   def initialize(name, type)
     @name = name
     @type = type
+    @dim_structures = []
   end
 end
