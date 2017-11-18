@@ -230,12 +230,19 @@ class QuadrupleFactory
     @counter += 1
   end
 
-  def return()
+  def return(func_name)
+    func_type = @program.past_context.functions_directory.functions[func_name].return_type
     temp = @ids_stack.pop()
-    @types_stack.pop()
-    quad = Quadruple.new('return', temp, nil, nil)
-    @program.add_quadruples(quad)
-    @counter += 1
+    temp_type = @types_stack.pop()
+
+    if func_type != temp_type
+      puts "ERROR: expected return type of #{func_type}, got #{temp_type}."
+      exit
+    else
+      quad = Quadruple.new('return', temp, nil, nil)
+      @program.add_quadruples(quad)
+      @counter += 1
+    end
   end
 
   def end_function()
@@ -369,7 +376,7 @@ private
       current_context.variables_directory.register(temp, @sem_cube.invert[type_res])
       @counter += 1
     else
-      puts "ERROR: variable type mismatched, received: #{match_value(left_side)} and #{match_value(right_side)}."
+      puts "ERROR: variable type mismatched, received: #{left_side} and #{right_side}."
       exit
     end
   end

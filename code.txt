@@ -29,8 +29,7 @@ program people:
   end function
 
   barbara.setName("jorge").
-  barbara.add().
-
+  
   while( 2 > 0):
     print("hola").
     if ( 5 > 3):

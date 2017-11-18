@@ -142,7 +142,7 @@ function
                                           ( estatute
                                           | var_dec
                                           | dim_dec
-                                          )* ( RETURN expresion { \$quads.return() } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
+                                          )* ( RETURN expresion { \$quads.return($ID.text) } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
   ;
 
 parameters

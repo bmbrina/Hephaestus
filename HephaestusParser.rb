@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-11-18 15:51:29
+# Generated at: 2017-11-18 16:22:09
 #
 
 # ~~~> start load path setup
@@ -904,7 +904,7 @@ module Hephaestus
         @state.following.pop
 
         # --> action
-         $quads.return() 
+         $quads.return(__ID10__.text) 
         # <-- action
 
         match( DOT, TOKENS_FOLLOWING_DOT_IN_function_1556 )
