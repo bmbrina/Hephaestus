@@ -2,6 +2,7 @@ class Person:
   define arr as Integer[5].
   define mat as Integer[2,2].
   define name as String = "Barbara".
+  define a as String.
   define uno as Integer.
   define dos as Integer.
 
