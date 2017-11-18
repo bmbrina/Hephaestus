@@ -168,7 +168,7 @@ method_call_2
   ;
 
 method_call_parameters
-  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  RPAR { \$quads.go_sub(\$func_aux) }
+  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
   ;
 
 assignment
@@ -205,7 +205,7 @@ func_call
   ;
 
 func_call_parameters
-  : LPAR ( ( expresion ) { \$quads.parameter(\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.parameter(\$func_aux) } )* )?  RPAR { \$quads.go_sub(\$func_aux) }
+  : LPAR ( ( expresion ) { \$quads.parameter(\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.parameter(\$func_aux) } )* )?  { \$quads.verify_func_param_count(\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
   ;
 
 expresion

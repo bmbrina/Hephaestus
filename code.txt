@@ -28,7 +28,9 @@ program people:
     end if
   end function
 
-  barbara.setName("jorge").
+  barbara.setName("barbara").
+
+  printInfo("hola", 2).
   
   while( 2 > 0):
     print("hola").

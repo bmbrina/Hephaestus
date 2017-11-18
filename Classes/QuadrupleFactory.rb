@@ -209,11 +209,11 @@ class QuadrupleFactory
   def parameter(func_name)
     arg = @ids_stack.pop()
     arg_type = @types_stack.pop()
-
-    if @program.past_context.functions_directory.functions[func_name].parameters[@param_index] == arg_type
+    if @program.past_context.functions_directory.functions[func_name].parameters[@param_index].type == arg_type
       quad = Quadruple.new('PARAM', arg, nil, "param#{param_index}")
       @program.add_quadruples(quad)
       @counter += 1
+      @param_index += 1
     else
       puts "ERROR parameter #{param_index} of value #{arg} is of type mismatched."
       exit
@@ -221,7 +221,15 @@ class QuadrupleFactory
   end
 
   def increase_param_index()
-    @param_index += 1
+    #@param_index += 1
+  end
+
+  def verify_func_param_count(func_name)
+    func_params_count = @program.past_context.functions_directory.functions[func_name].parameters.count
+    if func_params_count != @param_index
+      puts "ERROR: wrong number of parameters (#{@param_index} for #{func_params_count}) in #{func_name} call."
+      exit
+    end
   end
 
   def go_sub(func_name)
@@ -255,12 +263,27 @@ class QuadrupleFactory
     arg = @ids_stack.pop()
     arg_type = @types_stack.pop()
     context = method_exists?(var_name, func_name)
-    if context.functions_directory.functions[func_name].parameters[@param_index].type == arg_type
+    parameter = context.functions_directory.functions[func_name].parameters[@param_index]
+    if parameter == nil
+      puts "ERROR: parameter index out of bounds for #{func_name}."
+      exit
+    end 
+    if parameter.type == arg_type
       quad = Quadruple.new('PARAM', arg, nil, "param#{param_index}")
       @program.add_quadruples(quad)
       @counter += 1
+      @param_index += 1
     else
       puts "ERROR parameter #{param_index} of value #{arg} is of type mismatched."
+      exit
+    end
+  end
+
+  def verify_method_param_count(var_name, func_name)
+    context = method_exists?(var_name, func_name)
+    method_params_count = context.functions_directory.functions[func_name].parameters.count
+    if method_params_count != @param_index
+      puts "ERROR: wrong number of parameters (#{@param_index} for #{method_params_count}) in #{func_name} call."
       exit
     end
   end
@@ -338,14 +361,9 @@ class QuadrupleFactory
   def generate_dim_quads()
     aux = @ids_stack.pop()
     @types_stack.pop()
-    temp = "temp#{@temp_counter}"
-    quad = Quadruple.new('+', aux, 0, temp)
-    @program.add_quadruples(quad)
-    @counter += 1
-    @temp_counter += 1
     dim_id = @dim_stack.last()[0]
     temp = "temp#{@temp_counter}"
-    quad = Quadruple.new('+', temp, "BASE:#{dim_id}", temp)
+    quad = Quadruple.new('+', aux, "BASE:#{dim_id}", temp)
     @program.add_quadruples(quad)
     @counter += 1
     @temp_counter += 1
