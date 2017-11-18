@@ -5,6 +5,7 @@ options { language = Ruby; }
 @header {
   require "Classes/Program"
   require "Classes/QuadrupleFactory"
+  require "Classes/DimensionFactory"
 }
 
 @members {
@@ -14,7 +15,6 @@ options { language = Ruby; }
   \$class_aux
   \$method_aux
   \$func_aux
-
 }
 
 // ******************************************************************************
@@ -100,22 +100,23 @@ start
   : { \$quads.goto_program() } ( r_class )* program
   ;
 
+r_class
+  : R_CLASS ID { \$class_aux = $ID.text } { \$program.add_class($ID.text, nil) } heritage?  COLON ( function
+                                                                       | dim_dec
+                                                                       | var_dec
+                                                                       )* R_END R_CLASS { \$program.reset_class_context() }
+  ;
+
+heritage
+  : ( HER ID ) { \$program.main_context.classes_directory.classes[\$class_aux].inherits_of = $ID.text } { \$program.inherits_class_context($ID.text) }
+  ;
+
 program
   : PROGRAM { \$quads.fill_program_quad() } ID COLON ( estatute
                                             | dim_dec
                                             | var_dec
                                             | function
                                             )* R_END PROGRAM { \$program.print_quadruples() }
-  ;
-
-estatute
-  : func_call DOT
-  | condition
-  | reading
-  | writing
-  | assignment
-  | loops
-  | method_call
   ;
 
 dim_dec
@@ -132,6 +133,39 @@ var_dec
                                                                                    ) { \$quads.assgn_quad() } )? DOT
   ;
 
+function
+  : FUNCTION ( type ) ID parameters COLON { \$program.add_function($ID.text, $parameters.text, $type.text)}
+                                          ( estatute
+                                          | var_dec
+                                          )* ( RETURN expresion { \$quads.return() } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
+  ;
+
+parameters
+  : LPAR ( type ID {} ( COMMA type ID {})* )? RPAR
+  ;
+
+estatute
+  : method_call
+  | assignment 
+  | condition
+  | while_loop
+  | reading
+  | writing
+  | func_call DOT
+  ;
+
+method_call
+  : ID {\$method_aux = $ID.text} DOT method_call_2
+  ;
+
+method_call_2
+  : ID { \$func_aux = $ID.text } { \$quads.era($ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
+  ;
+
+method_call_parameters
+  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  RPAR { \$quads.go_sub(\$func_aux) }
+  ;
+
 assignment
   : ID ( dim_struct )? { \$quads.add_id($ID.text, nil) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
               ( expresion
@@ -145,17 +179,12 @@ condition
                                                                                              | R_END ) { \$quads.fill_quad() } IF 
   ;
 
-loops
-  : while_loop
-  | for_loop
-  ;
-
 while_loop
   : WHILE { \$quads.add_jump() } LPAR expresion RPAR { \$quads.gotof() } block WHILE { \$quads.goto_while()}
   ;
 
-for_loop
-  : FOR ID IN ID block FOR
+block
+  : COLON ( estatute )*  R_END
   ;
 
 reading
@@ -164,21 +193,6 @@ reading
 
 writing
   : PRINT LPAR expresion RPAR DOT { \$quads.write()}
-  ;
-
-parameters
-  : LPAR ( type ID {} ( COMMA type ID {})* )? RPAR
-  ;
-
-function
-  : FUNCTION ( type ) ID parameters COLON { \$program.add_function($ID.text, $parameters.text, $type.text)}
-                                          ( estatute
-                                          | var_dec
-                                          )* ( RETURN expresion { \$quads.return() } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
-;
-
-block
-  : COLON ( estatute )*  R_END
   ;
 
 func_call
@@ -220,7 +234,6 @@ factor
     | value { \$quads.add_id(nil, $value.text) }
   ;
 
-
 type
   : R_STRING
   | R_BOOL
@@ -235,27 +248,4 @@ value
   | FLOAT
   | INTEGER
   | BOOL
-  ;
-
-r_class
-  : R_CLASS ID { \$class_aux = $ID.text } { \$program.add_class($ID.text, nil) } heritage?  COLON ( function
-                                                                       | dim_dec
-                                                                       | var_dec
-                                                                       )* R_END R_CLASS { \$program.reset_class_context() }
-  ;
-
-heritage
-  : ( HER ID ) { \$program.main_context.classes_directory.classes[\$class_aux].inherits_of = $ID.text } { \$program.inherits_class_context($ID.text) }
-  ;
-
-method_call
-  : ID {\$method_aux = $ID.text} DOT method_call_2
-  ;
-
-method_call_2
-  : ID { \$func_aux = $ID.text } { \$quads.era($ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
-  ;
-
-method_call_parameters
-  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  RPAR { \$quads.go_sub(\$func_aux) }
   ;
