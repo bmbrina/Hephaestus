@@ -17,6 +17,7 @@ class QuadrupleFactory
     @sem_cube = SemanticCube.new()
     @param_index = 0
     @turn_off_if_dim = false
+    @memory_counter = 1000
   end
 
   def goto_program()
@@ -26,15 +27,25 @@ class QuadrupleFactory
     @counter += 1
   end
 
+  def add_dir(variable)
+    if variable.memory_dir == nil
+      variable.memory_dir = @memory_counter
+      @ids_stack.push(variable.name)
+      @memory_counter += 1
+    else
+      @ids_stack.push(variable.name)
+    end
+  end
+
   def add_id(id, value)
     if id != nil
-      var = get_variable(id)
-      if var.is_dim
+      variable = get_variable(id)
+      if variable.is_dim
         @turn_off_if_dim = true
       end
       if find_variable(id)
-        variable = get_variable(id)
-        @ids_stack.push(variable.name)
+        #@ids_stack.push(variable.name)
+        add_dir(variable)
         @types_stack.push(variable.type)
       else
         puts "ERROR: #{id} is not declared."
@@ -349,6 +360,7 @@ class QuadrupleFactory
       exit
     end
   end
+
   def is_dim()
     @turn_off_if_dim = false
     id = @ids_stack.pop()
