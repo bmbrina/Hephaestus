@@ -160,15 +160,15 @@ estatute
   ;
 
 method_call
-  : ID {\$method_aux = $ID.text} DOT method_call_2
+  : ID {\$method_aux = $ID.text} DOT method_call_2 { \$quads.get_return_value() }
   ;
 
 method_call_2
-  : ID { \$func_aux = $ID.text } { \$quads.era($ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
+  : ID { \$func_aux = $ID.text } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
   ;
 
 method_call_parameters
-  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
+  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
   ;
 
 assignment
@@ -201,11 +201,11 @@ writing
   ;
 
 func_call
-  : ID { \$quads.function_exists?($ID.text) } { \$func_aux = $ID.text } { \$quads.era($ID.text) } func_call_parameters
+  : ID { \$quads.function_exists?($ID.text) } { \$func_aux = $ID.text } { \$quads.era($ID.text) } func_call_parameters { \$quads.get_return_value() }
   ;
 
 func_call_parameters
-  : LPAR ( ( expresion ) { \$quads.parameter(\$func_aux) } ( COMMA { \$quads.increase_param_index } ( expresion ) { \$quads.parameter(\$func_aux) } )* )?  { \$quads.verify_func_param_count(\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
+  : LPAR ( ( expresion ) { \$quads.parameter(\$func_aux) } ( COMMA ( expresion ) { \$quads.parameter(\$func_aux) } )* )?  { \$quads.verify_func_param_count(\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
   ;
 
 expresion

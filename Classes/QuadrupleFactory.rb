@@ -200,7 +200,21 @@ class QuadrupleFactory
   end
 
   def era(func_name)
+    return_type = @program.past_context.functions_directory.functions[func_name].return_type
+    @ids_stack.push(func_name)
+    @types_stack.push(return_type)
     quad = Quadruple.new('ERA', nil, nil, func_name)
+    @program.add_quadruples(quad)
+    @counter += 1
+    @param_index = 0
+  end
+
+  def era_method(id, method_name)
+    context = method_exists?(id, method_name)
+    return_type = context.functions_directory.functions[method_name].return_type
+    @ids_stack.push(method_name)
+    @types_stack.push(return_type)
+    quad = Quadruple.new('ERA', id, nil, method_name)
     @program.add_quadruples(quad)
     @counter += 1
     @param_index = 0
@@ -220,10 +234,6 @@ class QuadrupleFactory
     end
   end
 
-  def increase_param_index()
-    #@param_index += 1
-  end
-
   def verify_func_param_count(func_name)
     func_params_count = @program.past_context.functions_directory.functions[func_name].parameters.count
     if func_params_count != @param_index
@@ -235,6 +245,18 @@ class QuadrupleFactory
   def go_sub(func_name)
     quad = Quadruple.new('GOSUB', func_name, nil, nil)
     @program.add_quadruples(quad)
+    @counter += 1
+  end
+
+  def get_return_value()
+    func_name = @ids_stack.pop()
+    func_type = @types_stack.pop()
+    temp = "temp#{@temp_counter}"
+    @temp_counter += 1
+    quad = Quadruple.new('=', func_name, nil, temp)
+    @ids_stack.push(temp)
+    @types_stack.push(func_type) 
+    @program.quadruples.push(quad)
     @counter += 1
   end
 
@@ -300,7 +322,7 @@ class QuadrupleFactory
       @program.add_quadruples(quad)
       @counter += 1
     else
-      puts "Error type mismatched, received #{id_type} and #{result_type}."
+      puts "ERROR: type mismatched, received #{id_type} and #{result_type}."
       exit
     end
   end
@@ -310,7 +332,7 @@ class QuadrupleFactory
     id = @ids_stack.pop()
     @types_stack.pop()
     if !get_variable(id).is_dim
-      puts "Error #{id} is not a dimensional variable."
+      puts "ERROR: #{id} is not a dimensional variable."
       exit
     end
     dim = 0
@@ -338,7 +360,7 @@ class QuadrupleFactory
       @counter += 1
       @temp_counter += 1
       @ids_stack.push(temp)
-      @ids_stack.push('Integer')
+      @types_stack.push('Integer')
     elsif dim > 0
       aux2 = @ids_stack.pop()
       @types_stack.pop()
@@ -350,7 +372,7 @@ class QuadrupleFactory
       @counter += 1
       @temp_counter += 1
       @ids_stack.push(temp)
-      @ids_stack.push('Integer')
+      @types_stack.push('Integer')
     end
   end
 
