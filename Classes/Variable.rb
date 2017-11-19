@@ -1,7 +1,7 @@
 require_relative 'DimensionFactory'
 
 class Variable
-  attr_accessor :name, :type, :value, :is_dim, :dim_structures
+  attr_accessor :name, :type, :value, :is_dim, :dim_structures, :size
 
   def initialize(name, type)
     @name = name

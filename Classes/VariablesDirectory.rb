@@ -23,7 +23,7 @@ class VariablesDirectory
     puts "\tVariables directory:"
     @variables.each do |key, variable|
       puts "\t------------------------------------------------------"
-      puts("\t|Name: #{variable.name}, Type: #{variable.type}, Dim: #{variable.is_dim}, Dim Structs: #{variable.dim_structures}|")
+      puts("\t|Name: #{variable.name}, Type: #{variable.type}, Size: #{variable.size}, Dim: #{variable.is_dim}, Dim Structs: #{variable.dim_structures}|")
     end
     puts "\t------------------------------------------------------ \n"
   end

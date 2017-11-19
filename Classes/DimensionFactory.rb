@@ -18,6 +18,10 @@ class DimensionFactory
     @program.current_context.variables_directory.variables[id].dim_structures
   end
 
+  def get_variable(id)
+    @program.current_context.variables_directory.variables[id]
+  end
+
   def add_limit(id, limit)
     limit = limit.to_i - 1
     get_dim_structures(id).last().limit = limit
@@ -29,6 +33,7 @@ class DimensionFactory
   end
 
   def calculate_m(id)
+    get_variable(id).size = @r
     get_dim_structures(id).each do | structure |
       structure.m = @r / (structure.limit + 1)
       @r = structure.m
