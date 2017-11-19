@@ -7,8 +7,10 @@ class Person:
   define dos as Integer.
 
   function Integer add():
+    if ( 4 < 5):
+      print("hola").
+    end if
     arr[1] = mat[1,arr[3]]. 
-    print("hola").
     mat[1, arr[1+2]] = 3 .
     return uno + dos.
   end function
@@ -28,6 +30,7 @@ program people:
     else:
       print(3).
     end if
+    print("jorge").
   end function
 
   barbara.setName("barbara").

@@ -1,7 +1,7 @@
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-input = ANTLR3::FileStream.new( 'code.txt' )
+input = ANTLR3::FileStream.new( 'code2.txt' )
 $lexer = Hephaestus::Lexer.new( input )
 
 
@@ -18,5 +18,5 @@ end
 # tokens = ANTLR3::CommonTokenStream.new( lexer )
 # parser = Hephaestus::Parser.new( tokens )
 
-parser = open( 'code.txt' ) { | f | Hephaestus::Parser.new( f ) }
+parser = open( 'code2.txt' ) { | f | Hephaestus::Parser.new( f ) }
 puts parser.start

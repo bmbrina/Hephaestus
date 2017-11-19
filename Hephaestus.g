@@ -168,7 +168,7 @@ method_call_2
   ;
 
 method_call_parameters
-  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
+  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
   ;
 
 assignment
@@ -180,8 +180,8 @@ assignment
   ;
 
 condition
-  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )? ( ELSE { \$quads.goto() } block 
-                                                                                             | R_END ) { \$quads.fill_quad() } IF 
+  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )* ( ELSE { \$quads.goto() } block 
+                                                                                             | R_END ) { \$quads.fill_program_quad() } IF 
   ;
 
 while_loop

@@ -42,7 +42,7 @@ class Program
       puts "ERROR: redefinition of function #{header}."
       exit
     else
-      @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count + 1)
+      @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count)
       params = @current_context.functions_directory.functions[header].parameters
       @past_context = @current_context
       @current_context = Context.new("#{header} context", "function")

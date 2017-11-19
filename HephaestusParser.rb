@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-11-18 18:21:15
+# Generated at: 2017-11-18 19:05:32
 #
 
 # ~~~> start load path setup
@@ -1296,7 +1296,7 @@ module Hephaestus
       match( RPAR, TOKENS_FOLLOWING_RPAR_IN_method_call_parameters_1747 )
 
       # --> action
-       $quads.go_sub($func_aux) 
+       $quads.go_sub_method($method_aux, $func_aux) 
       # <-- action
 
 
@@ -1434,7 +1434,7 @@ module Hephaestus
     # parser rule condition
     #
     # (in Hephaestus.g)
-    # 182:1: condition : IF LPAR expresion RPAR COLON ( estatute )? ( ELSE block | R_END ) IF ;
+    # 182:1: condition : IF LPAR expresion RPAR COLON ( estatute )* ( ELSE block | R_END ) IF ;
     #
     def condition
       # -> uncomment the next line to manually enable rule tracing
@@ -1442,7 +1442,7 @@ module Hephaestus
 
 
       begin
-      # at line 183:5: IF LPAR expresion RPAR COLON ( estatute )? ( ELSE block | R_END ) IF
+      # at line 183:5: IF LPAR expresion RPAR COLON ( estatute )* ( ELSE block | R_END ) IF
       match( IF, TOKENS_FOLLOWING_IF_IN_condition_1861 )
       match( LPAR, TOKENS_FOLLOWING_LPAR_IN_condition_1863 )
       @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_1865 )
@@ -1455,21 +1455,27 @@ module Hephaestus
       # <-- action
 
       match( COLON, TOKENS_FOLLOWING_COLON_IN_condition_1871 )
-      # at line 183:54: ( estatute )?
-      alt_18 = 2
-      look_18_0 = @input.peek( 1 )
+      # at line 183:54: ( estatute )*
+      while true # decision 18
+        alt_18 = 2
+        look_18_0 = @input.peek( 1 )
 
-      if ( look_18_0.between?( ID, IF ) || look_18_0 == PRINT || look_18_0 == READ || look_18_0 == WHILE )
-        alt_18 = 1
-      end
-      case alt_18
-      when 1
-        # at line 183:56: estatute
-        @state.following.push( TOKENS_FOLLOWING_estatute_IN_condition_1875 )
-        estatute
-        @state.following.pop
+        if ( look_18_0.between?( ID, IF ) || look_18_0 == PRINT || look_18_0 == READ || look_18_0 == WHILE )
+          alt_18 = 1
 
-      end
+        end
+        case alt_18
+        when 1
+          # at line 183:56: estatute
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_condition_1875 )
+          estatute
+          @state.following.pop
+
+        else
+          break # out of loop for decision 18
+        end
+      end # loop for decision 18
+
       # at line 183:68: ( ELSE block | R_END )
       alt_19 = 2
       look_19_0 = @input.peek( 1 )
@@ -1502,7 +1508,7 @@ module Hephaestus
       end
 
       # --> action
-       $quads.fill_quad() 
+       $quads.fill_program_quad() 
       # <-- action
 
       match( IF, TOKENS_FOLLOWING_IF_IN_condition_1990 )
@@ -2484,7 +2490,7 @@ module Hephaestus
     TOKENS_FOLLOWING_expresion_IN_condition_1865 = Set[ 38 ]
     TOKENS_FOLLOWING_RPAR_IN_condition_1867 = Set[ 8 ]
     TOKENS_FOLLOWING_COLON_IN_condition_1871 = Set[ 13, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_condition_1875 = Set[ 13, 41 ]
+    TOKENS_FOLLOWING_estatute_IN_condition_1875 = Set[ 13, 20, 21, 33, 36, 41, 47 ]
     TOKENS_FOLLOWING_ELSE_IN_condition_1882 = Set[ 8 ]
     TOKENS_FOLLOWING_block_IN_condition_1886 = Set[ 21 ]
     TOKENS_FOLLOWING_R_END_IN_condition_1984 = Set[ 21 ]

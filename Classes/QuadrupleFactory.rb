@@ -243,7 +243,17 @@ class QuadrupleFactory
   end
 
   def go_sub(func_name)
-    quad = Quadruple.new('GOSUB', func_name, nil, nil)
+    puts func_name
+    quad_number = @program.past_context.functions_directory.functions[func_name].quad_number
+    quad = Quadruple.new('GOSUB', func_name, quad_number, nil)
+    @program.add_quadruples(quad)
+    @counter += 1
+  end
+
+  def go_sub_method(id, method_name)
+    context = method_exists?(id, method_name)
+    quad_number = context.functions_directory.functions[method_name].quad_number
+    quad = Quadruple.new('GOSUB', method_name, quad_number, nil)
     @program.add_quadruples(quad)
     @counter += 1
   end
