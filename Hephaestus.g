@@ -146,7 +146,7 @@ function
   ;
 
 parameters
-  : LPAR ( type ID {} ( COMMA type ID {})* )? RPAR
+  : LPAR ( type ID ( COMMA type ID )* )? RPAR
   ;
 
 estatute
