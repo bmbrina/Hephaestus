@@ -1,12 +1,18 @@
 require_relative "Context"
-
+require_relative "VM"
 class Program
-  attr_accessor :main_context, :current_context, :quadruples, :past_context
+  attr_accessor :main_context, :current_context, :quadruples, :past_context, :memory_counter, :counter
 
   def initialize()
     @main_context = Context.new('GLOBAL')
     @current_context = @main_context
     @quadruples = []
+    @counter = 0
+    @memory_counter = 1000
+  end
+
+  def set_next_memory()
+    @memory_counter += 1
   end
 
   def reset_context()
@@ -46,9 +52,14 @@ class Program
       params = @current_context.functions_directory.functions[header].parameters
       @past_context = @current_context
       @current_context = Context.new("#{header} context", "function")
-      params.each do | param |
-        @current_context.variables_directory.register(param.name, param.type)
+      params.each_with_index do | param , index |
+        set_next_memory()
+        @current_context.variables_directory.register(param.name, param.type, @memory_counter)
+        quad = Quadruple.new("=","param#{index}",nil,@memory_counter)
+        add_quadruples(quad)
+        @counter += 1
       end
+
     end
   end
 
@@ -57,7 +68,8 @@ class Program
       puts "ERROR: redefinition of variable #{name}."
       exit
     else
-      @current_context.variables_directory.register(name, type)
+      @current_context.variables_directory.register(name, type, @memory_counter)
+      set_next_memory()
     end
   end
 
@@ -68,6 +80,11 @@ class Program
 
   def add_quadruples(quad)
     @quadruples.push(quad)
+  end
+
+  def finish()
+    print_quadruples()
+    VM.new(@quadruples)
   end
 
   def print_quadruples()
