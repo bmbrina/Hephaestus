@@ -46,8 +46,8 @@ class QuadrupleFactory
     elsif value != nil
       variable_type = match_value(value)
       variable_value = extract_value(value)
-      @ids_stack.push("%#{variable_value}")
-      @memory_stack.push("%#{variable_value}")
+      @ids_stack.push(":#{variable_value}")
+      @memory_stack.push(":#{variable_value}")
       @types_stack.push(variable_type)
     end
   end

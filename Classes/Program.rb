@@ -55,7 +55,7 @@ class Program
       params.each_with_index do | param , index |
         set_next_memory()
         @current_context.variables_directory.register(param.name, param.type, @memory_counter)
-        quad = Quadruple.new("=","param#{index}",nil,@memory_counter)
+        quad = Quadruple.new("=", "param#{index}", nil, @memory_counter)
         add_quadruples(quad)
         @counter += 1
       end
