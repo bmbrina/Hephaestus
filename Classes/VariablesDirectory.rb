@@ -7,8 +7,8 @@ class VariablesDirectory
     @variables = {}
   end
 
-  def register(name, type)
-    @variables[name] = Variable.new(name, type)
+  def register(name, type, memory)
+    @variables[name] = Variable.new(name, type, memory)
   end
 
   def variable_exists?(id)
@@ -23,7 +23,7 @@ class VariablesDirectory
     puts "\tVariables directory:"
     @variables.each do |key, variable|
       puts "\t------------------------------------------------------"
-      puts("\t|Name: #{variable.name}, Type: #{variable.type}, Size: #{variable.size}, Dim: #{variable.is_dim}, Dim Structs: #{variable.dim_structures}|")
+      puts("\t|Name: #{variable.name}, Type: #{variable.type}, Size: #{variable.size}, Dir: #{variable.memory_dir}, Dim Structs: #{variable.dim_structures}|")
     end
     puts "\t------------------------------------------------------ \n"
   end

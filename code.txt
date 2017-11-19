@@ -10,7 +10,8 @@ class Person:
     if ( 4 < 5):
       print("hola").
     end if
-    arr[5] = 1 .
+    arr[4] = 2 .
+    mat[1,1] = 2 .
     return uno + dos.
   end function
 
@@ -25,9 +26,9 @@ program people:
   define barbara as Person.
   function Void printInfo(String name, Integer age):
     if ( 5 > 3):
-      print(5).
+      print(name).
     else:
-      print(3).
+      print(age).
     end if
     print("jorge").
   end function
@@ -35,7 +36,7 @@ program people:
   barbara.setName("barbara").
 
   printInfo("hola", 2).
-  
+
   while( 2 > 0):
     print("hola").
     if ( 5 > 3):
@@ -44,7 +45,7 @@ program people:
       print(3).
     end if
   end while
-  
+
   print (2 + (3 * 2)).
 
 end program

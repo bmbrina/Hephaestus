@@ -116,7 +116,7 @@ program
                                             | dim_dec
                                             | var_dec
                                             | function
-                                            )* R_END PROGRAM { \$program.print_quadruples() }
+                                            )* R_END PROGRAM { \$program.finish() }
   ;
 
 dim_dec
@@ -125,15 +125,15 @@ dim_dec
 
 mat_dim
   : COMMA { \$dim.generate_dim_structure(\$dim_aux) } INTEGER { \$dim.add_limit(\$dim_aux, $INTEGER.text) }
-  ;  
+  ;
 
 dim_struct
   : LBRACK { \$quads.is_dim() } exp { \$quads.generate_limit_quad() } ( COMMA { \$quads.update_dim() } exp { \$quads.generate_limit_quad() } )? RBRACK { \$quads.generate_dim_quads() }
   ;
 
 var_dec
-  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion 
-                                                                                   | func_call 
+  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion
+                                                                                   | func_call
                                                                                    ) { \$quads.assgn_quad() } )? DOT
   ;
 
@@ -151,7 +151,7 @@ parameters
 
 estatute
   : method_call
-  | assignment 
+  | assignment
   | condition
   | while_loop
   | reading
@@ -172,7 +172,7 @@ method_call_parameters
   ;
 
 assignment
-  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
+  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) }
               ( expresion
               | func_call
               )
@@ -180,8 +180,8 @@ assignment
   ;
 
 condition
-  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )* ( ELSE { \$quads.goto() } block 
-                                                                                             | R_END ) { \$quads.fill_program_quad() } IF 
+  : IF LPAR expresion RPAR { \$quads.gotof() } COLON ( estatute )* ( ELSE { \$quads.goto() } block
+                                                                                             | R_END ) { \$quads.fill_program_quad() } IF
   ;
 
 while_loop

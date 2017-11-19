@@ -1,5 +1,5 @@
 require_relative "Variable"
-
+require_relative "Program"
 class Function
   attr_accessor :header, :parameters, :return_type, :quad_number
 
@@ -15,7 +15,7 @@ class Function
     parameters = parameters.tr('()', '').split(',')
     parameters.each do | param |
       param = param.split(' ')
-      var = Variable.new(param[1], param[0])
+      var = Variable.new(param[1], param[0], 0)
       aux.push(var)
     end
     aux

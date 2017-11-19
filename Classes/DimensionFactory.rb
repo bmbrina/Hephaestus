@@ -34,6 +34,7 @@ class DimensionFactory
 
   def calculate_m(id)
     get_variable(id).size = @r
+    @program.memory_counter += @r - 1
     get_dim_structures(id).each do | structure |
       structure.m = @r / (structure.limit + 1)
       @r = structure.m
