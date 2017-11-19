@@ -172,7 +172,7 @@ method_call_parameters
   ;
 
 assignment
-  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
+  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } 
               ( expresion
               | func_call
               )
@@ -234,7 +234,7 @@ term
   ;
 
 factor
-  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )?
+  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) }
     | LPAR { \$quads.add_false_bottom($LPAR.text) } expresion RPAR { \$quads.remove_false_bottom() }
     | value { \$quads.add_id(nil, $value.text) }
   ;

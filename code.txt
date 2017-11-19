@@ -10,8 +10,7 @@ class Person:
     if ( 4 < 5):
       print("hola").
     end if
-    arr[1] = mat[1,arr[3]]. 
-    mat[1, arr[1+2]] = 3 .
+    arr = 1 .
     return uno + dos.
   end function
 

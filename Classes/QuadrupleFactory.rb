@@ -16,6 +16,7 @@ class QuadrupleFactory
     @temp_counter = 1
     @sem_cube = SemanticCube.new()
     @param_index = 0
+    @turn_off_if_dim = false
   end
 
   def goto_program()
@@ -27,6 +28,10 @@ class QuadrupleFactory
 
   def add_id(id, value)
     if id != nil
+      var = get_variable(id)
+      if var.is_dim
+        @turn_off_if_dim = true
+      end
       if find_variable(id)
         variable = get_variable(id)
         @ids_stack.push(variable.name)
@@ -243,7 +248,6 @@ class QuadrupleFactory
   end
 
   def go_sub(func_name)
-    puts func_name
     quad_number = @program.past_context.functions_directory.functions[func_name].quad_number
     quad = Quadruple.new('GOSUB', func_name, quad_number, nil)
     @program.add_quadruples(quad)
@@ -338,7 +342,15 @@ class QuadrupleFactory
   end
 
   # Dimensional Structures
+  def check_dim(id)
+    # If true, the variable is dimensional and the brackets weren't present.
+    if @turn_off_if_dim
+      puts "ERROR: Missing limits for #{id}."
+      exit
+    end
+  end
   def is_dim()
+    @turn_off_if_dim = false
     id = @ids_stack.pop()
     @types_stack.pop()
     if !get_variable(id).is_dim
@@ -355,6 +367,10 @@ class QuadrupleFactory
     dim = @dim_stack.last()[1]
     dim_id = @dim_stack.last()[0]
     var_dim_structures = get_variable(dim_id).dim_structures
+    if var_dim_structures[dim] == nil
+      puts "ERROR: wrong dimension size for #{dim_id}."
+      exit
+    end
     limit = var_dim_structures[dim].limit
     m = var_dim_structures[dim].m
     quad = Quadruple.new("VERIFICAR", id, 0, limit)
@@ -390,7 +406,20 @@ class QuadrupleFactory
     @dim_stack.last()[1] += 1
   end
 
+  def verify_dim_access()
+    curret_dim = @dim_stack.last()
+    dim = curret_dim[1]
+    id = curret_dim[0]
+    dim_structures_count = get_variable(id).dim_structures.count
+
+    if dim + 1 != dim_structures_count
+      puts "ERROR: received #{dim + 1} expected #{dim_structures_count} limits."
+      exit
+    end
+  end
+
   def generate_dim_quads()
+    verify_dim_access()
     aux = @ids_stack.pop()
     @types_stack.pop()
     dim_id = @dim_stack.last()[0]
