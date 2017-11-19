@@ -277,7 +277,7 @@ class QuadrupleFactory
     @memory_stack.pop()
 
     func_type = @types_stack.pop()
-    @program.setNextMemory()
+    @program.set_next_memory()
     temp = @program.memory_counter()
     quad = Quadruple.new('=', func_name, nil, temp)
     @ids_stack.push(temp)
@@ -404,7 +404,7 @@ class QuadrupleFactory
       @ids_stack.pop()
       aux = @memory_stack.pop()
       @types_stack.pop()
-      @program.setNextMemory()
+      @program.set_next_memory()
       temp = @program.memory_counter
       quad = Quadruple.new('*', aux, m, temp)
       @program.add_quadruples(quad)
@@ -421,7 +421,7 @@ class QuadrupleFactory
       aux1 = @memory_stack.pop()
       @types_stack.pop()
 
-      @program.setNextMemory()
+      @program.set_next_memory()
       temp = @program.memory_counter
 
       quad = Quadruple.new('+', aux1, aux2, temp)
@@ -456,7 +456,7 @@ class QuadrupleFactory
     @types_stack.pop()
     dim_id = @dim_stack.last()[0]
     dim_dir = get_variable(dim_id).memory_dir
-    @program.setNextMemory()
+    @program.set_next_memory()
     temp = @program.memory_counter
     quad = Quadruple.new('+', aux, dim_dir, temp)
     @program.add_quadruples(quad)
@@ -481,7 +481,7 @@ private
     left_side_type = @sem_cube.convert[@types_stack.pop()]
     type_res = @sem_cube.semantic_cube[[left_side_type, right_side_type, operator_type]]
     if type_res != nil
-      @program.setNextMemory()
+      @program.set_next_memory()
       temp = @program.memory_counter
 
       quad = Quadruple.new(operator, left_side, right_side, temp)

@@ -11,7 +11,7 @@ class Program
     @memory_counter = 1000
   end
 
-  def setNextMemory()
+  def set_next_memory()
     @memory_counter += 1
   end
 
@@ -53,7 +53,7 @@ class Program
       @past_context = @current_context
       @current_context = Context.new("#{header} context", "function")
       params.each_with_index do | param , index |
-        setNextMemory()
+        set_next_memory()
         @current_context.variables_directory.register(param.name, param.type, @memory_counter)
         quad = Quadruple.new("=","param#{index}",nil,@memory_counter)
         add_quadruples(quad)
@@ -69,7 +69,7 @@ class Program
       exit
     else
       @current_context.variables_directory.register(name, type, @memory_counter)
-      setNextMemory()
+      set_next_memory()
     end
   end
 
