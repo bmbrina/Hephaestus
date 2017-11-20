@@ -11,11 +11,12 @@ end function
 program add:
 
   define arr as Integer[5].
-  define uno as Integer = 1 .
-  define dos as Integer = 1 .
+  define result as Integer.
   define mat as Integer[2,2].
 
-  mat[uno,0] = 10 .
-  print(mat[1,0] + 5).
+  arr[3] = 4 .
+  arr[2] = 5 .
+  result = arr[3] + arr[2]. 
+  print(result).
 
 end program
