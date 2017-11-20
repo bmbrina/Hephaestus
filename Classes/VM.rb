@@ -132,9 +132,9 @@ class VM
   end
 
   def reading(var, var_type)
-    type = parse_type(var_type)
     aux = gets.chomp
     aux_class = convert_to_type(aux).class
+    type = parse_type(var_type, aux)
     if aux_class.to_s == type
       @current_context[var] = aux
     else
@@ -148,11 +148,16 @@ class VM
   end
 
   # --- Helpers
-  def parse_type(type)
+  def parse_type(type, var)
     if type == "Integer"
       "Fixnum"
     elsif type == "Bool"
-      # do something
+      var.downcase!
+      if var == "true"
+        "TrueClass"
+      elsif var == "false"
+        "FalseClass"
+      end
     else
       type
     end
