@@ -56,7 +56,9 @@ WHILE: 'while';
 DIV: '/';
 EQ: '==';
 GREATER: '>';
+GREATEQ: '>=';
 LESS: '<';
+LEQ: '<=';
 MINUS: '-';
 MULT: '*';
 NEQ: '<>';
@@ -203,7 +205,9 @@ func_call_parameters
 
 expresion
   : exp ( ( GREATER { \$quads.add_operator($GREATER.text) }
+          | GREATEQ { \$quads.add_operator($GREATEQ.text) }
           | LESS { \$quads.add_operator($LESS.text) }
+          | LEQ { \$quads.add_operator($LEQ.text) }
           | NEQ { \$quads.add_operator($NEQ.text) }
           | EQ { \$quads.add_operator($EQ.text) }
           | AND { \$quads.add_operator($AND.text) }

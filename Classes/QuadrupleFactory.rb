@@ -106,7 +106,7 @@ class QuadrupleFactory
   def is_expresion_pending()
     if @operators_stack.last() == '>' || @operators_stack.last() == '<' || @operators_stack.last() == '==' ||
        @operators_stack.last() == '==' || @operators_stack.last() == '<>' || @operators_stack.last() == 'and' ||
-       @operators_stack.last() == 'or'
+       @operators_stack.last() == 'or' || @operators_stack.last() == '<=' || @operators_stack.last() == '>='
       generate_quad()
     end
   end
@@ -472,12 +472,9 @@ class QuadrupleFactory
 private
   def generate_quad()
     operator = @operators_stack.pop()
-
     operator_type = @sem_cube.convert[operator]
-    @ids_stack.pop()
     right_side = @memory_stack.pop()
     right_side_type = @sem_cube.convert[@types_stack.pop()]
-    @ids_stack.pop()
     left_side = @memory_stack.pop()
     left_side_type = @sem_cube.convert[@types_stack.pop()]
     type_res = @sem_cube.semantic_cube[[left_side_type, right_side_type, operator_type]]

@@ -1,51 +1,33 @@
-class Person:
+program sort:
+
   define arr as Integer[5].
-  define mat as Integer[2,2].
-  define name as String = "Barbara".
-  define a as String.
-  define uno as Integer.
-  define dos as Integer.
 
-  function Integer add():
-    if ( 4 < 5):
-      print("hola").
-    end if
-    arr[4] = 2 .
-    mat[1,1] = 2 .
-    return uno + dos.
-  end function
+  arr[0] = 5 .
+  arr[1] = 2 .
+  arr[2] = 3 .
+  arr[3] = 4 .
+  arr[4] = 1 .
 
-  function Void setName(String personName):
-    name = personName.
-    print("hola").
-  end function
+  define i as Integer.
+  define key as Integer.
+  define j as Integer.
 
-end class
+  while(i < 5):
+    key =  arr[i].
+    j = i - 1 .
 
-program people:
-  define barbara as Person.
-  function Void printInfo(String name, Integer age):
-    if ( 5 > 3):
-      print(name).
-    else:
-      print(age).
-    end if
-    print("jorge").
-  end function
+    while( j >= 0 and arr[j] > key ):
+      arr[j+1] = arr[j].
+      j = j - 1 . 
+    end while
 
-  barbara.setName("barbara").
-
-  printInfo("hola", 2).
-
-  while( 2 > 0):
-    print("hola").
-    if ( 5 > 3):
-      print(5).
-    else:
-      print(3).
-    end if
+    i = i + 1 .
   end while
 
-  print (2 + (3 * 2)).
+  print(a[0]).
+  print(a[1]).
+  print(a[2]).
+  print(a[3]).
+  print(a[4]).
 
 end program
