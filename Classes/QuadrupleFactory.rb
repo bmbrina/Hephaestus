@@ -458,7 +458,7 @@ class QuadrupleFactory
     dim_dir = get_variable(dim_id).memory_dir
     @program.set_next_memory()
     temp = @program.memory_counter
-    quad = Quadruple.new('+', aux, dim_dir, temp)
+    quad = Quadruple.new('+', aux, "%#{dim_dir}", temp)
     @program.add_quadruples(quad)
     @program.counter += 1
     @ids_stack.push("(#{temp})")
