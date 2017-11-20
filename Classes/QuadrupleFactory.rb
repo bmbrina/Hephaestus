@@ -406,7 +406,7 @@ class QuadrupleFactory
       @types_stack.pop()
       @program.set_next_memory()
       temp = @program.memory_counter
-      quad = Quadruple.new('*', aux, m, temp)
+      quad = Quadruple.new('*', aux, "%#{m}", temp)
       @program.add_quadruples(quad)
       @program.counter += 1
       @ids_stack.push(temp)
