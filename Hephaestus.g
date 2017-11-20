@@ -147,25 +147,14 @@ parameters
   ;
 
 estatute
-  : method_call
-  | assignment
+  : assignment
   | condition
   | while_loop
   | reading
   | writing
+  | method_call
   | func_call DOT
-  ;
 
-method_call
-  : ID {\$method_aux = $ID.text} DOT method_call_2 { \$quads.get_return_value() }
-  ;
-
-method_call_2
-  : ID { \$func_aux = $ID.text } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
-  ;
-
-method_call_parameters
-  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
   ;
 
 assignment
@@ -191,6 +180,18 @@ reading
 
 writing
   : PRINT LPAR expresion RPAR DOT { \$quads.write()}
+  ;
+
+method_call
+  : ID {\$method_aux = $ID.text} DOT method_call_2 { \$quads.get_return_value() }
+  ;
+
+method_call_2
+  : ID { \$func_aux = $ID.text } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) } DOT
+  ;
+
+method_call_parameters
+  : LPAR ( ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expresion ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
   ;
 
 func_call

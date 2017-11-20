@@ -1,17 +1,24 @@
-function Integer fibonacci(Integer a):
-  if(a < 2):
-    a = 1 .
-  else:
-    a = fibonacci(a - 2) + fibonacci(a - 1).
-  end if
- return a.
-end function
+class Person:
+  define name as String.
 
+  function Void setName(String personName):
+    name = personName.
+  end function
 
-program add:
+  function String getName():
+    return name.
+  end function
 
-  define res as Integer.
-  res = fibonacci(30).
-  print(res).
+end class
+
+program classes:
+
+  define jorge as Person.
+  jorge.setName("jorge").
+
+  jorge.getName().
+  
+  print(  ).
+
 
 end program
