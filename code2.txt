@@ -14,11 +14,8 @@ end class
 program classes:
 
   define jorge as Person.
-  jorge.setName("jorge").
-
-  jorge.getName().
-  
-  print(  ).
-
+  define name as String.
+  name = jorge.setName("jorge").
+  print( name ).
 
 end program
