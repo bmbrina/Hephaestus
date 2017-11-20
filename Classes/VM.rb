@@ -151,6 +151,8 @@ class VM
   def parse_type(type)
     if type == "Integer"
       "Fixnum"
+    elsif type == "Bool"
+      # do something
     else
       type
     end
