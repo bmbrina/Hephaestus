@@ -45,6 +45,8 @@ class VM
       @quad_no = quad.result - 1
     when 'GOTOF'
       gotof(quad.left_side, quad.result)
+    when 'read'
+      reading(quad.right_side, quad.result)
     when 'print'
       writing(quad.left_side)
     when 'ERA'
@@ -56,7 +58,7 @@ class VM
     when 'return'
       return_func(quad.left_side)
     when 'ENDFUNC'
-    endfunc()
+      endfunc()
     end
   end
 
@@ -129,11 +131,30 @@ class VM
     @quad_no = @return_stack.pop()
   end
 
+  def reading(var, var_type)
+    type = parse_type(var_type)
+    aux = gets.chomp
+    aux_class = convert_to_type(aux).class
+    if aux_class.to_s == type
+      @current_context[var] = aux
+    else
+      puts "ERROR: variable type mismatched, expected #{var_type} and got #{aux_class}."
+      exit
+    end
+  end
+
   def writing(value)
     puts get_value(value)
   end
 
   # --- Helpers
+  def parse_type(type)
+    if type == "Integer"
+      "Fixnum"
+    else
+      type
+    end
+  end
 
   def parse_constant(value)
     value.gsub("%", "")
@@ -188,8 +209,10 @@ class VM
       false
     elsif value.include? '.'
       value.to_f
-    else
+    elsif value.scan(/\D/).empty?
       value.to_i
+    else
+      value
     end
   end
 

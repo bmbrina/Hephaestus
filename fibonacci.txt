@@ -5,8 +5,9 @@ program fibonacci:
   define d as Integer = 1 .
   define temp as Integer = 0 .
 
-
-  while(cont < 1000):
+  print(c).
+  print(d).
+  while(cont < 13):
     temp = c + d.
     c = d.
     d = temp.
