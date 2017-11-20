@@ -216,21 +216,21 @@ expresion
           | AND { \$quads.add_operator($AND.text) }
           | OR { \$quads.add_operator($OR.text) }
           ) exp
-        )? { \$quads.is_expresion_pending() }
+          { \$quads.is_expresion_pending() } )? 
   ;
 
 exp
   : term ( ( PLUS { \$quads.add_operator($PLUS.text) }
            | MINUS { \$quads.add_operator($MINUS.text) }
            ) term
-         )* { \$quads.is_exp_pending() }
+           { \$quads.is_exp_pending() } )*
   ;
 
 term
   : factor ( ( MULT { \$quads.add_operator($MULT.text) }
              | DIV { \$quads.add_operator($DIV.text) }
              ) factor
-           )* { \$quads.is_term_pending() }
+             { \$quads.is_term_pending() } )*
   ;
 
 factor

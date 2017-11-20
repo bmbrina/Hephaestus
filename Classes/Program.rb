@@ -6,6 +6,7 @@ class Program
   def initialize()
     @main_context = Context.new('GLOBAL')
     @current_context = @main_context
+    @past_context = @main_context
     @quadruples = []
     @counter = 0
     @memory_counter = 1000

@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-11-19 15:14:08
+# Generated at: 2017-11-19 17:37:48
 #
 
 # ~~~> start load path setup
@@ -1974,12 +1974,12 @@ module Hephaestus
         exp
         @state.following.pop
 
+        # --> action
+         $quads.is_expresion_pending() 
+        # <-- action
+
+
       end
-
-      # --> action
-       $quads.is_expresion_pending() 
-      # <-- action
-
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -2014,7 +2014,7 @@ module Hephaestus
 
       begin
       # at line 223:5: term ( ( PLUS | MINUS ) term )*
-      @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2294 )
+      @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2297 )
       term
       @state.following.pop
       # at line 223:10: ( ( PLUS | MINUS ) term )*
@@ -2044,7 +2044,7 @@ module Hephaestus
           case alt_25
           when 1
             # at line 223:14: PLUS
-            __PLUS24__ = match( PLUS, TOKENS_FOLLOWING_PLUS_IN_exp_2300 )
+            __PLUS24__ = match( PLUS, TOKENS_FOLLOWING_PLUS_IN_exp_2303 )
 
             # --> action
              $quads.add_operator(__PLUS24__.text) 
@@ -2053,7 +2053,7 @@ module Hephaestus
 
           when 2
             # at line 224:14: MINUS
-            __MINUS25__ = match( MINUS, TOKENS_FOLLOWING_MINUS_IN_exp_2317 )
+            __MINUS25__ = match( MINUS, TOKENS_FOLLOWING_MINUS_IN_exp_2320 )
 
             # --> action
              $quads.add_operator(__MINUS25__.text) 
@@ -2061,19 +2061,19 @@ module Hephaestus
 
 
           end
-          @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2334 )
+          @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2337 )
           term
           @state.following.pop
+
+          # --> action
+           $quads.is_exp_pending() 
+          # <-- action
+
 
         else
           break # out of loop for decision 26
         end
       end # loop for decision 26
-
-
-      # --> action
-       $quads.is_exp_pending() 
-      # <-- action
 
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -2109,7 +2109,7 @@ module Hephaestus
 
       begin
       # at line 230:5: factor ( ( MULT | DIV ) factor )*
-      @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2361 )
+      @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2366 )
       factor
       @state.following.pop
       # at line 230:12: ( ( MULT | DIV ) factor )*
@@ -2139,7 +2139,7 @@ module Hephaestus
           case alt_27
           when 1
             # at line 230:16: MULT
-            __MULT26__ = match( MULT, TOKENS_FOLLOWING_MULT_IN_term_2367 )
+            __MULT26__ = match( MULT, TOKENS_FOLLOWING_MULT_IN_term_2372 )
 
             # --> action
              $quads.add_operator(__MULT26__.text) 
@@ -2148,7 +2148,7 @@ module Hephaestus
 
           when 2
             # at line 231:16: DIV
-            __DIV27__ = match( DIV, TOKENS_FOLLOWING_DIV_IN_term_2386 )
+            __DIV27__ = match( DIV, TOKENS_FOLLOWING_DIV_IN_term_2391 )
 
             # --> action
              $quads.add_operator(__DIV27__.text) 
@@ -2156,19 +2156,19 @@ module Hephaestus
 
 
           end
-          @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2405 )
+          @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2410 )
           factor
           @state.following.pop
+
+          # --> action
+           $quads.is_term_pending() 
+          # <-- action
+
 
         else
           break # out of loop for decision 28
         end
       end # loop for decision 28
-
-
-      # --> action
-       $quads.is_term_pending() 
-      # <-- action
 
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -2217,7 +2217,7 @@ module Hephaestus
       case alt_30
       when 1
         # at line 237:5: ID ( dim_struct )?
-        __ID28__ = match( ID, TOKENS_FOLLOWING_ID_IN_factor_2434 )
+        __ID28__ = match( ID, TOKENS_FOLLOWING_ID_IN_factor_2441 )
 
         # --> action
          $quads.add_id(__ID28__.text, nil) 
@@ -2237,7 +2237,7 @@ module Hephaestus
            $dim_aux = __ID28__.text 
           # <-- action
 
-          @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_factor_2442 )
+          @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_factor_2449 )
           dim_struct
           @state.following.pop
 
@@ -2250,16 +2250,16 @@ module Hephaestus
 
       when 2
         # at line 238:7: LPAR expresion RPAR
-        __LPAR29__ = match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_2455 )
+        __LPAR29__ = match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_2462 )
 
         # --> action
          $quads.add_false_bottom(__LPAR29__.text) 
         # <-- action
 
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_factor_2459 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_factor_2466 )
         expresion
         @state.following.pop
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_2461 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_2468 )
 
         # --> action
          $quads.remove_false_bottom() 
@@ -2268,7 +2268,7 @@ module Hephaestus
 
       when 3
         # at line 239:7: value
-        @state.following.push( TOKENS_FOLLOWING_value_IN_factor_2471 )
+        @state.following.push( TOKENS_FOLLOWING_value_IN_factor_2478 )
         value30 = value
         @state.following.pop
 
@@ -2533,20 +2533,20 @@ module Hephaestus
     TOKENS_FOLLOWING_AND_IN_expresion_2236 = Set[ 7, 15, 20, 23, 26, 45 ]
     TOKENS_FOLLOWING_OR_IN_expresion_2252 = Set[ 7, 15, 20, 23, 26, 45 ]
     TOKENS_FOLLOWING_exp_IN_expresion_2268 = Set[ 1 ]
-    TOKENS_FOLLOWING_term_IN_exp_2294 = Set[ 1, 27, 32 ]
-    TOKENS_FOLLOWING_PLUS_IN_exp_2300 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_MINUS_IN_exp_2317 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_term_IN_exp_2334 = Set[ 1, 27, 32 ]
-    TOKENS_FOLLOWING_factor_IN_term_2361 = Set[ 1, 11, 28 ]
-    TOKENS_FOLLOWING_MULT_IN_term_2367 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_DIV_IN_term_2386 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_factor_IN_term_2405 = Set[ 1, 11, 28 ]
-    TOKENS_FOLLOWING_ID_IN_factor_2434 = Set[ 1, 24 ]
-    TOKENS_FOLLOWING_dim_struct_IN_factor_2442 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_factor_2455 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_factor_2459 = Set[ 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_factor_2461 = Set[ 1 ]
-    TOKENS_FOLLOWING_value_IN_factor_2471 = Set[ 1 ]
+    TOKENS_FOLLOWING_term_IN_exp_2297 = Set[ 1, 27, 32 ]
+    TOKENS_FOLLOWING_PLUS_IN_exp_2303 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_MINUS_IN_exp_2320 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_term_IN_exp_2337 = Set[ 1, 27, 32 ]
+    TOKENS_FOLLOWING_factor_IN_term_2366 = Set[ 1, 11, 28 ]
+    TOKENS_FOLLOWING_MULT_IN_term_2372 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_DIV_IN_term_2391 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_factor_IN_term_2410 = Set[ 1, 11, 28 ]
+    TOKENS_FOLLOWING_ID_IN_factor_2441 = Set[ 1, 24 ]
+    TOKENS_FOLLOWING_dim_struct_IN_factor_2449 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_factor_2462 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_factor_2466 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_factor_2468 = Set[ 1 ]
+    TOKENS_FOLLOWING_value_IN_factor_2478 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 
