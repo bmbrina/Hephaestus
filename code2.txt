@@ -11,11 +11,15 @@ class Person:
 
 end class
 
+
 program classes:
 
   define jorge as Person.
+
+  jorge@setName("jorge").
+
   define name as String.
-  name = jorge.getName()
-  print( name ).
+
+  print( jorge@getName() ).
 
 end program

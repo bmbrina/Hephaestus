@@ -82,6 +82,7 @@ LBRACK: '[';
 LPAR: '(';
 RBRACK: ']';
 RPAR: ')';
+DOT2: '@';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // SPECIAL CHARACTERS
@@ -183,7 +184,7 @@ writing
   ;
 
 method_call
-  : ID {\$method_aux = $ID.text} DOT method_call_2
+  : ID {\$method_aux = $ID.text} DOT2 method_call_2
   ;
 
 method_call_2
@@ -193,6 +194,11 @@ method_call_2
 method_call_parameters
   : LPAR ( ( expression ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expression ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
   ;
+
+/*method_call_parameters
+  : LPAR ( ( STRING ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } COMMA method_call_parameters )
+  | (STRING { \$quads.method_parameter(\$method_aux ,\$func_aux) } ) { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
+  ;*/
 
 func_call
   : ID { \$quads.function_exists?($ID.text) } { \$func_aux = $ID.text } { \$quads.era($ID.text) } func_call_parameters { \$quads.get_return_value() }
@@ -232,6 +238,7 @@ factor
   | LPAR { \$quads.add_false_bottom($LPAR.text) } expression RPAR { \$quads.remove_false_bottom() }
   | value { \$quads.add_id(nil, $value.text) }
   | func_call
+  | method_call
   ;
 
 type
