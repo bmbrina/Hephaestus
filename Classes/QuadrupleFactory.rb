@@ -103,10 +103,15 @@ class QuadrupleFactory
     end
   end
 
-  def is_expresion_pending()
+  def is_expression_pending()
     if @operators_stack.last() == '>' || @operators_stack.last() == '<' || @operators_stack.last() == '==' ||
-       @operators_stack.last() == '==' || @operators_stack.last() == '<>' || @operators_stack.last() == 'and' ||
-       @operators_stack.last() == 'or' || @operators_stack.last() == '<=' || @operators_stack.last() == '>='
+       @operators_stack.last() == '==' || @operators_stack.last() == '<>' || @operators_stack.last() == '<=' || @operators_stack.last() == '>='
+      generate_quad()
+    end
+  end
+
+  def is_super_expression_pending()
+    if @operators_stack.last() == 'and' || @operators_stack.last() == 'or'
       generate_quad()
     end
   end
