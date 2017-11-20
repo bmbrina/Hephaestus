@@ -15,7 +15,7 @@ program classes:
 
   define jorge as Person.
   define name as String.
-  name = jorge.setName("jorge").
+  name = jorge.getName()
   print( name ).
 
 end program

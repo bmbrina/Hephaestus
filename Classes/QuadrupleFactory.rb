@@ -274,17 +274,15 @@ class QuadrupleFactory
 
   def get_return_value()
     func_name = @ids_stack.pop()
-    @memory_stack.pop()
-
     func_type = @types_stack.pop()
     @program.set_next_memory()
     temp = @program.memory_counter()
     quad = Quadruple.new('=', func_name, nil, temp)
+    @program.quadruples.push(quad)
+    @program.counter += 1
     @ids_stack.push(temp)
     @memory_stack.push(temp)
     @types_stack.push(func_type)
-    @program.quadruples.push(quad)
-    @program.counter += 1
   end
 
   def return(func_name)
@@ -343,13 +341,11 @@ class QuadrupleFactory
   def assgn_quad()
     @ids_stack.pop()
     result = @memory_stack.pop()
-
     result_type = @types_stack.pop()
     @ids_stack.pop()
     id = @memory_stack.pop()
     id_type = @types_stack.pop()
     op = @operators_stack.pop()
-
     if result_type == id_type
       quad = Quadruple.new(op, result, nil, id)
       @program.add_quadruples(quad)
