@@ -28,7 +28,7 @@ class QuadrupleFactory
 
   def add_id(id, value)
     if id != nil
-        #to check if variable has or brackets
+        #to check if variable has brackets
         variable = get_variable(id)
         if variable.is_dim
           @turn_off_if_dim = true
@@ -130,7 +130,6 @@ class QuadrupleFactory
     if type == "Bool"
       @ids_stack.pop()
       result = @memory_stack.pop()
-
       quad = Quadruple.new('GOTOF', result, nil, nil)
       @program.add_quadruples(quad)
       @jumps_stack.push(@program.counter)
@@ -168,7 +167,6 @@ class QuadrupleFactory
     position = @jumps_stack.pop()
     quad = Quadruple.new('GOTO', nil, nil, position)
     @program.add_quadruples(quad)
-    @jumps_stack.push(@program.counter)
     @program.counter += 1
   end
 

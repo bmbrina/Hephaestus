@@ -115,35 +115,36 @@ class VM
   def leq_than(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) <= get_value(right);
+    @current_context[temp] = get_value(left) <= get_value(right)
   end
 
   def equal(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) == get_value(right);
+    @current_context[temp] = get_value(left) == get_value(right)
   end
 
   def not_equal(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) != get_value(right);
+    @current_context[temp] = get_value(left) != get_value(right)
   end
 
   def and_op(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) && get_value(right);
+    @current_context[temp] = get_value(left) && get_value(right)
   end
 
   def or_op(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) || get_value(right);
+    @current_context[temp] = get_value(left) || get_value(right)
   end
 
   def assign(result, var)
     var = get_dir(var)
+    result = get_dir(result)
     @current_context[var] = get_value(result)
   end
 

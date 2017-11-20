@@ -1,0 +1,35 @@
+program bubbleSort:
+
+  define arr as Integer[5].
+  define n as Integer = 5 .
+
+  arr[0] = 5 .
+  arr[1] = 1 .
+  arr[2] = 4 .
+  arr[3] = 2 .
+  arr[4] = 8 .
+
+  define i as Integer = 0 .
+  define aux as Integer.
+  define j as Integer = 0 .
+
+  while(i < n - 1):
+    j = 0 .
+    while(j < n - i - 1):
+      if (arr[j] > arr[j+1]):
+        aux = arr[j].
+        arr[j] = arr[j+1].
+        arr[j+1] = aux.
+      end if
+      j = j + 1 .
+    end while
+    i = i + 1 .
+  end while
+
+  i = 0 .
+  print("Sorted:").
+  while(i < n):
+    print(arr[i]).
+    i = i + 1 .
+  end while
+end program
