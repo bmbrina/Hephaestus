@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-11-19 17:37:48
+# Generated at: 2017-11-19 20:12:06
 #
 
 # ~~~> start load path setup
@@ -143,7 +143,7 @@ module Hephaestus
     # parser rule start
     #
     # (in Hephaestus.g)
-    # 99:1: start : ( r_class )* program ;
+    # 99:1: start : ( r_class )* ( function )* program ;
     #
     def start
       # -> uncomment the next line to manually enable rule tracing
@@ -151,7 +151,7 @@ module Hephaestus
 
 
       begin
-      # at line 100:5: ( r_class )* program
+      # at line 100:5: ( r_class )* ( function )* program
       # --> action
        $quads.goto_program() 
       # <-- action
@@ -177,7 +177,28 @@ module Hephaestus
         end
       end # loop for decision 1
 
-      @state.following.push( TOKENS_FOLLOWING_program_IN_start_517 )
+      # at line 100:46: ( function )*
+      while true # decision 2
+        alt_2 = 2
+        look_2_0 = @input.peek( 1 )
+
+        if ( look_2_0 == FUNCTION )
+          alt_2 = 1
+
+        end
+        case alt_2
+        when 1
+          # at line 100:48: function
+          @state.following.push( TOKENS_FOLLOWING_function_IN_start_520 )
+          function
+          @state.following.pop
+
+        else
+          break # out of loop for decision 2
+        end
+      end # loop for decision 2
+
+      @state.following.push( TOKENS_FOLLOWING_program_IN_start_525 )
       program
       @state.following.pop
 
@@ -213,8 +234,8 @@ module Hephaestus
 
       begin
       # at line 104:5: R_CLASS ID ( heritage )? COLON ( function | dim_dec | var_dec )* R_END R_CLASS
-      match( R_CLASS, TOKENS_FOLLOWING_R_CLASS_IN_r_class_530 )
-      __ID1__ = match( ID, TOKENS_FOLLOWING_ID_IN_r_class_532 )
+      match( R_CLASS, TOKENS_FOLLOWING_R_CLASS_IN_r_class_538 )
+      __ID1__ = match( ID, TOKENS_FOLLOWING_ID_IN_r_class_540 )
 
       # --> action
        $class_aux = __ID1__.text 
@@ -226,44 +247,44 @@ module Hephaestus
       # <-- action
 
       # at line 104:82: ( heritage )?
-      alt_2 = 2
-      look_2_0 = @input.peek( 1 )
+      alt_3 = 2
+      look_3_0 = @input.peek( 1 )
 
-      if ( look_2_0 == HER )
-        alt_2 = 1
+      if ( look_3_0 == HER )
+        alt_3 = 1
       end
-      case alt_2
+      case alt_3
       when 1
         # at line 104:82: heritage
-        @state.following.push( TOKENS_FOLLOWING_heritage_IN_r_class_538 )
+        @state.following.push( TOKENS_FOLLOWING_heritage_IN_r_class_546 )
         heritage
         @state.following.pop
 
       end
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_r_class_542 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_r_class_550 )
       # at line 104:99: ( function | dim_dec | var_dec )*
-      while true # decision 3
-        alt_3 = 4
-        look_3_0 = @input.peek( 1 )
+      while true # decision 4
+        alt_4 = 4
+        look_4_0 = @input.peek( 1 )
 
-        if ( look_3_0 == FUNCTION )
-          alt_3 = 1
-        elsif ( look_3_0 == DEFINE )
-          look_3_3 = @input.peek( 2 )
+        if ( look_4_0 == FUNCTION )
+          alt_4 = 1
+        elsif ( look_4_0 == DEFINE )
+          look_4_3 = @input.peek( 2 )
 
-          if ( look_3_3 == ID )
-            look_3_4 = @input.peek( 3 )
+          if ( look_4_3 == ID )
+            look_4_4 = @input.peek( 3 )
 
-            if ( look_3_4 == AS )
-              look_3_5 = @input.peek( 4 )
+            if ( look_4_4 == AS )
+              look_4_5 = @input.peek( 4 )
 
-              if ( look_3_5 == ID || look_3_5 == R_BOOL || look_3_5.between?( R_FLOAT, R_STRING ) || look_3_5 == VOID )
-                look_3_6 = @input.peek( 5 )
+              if ( look_4_5 == ID || look_4_5 == R_BOOL || look_4_5.between?( R_FLOAT, R_STRING ) || look_4_5 == VOID )
+                look_4_6 = @input.peek( 5 )
 
-                if ( look_3_6 == ASGN || look_3_6 == DOT )
-                  alt_3 = 3
-                elsif ( look_3_6 == LBRACK )
-                  alt_3 = 2
+                if ( look_4_6 == ASGN || look_4_6 == DOT )
+                  alt_4 = 3
+                elsif ( look_4_6 == LBRACK )
+                  alt_4 = 2
 
                 end
 
@@ -274,32 +295,32 @@ module Hephaestus
           end
 
         end
-        case alt_3
+        case alt_4
         when 1
           # at line 104:101: function
-          @state.following.push( TOKENS_FOLLOWING_function_IN_r_class_546 )
+          @state.following.push( TOKENS_FOLLOWING_function_IN_r_class_554 )
           function
           @state.following.pop
 
         when 2
           # at line 105:74: dim_dec
-          @state.following.push( TOKENS_FOLLOWING_dim_dec_IN_r_class_621 )
+          @state.following.push( TOKENS_FOLLOWING_dim_dec_IN_r_class_629 )
           dim_dec
           @state.following.pop
 
         when 3
           # at line 106:74: var_dec
-          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_r_class_696 )
+          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_r_class_704 )
           var_dec
           @state.following.pop
 
         else
-          break # out of loop for decision 3
+          break # out of loop for decision 4
         end
-      end # loop for decision 3
+      end # loop for decision 4
 
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_r_class_772 )
-      match( R_CLASS, TOKENS_FOLLOWING_R_CLASS_IN_r_class_774 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_r_class_780 )
+      match( R_CLASS, TOKENS_FOLLOWING_R_CLASS_IN_r_class_782 )
 
       # --> action
        $program.reset_class_context() 
@@ -340,8 +361,8 @@ module Hephaestus
       # at line 111:5: ( HER ID )
       # at line 111:5: ( HER ID )
       # at line 111:7: HER ID
-      match( HER, TOKENS_FOLLOWING_HER_IN_heritage_791 )
-      __ID2__ = match( ID, TOKENS_FOLLOWING_ID_IN_heritage_793 )
+      match( HER, TOKENS_FOLLOWING_HER_IN_heritage_799 )
+      __ID2__ = match( ID, TOKENS_FOLLOWING_ID_IN_heritage_801 )
 
 
       # --> action
@@ -374,7 +395,7 @@ module Hephaestus
     # parser rule program
     #
     # (in Hephaestus.g)
-    # 114:1: program : PROGRAM ID COLON ( estatute | dim_dec | var_dec | function )* R_END PROGRAM ;
+    # 114:1: program : PROGRAM ID COLON ( estatute | dim_dec | var_dec )* R_END PROGRAM ;
     #
     def program
       # -> uncomment the next line to manually enable rule tracing
@@ -382,35 +403,40 @@ module Hephaestus
 
 
       begin
-      # at line 115:5: PROGRAM ID COLON ( estatute | dim_dec | var_dec | function )* R_END PROGRAM
-      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_812 )
+      # at line 115:5: PROGRAM ID COLON ( estatute | dim_dec | var_dec )* R_END PROGRAM
+      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_820 )
 
       # --> action
        $quads.fill_program_quad() 
       # <-- action
 
-      match( ID, TOKENS_FOLLOWING_ID_IN_program_816 )
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_program_818 )
-      # at line 115:54: ( estatute | dim_dec | var_dec | function )*
-      while true # decision 4
-        alt_4 = 5
-        case look_4 = @input.peek( 1 )
-        when ID, IF, PRINT, READ, WHILE then alt_4 = 1
-        when DEFINE then look_4_3 = @input.peek( 2 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_program_824 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_program_826 )
+      # at line 115:54: ( estatute | dim_dec | var_dec )*
+      while true # decision 5
+        alt_5 = 4
+        look_5_0 = @input.peek( 1 )
 
-        if ( look_4_3 == ID )
-          look_4_5 = @input.peek( 3 )
+        if ( look_5_0.between?( ID, IF ) || look_5_0 == PRINT || look_5_0 == READ || look_5_0 == WHILE )
+          alt_5 = 1
+        elsif ( look_5_0 == DEFINE )
+          look_5_3 = @input.peek( 2 )
 
-          if ( look_4_5 == AS )
-            look_4_6 = @input.peek( 4 )
+          if ( look_5_3 == ID )
+            look_5_4 = @input.peek( 3 )
 
-            if ( look_4_6 == ID || look_4_6 == R_BOOL || look_4_6.between?( R_FLOAT, R_STRING ) || look_4_6 == VOID )
-              look_4_7 = @input.peek( 5 )
+            if ( look_5_4 == AS )
+              look_5_5 = @input.peek( 4 )
 
-              if ( look_4_7 == ASGN || look_4_7 == DOT )
-                alt_4 = 3
-              elsif ( look_4_7 == LBRACK )
-                alt_4 = 2
+              if ( look_5_5 == ID || look_5_5 == R_BOOL || look_5_5.between?( R_FLOAT, R_STRING ) || look_5_5 == VOID )
+                look_5_6 = @input.peek( 5 )
+
+                if ( look_5_6 == ASGN || look_5_6 == DOT )
+                  alt_5 = 3
+                elsif ( look_5_6 == LBRACK )
+                  alt_5 = 2
+
+                end
 
               end
 
@@ -419,40 +445,32 @@ module Hephaestus
           end
 
         end
-        when FUNCTION then alt_4 = 4
-        end
-        case alt_4
+        case alt_5
         when 1
           # at line 115:56: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_program_822 )
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_program_830 )
           estatute
           @state.following.pop
 
         when 2
           # at line 116:47: dim_dec
-          @state.following.push( TOKENS_FOLLOWING_dim_dec_IN_program_870 )
+          @state.following.push( TOKENS_FOLLOWING_dim_dec_IN_program_878 )
           dim_dec
           @state.following.pop
 
         when 3
           # at line 117:47: var_dec
-          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_program_918 )
+          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_program_926 )
           var_dec
           @state.following.pop
 
-        when 4
-          # at line 118:47: function
-          @state.following.push( TOKENS_FOLLOWING_function_IN_program_966 )
-          function
-          @state.following.pop
-
         else
-          break # out of loop for decision 4
+          break # out of loop for decision 5
         end
-      end # loop for decision 4
+      end # loop for decision 5
 
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_program_1015 )
-      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_1017 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_program_975 )
+      match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_program_977 )
 
       # --> action
        $program.finish() 
@@ -479,7 +497,7 @@ module Hephaestus
     # parser rule dim_dec
     #
     # (in Hephaestus.g)
-    # 122:1: dim_dec : DEFINE ID AS type LBRACK INTEGER ( mat_dim )? RBRACK DOT ;
+    # 121:1: dim_dec : DEFINE ID AS type LBRACK INTEGER ( mat_dim )? RBRACK DOT ;
     #
     def dim_dec
       # -> uncomment the next line to manually enable rule tracing
@@ -492,16 +510,16 @@ module Hephaestus
 
 
       begin
-      # at line 123:5: DEFINE ID AS type LBRACK INTEGER ( mat_dim )? RBRACK DOT
-      match( DEFINE, TOKENS_FOLLOWING_DEFINE_IN_dim_dec_1032 )
-      __ID3__ = match( ID, TOKENS_FOLLOWING_ID_IN_dim_dec_1034 )
+      # at line 122:5: DEFINE ID AS type LBRACK INTEGER ( mat_dim )? RBRACK DOT
+      match( DEFINE, TOKENS_FOLLOWING_DEFINE_IN_dim_dec_992 )
+      __ID3__ = match( ID, TOKENS_FOLLOWING_ID_IN_dim_dec_994 )
 
       # --> action
        $dim_aux = __ID3__.text 
       # <-- action
 
-      match( AS, TOKENS_FOLLOWING_AS_IN_dim_dec_1038 )
-      @state.following.push( TOKENS_FOLLOWING_type_IN_dim_dec_1040 )
+      match( AS, TOKENS_FOLLOWING_AS_IN_dim_dec_998 )
+      @state.following.push( TOKENS_FOLLOWING_type_IN_dim_dec_1000 )
       type4 = type
       @state.following.pop
 
@@ -509,40 +527,40 @@ module Hephaestus
        $program.add_dim_variable(__ID3__.text, ( type4 && @input.to_s( type4.start, type4.stop ) ), true) 
       # <-- action
 
-      match( LBRACK, TOKENS_FOLLOWING_LBRACK_IN_dim_dec_1044 )
+      match( LBRACK, TOKENS_FOLLOWING_LBRACK_IN_dim_dec_1004 )
 
       # --> action
        $dim.generate_dim_structure(__ID3__.text) 
       # <-- action
 
-      __INTEGER5__ = match( INTEGER, TOKENS_FOLLOWING_INTEGER_IN_dim_dec_1048 )
+      __INTEGER5__ = match( INTEGER, TOKENS_FOLLOWING_INTEGER_IN_dim_dec_1008 )
 
       # --> action
        $dim.add_limit(__ID3__.text, __INTEGER5__.text) 
       # <-- action
 
-      # at line 123:210: ( mat_dim )?
-      alt_5 = 2
-      look_5_0 = @input.peek( 1 )
+      # at line 122:210: ( mat_dim )?
+      alt_6 = 2
+      look_6_0 = @input.peek( 1 )
 
-      if ( look_5_0 == COMMA )
-        alt_5 = 1
+      if ( look_6_0 == COMMA )
+        alt_6 = 1
       end
-      case alt_5
+      case alt_6
       when 1
-        # at line 123:212: mat_dim
-        @state.following.push( TOKENS_FOLLOWING_mat_dim_IN_dim_dec_1054 )
+        # at line 122:212: mat_dim
+        @state.following.push( TOKENS_FOLLOWING_mat_dim_IN_dim_dec_1014 )
         mat_dim
         @state.following.pop
 
       end
-      match( RBRACK, TOKENS_FOLLOWING_RBRACK_IN_dim_dec_1059 )
+      match( RBRACK, TOKENS_FOLLOWING_RBRACK_IN_dim_dec_1019 )
 
       # --> action
        $dim.calculate_m(__ID3__.text) 
       # <-- action
 
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_dim_dec_1063 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_dim_dec_1023 )
 
       # --> action
        $dim.reset_r()
@@ -569,7 +587,7 @@ module Hephaestus
     # parser rule mat_dim
     #
     # (in Hephaestus.g)
-    # 126:1: mat_dim : COMMA INTEGER ;
+    # 125:1: mat_dim : COMMA INTEGER ;
     #
     def mat_dim
       # -> uncomment the next line to manually enable rule tracing
@@ -580,14 +598,14 @@ module Hephaestus
 
 
       begin
-      # at line 127:5: COMMA INTEGER
-      match( COMMA, TOKENS_FOLLOWING_COMMA_IN_mat_dim_1078 )
+      # at line 126:5: COMMA INTEGER
+      match( COMMA, TOKENS_FOLLOWING_COMMA_IN_mat_dim_1038 )
 
       # --> action
        $dim.generate_dim_structure($dim_aux) 
       # <-- action
 
-      __INTEGER6__ = match( INTEGER, TOKENS_FOLLOWING_INTEGER_IN_mat_dim_1082 )
+      __INTEGER6__ = match( INTEGER, TOKENS_FOLLOWING_INTEGER_IN_mat_dim_1042 )
 
       # --> action
        $dim.add_limit($dim_aux, __INTEGER6__.text) 
@@ -614,7 +632,7 @@ module Hephaestus
     # parser rule dim_struct
     #
     # (in Hephaestus.g)
-    # 130:1: dim_struct : LBRACK exp ( COMMA exp )? RBRACK ;
+    # 129:1: dim_struct : LBRACK exp ( COMMA exp )? RBRACK ;
     #
     def dim_struct
       # -> uncomment the next line to manually enable rule tracing
@@ -622,14 +640,14 @@ module Hephaestus
 
 
       begin
-      # at line 131:5: LBRACK exp ( COMMA exp )? RBRACK
-      match( LBRACK, TOKENS_FOLLOWING_LBRACK_IN_dim_struct_1097 )
+      # at line 130:5: LBRACK exp ( COMMA exp )? RBRACK
+      match( LBRACK, TOKENS_FOLLOWING_LBRACK_IN_dim_struct_1057 )
 
       # --> action
        $quads.is_dim() 
       # <-- action
 
-      @state.following.push( TOKENS_FOLLOWING_exp_IN_dim_struct_1101 )
+      @state.following.push( TOKENS_FOLLOWING_exp_IN_dim_struct_1061 )
       exp
       @state.following.pop
 
@@ -637,23 +655,23 @@ module Hephaestus
        $quads.generate_limit_quad() 
       # <-- action
 
-      # at line 131:71: ( COMMA exp )?
-      alt_6 = 2
-      look_6_0 = @input.peek( 1 )
+      # at line 130:71: ( COMMA exp )?
+      alt_7 = 2
+      look_7_0 = @input.peek( 1 )
 
-      if ( look_6_0 == COMMA )
-        alt_6 = 1
+      if ( look_7_0 == COMMA )
+        alt_7 = 1
       end
-      case alt_6
+      case alt_7
       when 1
-        # at line 131:73: COMMA exp
-        match( COMMA, TOKENS_FOLLOWING_COMMA_IN_dim_struct_1107 )
+        # at line 130:73: COMMA exp
+        match( COMMA, TOKENS_FOLLOWING_COMMA_IN_dim_struct_1067 )
 
         # --> action
          $quads.update_dim() 
         # <-- action
 
-        @state.following.push( TOKENS_FOLLOWING_exp_IN_dim_struct_1111 )
+        @state.following.push( TOKENS_FOLLOWING_exp_IN_dim_struct_1071 )
         exp
         @state.following.pop
 
@@ -663,7 +681,7 @@ module Hephaestus
 
 
       end
-      match( RBRACK, TOKENS_FOLLOWING_RBRACK_IN_dim_struct_1118 )
+      match( RBRACK, TOKENS_FOLLOWING_RBRACK_IN_dim_struct_1078 )
 
       # --> action
        $quads.generate_dim_quads() 
@@ -690,7 +708,7 @@ module Hephaestus
     # parser rule var_dec
     #
     # (in Hephaestus.g)
-    # 134:1: var_dec : DEFINE ID AS type ( ASGN ( expresion | func_call ) )? DOT ;
+    # 133:1: var_dec : DEFINE ID AS type ( ASGN ( expresion ) )? DOT ;
     #
     def var_dec
       # -> uncomment the next line to manually enable rule tracing
@@ -703,11 +721,11 @@ module Hephaestus
 
 
       begin
-      # at line 135:5: DEFINE ID AS type ( ASGN ( expresion | func_call ) )? DOT
-      match( DEFINE, TOKENS_FOLLOWING_DEFINE_IN_var_dec_1133 )
-      __ID7__ = match( ID, TOKENS_FOLLOWING_ID_IN_var_dec_1135 )
-      match( AS, TOKENS_FOLLOWING_AS_IN_var_dec_1137 )
-      @state.following.push( TOKENS_FOLLOWING_type_IN_var_dec_1139 )
+      # at line 134:5: DEFINE ID AS type ( ASGN ( expresion ) )? DOT
+      match( DEFINE, TOKENS_FOLLOWING_DEFINE_IN_var_dec_1093 )
+      __ID7__ = match( ID, TOKENS_FOLLOWING_ID_IN_var_dec_1095 )
+      match( AS, TOKENS_FOLLOWING_AS_IN_var_dec_1097 )
+      @state.following.push( TOKENS_FOLLOWING_type_IN_var_dec_1099 )
       type8 = type
       @state.following.pop
 
@@ -715,7 +733,7 @@ module Hephaestus
        $program.add_variable(__ID7__.text, ( type8 && @input.to_s( type8.start, type8.stop ) )) 
       # <-- action
 
-      # at line 135:72: ( ASGN ( expresion | func_call ) )?
+      # at line 134:72: ( ASGN ( expresion ) )?
       alt_8 = 2
       look_8_0 = @input.peek( 1 )
 
@@ -724,8 +742,8 @@ module Hephaestus
       end
       case alt_8
       when 1
-        # at line 135:74: ASGN ( expresion | func_call )
-        __ASGN9__ = match( ASGN, TOKENS_FOLLOWING_ASGN_IN_var_dec_1145 )
+        # at line 134:74: ASGN ( expresion )
+        __ASGN9__ = match( ASGN, TOKENS_FOLLOWING_ASGN_IN_var_dec_1105 )
 
         # --> action
          $quads.add_id(__ID7__.text, nil) 
@@ -736,41 +754,12 @@ module Hephaestus
          $quads.add_operator(__ASGN9__.text) 
         # <-- action
 
-        # at line 135:150: ( expresion | func_call )
-        alt_7 = 2
-        look_7_0 = @input.peek( 1 )
+        # at line 134:150: ( expresion )
+        # at line 134:152: expresion
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_var_dec_1113 )
+        expresion
+        @state.following.pop
 
-        if ( look_7_0 == ID )
-          look_7_1 = @input.peek( 2 )
-
-          if ( look_7_1 == AND || look_7_1.between?( DIV, DOT ) || look_7_1 == EQ || look_7_1 == GREATER || look_7_1.between?( LBRACK, LESS ) || look_7_1.between?( MINUS, NEQ ) || look_7_1.between?( OR, PLUS ) )
-            alt_7 = 1
-          elsif ( look_7_1 == LPAR )
-            alt_7 = 2
-          else
-            raise NoViableAlternative( "", 7, 1 )
-
-          end
-        elsif ( look_7_0 == BOOL || look_7_0 == FLOAT || look_7_0 == INTEGER || look_7_0 == LPAR || look_7_0 == STRING )
-          alt_7 = 1
-        else
-          raise NoViableAlternative( "", 7, 0 )
-
-        end
-        case alt_7
-        when 1
-          # at line 135:152: expresion
-          @state.following.push( TOKENS_FOLLOWING_expresion_IN_var_dec_1153 )
-          expresion
-          @state.following.pop
-
-        when 2
-          # at line 136:86: func_call
-          @state.following.push( TOKENS_FOLLOWING_func_call_IN_var_dec_1240 )
-          func_call
-          @state.following.pop
-
-        end
 
         # --> action
          $quads.assgn_quad() 
@@ -778,7 +767,7 @@ module Hephaestus
 
 
       end
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_var_dec_1332 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_var_dec_1122 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -800,7 +789,7 @@ module Hephaestus
     # parser rule function
     #
     # (in Hephaestus.g)
-    # 140:1: function : FUNCTION ( type ) ID parameters COLON ( estatute | var_dec | dim_dec )* ( RETURN expresion DOT )? R_END FUNCTION ;
+    # 137:1: function : FUNCTION ( type ) ID parameters COLON ( estatute | var_dec | dim_dec )* ( RETURN expresion DOT )? R_END FUNCTION ;
     #
     def function
       # -> uncomment the next line to manually enable rule tracing
@@ -813,25 +802,25 @@ module Hephaestus
 
 
       begin
-      # at line 141:5: FUNCTION ( type ) ID parameters COLON ( estatute | var_dec | dim_dec )* ( RETURN expresion DOT )? R_END FUNCTION
-      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_1345 )
-      # at line 141:14: ( type )
-      # at line 141:16: type
-      @state.following.push( TOKENS_FOLLOWING_type_IN_function_1349 )
+      # at line 138:5: FUNCTION ( type ) ID parameters COLON ( estatute | var_dec | dim_dec )* ( RETURN expresion DOT )? R_END FUNCTION
+      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_1135 )
+      # at line 138:14: ( type )
+      # at line 138:16: type
+      @state.following.push( TOKENS_FOLLOWING_type_IN_function_1139 )
       type12 = type
       @state.following.pop
 
-      __ID10__ = match( ID, TOKENS_FOLLOWING_ID_IN_function_1353 )
-      @state.following.push( TOKENS_FOLLOWING_parameters_IN_function_1355 )
+      __ID10__ = match( ID, TOKENS_FOLLOWING_ID_IN_function_1143 )
+      @state.following.push( TOKENS_FOLLOWING_parameters_IN_function_1145 )
       parameters11 = parameters
       @state.following.pop
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_function_1357 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_function_1147 )
 
       # --> action
        $program.add_function(__ID10__.text, ( parameters11 && @input.to_s( parameters11.start, parameters11.stop ) ), ( type12 && @input.to_s( type12.start, type12.stop ) ))
       # <-- action
 
-      # at line 142:43: ( estatute | var_dec | dim_dec )*
+      # at line 139:43: ( estatute | var_dec | dim_dec )*
       while true # decision 9
         alt_9 = 4
         look_9_0 = @input.peek( 1 )
@@ -866,20 +855,20 @@ module Hephaestus
         end
         case alt_9
         when 1
-          # at line 142:45: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_function_1405 )
+          # at line 139:45: estatute
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_function_1195 )
           estatute
           @state.following.pop
 
         when 2
-          # at line 143:45: var_dec
-          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_function_1451 )
+          # at line 140:45: var_dec
+          @state.following.push( TOKENS_FOLLOWING_var_dec_IN_function_1241 )
           var_dec
           @state.following.pop
 
         when 3
-          # at line 144:45: dim_dec
-          @state.following.push( TOKENS_FOLLOWING_dim_dec_IN_function_1497 )
+          # at line 141:45: dim_dec
+          @state.following.push( TOKENS_FOLLOWING_dim_dec_IN_function_1287 )
           dim_dec
           @state.following.pop
 
@@ -888,7 +877,7 @@ module Hephaestus
         end
       end # loop for decision 9
 
-      # at line 145:46: ( RETURN expresion DOT )?
+      # at line 142:46: ( RETURN expresion DOT )?
       alt_10 = 2
       look_10_0 = @input.peek( 1 )
 
@@ -897,9 +886,9 @@ module Hephaestus
       end
       case alt_10
       when 1
-        # at line 145:48: RETURN expresion DOT
-        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_function_1546 )
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_function_1548 )
+        # at line 142:48: RETURN expresion DOT
+        match( RETURN, TOKENS_FOLLOWING_RETURN_IN_function_1336 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_function_1338 )
         expresion
         @state.following.pop
 
@@ -907,11 +896,11 @@ module Hephaestus
          $quads.return(__ID10__.text) 
         # <-- action
 
-        match( DOT, TOKENS_FOLLOWING_DOT_IN_function_1552 )
+        match( DOT, TOKENS_FOLLOWING_DOT_IN_function_1342 )
 
       end
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_function_1557 )
-      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_1559 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_function_1347 )
+      match( FUNCTION, TOKENS_FOLLOWING_FUNCTION_IN_function_1349 )
 
       # --> action
        $quads.end_function()
@@ -943,7 +932,7 @@ module Hephaestus
     # parser rule parameters
     #
     # (in Hephaestus.g)
-    # 148:1: parameters : LPAR ( type ID ( COMMA type ID )* )? RPAR ;
+    # 145:1: parameters : LPAR ( type ID ( COMMA type ID )* )? RPAR ;
     #
     def parameters
       # -> uncomment the next line to manually enable rule tracing
@@ -957,9 +946,9 @@ module Hephaestus
 
 
       begin
-      # at line 149:5: LPAR ( type ID ( COMMA type ID )* )? RPAR
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_parameters_1576 )
-      # at line 149:10: ( type ID ( COMMA type ID )* )?
+      # at line 146:5: LPAR ( type ID ( COMMA type ID )* )? RPAR
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_parameters_1366 )
+      # at line 146:10: ( type ID ( COMMA type ID )* )?
       alt_12 = 2
       look_12_0 = @input.peek( 1 )
 
@@ -968,12 +957,12 @@ module Hephaestus
       end
       case alt_12
       when 1
-        # at line 149:12: type ID ( COMMA type ID )*
-        @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_1580 )
+        # at line 146:12: type ID ( COMMA type ID )*
+        @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_1370 )
         type
         @state.following.pop
-        match( ID, TOKENS_FOLLOWING_ID_IN_parameters_1582 )
-        # at line 149:20: ( COMMA type ID )*
+        match( ID, TOKENS_FOLLOWING_ID_IN_parameters_1372 )
+        # at line 146:20: ( COMMA type ID )*
         while true # decision 11
           alt_11 = 2
           look_11_0 = @input.peek( 1 )
@@ -984,12 +973,12 @@ module Hephaestus
           end
           case alt_11
           when 1
-            # at line 149:22: COMMA type ID
-            match( COMMA, TOKENS_FOLLOWING_COMMA_IN_parameters_1586 )
-            @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_1588 )
+            # at line 146:22: COMMA type ID
+            match( COMMA, TOKENS_FOLLOWING_COMMA_IN_parameters_1376 )
+            @state.following.push( TOKENS_FOLLOWING_type_IN_parameters_1378 )
             type
             @state.following.pop
-            match( ID, TOKENS_FOLLOWING_ID_IN_parameters_1590 )
+            match( ID, TOKENS_FOLLOWING_ID_IN_parameters_1380 )
 
           else
             break # out of loop for decision 11
@@ -998,7 +987,7 @@ module Hephaestus
 
 
       end
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_parameters_1598 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_parameters_1388 )
 
       # - - - - - - - rule clean up - - - - - - - -
       return_value.stop = @input.look( -1 )
@@ -1024,7 +1013,7 @@ module Hephaestus
     # parser rule estatute
     #
     # (in Hephaestus.g)
-    # 152:1: estatute : ( method_call | assignment | condition | while_loop | reading | writing | func_call DOT );
+    # 149:1: estatute : ( method_call | assignment | condition | while_loop | reading | writing | func_call DOT );
     #
     def estatute
       # -> uncomment the next line to manually enable rule tracing
@@ -1032,7 +1021,7 @@ module Hephaestus
 
 
       begin
-      # at line 153:3: ( method_call | assignment | condition | while_loop | reading | writing | func_call DOT )
+      # at line 150:3: ( method_call | assignment | condition | while_loop | reading | writing | func_call DOT )
       alt_13 = 7
       case look_13 = @input.peek( 1 )
       when ID then case look_13 = @input.peek( 2 )
@@ -1053,47 +1042,47 @@ module Hephaestus
       end
       case alt_13
       when 1
-        # at line 153:5: method_call
-        @state.following.push( TOKENS_FOLLOWING_method_call_IN_estatute_1611 )
+        # at line 150:5: method_call
+        @state.following.push( TOKENS_FOLLOWING_method_call_IN_estatute_1401 )
         method_call
         @state.following.pop
 
       when 2
-        # at line 154:5: assignment
-        @state.following.push( TOKENS_FOLLOWING_assignment_IN_estatute_1617 )
+        # at line 151:5: assignment
+        @state.following.push( TOKENS_FOLLOWING_assignment_IN_estatute_1407 )
         assignment
         @state.following.pop
 
       when 3
-        # at line 155:5: condition
-        @state.following.push( TOKENS_FOLLOWING_condition_IN_estatute_1623 )
+        # at line 152:5: condition
+        @state.following.push( TOKENS_FOLLOWING_condition_IN_estatute_1413 )
         condition
         @state.following.pop
 
       when 4
-        # at line 156:5: while_loop
-        @state.following.push( TOKENS_FOLLOWING_while_loop_IN_estatute_1629 )
+        # at line 153:5: while_loop
+        @state.following.push( TOKENS_FOLLOWING_while_loop_IN_estatute_1419 )
         while_loop
         @state.following.pop
 
       when 5
-        # at line 157:5: reading
-        @state.following.push( TOKENS_FOLLOWING_reading_IN_estatute_1635 )
+        # at line 154:5: reading
+        @state.following.push( TOKENS_FOLLOWING_reading_IN_estatute_1425 )
         reading
         @state.following.pop
 
       when 6
-        # at line 158:5: writing
-        @state.following.push( TOKENS_FOLLOWING_writing_IN_estatute_1641 )
+        # at line 155:5: writing
+        @state.following.push( TOKENS_FOLLOWING_writing_IN_estatute_1431 )
         writing
         @state.following.pop
 
       when 7
-        # at line 159:5: func_call DOT
-        @state.following.push( TOKENS_FOLLOWING_func_call_IN_estatute_1647 )
+        # at line 156:5: func_call DOT
+        @state.following.push( TOKENS_FOLLOWING_func_call_IN_estatute_1437 )
         func_call
         @state.following.pop
-        match( DOT, TOKENS_FOLLOWING_DOT_IN_estatute_1649 )
+        match( DOT, TOKENS_FOLLOWING_DOT_IN_estatute_1439 )
 
       end
       rescue ANTLR3::Error::RecognitionError => re
@@ -1116,7 +1105,7 @@ module Hephaestus
     # parser rule method_call
     #
     # (in Hephaestus.g)
-    # 162:1: method_call : ID DOT method_call_2 ;
+    # 159:1: method_call : ID DOT method_call_2 ;
     #
     def method_call
       # -> uncomment the next line to manually enable rule tracing
@@ -1127,15 +1116,15 @@ module Hephaestus
 
 
       begin
-      # at line 163:5: ID DOT method_call_2
-      __ID13__ = match( ID, TOKENS_FOLLOWING_ID_IN_method_call_1662 )
+      # at line 160:5: ID DOT method_call_2
+      __ID13__ = match( ID, TOKENS_FOLLOWING_ID_IN_method_call_1452 )
 
       # --> action
       $method_aux = __ID13__.text
       # <-- action
 
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_1666 )
-      @state.following.push( TOKENS_FOLLOWING_method_call_2_IN_method_call_1668 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_1456 )
+      @state.following.push( TOKENS_FOLLOWING_method_call_2_IN_method_call_1458 )
       method_call_2
       @state.following.pop
 
@@ -1164,7 +1153,7 @@ module Hephaestus
     # parser rule method_call_2
     #
     # (in Hephaestus.g)
-    # 166:1: method_call_2 : ID method_call_parameters DOT ;
+    # 163:1: method_call_2 : ID method_call_parameters DOT ;
     #
     def method_call_2
       # -> uncomment the next line to manually enable rule tracing
@@ -1175,8 +1164,8 @@ module Hephaestus
 
 
       begin
-      # at line 167:5: ID method_call_parameters DOT
-      __ID14__ = match( ID, TOKENS_FOLLOWING_ID_IN_method_call_2_1683 )
+      # at line 164:5: ID method_call_parameters DOT
+      __ID14__ = match( ID, TOKENS_FOLLOWING_ID_IN_method_call_2_1473 )
 
       # --> action
        $func_aux = __ID14__.text 
@@ -1187,7 +1176,7 @@ module Hephaestus
        $quads.era_method($method_aux, __ID14__.text) 
       # <-- action
 
-      @state.following.push( TOKENS_FOLLOWING_method_call_parameters_IN_method_call_2_1689 )
+      @state.following.push( TOKENS_FOLLOWING_method_call_parameters_IN_method_call_2_1479 )
       method_call_parameters
       @state.following.pop
 
@@ -1195,7 +1184,7 @@ module Hephaestus
        $quads.method_exists?($method_aux, __ID14__.text) 
       # <-- action
 
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_2_1693 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_method_call_2_1483 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1217,7 +1206,7 @@ module Hephaestus
     # parser rule method_call_parameters
     #
     # (in Hephaestus.g)
-    # 170:1: method_call_parameters : LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR ;
+    # 167:1: method_call_parameters : LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR ;
     #
     def method_call_parameters
       # -> uncomment the next line to manually enable rule tracing
@@ -1225,9 +1214,9 @@ module Hephaestus
 
 
       begin
-      # at line 171:5: LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_method_call_parameters_1706 )
-      # at line 171:10: ( ( expresion ) ( COMMA ( expresion ) )* )?
+      # at line 168:5: LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_method_call_parameters_1496 )
+      # at line 168:10: ( ( expresion ) ( COMMA ( expresion ) )* )?
       alt_15 = 2
       look_15_0 = @input.peek( 1 )
 
@@ -1236,10 +1225,10 @@ module Hephaestus
       end
       case alt_15
       when 1
-        # at line 171:12: ( expresion ) ( COMMA ( expresion ) )*
-        # at line 171:12: ( expresion )
-        # at line 171:14: expresion
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1712 )
+        # at line 168:12: ( expresion ) ( COMMA ( expresion ) )*
+        # at line 168:12: ( expresion )
+        # at line 168:14: expresion
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1502 )
         expresion
         @state.following.pop
 
@@ -1248,7 +1237,7 @@ module Hephaestus
          $quads.method_parameter($method_aux ,$func_aux) 
         # <-- action
 
-        # at line 171:81: ( COMMA ( expresion ) )*
+        # at line 168:81: ( COMMA ( expresion ) )*
         while true # decision 14
           alt_14 = 2
           look_14_0 = @input.peek( 1 )
@@ -1259,11 +1248,11 @@ module Hephaestus
           end
           case alt_14
           when 1
-            # at line 171:83: COMMA ( expresion )
-            match( COMMA, TOKENS_FOLLOWING_COMMA_IN_method_call_parameters_1720 )
-            # at line 171:89: ( expresion )
-            # at line 171:91: expresion
-            @state.following.push( TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1724 )
+            # at line 168:83: COMMA ( expresion )
+            match( COMMA, TOKENS_FOLLOWING_COMMA_IN_method_call_parameters_1510 )
+            # at line 168:89: ( expresion )
+            # at line 168:91: expresion
+            @state.following.push( TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1514 )
             expresion
             @state.following.pop
 
@@ -1285,7 +1274,7 @@ module Hephaestus
        $quads.verify_method_param_count($method_aux ,$func_aux) 
       # <-- action
 
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_method_call_parameters_1739 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_method_call_parameters_1529 )
 
       # --> action
        $quads.go_sub_method($method_aux, $func_aux) 
@@ -1312,7 +1301,7 @@ module Hephaestus
     # parser rule assignment
     #
     # (in Hephaestus.g)
-    # 174:1: assignment : ID ( dim_struct )? ( ASGN ( expresion | func_call ) ) DOT ;
+    # 171:1: assignment : ID ( dim_struct )? ( ASGN ( expresion ) ) DOT ;
     #
     def assignment
       # -> uncomment the next line to manually enable rule tracing
@@ -1324,14 +1313,14 @@ module Hephaestus
 
 
       begin
-      # at line 175:5: ID ( dim_struct )? ( ASGN ( expresion | func_call ) ) DOT
-      __ID15__ = match( ID, TOKENS_FOLLOWING_ID_IN_assignment_1754 )
+      # at line 172:5: ID ( dim_struct )? ( ASGN ( expresion ) ) DOT
+      __ID15__ = match( ID, TOKENS_FOLLOWING_ID_IN_assignment_1544 )
 
       # --> action
        $quads.add_id(__ID15__.text, nil) 
       # <-- action
 
-      # at line 175:42: ( dim_struct )?
+      # at line 172:42: ( dim_struct )?
       alt_16 = 2
       look_16_0 = @input.peek( 1 )
 
@@ -1340,12 +1329,12 @@ module Hephaestus
       end
       case alt_16
       when 1
-        # at line 175:44: dim_struct
+        # at line 172:44: dim_struct
         # --> action
          $dim_aux = __ID15__.text 
         # <-- action
 
-        @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_assignment_1762 )
+        @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_assignment_1552 )
         dim_struct
         @state.following.pop
 
@@ -1355,9 +1344,9 @@ module Hephaestus
        $quads.check_dim(__ID15__.text) 
       # <-- action
 
-      # at line 175:115: ( ASGN ( expresion | func_call ) )
-      # at line 175:117: ASGN ( expresion | func_call )
-      __ASGN16__ = match( ASGN, TOKENS_FOLLOWING_ASGN_IN_assignment_1771 )
+      # at line 172:115: ( ASGN ( expresion ) )
+      # at line 172:117: ASGN ( expresion )
+      __ASGN16__ = match( ASGN, TOKENS_FOLLOWING_ASGN_IN_assignment_1561 )
 
       # --> action
        $quads.add_operator(__ASGN16__.text) 
@@ -1368,48 +1357,19 @@ module Hephaestus
        $quads.variable_exists?(__ID15__.text) 
       # <-- action
 
-      # at line 176:15: ( expresion | func_call )
-      alt_17 = 2
-      look_17_0 = @input.peek( 1 )
+      # at line 172:199: ( expresion )
+      # at line 172:201: expresion
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_assignment_1570 )
+      expresion
+      @state.following.pop
 
-      if ( look_17_0 == ID )
-        look_17_1 = @input.peek( 2 )
-
-        if ( look_17_1 == AND || look_17_1.between?( DIV, DOT ) || look_17_1 == EQ || look_17_1 == GREATER || look_17_1.between?( LBRACK, LESS ) || look_17_1.between?( MINUS, NEQ ) || look_17_1.between?( OR, PLUS ) )
-          alt_17 = 1
-        elsif ( look_17_1 == LPAR )
-          alt_17 = 2
-        else
-          raise NoViableAlternative( "", 17, 1 )
-
-        end
-      elsif ( look_17_0 == BOOL || look_17_0 == FLOAT || look_17_0 == INTEGER || look_17_0 == LPAR || look_17_0 == STRING )
-        alt_17 = 1
-      else
-        raise NoViableAlternative( "", 17, 0 )
-
-      end
-      case alt_17
-      when 1
-        # at line 176:17: expresion
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_assignment_1794 )
-        expresion
-        @state.following.pop
-
-      when 2
-        # at line 177:17: func_call
-        @state.following.push( TOKENS_FOLLOWING_func_call_IN_assignment_1812 )
-        func_call
-        @state.following.pop
-
-      end
 
 
       # --> action
        $quads.assgn_quad() 
       # <-- action
 
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_assignment_1841 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_assignment_1578 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1431,7 +1391,7 @@ module Hephaestus
     # parser rule condition
     #
     # (in Hephaestus.g)
-    # 182:1: condition : IF LPAR expresion RPAR COLON ( estatute )* ( ELSE block | R_END ) IF ;
+    # 175:1: condition : IF LPAR expresion RPAR COLON ( estatute )* ( ELSE block | R_END ) IF ;
     #
     def condition
       # -> uncomment the next line to manually enable rule tracing
@@ -1439,68 +1399,68 @@ module Hephaestus
 
 
       begin
-      # at line 183:5: IF LPAR expresion RPAR COLON ( estatute )* ( ELSE block | R_END ) IF
-      match( IF, TOKENS_FOLLOWING_IF_IN_condition_1854 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_condition_1856 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_1858 )
+      # at line 176:5: IF LPAR expresion RPAR COLON ( estatute )* ( ELSE block | R_END ) IF
+      match( IF, TOKENS_FOLLOWING_IF_IN_condition_1591 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_condition_1593 )
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_condition_1595 )
       expresion
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_condition_1860 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_condition_1597 )
 
       # --> action
        $quads.gotof() 
       # <-- action
 
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_condition_1864 )
-      # at line 183:54: ( estatute )*
-      while true # decision 18
-        alt_18 = 2
-        look_18_0 = @input.peek( 1 )
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_condition_1601 )
+      # at line 176:54: ( estatute )*
+      while true # decision 17
+        alt_17 = 2
+        look_17_0 = @input.peek( 1 )
 
-        if ( look_18_0.between?( ID, IF ) || look_18_0 == PRINT || look_18_0 == READ || look_18_0 == WHILE )
-          alt_18 = 1
+        if ( look_17_0.between?( ID, IF ) || look_17_0 == PRINT || look_17_0 == READ || look_17_0 == WHILE )
+          alt_17 = 1
 
         end
-        case alt_18
+        case alt_17
         when 1
-          # at line 183:56: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_condition_1868 )
+          # at line 176:56: estatute
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_condition_1605 )
           estatute
           @state.following.pop
 
         else
-          break # out of loop for decision 18
+          break # out of loop for decision 17
         end
-      end # loop for decision 18
+      end # loop for decision 17
 
-      # at line 183:68: ( ELSE block | R_END )
-      alt_19 = 2
-      look_19_0 = @input.peek( 1 )
+      # at line 176:68: ( ELSE block | R_END )
+      alt_18 = 2
+      look_18_0 = @input.peek( 1 )
 
-      if ( look_19_0 == ELSE )
-        alt_19 = 1
-      elsif ( look_19_0 == R_END )
-        alt_19 = 2
+      if ( look_18_0 == ELSE )
+        alt_18 = 1
+      elsif ( look_18_0 == R_END )
+        alt_18 = 2
       else
-        raise NoViableAlternative( "", 19, 0 )
+        raise NoViableAlternative( "", 18, 0 )
 
       end
-      case alt_19
+      case alt_18
       when 1
-        # at line 183:70: ELSE block
-        match( ELSE, TOKENS_FOLLOWING_ELSE_IN_condition_1875 )
+        # at line 176:70: ELSE block
+        match( ELSE, TOKENS_FOLLOWING_ELSE_IN_condition_1612 )
 
         # --> action
          $quads.goto() 
         # <-- action
 
-        @state.following.push( TOKENS_FOLLOWING_block_IN_condition_1879 )
+        @state.following.push( TOKENS_FOLLOWING_block_IN_condition_1616 )
         block
         @state.following.pop
 
       when 2
-        # at line 184:96: R_END
-        match( R_END, TOKENS_FOLLOWING_R_END_IN_condition_1976 )
+        # at line 177:96: R_END
+        match( R_END, TOKENS_FOLLOWING_R_END_IN_condition_1713 )
 
       end
 
@@ -1508,7 +1468,7 @@ module Hephaestus
        $quads.fill_program_quad() 
       # <-- action
 
-      match( IF, TOKENS_FOLLOWING_IF_IN_condition_1982 )
+      match( IF, TOKENS_FOLLOWING_IF_IN_condition_1719 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1530,7 +1490,7 @@ module Hephaestus
     # parser rule while_loop
     #
     # (in Hephaestus.g)
-    # 187:1: while_loop : WHILE LPAR expresion RPAR block WHILE ;
+    # 180:1: while_loop : WHILE LPAR expresion RPAR block WHILE ;
     #
     def while_loop
       # -> uncomment the next line to manually enable rule tracing
@@ -1538,27 +1498,27 @@ module Hephaestus
 
 
       begin
-      # at line 188:5: WHILE LPAR expresion RPAR block WHILE
-      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_1995 )
+      # at line 181:5: WHILE LPAR expresion RPAR block WHILE
+      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_1732 )
 
       # --> action
        $quads.add_jump() 
       # <-- action
 
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_while_loop_1999 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_while_loop_2001 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_while_loop_1736 )
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_while_loop_1738 )
       expresion
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_while_loop_2003 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_while_loop_1740 )
 
       # --> action
        $quads.gotof() 
       # <-- action
 
-      @state.following.push( TOKENS_FOLLOWING_block_IN_while_loop_2007 )
+      @state.following.push( TOKENS_FOLLOWING_block_IN_while_loop_1744 )
       block
       @state.following.pop
-      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_2009 )
+      match( WHILE, TOKENS_FOLLOWING_WHILE_IN_while_loop_1746 )
 
       # --> action
        $quads.goto_while()
@@ -1585,7 +1545,7 @@ module Hephaestus
     # parser rule block
     #
     # (in Hephaestus.g)
-    # 191:1: block : COLON ( estatute )* R_END ;
+    # 184:1: block : COLON ( estatute )* R_END ;
     #
     def block
       # -> uncomment the next line to manually enable rule tracing
@@ -1593,30 +1553,30 @@ module Hephaestus
 
 
       begin
-      # at line 192:5: COLON ( estatute )* R_END
-      match( COLON, TOKENS_FOLLOWING_COLON_IN_block_2024 )
-      # at line 192:11: ( estatute )*
-      while true # decision 20
-        alt_20 = 2
-        look_20_0 = @input.peek( 1 )
+      # at line 185:5: COLON ( estatute )* R_END
+      match( COLON, TOKENS_FOLLOWING_COLON_IN_block_1761 )
+      # at line 185:11: ( estatute )*
+      while true # decision 19
+        alt_19 = 2
+        look_19_0 = @input.peek( 1 )
 
-        if ( look_20_0.between?( ID, IF ) || look_20_0 == PRINT || look_20_0 == READ || look_20_0 == WHILE )
-          alt_20 = 1
+        if ( look_19_0.between?( ID, IF ) || look_19_0 == PRINT || look_19_0 == READ || look_19_0 == WHILE )
+          alt_19 = 1
 
         end
-        case alt_20
+        case alt_19
         when 1
-          # at line 192:13: estatute
-          @state.following.push( TOKENS_FOLLOWING_estatute_IN_block_2028 )
+          # at line 185:13: estatute
+          @state.following.push( TOKENS_FOLLOWING_estatute_IN_block_1765 )
           estatute
           @state.following.pop
 
         else
-          break # out of loop for decision 20
+          break # out of loop for decision 19
         end
-      end # loop for decision 20
+      end # loop for decision 19
 
-      match( R_END, TOKENS_FOLLOWING_R_END_IN_block_2034 )
+      match( R_END, TOKENS_FOLLOWING_R_END_IN_block_1771 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1638,7 +1598,7 @@ module Hephaestus
     # parser rule reading
     #
     # (in Hephaestus.g)
-    # 195:1: reading : READ LPAR value COMMA ID RPAR DOT ;
+    # 188:1: reading : READ LPAR value COMMA ID RPAR DOT ;
     #
     def reading
       # -> uncomment the next line to manually enable rule tracing
@@ -1646,16 +1606,16 @@ module Hephaestus
 
 
       begin
-      # at line 196:5: READ LPAR value COMMA ID RPAR DOT
-      match( READ, TOKENS_FOLLOWING_READ_IN_reading_2047 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_reading_2049 )
-      @state.following.push( TOKENS_FOLLOWING_value_IN_reading_2051 )
+      # at line 189:5: READ LPAR value COMMA ID RPAR DOT
+      match( READ, TOKENS_FOLLOWING_READ_IN_reading_1784 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_reading_1786 )
+      @state.following.push( TOKENS_FOLLOWING_value_IN_reading_1788 )
       value
       @state.following.pop
-      match( COMMA, TOKENS_FOLLOWING_COMMA_IN_reading_2053 )
-      match( ID, TOKENS_FOLLOWING_ID_IN_reading_2055 )
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_reading_2057 )
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_reading_2059 )
+      match( COMMA, TOKENS_FOLLOWING_COMMA_IN_reading_1790 )
+      match( ID, TOKENS_FOLLOWING_ID_IN_reading_1792 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_reading_1794 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_reading_1796 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -1677,7 +1637,7 @@ module Hephaestus
     # parser rule writing
     #
     # (in Hephaestus.g)
-    # 199:1: writing : PRINT LPAR expresion RPAR DOT ;
+    # 192:1: writing : PRINT LPAR expresion RPAR DOT ;
     #
     def writing
       # -> uncomment the next line to manually enable rule tracing
@@ -1685,14 +1645,14 @@ module Hephaestus
 
 
       begin
-      # at line 200:5: PRINT LPAR expresion RPAR DOT
-      match( PRINT, TOKENS_FOLLOWING_PRINT_IN_writing_2072 )
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_writing_2074 )
-      @state.following.push( TOKENS_FOLLOWING_expresion_IN_writing_2076 )
+      # at line 193:5: PRINT LPAR expresion RPAR DOT
+      match( PRINT, TOKENS_FOLLOWING_PRINT_IN_writing_1809 )
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_writing_1811 )
+      @state.following.push( TOKENS_FOLLOWING_expresion_IN_writing_1813 )
       expresion
       @state.following.pop
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_writing_2078 )
-      match( DOT, TOKENS_FOLLOWING_DOT_IN_writing_2080 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_writing_1815 )
+      match( DOT, TOKENS_FOLLOWING_DOT_IN_writing_1817 )
 
       # --> action
        $quads.write()
@@ -1719,7 +1679,7 @@ module Hephaestus
     # parser rule func_call
     #
     # (in Hephaestus.g)
-    # 203:1: func_call : ID func_call_parameters ;
+    # 196:1: func_call : ID func_call_parameters ;
     #
     def func_call
       # -> uncomment the next line to manually enable rule tracing
@@ -1730,8 +1690,8 @@ module Hephaestus
 
 
       begin
-      # at line 204:5: ID func_call_parameters
-      __ID17__ = match( ID, TOKENS_FOLLOWING_ID_IN_func_call_2095 )
+      # at line 197:5: ID func_call_parameters
+      __ID17__ = match( ID, TOKENS_FOLLOWING_ID_IN_func_call_1832 )
 
       # --> action
        $quads.function_exists?(__ID17__.text) 
@@ -1747,7 +1707,7 @@ module Hephaestus
        $quads.era(__ID17__.text) 
       # <-- action
 
-      @state.following.push( TOKENS_FOLLOWING_func_call_parameters_IN_func_call_2103 )
+      @state.following.push( TOKENS_FOLLOWING_func_call_parameters_IN_func_call_1840 )
       func_call_parameters
       @state.following.pop
 
@@ -1776,7 +1736,7 @@ module Hephaestus
     # parser rule func_call_parameters
     #
     # (in Hephaestus.g)
-    # 207:1: func_call_parameters : LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR ;
+    # 200:1: func_call_parameters : LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR ;
     #
     def func_call_parameters
       # -> uncomment the next line to manually enable rule tracing
@@ -1784,21 +1744,21 @@ module Hephaestus
 
 
       begin
-      # at line 208:5: LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR
-      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_func_call_parameters_2118 )
-      # at line 208:10: ( ( expresion ) ( COMMA ( expresion ) )* )?
-      alt_22 = 2
-      look_22_0 = @input.peek( 1 )
+      # at line 201:5: LPAR ( ( expresion ) ( COMMA ( expresion ) )* )? RPAR
+      match( LPAR, TOKENS_FOLLOWING_LPAR_IN_func_call_parameters_1855 )
+      # at line 201:10: ( ( expresion ) ( COMMA ( expresion ) )* )?
+      alt_21 = 2
+      look_21_0 = @input.peek( 1 )
 
-      if ( look_22_0 == BOOL || look_22_0 == FLOAT || look_22_0 == ID || look_22_0 == INTEGER || look_22_0 == LPAR || look_22_0 == STRING )
-        alt_22 = 1
+      if ( look_21_0 == BOOL || look_21_0 == FLOAT || look_21_0 == ID || look_21_0 == INTEGER || look_21_0 == LPAR || look_21_0 == STRING )
+        alt_21 = 1
       end
-      case alt_22
+      case alt_21
       when 1
-        # at line 208:12: ( expresion ) ( COMMA ( expresion ) )*
-        # at line 208:12: ( expresion )
-        # at line 208:14: expresion
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_func_call_parameters_2124 )
+        # at line 201:12: ( expresion ) ( COMMA ( expresion ) )*
+        # at line 201:12: ( expresion )
+        # at line 201:14: expresion
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_func_call_parameters_1861 )
         expresion
         @state.following.pop
 
@@ -1807,22 +1767,22 @@ module Hephaestus
          $quads.parameter($func_aux) 
         # <-- action
 
-        # at line 208:60: ( COMMA ( expresion ) )*
-        while true # decision 21
-          alt_21 = 2
-          look_21_0 = @input.peek( 1 )
+        # at line 201:60: ( COMMA ( expresion ) )*
+        while true # decision 20
+          alt_20 = 2
+          look_20_0 = @input.peek( 1 )
 
-          if ( look_21_0 == COMMA )
-            alt_21 = 1
+          if ( look_20_0 == COMMA )
+            alt_20 = 1
 
           end
-          case alt_21
+          case alt_20
           when 1
-            # at line 208:62: COMMA ( expresion )
-            match( COMMA, TOKENS_FOLLOWING_COMMA_IN_func_call_parameters_2132 )
-            # at line 208:68: ( expresion )
-            # at line 208:70: expresion
-            @state.following.push( TOKENS_FOLLOWING_expresion_IN_func_call_parameters_2136 )
+            # at line 201:62: COMMA ( expresion )
+            match( COMMA, TOKENS_FOLLOWING_COMMA_IN_func_call_parameters_1869 )
+            # at line 201:68: ( expresion )
+            # at line 201:70: expresion
+            @state.following.push( TOKENS_FOLLOWING_expresion_IN_func_call_parameters_1873 )
             expresion
             @state.following.pop
 
@@ -1833,9 +1793,9 @@ module Hephaestus
 
 
           else
-            break # out of loop for decision 21
+            break # out of loop for decision 20
           end
-        end # loop for decision 21
+        end # loop for decision 20
 
 
       end
@@ -1844,7 +1804,7 @@ module Hephaestus
        $quads.verify_func_param_count($func_aux) 
       # <-- action
 
-      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_func_call_parameters_2151 )
+      match( RPAR, TOKENS_FOLLOWING_RPAR_IN_func_call_parameters_1888 )
 
       # --> action
        $quads.go_sub($func_aux) 
@@ -1871,7 +1831,7 @@ module Hephaestus
     # parser rule expresion
     #
     # (in Hephaestus.g)
-    # 211:1: expresion : exp ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )? ;
+    # 204:1: expresion : exp ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )? ;
     #
     def expresion
       # -> uncomment the next line to manually enable rule tracing
@@ -1887,37 +1847,37 @@ module Hephaestus
 
 
       begin
-      # at line 212:5: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )?
-      @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_2166 )
+      # at line 205:5: exp ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )?
+      @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_1903 )
       exp
       @state.following.pop
-      # at line 212:9: ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )?
-      alt_24 = 2
-      look_24_0 = @input.peek( 1 )
+      # at line 205:9: ( ( GREATER | LESS | NEQ | EQ | AND | OR ) exp )?
+      alt_23 = 2
+      look_23_0 = @input.peek( 1 )
 
-      if ( look_24_0 == AND || look_24_0 == EQ || look_24_0 == GREATER || look_24_0 == LESS || look_24_0 == NEQ || look_24_0 == OR )
-        alt_24 = 1
+      if ( look_23_0 == AND || look_23_0 == EQ || look_23_0 == GREATER || look_23_0 == LESS || look_23_0 == NEQ || look_23_0 == OR )
+        alt_23 = 1
       end
-      case alt_24
+      case alt_23
       when 1
-        # at line 212:11: ( GREATER | LESS | NEQ | EQ | AND | OR ) exp
-        # at line 212:11: ( GREATER | LESS | NEQ | EQ | AND | OR )
-        alt_23 = 6
-        case look_23 = @input.peek( 1 )
-        when GREATER then alt_23 = 1
-        when LESS then alt_23 = 2
-        when NEQ then alt_23 = 3
-        when EQ then alt_23 = 4
-        when AND then alt_23 = 5
-        when OR then alt_23 = 6
+        # at line 205:11: ( GREATER | LESS | NEQ | EQ | AND | OR ) exp
+        # at line 205:11: ( GREATER | LESS | NEQ | EQ | AND | OR )
+        alt_22 = 6
+        case look_22 = @input.peek( 1 )
+        when GREATER then alt_22 = 1
+        when LESS then alt_22 = 2
+        when NEQ then alt_22 = 3
+        when EQ then alt_22 = 4
+        when AND then alt_22 = 5
+        when OR then alt_22 = 6
         else
-          raise NoViableAlternative( "", 23, 0 )
+          raise NoViableAlternative( "", 22, 0 )
 
         end
-        case alt_23
+        case alt_22
         when 1
-          # at line 212:13: GREATER
-          __GREATER18__ = match( GREATER, TOKENS_FOLLOWING_GREATER_IN_expresion_2172 )
+          # at line 205:13: GREATER
+          __GREATER18__ = match( GREATER, TOKENS_FOLLOWING_GREATER_IN_expresion_1909 )
 
           # --> action
            $quads.add_operator(__GREATER18__.text) 
@@ -1925,8 +1885,8 @@ module Hephaestus
 
 
         when 2
-          # at line 213:13: LESS
-          __LESS19__ = match( LESS, TOKENS_FOLLOWING_LESS_IN_expresion_2188 )
+          # at line 206:13: LESS
+          __LESS19__ = match( LESS, TOKENS_FOLLOWING_LESS_IN_expresion_1925 )
 
           # --> action
            $quads.add_operator(__LESS19__.text) 
@@ -1934,8 +1894,8 @@ module Hephaestus
 
 
         when 3
-          # at line 214:13: NEQ
-          __NEQ20__ = match( NEQ, TOKENS_FOLLOWING_NEQ_IN_expresion_2204 )
+          # at line 207:13: NEQ
+          __NEQ20__ = match( NEQ, TOKENS_FOLLOWING_NEQ_IN_expresion_1941 )
 
           # --> action
            $quads.add_operator(__NEQ20__.text) 
@@ -1943,8 +1903,8 @@ module Hephaestus
 
 
         when 4
-          # at line 215:13: EQ
-          __EQ21__ = match( EQ, TOKENS_FOLLOWING_EQ_IN_expresion_2220 )
+          # at line 208:13: EQ
+          __EQ21__ = match( EQ, TOKENS_FOLLOWING_EQ_IN_expresion_1957 )
 
           # --> action
            $quads.add_operator(__EQ21__.text) 
@@ -1952,8 +1912,8 @@ module Hephaestus
 
 
         when 5
-          # at line 216:13: AND
-          __AND22__ = match( AND, TOKENS_FOLLOWING_AND_IN_expresion_2236 )
+          # at line 209:13: AND
+          __AND22__ = match( AND, TOKENS_FOLLOWING_AND_IN_expresion_1973 )
 
           # --> action
            $quads.add_operator(__AND22__.text) 
@@ -1961,8 +1921,8 @@ module Hephaestus
 
 
         when 6
-          # at line 217:13: OR
-          __OR23__ = match( OR, TOKENS_FOLLOWING_OR_IN_expresion_2252 )
+          # at line 210:13: OR
+          __OR23__ = match( OR, TOKENS_FOLLOWING_OR_IN_expresion_1989 )
 
           # --> action
            $quads.add_operator(__OR23__.text) 
@@ -1970,7 +1930,7 @@ module Hephaestus
 
 
         end
-        @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_2268 )
+        @state.following.push( TOKENS_FOLLOWING_exp_IN_expresion_2005 )
         exp
         @state.following.pop
 
@@ -2001,7 +1961,7 @@ module Hephaestus
     # parser rule exp
     #
     # (in Hephaestus.g)
-    # 222:1: exp : term ( ( PLUS | MINUS ) term )* ;
+    # 215:1: exp : term ( ( PLUS | MINUS ) term )* ;
     #
     def exp
       # -> uncomment the next line to manually enable rule tracing
@@ -2013,38 +1973,38 @@ module Hephaestus
 
 
       begin
-      # at line 223:5: term ( ( PLUS | MINUS ) term )*
-      @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2297 )
+      # at line 216:5: term ( ( PLUS | MINUS ) term )*
+      @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2033 )
       term
       @state.following.pop
-      # at line 223:10: ( ( PLUS | MINUS ) term )*
-      while true # decision 26
-        alt_26 = 2
-        look_26_0 = @input.peek( 1 )
+      # at line 216:10: ( ( PLUS | MINUS ) term )*
+      while true # decision 25
+        alt_25 = 2
+        look_25_0 = @input.peek( 1 )
 
-        if ( look_26_0 == MINUS || look_26_0 == PLUS )
-          alt_26 = 1
+        if ( look_25_0 == MINUS || look_25_0 == PLUS )
+          alt_25 = 1
 
         end
-        case alt_26
+        case alt_25
         when 1
-          # at line 223:12: ( PLUS | MINUS ) term
-          # at line 223:12: ( PLUS | MINUS )
-          alt_25 = 2
-          look_25_0 = @input.peek( 1 )
+          # at line 216:12: ( PLUS | MINUS ) term
+          # at line 216:12: ( PLUS | MINUS )
+          alt_24 = 2
+          look_24_0 = @input.peek( 1 )
 
-          if ( look_25_0 == PLUS )
-            alt_25 = 1
-          elsif ( look_25_0 == MINUS )
-            alt_25 = 2
+          if ( look_24_0 == PLUS )
+            alt_24 = 1
+          elsif ( look_24_0 == MINUS )
+            alt_24 = 2
           else
-            raise NoViableAlternative( "", 25, 0 )
+            raise NoViableAlternative( "", 24, 0 )
 
           end
-          case alt_25
+          case alt_24
           when 1
-            # at line 223:14: PLUS
-            __PLUS24__ = match( PLUS, TOKENS_FOLLOWING_PLUS_IN_exp_2303 )
+            # at line 216:14: PLUS
+            __PLUS24__ = match( PLUS, TOKENS_FOLLOWING_PLUS_IN_exp_2039 )
 
             # --> action
              $quads.add_operator(__PLUS24__.text) 
@@ -2052,8 +2012,8 @@ module Hephaestus
 
 
           when 2
-            # at line 224:14: MINUS
-            __MINUS25__ = match( MINUS, TOKENS_FOLLOWING_MINUS_IN_exp_2320 )
+            # at line 217:14: MINUS
+            __MINUS25__ = match( MINUS, TOKENS_FOLLOWING_MINUS_IN_exp_2056 )
 
             # --> action
              $quads.add_operator(__MINUS25__.text) 
@@ -2061,7 +2021,7 @@ module Hephaestus
 
 
           end
-          @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2337 )
+          @state.following.push( TOKENS_FOLLOWING_term_IN_exp_2073 )
           term
           @state.following.pop
 
@@ -2071,9 +2031,9 @@ module Hephaestus
 
 
         else
-          break # out of loop for decision 26
+          break # out of loop for decision 25
         end
-      end # loop for decision 26
+      end # loop for decision 25
 
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -2096,7 +2056,7 @@ module Hephaestus
     # parser rule term
     #
     # (in Hephaestus.g)
-    # 229:1: term : factor ( ( MULT | DIV ) factor )* ;
+    # 222:1: term : factor ( ( MULT | DIV ) factor )* ;
     #
     def term
       # -> uncomment the next line to manually enable rule tracing
@@ -2108,38 +2068,38 @@ module Hephaestus
 
 
       begin
-      # at line 230:5: factor ( ( MULT | DIV ) factor )*
-      @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2366 )
+      # at line 223:5: factor ( ( MULT | DIV ) factor )*
+      @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2102 )
       factor
       @state.following.pop
-      # at line 230:12: ( ( MULT | DIV ) factor )*
-      while true # decision 28
-        alt_28 = 2
-        look_28_0 = @input.peek( 1 )
+      # at line 223:12: ( ( MULT | DIV ) factor )*
+      while true # decision 27
+        alt_27 = 2
+        look_27_0 = @input.peek( 1 )
 
-        if ( look_28_0 == DIV || look_28_0 == MULT )
-          alt_28 = 1
+        if ( look_27_0 == DIV || look_27_0 == MULT )
+          alt_27 = 1
 
         end
-        case alt_28
+        case alt_27
         when 1
-          # at line 230:14: ( MULT | DIV ) factor
-          # at line 230:14: ( MULT | DIV )
-          alt_27 = 2
-          look_27_0 = @input.peek( 1 )
+          # at line 223:14: ( MULT | DIV ) factor
+          # at line 223:14: ( MULT | DIV )
+          alt_26 = 2
+          look_26_0 = @input.peek( 1 )
 
-          if ( look_27_0 == MULT )
-            alt_27 = 1
-          elsif ( look_27_0 == DIV )
-            alt_27 = 2
+          if ( look_26_0 == MULT )
+            alt_26 = 1
+          elsif ( look_26_0 == DIV )
+            alt_26 = 2
           else
-            raise NoViableAlternative( "", 27, 0 )
+            raise NoViableAlternative( "", 26, 0 )
 
           end
-          case alt_27
+          case alt_26
           when 1
-            # at line 230:16: MULT
-            __MULT26__ = match( MULT, TOKENS_FOLLOWING_MULT_IN_term_2372 )
+            # at line 223:16: MULT
+            __MULT26__ = match( MULT, TOKENS_FOLLOWING_MULT_IN_term_2108 )
 
             # --> action
              $quads.add_operator(__MULT26__.text) 
@@ -2147,8 +2107,8 @@ module Hephaestus
 
 
           when 2
-            # at line 231:16: DIV
-            __DIV27__ = match( DIV, TOKENS_FOLLOWING_DIV_IN_term_2391 )
+            # at line 224:16: DIV
+            __DIV27__ = match( DIV, TOKENS_FOLLOWING_DIV_IN_term_2127 )
 
             # --> action
              $quads.add_operator(__DIV27__.text) 
@@ -2156,7 +2116,7 @@ module Hephaestus
 
 
           end
-          @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2410 )
+          @state.following.push( TOKENS_FOLLOWING_factor_IN_term_2146 )
           factor
           @state.following.pop
 
@@ -2166,9 +2126,9 @@ module Hephaestus
 
 
         else
-          break # out of loop for decision 28
+          break # out of loop for decision 27
         end
-      end # loop for decision 28
+      end # loop for decision 27
 
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -2191,7 +2151,7 @@ module Hephaestus
     # parser rule factor
     #
     # (in Hephaestus.g)
-    # 236:1: factor : ( ID ( dim_struct )? | LPAR expresion RPAR | value );
+    # 229:1: factor : ( ID ( dim_struct )? | LPAR expresion RPAR | value | func_call );
     #
     def factor
       # -> uncomment the next line to manually enable rule tracing
@@ -2204,40 +2164,49 @@ module Hephaestus
 
 
       begin
-      # at line 237:3: ( ID ( dim_struct )? | LPAR expresion RPAR | value )
-      alt_30 = 3
-      case look_30 = @input.peek( 1 )
-      when ID then alt_30 = 1
-      when LPAR then alt_30 = 2
-      when BOOL, FLOAT, INTEGER, STRING then alt_30 = 3
+      # at line 230:3: ( ID ( dim_struct )? | LPAR expresion RPAR | value | func_call )
+      alt_29 = 4
+      case look_29 = @input.peek( 1 )
+      when ID then look_29_1 = @input.peek( 2 )
+
+      if ( look_29_1 == AND || look_29_1 == COMMA || look_29_1.between?( DIV, DOT ) || look_29_1 == EQ || look_29_1 == GREATER || look_29_1.between?( LBRACK, LESS ) || look_29_1.between?( MINUS, NEQ ) || look_29_1.between?( OR, PLUS ) || look_29_1 == RBRACK || look_29_1 == RPAR )
+        alt_29 = 1
+      elsif ( look_29_1 == LPAR )
+        alt_29 = 4
       else
-        raise NoViableAlternative( "", 30, 0 )
+        raise NoViableAlternative( "", 29, 1 )
 
       end
-      case alt_30
+      when LPAR then alt_29 = 2
+      when BOOL, FLOAT, INTEGER, STRING then alt_29 = 3
+      else
+        raise NoViableAlternative( "", 29, 0 )
+
+      end
+      case alt_29
       when 1
-        # at line 237:5: ID ( dim_struct )?
-        __ID28__ = match( ID, TOKENS_FOLLOWING_ID_IN_factor_2441 )
+        # at line 230:5: ID ( dim_struct )?
+        __ID28__ = match( ID, TOKENS_FOLLOWING_ID_IN_factor_2177 )
 
         # --> action
          $quads.add_id(__ID28__.text, nil) 
         # <-- action
 
-        # at line 237:42: ( dim_struct )?
-        alt_29 = 2
-        look_29_0 = @input.peek( 1 )
+        # at line 230:42: ( dim_struct )?
+        alt_28 = 2
+        look_28_0 = @input.peek( 1 )
 
-        if ( look_29_0 == LBRACK )
-          alt_29 = 1
+        if ( look_28_0 == LBRACK )
+          alt_28 = 1
         end
-        case alt_29
+        case alt_28
         when 1
-          # at line 237:44: dim_struct
+          # at line 230:44: dim_struct
           # --> action
            $dim_aux = __ID28__.text 
           # <-- action
 
-          @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_factor_2449 )
+          @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_factor_2185 )
           dim_struct
           @state.following.pop
 
@@ -2249,17 +2218,17 @@ module Hephaestus
 
 
       when 2
-        # at line 238:7: LPAR expresion RPAR
-        __LPAR29__ = match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_2462 )
+        # at line 231:7: LPAR expresion RPAR
+        __LPAR29__ = match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_2198 )
 
         # --> action
          $quads.add_false_bottom(__LPAR29__.text) 
         # <-- action
 
-        @state.following.push( TOKENS_FOLLOWING_expresion_IN_factor_2466 )
+        @state.following.push( TOKENS_FOLLOWING_expresion_IN_factor_2202 )
         expresion
         @state.following.pop
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_2468 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_2204 )
 
         # --> action
          $quads.remove_false_bottom() 
@@ -2267,8 +2236,8 @@ module Hephaestus
 
 
       when 3
-        # at line 239:7: value
-        @state.following.push( TOKENS_FOLLOWING_value_IN_factor_2478 )
+        # at line 232:7: value
+        @state.following.push( TOKENS_FOLLOWING_value_IN_factor_2214 )
         value30 = value
         @state.following.pop
 
@@ -2276,6 +2245,12 @@ module Hephaestus
          $quads.add_id(nil, ( value30 && @input.to_s( value30.start, value30.stop ) )) 
         # <-- action
 
+
+      when 4
+        # at line 233:7: func_call
+        @state.following.push( TOKENS_FOLLOWING_func_call_IN_factor_2224 )
+        func_call
+        @state.following.pop
 
       end
       rescue ANTLR3::Error::RecognitionError => re
@@ -2298,7 +2273,7 @@ module Hephaestus
     # parser rule type
     #
     # (in Hephaestus.g)
-    # 242:1: type : ( R_STRING | R_BOOL | R_FLOAT | R_INTEGER | VOID | ID );
+    # 236:1: type : ( R_STRING | R_BOOL | R_FLOAT | R_INTEGER | VOID | ID );
     #
     def type
       # -> uncomment the next line to manually enable rule tracing
@@ -2349,7 +2324,7 @@ module Hephaestus
     # parser rule value
     #
     # (in Hephaestus.g)
-    # 251:1: value : ( STRING | FLOAT | INTEGER | BOOL );
+    # 245:1: value : ( STRING | FLOAT | INTEGER | BOOL );
     #
     def value
       # -> uncomment the next line to manually enable rule tracing
@@ -2396,157 +2371,156 @@ module Hephaestus
 
 
 
-    TOKENS_FOLLOWING_r_class_IN_start_512 = Set[ 34, 40 ]
-    TOKENS_FOLLOWING_program_IN_start_517 = Set[ 1 ]
-    TOKENS_FOLLOWING_R_CLASS_IN_r_class_530 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_r_class_532 = Set[ 8, 19 ]
-    TOKENS_FOLLOWING_heritage_IN_r_class_538 = Set[ 8 ]
-    TOKENS_FOLLOWING_COLON_IN_r_class_542 = Set[ 10, 17, 41 ]
-    TOKENS_FOLLOWING_function_IN_r_class_546 = Set[ 10, 17, 41 ]
-    TOKENS_FOLLOWING_dim_dec_IN_r_class_621 = Set[ 10, 17, 41 ]
-    TOKENS_FOLLOWING_var_dec_IN_r_class_696 = Set[ 10, 17, 41 ]
-    TOKENS_FOLLOWING_R_END_IN_r_class_772 = Set[ 40 ]
-    TOKENS_FOLLOWING_R_CLASS_IN_r_class_774 = Set[ 1 ]
-    TOKENS_FOLLOWING_HER_IN_heritage_791 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_heritage_793 = Set[ 1 ]
-    TOKENS_FOLLOWING_PROGRAM_IN_program_812 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_program_816 = Set[ 8 ]
-    TOKENS_FOLLOWING_COLON_IN_program_818 = Set[ 10, 17, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_program_822 = Set[ 10, 17, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_dim_dec_IN_program_870 = Set[ 10, 17, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_var_dec_IN_program_918 = Set[ 10, 17, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_function_IN_program_966 = Set[ 10, 17, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_R_END_IN_program_1015 = Set[ 34 ]
-    TOKENS_FOLLOWING_PROGRAM_IN_program_1017 = Set[ 1 ]
-    TOKENS_FOLLOWING_DEFINE_IN_dim_dec_1032 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_dim_dec_1034 = Set[ 5 ]
-    TOKENS_FOLLOWING_AS_IN_dim_dec_1038 = Set[ 20, 39, 42, 43, 44, 46 ]
-    TOKENS_FOLLOWING_type_IN_dim_dec_1040 = Set[ 24 ]
-    TOKENS_FOLLOWING_LBRACK_IN_dim_dec_1044 = Set[ 23 ]
-    TOKENS_FOLLOWING_INTEGER_IN_dim_dec_1048 = Set[ 9, 35 ]
-    TOKENS_FOLLOWING_mat_dim_IN_dim_dec_1054 = Set[ 35 ]
-    TOKENS_FOLLOWING_RBRACK_IN_dim_dec_1059 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_dim_dec_1063 = Set[ 1 ]
-    TOKENS_FOLLOWING_COMMA_IN_mat_dim_1078 = Set[ 23 ]
-    TOKENS_FOLLOWING_INTEGER_IN_mat_dim_1082 = Set[ 1 ]
-    TOKENS_FOLLOWING_LBRACK_IN_dim_struct_1097 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_exp_IN_dim_struct_1101 = Set[ 9, 35 ]
-    TOKENS_FOLLOWING_COMMA_IN_dim_struct_1107 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_exp_IN_dim_struct_1111 = Set[ 35 ]
-    TOKENS_FOLLOWING_RBRACK_IN_dim_struct_1118 = Set[ 1 ]
-    TOKENS_FOLLOWING_DEFINE_IN_var_dec_1133 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_var_dec_1135 = Set[ 5 ]
-    TOKENS_FOLLOWING_AS_IN_var_dec_1137 = Set[ 20, 39, 42, 43, 44, 46 ]
-    TOKENS_FOLLOWING_type_IN_var_dec_1139 = Set[ 6, 12 ]
-    TOKENS_FOLLOWING_ASGN_IN_var_dec_1145 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_var_dec_1153 = Set[ 12 ]
-    TOKENS_FOLLOWING_func_call_IN_var_dec_1240 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_var_dec_1332 = Set[ 1 ]
-    TOKENS_FOLLOWING_FUNCTION_IN_function_1345 = Set[ 20, 39, 42, 43, 44, 46 ]
-    TOKENS_FOLLOWING_type_IN_function_1349 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_function_1353 = Set[ 26 ]
-    TOKENS_FOLLOWING_parameters_IN_function_1355 = Set[ 8 ]
-    TOKENS_FOLLOWING_COLON_IN_function_1357 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_function_1405 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
-    TOKENS_FOLLOWING_var_dec_IN_function_1451 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
-    TOKENS_FOLLOWING_dim_dec_IN_function_1497 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
-    TOKENS_FOLLOWING_RETURN_IN_function_1546 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_function_1548 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_function_1552 = Set[ 41 ]
-    TOKENS_FOLLOWING_R_END_IN_function_1557 = Set[ 17 ]
-    TOKENS_FOLLOWING_FUNCTION_IN_function_1559 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_parameters_1576 = Set[ 20, 38, 39, 42, 43, 44, 46 ]
-    TOKENS_FOLLOWING_type_IN_parameters_1580 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_parameters_1582 = Set[ 9, 38 ]
-    TOKENS_FOLLOWING_COMMA_IN_parameters_1586 = Set[ 20, 39, 42, 43, 44, 46 ]
-    TOKENS_FOLLOWING_type_IN_parameters_1588 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_parameters_1590 = Set[ 9, 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_parameters_1598 = Set[ 1 ]
-    TOKENS_FOLLOWING_method_call_IN_estatute_1611 = Set[ 1 ]
-    TOKENS_FOLLOWING_assignment_IN_estatute_1617 = Set[ 1 ]
-    TOKENS_FOLLOWING_condition_IN_estatute_1623 = Set[ 1 ]
-    TOKENS_FOLLOWING_while_loop_IN_estatute_1629 = Set[ 1 ]
-    TOKENS_FOLLOWING_reading_IN_estatute_1635 = Set[ 1 ]
-    TOKENS_FOLLOWING_writing_IN_estatute_1641 = Set[ 1 ]
-    TOKENS_FOLLOWING_func_call_IN_estatute_1647 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_estatute_1649 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_method_call_1662 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_method_call_1666 = Set[ 20 ]
-    TOKENS_FOLLOWING_method_call_2_IN_method_call_1668 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_method_call_2_1683 = Set[ 26 ]
-    TOKENS_FOLLOWING_method_call_parameters_IN_method_call_2_1689 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_method_call_2_1693 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_method_call_parameters_1706 = Set[ 7, 15, 20, 23, 26, 38, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1712 = Set[ 9, 38 ]
-    TOKENS_FOLLOWING_COMMA_IN_method_call_parameters_1720 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1724 = Set[ 9, 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_method_call_parameters_1739 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_assignment_1754 = Set[ 6, 24 ]
-    TOKENS_FOLLOWING_dim_struct_IN_assignment_1762 = Set[ 6 ]
-    TOKENS_FOLLOWING_ASGN_IN_assignment_1771 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_assignment_1794 = Set[ 12 ]
-    TOKENS_FOLLOWING_func_call_IN_assignment_1812 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_assignment_1841 = Set[ 1 ]
-    TOKENS_FOLLOWING_IF_IN_condition_1854 = Set[ 26 ]
-    TOKENS_FOLLOWING_LPAR_IN_condition_1856 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_condition_1858 = Set[ 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_condition_1860 = Set[ 8 ]
-    TOKENS_FOLLOWING_COLON_IN_condition_1864 = Set[ 13, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_condition_1868 = Set[ 13, 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_ELSE_IN_condition_1875 = Set[ 8 ]
-    TOKENS_FOLLOWING_block_IN_condition_1879 = Set[ 21 ]
-    TOKENS_FOLLOWING_R_END_IN_condition_1976 = Set[ 21 ]
-    TOKENS_FOLLOWING_IF_IN_condition_1982 = Set[ 1 ]
-    TOKENS_FOLLOWING_WHILE_IN_while_loop_1995 = Set[ 26 ]
-    TOKENS_FOLLOWING_LPAR_IN_while_loop_1999 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_while_loop_2001 = Set[ 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_while_loop_2003 = Set[ 8 ]
-    TOKENS_FOLLOWING_block_IN_while_loop_2007 = Set[ 47 ]
-    TOKENS_FOLLOWING_WHILE_IN_while_loop_2009 = Set[ 1 ]
-    TOKENS_FOLLOWING_COLON_IN_block_2024 = Set[ 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_estatute_IN_block_2028 = Set[ 20, 21, 33, 36, 41, 47 ]
-    TOKENS_FOLLOWING_R_END_IN_block_2034 = Set[ 1 ]
-    TOKENS_FOLLOWING_READ_IN_reading_2047 = Set[ 26 ]
-    TOKENS_FOLLOWING_LPAR_IN_reading_2049 = Set[ 7, 15, 23, 45 ]
-    TOKENS_FOLLOWING_value_IN_reading_2051 = Set[ 9 ]
-    TOKENS_FOLLOWING_COMMA_IN_reading_2053 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_reading_2055 = Set[ 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_reading_2057 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_reading_2059 = Set[ 1 ]
-    TOKENS_FOLLOWING_PRINT_IN_writing_2072 = Set[ 26 ]
-    TOKENS_FOLLOWING_LPAR_IN_writing_2074 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_writing_2076 = Set[ 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_writing_2078 = Set[ 12 ]
-    TOKENS_FOLLOWING_DOT_IN_writing_2080 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_func_call_2095 = Set[ 26 ]
-    TOKENS_FOLLOWING_func_call_parameters_IN_func_call_2103 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_func_call_parameters_2118 = Set[ 7, 15, 20, 23, 26, 38, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_func_call_parameters_2124 = Set[ 9, 38 ]
-    TOKENS_FOLLOWING_COMMA_IN_func_call_parameters_2132 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_func_call_parameters_2136 = Set[ 9, 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_func_call_parameters_2151 = Set[ 1 ]
-    TOKENS_FOLLOWING_exp_IN_expresion_2166 = Set[ 1, 4, 14, 18, 25, 29, 31 ]
-    TOKENS_FOLLOWING_GREATER_IN_expresion_2172 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_LESS_IN_expresion_2188 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_NEQ_IN_expresion_2204 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_EQ_IN_expresion_2220 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_AND_IN_expresion_2236 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_OR_IN_expresion_2252 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_exp_IN_expresion_2268 = Set[ 1 ]
-    TOKENS_FOLLOWING_term_IN_exp_2297 = Set[ 1, 27, 32 ]
-    TOKENS_FOLLOWING_PLUS_IN_exp_2303 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_MINUS_IN_exp_2320 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_term_IN_exp_2337 = Set[ 1, 27, 32 ]
-    TOKENS_FOLLOWING_factor_IN_term_2366 = Set[ 1, 11, 28 ]
-    TOKENS_FOLLOWING_MULT_IN_term_2372 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_DIV_IN_term_2391 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_factor_IN_term_2410 = Set[ 1, 11, 28 ]
-    TOKENS_FOLLOWING_ID_IN_factor_2441 = Set[ 1, 24 ]
-    TOKENS_FOLLOWING_dim_struct_IN_factor_2449 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_factor_2462 = Set[ 7, 15, 20, 23, 26, 45 ]
-    TOKENS_FOLLOWING_expresion_IN_factor_2466 = Set[ 38 ]
-    TOKENS_FOLLOWING_RPAR_IN_factor_2468 = Set[ 1 ]
-    TOKENS_FOLLOWING_value_IN_factor_2478 = Set[ 1 ]
+    TOKENS_FOLLOWING_r_class_IN_start_512 = Set[ 17, 34, 40 ]
+    TOKENS_FOLLOWING_function_IN_start_520 = Set[ 17, 34 ]
+    TOKENS_FOLLOWING_program_IN_start_525 = Set[ 1 ]
+    TOKENS_FOLLOWING_R_CLASS_IN_r_class_538 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_r_class_540 = Set[ 8, 19 ]
+    TOKENS_FOLLOWING_heritage_IN_r_class_546 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_r_class_550 = Set[ 10, 17, 41 ]
+    TOKENS_FOLLOWING_function_IN_r_class_554 = Set[ 10, 17, 41 ]
+    TOKENS_FOLLOWING_dim_dec_IN_r_class_629 = Set[ 10, 17, 41 ]
+    TOKENS_FOLLOWING_var_dec_IN_r_class_704 = Set[ 10, 17, 41 ]
+    TOKENS_FOLLOWING_R_END_IN_r_class_780 = Set[ 40 ]
+    TOKENS_FOLLOWING_R_CLASS_IN_r_class_782 = Set[ 1 ]
+    TOKENS_FOLLOWING_HER_IN_heritage_799 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_heritage_801 = Set[ 1 ]
+    TOKENS_FOLLOWING_PROGRAM_IN_program_820 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_program_824 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_program_826 = Set[ 10, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_program_830 = Set[ 10, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_dim_dec_IN_program_878 = Set[ 10, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_var_dec_IN_program_926 = Set[ 10, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_R_END_IN_program_975 = Set[ 34 ]
+    TOKENS_FOLLOWING_PROGRAM_IN_program_977 = Set[ 1 ]
+    TOKENS_FOLLOWING_DEFINE_IN_dim_dec_992 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_dim_dec_994 = Set[ 5 ]
+    TOKENS_FOLLOWING_AS_IN_dim_dec_998 = Set[ 20, 39, 42, 43, 44, 46 ]
+    TOKENS_FOLLOWING_type_IN_dim_dec_1000 = Set[ 24 ]
+    TOKENS_FOLLOWING_LBRACK_IN_dim_dec_1004 = Set[ 23 ]
+    TOKENS_FOLLOWING_INTEGER_IN_dim_dec_1008 = Set[ 9, 35 ]
+    TOKENS_FOLLOWING_mat_dim_IN_dim_dec_1014 = Set[ 35 ]
+    TOKENS_FOLLOWING_RBRACK_IN_dim_dec_1019 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_dim_dec_1023 = Set[ 1 ]
+    TOKENS_FOLLOWING_COMMA_IN_mat_dim_1038 = Set[ 23 ]
+    TOKENS_FOLLOWING_INTEGER_IN_mat_dim_1042 = Set[ 1 ]
+    TOKENS_FOLLOWING_LBRACK_IN_dim_struct_1057 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_exp_IN_dim_struct_1061 = Set[ 9, 35 ]
+    TOKENS_FOLLOWING_COMMA_IN_dim_struct_1067 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_exp_IN_dim_struct_1071 = Set[ 35 ]
+    TOKENS_FOLLOWING_RBRACK_IN_dim_struct_1078 = Set[ 1 ]
+    TOKENS_FOLLOWING_DEFINE_IN_var_dec_1093 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_var_dec_1095 = Set[ 5 ]
+    TOKENS_FOLLOWING_AS_IN_var_dec_1097 = Set[ 20, 39, 42, 43, 44, 46 ]
+    TOKENS_FOLLOWING_type_IN_var_dec_1099 = Set[ 6, 12 ]
+    TOKENS_FOLLOWING_ASGN_IN_var_dec_1105 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_var_dec_1113 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_var_dec_1122 = Set[ 1 ]
+    TOKENS_FOLLOWING_FUNCTION_IN_function_1135 = Set[ 20, 39, 42, 43, 44, 46 ]
+    TOKENS_FOLLOWING_type_IN_function_1139 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_function_1143 = Set[ 26 ]
+    TOKENS_FOLLOWING_parameters_IN_function_1145 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_function_1147 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_function_1195 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_var_dec_IN_function_1241 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_dim_dec_IN_function_1287 = Set[ 10, 20, 21, 33, 36, 37, 41, 47 ]
+    TOKENS_FOLLOWING_RETURN_IN_function_1336 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_function_1338 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_function_1342 = Set[ 41 ]
+    TOKENS_FOLLOWING_R_END_IN_function_1347 = Set[ 17 ]
+    TOKENS_FOLLOWING_FUNCTION_IN_function_1349 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_parameters_1366 = Set[ 20, 38, 39, 42, 43, 44, 46 ]
+    TOKENS_FOLLOWING_type_IN_parameters_1370 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_parameters_1372 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_COMMA_IN_parameters_1376 = Set[ 20, 39, 42, 43, 44, 46 ]
+    TOKENS_FOLLOWING_type_IN_parameters_1378 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_parameters_1380 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_parameters_1388 = Set[ 1 ]
+    TOKENS_FOLLOWING_method_call_IN_estatute_1401 = Set[ 1 ]
+    TOKENS_FOLLOWING_assignment_IN_estatute_1407 = Set[ 1 ]
+    TOKENS_FOLLOWING_condition_IN_estatute_1413 = Set[ 1 ]
+    TOKENS_FOLLOWING_while_loop_IN_estatute_1419 = Set[ 1 ]
+    TOKENS_FOLLOWING_reading_IN_estatute_1425 = Set[ 1 ]
+    TOKENS_FOLLOWING_writing_IN_estatute_1431 = Set[ 1 ]
+    TOKENS_FOLLOWING_func_call_IN_estatute_1437 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_estatute_1439 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_method_call_1452 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_method_call_1456 = Set[ 20 ]
+    TOKENS_FOLLOWING_method_call_2_IN_method_call_1458 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_method_call_2_1473 = Set[ 26 ]
+    TOKENS_FOLLOWING_method_call_parameters_IN_method_call_2_1479 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_method_call_2_1483 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_method_call_parameters_1496 = Set[ 7, 15, 20, 23, 26, 38, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1502 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_COMMA_IN_method_call_parameters_1510 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_method_call_parameters_1514 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_method_call_parameters_1529 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_assignment_1544 = Set[ 6, 24 ]
+    TOKENS_FOLLOWING_dim_struct_IN_assignment_1552 = Set[ 6 ]
+    TOKENS_FOLLOWING_ASGN_IN_assignment_1561 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_assignment_1570 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_assignment_1578 = Set[ 1 ]
+    TOKENS_FOLLOWING_IF_IN_condition_1591 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_condition_1593 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_condition_1595 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_condition_1597 = Set[ 8 ]
+    TOKENS_FOLLOWING_COLON_IN_condition_1601 = Set[ 13, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_condition_1605 = Set[ 13, 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_ELSE_IN_condition_1612 = Set[ 8 ]
+    TOKENS_FOLLOWING_block_IN_condition_1616 = Set[ 21 ]
+    TOKENS_FOLLOWING_R_END_IN_condition_1713 = Set[ 21 ]
+    TOKENS_FOLLOWING_IF_IN_condition_1719 = Set[ 1 ]
+    TOKENS_FOLLOWING_WHILE_IN_while_loop_1732 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_while_loop_1736 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_while_loop_1738 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_while_loop_1740 = Set[ 8 ]
+    TOKENS_FOLLOWING_block_IN_while_loop_1744 = Set[ 47 ]
+    TOKENS_FOLLOWING_WHILE_IN_while_loop_1746 = Set[ 1 ]
+    TOKENS_FOLLOWING_COLON_IN_block_1761 = Set[ 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_estatute_IN_block_1765 = Set[ 20, 21, 33, 36, 41, 47 ]
+    TOKENS_FOLLOWING_R_END_IN_block_1771 = Set[ 1 ]
+    TOKENS_FOLLOWING_READ_IN_reading_1784 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_reading_1786 = Set[ 7, 15, 23, 45 ]
+    TOKENS_FOLLOWING_value_IN_reading_1788 = Set[ 9 ]
+    TOKENS_FOLLOWING_COMMA_IN_reading_1790 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_reading_1792 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_reading_1794 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_reading_1796 = Set[ 1 ]
+    TOKENS_FOLLOWING_PRINT_IN_writing_1809 = Set[ 26 ]
+    TOKENS_FOLLOWING_LPAR_IN_writing_1811 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_writing_1813 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_writing_1815 = Set[ 12 ]
+    TOKENS_FOLLOWING_DOT_IN_writing_1817 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_func_call_1832 = Set[ 26 ]
+    TOKENS_FOLLOWING_func_call_parameters_IN_func_call_1840 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_func_call_parameters_1855 = Set[ 7, 15, 20, 23, 26, 38, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_func_call_parameters_1861 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_COMMA_IN_func_call_parameters_1869 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_func_call_parameters_1873 = Set[ 9, 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_func_call_parameters_1888 = Set[ 1 ]
+    TOKENS_FOLLOWING_exp_IN_expresion_1903 = Set[ 1, 4, 14, 18, 25, 29, 31 ]
+    TOKENS_FOLLOWING_GREATER_IN_expresion_1909 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_LESS_IN_expresion_1925 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_NEQ_IN_expresion_1941 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_EQ_IN_expresion_1957 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_AND_IN_expresion_1973 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_OR_IN_expresion_1989 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_exp_IN_expresion_2005 = Set[ 1 ]
+    TOKENS_FOLLOWING_term_IN_exp_2033 = Set[ 1, 27, 32 ]
+    TOKENS_FOLLOWING_PLUS_IN_exp_2039 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_MINUS_IN_exp_2056 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_term_IN_exp_2073 = Set[ 1, 27, 32 ]
+    TOKENS_FOLLOWING_factor_IN_term_2102 = Set[ 1, 11, 28 ]
+    TOKENS_FOLLOWING_MULT_IN_term_2108 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_DIV_IN_term_2127 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_factor_IN_term_2146 = Set[ 1, 11, 28 ]
+    TOKENS_FOLLOWING_ID_IN_factor_2177 = Set[ 1, 24 ]
+    TOKENS_FOLLOWING_dim_struct_IN_factor_2185 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_factor_2198 = Set[ 7, 15, 20, 23, 26, 45 ]
+    TOKENS_FOLLOWING_expresion_IN_factor_2202 = Set[ 38 ]
+    TOKENS_FOLLOWING_RPAR_IN_factor_2204 = Set[ 1 ]
+    TOKENS_FOLLOWING_value_IN_factor_2214 = Set[ 1 ]
+    TOKENS_FOLLOWING_func_call_IN_factor_2224 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 

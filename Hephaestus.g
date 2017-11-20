@@ -97,7 +97,7 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 // ******************************************************************************
 
 start
-  : { \$quads.goto_program() } ( r_class )* program
+  : { \$quads.goto_program() } ( r_class )*  ( function )* program
   ;
 
 r_class
@@ -115,7 +115,6 @@ program
   : PROGRAM { \$quads.fill_program_quad() } ID COLON ( estatute
                                             | dim_dec
                                             | var_dec
-                                            | function
                                             )* R_END PROGRAM { \$program.finish() }
   ;
 
@@ -132,9 +131,7 @@ dim_struct
   ;
 
 var_dec
-  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion
-                                                                                   | func_call
-                                                                                   ) { \$quads.assgn_quad() } )? DOT
+  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion ) { \$quads.assgn_quad() } )? DOT
   ;
 
 function
@@ -172,11 +169,7 @@ method_call_parameters
   ;
 
 assignment
-  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) }
-              ( expresion
-              | func_call
-              )
-       ) { \$quads.assgn_quad() } DOT
+  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } ( expresion ) ) { \$quads.assgn_quad() } DOT
   ;
 
 condition
@@ -216,7 +209,7 @@ expresion
           | AND { \$quads.add_operator($AND.text) }
           | OR { \$quads.add_operator($OR.text) }
           ) exp
-          { \$quads.is_expresion_pending() } )? 
+          { \$quads.is_expresion_pending() } )?
   ;
 
 exp
@@ -237,6 +230,7 @@ factor
   : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) }
     | LPAR { \$quads.add_false_bottom($LPAR.text) } expresion RPAR { \$quads.remove_false_bottom() }
     | value { \$quads.add_id(nil, $value.text) }
+    | func_call
   ;
 
 type

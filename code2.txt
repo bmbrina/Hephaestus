@@ -1,7 +1,17 @@
+function Integer fibonacci(Integer a):
+  if(a < 2):
+    a = 1 .
+  else:
+    a = fibonacci(a - 2) + fibonacci(a - 1).
+  end if
+ return a.
+end function
+
+
 program add:
 
-  define dos as Integer.
-  dos = 5 .
-  print(dos + 5).
+  define res as Integer.
+  res = fibonacci(30).
+  print(res).
 
 end program
