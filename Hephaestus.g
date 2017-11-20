@@ -152,7 +152,7 @@ estatute
   | while_loop
   | reading
   | writing
-  | method_call
+  | method_call DOT
   | func_call DOT
 
   ;
@@ -183,11 +183,11 @@ writing
   ;
 
 method_call
-  : ID {\$method_aux = $ID.text} DOT method_call_2 { \$quads.get_return_value() } DOT
+  : ID {\$method_aux = $ID.text} DOT method_call_2
   ;
 
 method_call_2
-  : ID { \$func_aux = $ID.text } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) }
+  : ID { \$quads.method_exists?(\$method_aux, $ID.text) } { \$func_aux = $ID.text } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters { \$quads.get_return_value() }
   ;
 
 method_call_parameters
@@ -229,9 +229,9 @@ term
 
 factor
   : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) }
-    | LPAR { \$quads.add_false_bottom($LPAR.text) } expression RPAR { \$quads.remove_false_bottom() }
-    | value { \$quads.add_id(nil, $value.text) }
-    | func_call
+  | LPAR { \$quads.add_false_bottom($LPAR.text) } expression RPAR { \$quads.remove_false_bottom() }
+  | value { \$quads.add_id(nil, $value.text) }
+  | func_call
   ;
 
 type
