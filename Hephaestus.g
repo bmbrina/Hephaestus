@@ -16,6 +16,7 @@ options { language = Ruby; }
   \$method_aux
   \$func_aux
   \$dim_aux
+  \$assgn_aux
 }
 
 // ******************************************************************************
@@ -131,7 +132,7 @@ dim_struct
   ;
 
 var_dec
-  : DEFINE ID AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion ) { \$quads.assgn_quad() } )? DOT
+  : DEFINE ID { \$assgn_aux = $ID.text} AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expresion { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) )? DOT
   ;
 
 function
@@ -151,7 +152,6 @@ estatute
   | assignment
   | condition
   | while_loop
-  | reading
   | writing
   | func_call DOT
   ;
@@ -169,7 +169,7 @@ method_call_parameters
   ;
 
 assignment
-  : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } ( expresion ) ) { \$quads.assgn_quad() } DOT
+  : ID { \$assgn_aux = $ID.text} { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } ( expresion { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) ) DOT
   ;
 
 condition
@@ -186,11 +186,11 @@ block
   ;
 
 reading
-  : READ LPAR value COMMA ID RPAR DOT
+  : READ LPAR { \$quads.read(\$assgn_aux)} RPAR
   ;
 
 writing
-  : PRINT LPAR expresion RPAR DOT { \$quads.write()}
+  : PRINT LPAR expresion RPAR { \$quads.write() } DOT 
   ;
 
 func_call

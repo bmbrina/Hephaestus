@@ -111,6 +111,23 @@ class QuadrupleFactory
     end
   end
 
+  def read(id)
+    var_type = get_variable(id).type
+    quad = Quadruple.new('read', "%", @memory_stack.last(), var_type)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+  end
+
+  def assgn_read()
+    @ids_stack.pop()
+    id = @memory_stack.pop()
+    @types_stack.pop()
+    op = @operators_stack.pop()
+    quad = Quadruple.new(op, id, nil, id)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+  end
+
   def write()
     @ids_stack.pop()
     temp = @memory_stack.pop()
