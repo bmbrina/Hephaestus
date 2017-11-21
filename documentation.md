@@ -397,8 +397,8 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 
 | Nombre    | Carácter    | Token   |
 | :------:  | :---------: | :-----: |
-| DIV       | `/`         | 6       |
-| EQ        | `==`        | 6       |
+| DIV       | `/`         | 11      |
+| EQ        | `==`        | 14      |
 | GREATER   | `>`         | 6       |
 | GREATEQ   | `>=`        | 6       |
 | LESS      | `<`         | 6       |
@@ -408,9 +408,9 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 | NEQ       | `<>`        | 6       |
 | PLUS      | `+`         | 6       |
 | ASGN      | `=`         | 6       |
-| COLON     | `:`         | 6       |
-| COMMA     | `,`         | 6       |
-| DOT       | `.`         | 6       |
+| COLON     | `:`         | 8       |
+| COMMA     | `,`         | 9       |
+| DOT       | `.`         | 12      |
 | LBRACK    | `[`         | 6       |
 | LPAR      | `(`         | 6       |
 | RBRACK    | `]`         | 6       |
@@ -419,28 +419,28 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 
 * **Palabras reservadas**
 
-| Nombre    | Palabra     | Token   |
-| :------:  | :---------: | :-----: |
-| AS        | `as`         | 6       |
-| AND       | `and`        | 6       |
-| R_BOOL    | `Bool`       | 6       |
+| Nombre    | Palabra      | Token   |
+| :------:  | :---------:  | :-----: |
+| AS        | `as`         | 5       |
+| AND       | `and`        | 4       |
+| R_BOOL    | `Bool`       | 7       |
 | R_CLASS   | `class`      | 6       |
-| DEFINE    | `define`        | 6       |
+| DEFINE    | `define`     | 10      |
 | R_END     | `end`        | 6       |
-| ELSE      | `else`         | 6       |
-| R_FLOAT   | `Float`         | 6       |
-| FUNCTION  | `function`         | 6       |
-| HER       | `inherits`         | 6       |
+| ELSE      | `else`       | 13      |
+| R_FLOAT   | `Float`      | 15      |
+| FUNCTION  | `function`   | 6       |
+| HER       | `inherits`   | 6       |
 | IF        | `if`         | 6       |     
-| R_INTEGER | `.`         | 6       |
-| OR        | `[`         | 6       |
-| PRINT     | `(`         | 6       |
-| PROGRAM   | `]`         | 6       |
-| READ      | `)`         | 6       |
-| RETURN    | `@`         | 6       |
-| R_STRING  | `@`         | 6       |
-| VOID      | `@`         | 6       |
-| WHILE     | `@`         | 6       |
+| R_INTEGER | `Integer`    | 6       |
+| OR        | `or`         | 6       |
+| PRINT     | `prin`       | 6       |
+| PROGRAM   | `program`    | 6       |
+| READ      | `read`       | 6       |
+| RETURN    | `return`     | 6       |
+| R_STRING  | `String`     | 6       |
+| VOID      | `Void`       | 6       |
+| WHILE     | `while`      | 6       |
 
 #### 3.3 Descripción del Análisis de Sintaxis
 A continuación se muestra la gramática formal de `Hephaestus`:
