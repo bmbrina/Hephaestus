@@ -105,8 +105,14 @@ class QuadrupleFactory
 
   def is_expression_pending()
     if @operators_stack.last() == '>' || @operators_stack.last() == '<' || @operators_stack.last() == '==' ||
-       @operators_stack.last() == '==' || @operators_stack.last() == '<>' || @operators_stack.last() == 'and' ||
-       @operators_stack.last() == 'or'
+       @operators_stack.last() == '==' || @operators_stack.last() == '<>' || @operators_stack.last() == '>=' || 
+       @operators_stack.last() == '<='
+      generate_quad()
+    end
+  end
+
+  def is_super_expression_pending()
+    if @operators_stack.last() == 'and' || @operators_stack.last() == 'or'
       generate_quad()
     end
   end
@@ -223,7 +229,6 @@ class QuadrupleFactory
       puts "ERROR: undeclared method #{func_name} for object #{var_name}."
       exit
     end
-
     class_context
   end
 
@@ -291,7 +296,6 @@ class QuadrupleFactory
   def get_return_value()
     func_name = @ids_stack.pop()
     @memory_stack.pop()
-
     func_type = @types_stack.pop()
     @program.set_next_memory()
     temp = @program.memory_counter()
@@ -488,7 +492,6 @@ class QuadrupleFactory
 private
   def generate_quad()
     operator = @operators_stack.pop()
-
     operator_type = @sem_cube.convert[operator]
     @ids_stack.pop()
     right_side = @memory_stack.pop()

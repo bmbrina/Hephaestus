@@ -34,12 +34,20 @@ class VM
       divide(quad.left_side, quad.right_side, quad.result)
     when '>'
       greater_than(quad.left_side, quad.right_side, quad.result)
+    when '>='
+      greateq_than(quad.left_side, quad.right_side, quad.result)
     when '<'
       less_than(quad.left_side, quad.right_side, quad.result)
+    when '<='
+      leq_than(quad.left_side, quad.right_side, quad.result)
     when '=='
       equal(quad.left_side, quad.right_side, quad.result)
     when '<>'
       not_equal(quad.left_side, quad.right_side, quad.result)
+    when 'and'
+      and_op(quad.left_side, quad.right_side, quad.result)
+    when 'or'
+      or_op(quad.left_side, quad.right_side, quad.result)
     when '='
       assign(quad.left_side, quad.result)
     when 'GOTO'
@@ -83,8 +91,16 @@ class VM
     @current_context[temp] = get_value(left) > get_value(right);
   end
 
+  def greateq_than(left, right, temp)
+    @current_context[temp] = get_value(left) >= get_value(right)
+  end
+
   def less_than(left, right, temp)
     @current_context[temp] = get_value(left) < get_value(right);
+  end
+
+  def leq_than(left, right, temp)
+    @current_context[temp] = get_value(left) <= get_value(right)
   end
 
   def equal(left, right, temp)
@@ -93,6 +109,14 @@ class VM
 
   def not_equal(left, right, temp)
     @current_context[temp] = get_value(left) != get_value(right);
+  end
+
+  def and_op(left, right, temp)
+    @current_context[temp] = get_value(left) && get_value(right)
+  end
+
+  def or_op(left, right, temp)
+    @current_context[temp] = get_value(left) || get_value(right)
   end
 
   def assign(result, var)

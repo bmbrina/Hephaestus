@@ -57,7 +57,9 @@ WHILE: 'while';
 DIV: '/';
 EQ: '==';
 GREATER: '>';
+GREATEQ: '>=';
 LESS: '<';
+LEQ: '<=';
 MINUS: '-';
 MULT: '*';
 NEQ: '<>';
@@ -133,7 +135,7 @@ dim_struct
   ;
 
 var_dec
-  : DEFINE ID { \$assgn_aux = $ID.text} AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( expression { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) )? DOT
+  : DEFINE ID { \$assgn_aux = $ID.text} AS type { \$program.add_variable($ID.text, $type.text) } ( ASGN { \$quads.add_id($ID.text, nil) } { \$quads.add_operator($ASGN.text) } ( super_expression { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) )? DOT
   ;
 
 function
@@ -141,7 +143,7 @@ function
                                           ( estatute
                                           | var_dec
                                           | dim_dec
-                                          )* ( RETURN expression { \$quads.return($ID.text) } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
+                                          )* ( RETURN super_expression { \$quads.return($ID.text) } DOT )? R_END FUNCTION { \$quads.end_function()} { \$program.reset_context() }
   ;
 
 parameters
@@ -166,20 +168,20 @@ method_call_2
   ;
 
 method_call_parameters
-  : LPAR ( ( expression ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( expression ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
+  : LPAR ( ( super_expression ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } ( COMMA ( super_expression ) { \$quads.method_parameter(\$method_aux ,\$func_aux) } )* )?  { \$quads.verify_method_param_count(\$method_aux ,\$func_aux) } RPAR { \$quads.go_sub_method(\$method_aux, \$func_aux) }
   ;
 
 assignment
-  : ID { \$assgn_aux = $ID.text} { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } ( expression { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) ) DOT
+  : ID { \$assgn_aux = $ID.text} { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } ( super_expression { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) ) DOT
   ;
 
 condition
-  : IF LPAR expression RPAR { \$quads.gotof() } COLON ( estatute )* ( ELSE { \$quads.goto() } block
+  : IF LPAR super_expression RPAR { \$quads.gotof() } COLON ( estatute )* ( ELSE { \$quads.goto() } block
                                                                                              | R_END ) { \$quads.fill_program_quad() } IF
   ;
 
 while_loop
-  : WHILE { \$quads.add_jump() } LPAR expression RPAR { \$quads.gotof() } block WHILE { \$quads.goto_while()}
+  : WHILE { \$quads.add_jump() } LPAR super_expression RPAR { \$quads.gotof() } block WHILE { \$quads.goto_while()}
   ;
 
 block
@@ -191,7 +193,7 @@ reading
   ;
 
 writing
-  : PRINT LPAR expression RPAR { \$quads.write() } DOT 
+  : PRINT LPAR super_expression RPAR { \$quads.write() } DOT 
   ;
 
 func_call
@@ -199,16 +201,22 @@ func_call
   ;
 
 func_call_parameters
-  : LPAR ( ( expression ) { \$quads.parameter(\$func_aux) } ( COMMA ( expression ) { \$quads.parameter(\$func_aux) } )* )?  { \$quads.verify_func_param_count(\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
+  : LPAR ( ( super_expression ) { \$quads.parameter(\$func_aux) } ( COMMA ( super_expression ) { \$quads.parameter(\$func_aux) } )* )?  { \$quads.verify_func_param_count(\$func_aux) } RPAR { \$quads.go_sub(\$func_aux) }
   ;
 
+super_expression
+  : expression ( ( AND { \$quads.add_operator($AND.text) }
+                 | OR { \$quads.add_operator($OR.text) }
+                 ) expression
+                 { \$quads.is_super_expression_pending() } )?
+  ;
 expression
   : exp ( ( GREATER { \$quads.add_operator($GREATER.text) }
+          | GREATEQ { \$quads.add_operator($GREATEQ.text) }
           | LESS { \$quads.add_operator($LESS.text) }
+          | LEQ { \$quads.add_operator($LQ.text) }
           | NEQ { \$quads.add_operator($NEQ.text) }
           | EQ { \$quads.add_operator($EQ.text) }
-          | AND { \$quads.add_operator($AND.text) }
-          | OR { \$quads.add_operator($OR.text) }
           ) exp
           { \$quads.is_expression_pending() } )?
   ;
@@ -229,7 +237,7 @@ term
 
 factor
   : ID { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) }
-    | LPAR { \$quads.add_false_bottom($LPAR.text) } expression RPAR { \$quads.remove_false_bottom() }
+    | LPAR { \$quads.add_false_bottom($LPAR.text) } super_expression RPAR { \$quads.remove_false_bottom() }
     | value { \$quads.add_id(nil, $value.text) }
     | func_call
     | method_call
