@@ -1,7 +1,7 @@
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-file_name = "Tests/object_test.txt"
+file_name = "Tests/universidad.txt"
 
 input = ANTLR3::FileStream.new(file_name)
 $lexer = Hephaestus::Lexer.new( input )

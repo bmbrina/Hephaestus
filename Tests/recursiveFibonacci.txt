@@ -1,5 +1,5 @@
 function Integer fibonacci(Integer a):
-  if(a < 2):
+  if(a <= 2):
     a = 1 .
   else:
     a = fibonacci(a - 2) + fibonacci(a - 1).
@@ -11,7 +11,7 @@ end function
 program recursiveFibonacci:
 
   define res as Integer.
-  res = fibonacci(10).
+  res = fibonacci(20).
   print(res).
 
 end program

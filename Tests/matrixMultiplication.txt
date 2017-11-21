@@ -3,24 +3,24 @@ program matrixMultiplication:
   define mat2 as Integer[3,3].
   define result as Integer[3,3].
 
-  mat1[0,0] = 3 . 
-  mat1[0,1] = 7 . 
-  mat1[0,2] = 4 . 
-  mat1[1,0] = 1 . 
-  mat1[1,1] = 9 . 
+  mat1[0,0] = 3 .
+  mat1[0,1] = 7 .
+  mat1[0,2] = 4 .
+  mat1[1,0] = 1 .
+  mat1[1,1] = 9 .
   mat1[1,2] = 9 .
-  mat1[2,0] = 5 . 
-  mat1[2,1] = 4 . 
+  mat1[2,0] = 5 .
+  mat1[2,1] = 4 .
   mat1[2,2] = 2 .
 
-  mat2[0,0] = 4 . 
-  mat2[0,1] = 2 . 
-  mat2[0,2] = 1 . 
-  mat2[1,0] = 8 . 
-  mat2[1,1] = 2 . 
+  mat2[0,0] = 4 .
+  mat2[0,1] = 2 .
+  mat2[0,2] = 1 .
+  mat2[1,0] = 8 .
+  mat2[1,1] = 2 .
   mat2[1,2] = 9 .
-  mat2[2,0] = 10 . 
-  mat2[2,1] = 1 . 
+  mat2[2,0] = 10 .
+  mat2[2,1] = 1 .
   mat2[2,2] = 7 .
 
   define i as Integer = 0 .
@@ -41,13 +41,13 @@ program matrixMultiplication:
     i = i + 1 .
   end while
 
-  print(result[0,0]). 
-  print(result[0,1]). 
-  print(result[0,2]). 
-  print(result[1,0]). 
-  print(result[1,1]). 
-  print(result[1,2]).
-  print(result[2,0]).  
-  print(result[2,1]). 
-  print(result[2,2]). 
+  i = 0 .
+  while(i < 3):
+    j = 0 .
+    while(j < 3):
+      print(result[i,j]).
+      j = j + 1 .
+    end while
+    i = i + 1 .
+  end while
 end program

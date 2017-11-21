@@ -1,6 +1,6 @@
 program factorial:
 
-  define n as Integer = 5 .
+  define n as Integer = 10 .
   define factorial as Integer = 1 .
   define i as Integer = 1 .
 

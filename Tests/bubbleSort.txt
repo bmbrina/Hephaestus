@@ -27,7 +27,7 @@ program bubbleSort:
   end while
 
   i = 0 .
-  print("Sorted:").
+  print("Sorted array:").
   while(i < n):
     print(arr[i]).
     i = i + 1 .
