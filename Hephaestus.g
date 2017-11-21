@@ -36,11 +36,9 @@ DEFINE: 'define';
 R_END: 'end';
 ELSE: 'else';
 R_FLOAT: 'Float';
-FOR: 'for';
 FUNCTION: 'function';
 HER: 'inherits';
 IF: 'if';
-IN: 'in';
 R_INTEGER: 'Integer';
 OR: 'or';
 PRINT: 'print';
@@ -194,7 +192,7 @@ reading
   ;
 
 writing
-  : PRINT LPAR super_expression RPAR { \$quads.write() } DOT 
+  : PRINT LPAR super_expression RPAR { \$quads.write() } DOT
   ;
 
 func_call
