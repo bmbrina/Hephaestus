@@ -35,7 +35,7 @@ end class
 
 program classes:
 
-  define jorge as Teacher.
+  define jorge as Student.
 
   jorge@setName("jorge").
   jorge@setGrade(40.2).

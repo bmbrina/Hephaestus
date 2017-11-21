@@ -103,6 +103,7 @@ NEWLINE: ( '\n' | '\r' )+ { $channel = HIDDEN };
 start
   : { \$quads.goto_program() } ( r_class )*  ( function )* program
   ;
+  finally { exit }
 
 r_class
   : R_CLASS ID { \$class_aux = $ID.text } { \$program.add_class($ID.text, nil) } heritage?  COLON ( function

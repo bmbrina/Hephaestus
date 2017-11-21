@@ -23,8 +23,8 @@ class Program
   end
 
   def reset_class_context()
-    puts "\n** CLASS #{@current_context.name} **\n"
-    @current_context.print_tables()
+    #puts "\n** CLASS #{@current_context.name} **\n"
+    #@current_context.print_tables()
     @current_context = @main_context
   end
 
@@ -84,7 +84,7 @@ class Program
   end
 
   def finish()
-    print_quadruples()
+    #print_quadruples()
     VM.new(@quadruples)
   end
 
