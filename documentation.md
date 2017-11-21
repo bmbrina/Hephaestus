@@ -48,7 +48,7 @@ Crear un compilador para un lenguaje de programación orientado a objetos que cu
 #### 1.2 Análisis de Requerimientos y Casos de Uso generales
 El compilador debe de cumplir con ciertos requerimientos concernientes al servicio que proporicona, indicando como responder ante ciertas situaciones. A continuación se muestran los requerimientos funcionales de este compilador:
 
-- **Requerimientos Funcionales**:
+- **Requerimientos Funcionales:**
   * RF01: El compilador debe marcar errores durante la compilación.
   * RF02: El compilador debe terminar tan pronto encuentre un error.
   * RF03: El compilador debe leer el código del usuario desde un archivo de texto.
@@ -66,4 +66,8 @@ El compilador debe de cumplir con ciertos requerimientos concernientes al servic
   * RF15: El compilador debe permitir la declaración de funciones, con o sin retorno, dentro de las clase.
   * RF16: El compilador debe de permitir la herencia entre clases.
   * RF17: El compilador debe contar con un program (*main*).
-  * RF18: El compilador debe realizar operacione aritméticas (*+,-,&ast;,/*) y lógicas (*>, <, <=, >=, <>, ==, and, or*).
+  * RF18: El compilador debe realizar operaciones aritméticas (*+,-,&ast;,/*) y lógicas (*>, <, <=, >=, <>, ==, and, or*).
+  * RF19: Compilar el código del usuario y desplegar errores, en caso de que existan.
+  * RF20: Ejecutar el código compilado en una máquina virtual y desplegar errores, en caso de que existan.
+
+  - **Principales casos de uso:**
