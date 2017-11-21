@@ -1,0 +1,31 @@
+program find:
+
+  define arr as Integer[5].
+  define size as Integer = 5 .
+  define i as Integer = 0 .
+  arr[0] = 1 .
+  arr[1] = 2 .
+  arr[2] = 4 .
+  arr[3] = 5 .
+  arr[4] = 8 .
+
+  define numberToFind as Integer = 20 .
+  define position as Integer. 
+  define numberFound as Bool = false.
+
+  while (i < size):
+    if (arr[i] == numberToFind):
+      numberFound = true.
+      position = i.
+    end if
+    i = i + 1 .
+  end while
+
+  if(numberFound == true):
+    print("Number found at: ").
+    print(position).
+  else:
+    print("Number not found").
+  end if
+
+end program
