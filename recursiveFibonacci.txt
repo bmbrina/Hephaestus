@@ -1,0 +1,18 @@
+function Integer fibonacci(Integer a):
+  if(a <= 1):
+    a = 1 .
+  else:
+    a = fibonacci(a - 2) + fibonacci(a - 1).
+  end if
+  print(a).
+ return a.
+end function
+
+
+program recursiveFibonacci:
+
+  define res as Integer.
+  res = fibonacci(10).
+  print(res).
+
+end program

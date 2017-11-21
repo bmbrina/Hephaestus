@@ -1,0 +1,14 @@
+program factorial:
+
+  define n as Integer = 12 .
+  define factorial as Integer = 1 .
+  define i as Integer = 1 .
+
+  while(i <= n):
+   factorial = factorial * i.
+   i = i + 1 .
+  end while
+
+  print(factorial).
+
+end program

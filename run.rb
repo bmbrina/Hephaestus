@@ -1,7 +1,7 @@
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-input = ANTLR3::FileStream.new( 'matrixMultiplication.txt' )
+input = ANTLR3::FileStream.new( 'recursiveFibonacci.txt' )
 $lexer = Hephaestus::Lexer.new( input )
 
 def printTokens()
@@ -14,5 +14,5 @@ end
 
 #printTokens()
 
-parser = open( 'matrixMultiplication.txt' ) { | f | Hephaestus::Parser.new( f ) }
+parser = open( 'recursiveFibonacci.txt' ) { | f | Hephaestus::Parser.new( f ) }
 parser.start

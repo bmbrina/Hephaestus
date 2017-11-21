@@ -5,12 +5,15 @@ program fibonacci:
   define d as Integer = 1 .
   define temp as Integer = 0 .
 
-
-  while(cont < 1000):
-    temp = c + d.
-    c = d.
-    d = temp.
-    print(temp).
+  while(cont < 10):
+    if(cont <= 1):
+      print(1).
+    else:
+      temp = c + d.
+      c = d.
+      d = temp.
+      print(temp).
+    end if
     cont = cont + 1 .
   end while
 

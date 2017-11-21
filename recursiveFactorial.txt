@@ -1,0 +1,25 @@
+function Integer factorial(Integer n):
+    define ans as Integer.
+    define aux as Integer.
+
+    if(n == 0):
+      ans = 1 .
+    else:
+      ans = n * factorial(n - 1).
+    end if
+
+
+    return ans.
+
+end function
+
+
+program recursiveFactorial:
+
+  define a as Integer.
+
+  a = factorial(5).
+
+  print(a).
+
+end program
