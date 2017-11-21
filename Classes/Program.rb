@@ -85,6 +85,7 @@ class Program
 
   def finish()
     #print_quadruples()
+    puts "Compilation finished successfully."
     VM.new(@quadruples)
   end
 

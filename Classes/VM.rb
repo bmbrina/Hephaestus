@@ -13,11 +13,17 @@ class VM
   end
 
   def start()
+    puts "Starting execution..."
     while @quad_no < @quads.length
       resolve_quad(@quads[@quad_no])
       @quad_no += 1
     end
+    finish()
+  end
 
+  def finish()
+    puts "Program finished successfully."
+    exit
   end
 
   def resolve_quad(quad)
@@ -170,7 +176,7 @@ class VM
       else
         @new_context = @object_contexts[object_name]
       end
-    end 
+    end
   end
 
   def param(value, param)
