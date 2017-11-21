@@ -1,4 +1,4 @@
-gramáticamétodos## Índice
+## Índice
 
 1. Descripción del proyecto
   1. Propósito, Objetivos y Alcance del Proyecto
@@ -385,13 +385,13 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 
 * **Patrones de construcción de los elementos principales**
 
-| Tipo de dato    | Expresión Regular                             |
-| :-------------: |:---------------------------------------------:|
-| Integer         |  `('0' .. '9')+`                              |
-| Float           | `('0' .. '9')+ '.' ('0' .. '9')`              |
-| String          | <code>'\'' ( ~( '\'' &#x7c; '\\' ) &#x7c; '\\' . )* '\'' &#x7c; '"'  ( ~( '"'  &#x7c; '\\' ) &#x7c; '\\' . )* '"'</code> |
-| Bool            | <code>true &#x7c; false</code>                |
-| ID              | <code>( 'a' .. 'z' &#x7c; 'A' .. 'Z' ) ( ( 'a' .. 'z' &#x7c; 'A' .. 'Z' ) &#x7c; '_' &#x7c; ('0' .. '9') )*</code>    |
+| Tipo de dato    | Expresión Regular | Token |
+| :-------------: |:----------------- | :----:
+| Integer         |  `('0' .. '9')+`  | 22 |
+| Float           | `('0' .. '9')+ '.' ('0' .. '9')`| 15 |
+| String          | <code>'\'' ( ~( '\'' &#x7c; '\\' ) &#x7c; '\\' . )* '\'' &#x7c; '"'  ( ~( '"'  &#x7c; '\\' ) &#x7c; '\\' . )* '"'</code> | 46 |
+| Bool           | <code>true &#x7c; false</code>| 7 |
+| ID             | <code>( 'a' .. 'z' &#x7c; 'A' .. 'Z' ) ( ( 'a' .. 'z' &#x7c; 'A' .. 'Z' ) &#x7c; '_' &#x7c; ('0' .. '9') )*</code>    | 20 |
 
 * **Tokens del lenguaje y código asociado**
 
@@ -399,23 +399,23 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 | :------:  | :---------: | :-----: |
 | DIV       | `/`         | 11      |
 | EQ        | `==`        | 14      |
-| GREATER   | `>`         | 6       |
-| GREATEQ   | `>=`        | 6       |
-| LESS      | `<`         | 6       |
-| LEQ       | `<=`        | 6       |
-| MINUS     | `-`         | 6       |
-| MULT      | `*`         | 6       |
-| NEQ       | `<>`        | 6       |
-| PLUS      | `+`         | 6       |
+| GREATER   | `>`         | 18      |
+| GREATEQ   | `>=`        | 17      |
+| LESS      | `<`         | 25      |
+| LEQ       | `<=`        | 24      |
+| MINUS     | `-`         | 27      |
+| MULT      | `*`         | 28      |
+| NEQ       | `<>`        | 29      |
+| PLUS      | `+`         | 33      |
 | ASGN      | `=`         | 6       |
 | COLON     | `:`         | 8       |
 | COMMA     | `,`         | 9       |
 | DOT       | `.`         | 12      |
-| LBRACK    | `[`         | 6       |
-| LPAR      | `(`         | 6       |
-| RBRACK    | `]`         | 6       |
-| RPAR      | `)`         | 6       |
-| OBJ       | `@`         | 6       |
+| LBRACK    | `[`         | 23      |
+| LPAR      | `(`         | 26      |
+| RBRACK    | `]`         | 36      |
+| RPAR      | `)`         | 39      |
+| OBJ       | `@`         | 31      |
 
 * **Palabras reservadas**
 
@@ -423,24 +423,24 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 | :------:  | :---------:  | :-----: |
 | AS        | `as`         | 5       |
 | AND       | `and`        | 4       |
-| R_BOOL    | `Bool`       | 7       |
-| R_CLASS   | `class`      | 6       |
+| R_BOOL    | `Bool`       | 40      |
+| R_CLASS   | `class`      | 41      |
 | DEFINE    | `define`     | 10      |
-| R_END     | `end`        | 6       |
+| R_END     | `end`        | 42      |
 | ELSE      | `else`       | 13      |
-| R_FLOAT   | `Float`      | 15      |
-| FUNCTION  | `function`   | 6       |
-| HER       | `inherits`   | 6       |
-| IF        | `if`         | 6       |     
-| R_INTEGER | `Integer`    | 6       |
-| OR        | `or`         | 6       |
-| PRINT     | `prin`       | 6       |
-| PROGRAM   | `program`    | 6       |
-| READ      | `read`       | 6       |
-| RETURN    | `return`     | 6       |
-| R_STRING  | `String`     | 6       |
-| VOID      | `Void`       | 6       |
-| WHILE     | `while`      | 6       |
+| R_FLOAT   | `Float`      | 43      |
+| FUNCTION  | `function`   | 16      |
+| HER       | `inherits`   | 19      |
+| IF        | `if`         | 21      |     
+| R_INTEGER | `Integer`    | 44      |
+| OR        | `or`         | 32      |
+| PRINT     | `prin`       | 34      |
+| PROGRAM   | `program`    | 35      |
+| READ      | `read`       | 37      |
+| RETURN    | `return`     | 38      |
+| R_STRING  | `String`     | 45      |
+| VOID      | `Void`       | 47      |
+| WHILE     | `while`      | 48      |
 
 #### 3.3 Descripción del Análisis de Sintaxis
 A continuación se muestra la gramática formal de `Hephaestus`:
@@ -582,8 +582,6 @@ A continuación se muestra la gramática formal de `Hephaestus`:
     ;
 
   ```
-
-
 #### 3.4 Descripción de Generación de Código Intermedio y Análisis Semántico
 
 #### 3.5 Descripción del proceso Administración de Memoria
