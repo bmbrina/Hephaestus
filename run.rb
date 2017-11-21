@@ -4,8 +4,8 @@ require_relative 'HephaestusParser'
 #input = ANTLR3::FileStream.new( 'matrixMultiplication.txt' )
 #input = ANTLR3::FileStream.new( 'recursiveFibonacci.txt' )
 #input = ANTLR3::FileStream.new( 'bubbleSort.txt' )
-input = ANTLR3::FileStream.new( 'recursiveFactorial.txt' )
-#input = ANTLR3::FileStream.new( 'object_test.txt' )
+#input = ANTLR3::FileStream.new( 'recursiveFactorial.txt' )
+input = ANTLR3::FileStream.new( 'object_test.txt' )
 $lexer = Hephaestus::Lexer.new( input )
 
 def printTokens()
@@ -21,6 +21,6 @@ end
 #parser = open( 'matrixMultiplication.txt' ) { | f | Hephaestus::Parser.new( f ) }
 #parser = open( 'recursiveFibonacci.txt' ) { | f | Hephaestus::Parser.new( f ) }
 #parser = open( 'bubbleSort.txt' ) { | f | Hephaestus::Parser.new( f ) }
-parser = open( 'recursiveFactorial.txt' ) { | f | Hephaestus::Parser.new( f ) }
-#parser = open( 'object_test.txt' ) { | f | Hephaestus::Parser.new( f ) }
+#parser = open( 'recursiveFactorial.txt' ) { | f | Hephaestus::Parser.new( f ) }
+parser = open( 'object_test.txt' ) { | f | Hephaestus::Parser.new( f ) }
 parser.start
