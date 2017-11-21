@@ -1,38 +1,5 @@
-## Índice
-
-1. Descripción del proyecto
-  1. Propósito, Objetivos y Alcance del Proyecto
-  2. Análisis de Requerimientos y Casos de Uso generales
-  3. Descripción de los principales Test Cases
-  4. Descripción del proceso de desarrollo
-    * Reflexión de Bárbara Martínez
-    * Reflexión Jorge Elizondo
-2. Descripción del lenguaje
-  1. Nombre del lenguaje
-  2. Descripción de las principales características del lenguaje
-  3. Descripción de los posibles errores
-3. Descripción del compilador
-  1. Equipo de cómputo, lenguaje y utilerías usadas en el proyecto
-  2. Descripción del Análisis de Léxico
-    * Patrones de construcción de los elementos principales
-    * Tokens del lenguaje y código asociado
-  3. Descripción del Análisis de Sintaxis
-    * Gramática Formal
-  4. Descripción de Generación de Código Intermedio y Análisis Semántico
-    * Código de operación y direcciones virtuales asociadas
-    * Diagramas de Sintaxis con las acciones correspondientes
-    * Descripción de las acciones semánticas y de código
-    * Tabla de consideraciones semánticas
-  5. Descripción del proceso Administración de Memoria
-    * Especificación gráfica de las estructuras
-4. Descripción de la máquina virtual
-  1. Equipo de cómputo, lenguaje y utilerías usadas en el proyecto
-  2. Descripción del proceso Administración de Memoria
-    * Especificación gráfica de las estructuras
-    * Asociación hecha entre las direcciones virtuales y las reales
-5. Pruebas del funcionamiento del lenguaje
-  1. Pruebas que comprueben el funcionamiento del proyecto
-6. Listados documentados del proyecto
+- Reflexiones
+- Caso de prueba de Objetos
 
 ### 1. Descripción del proyecto
 #### 1.1 Propósito, Objetivos y Alcance del Proyecto
@@ -373,11 +340,9 @@ A continuación, listamos las características principales de `Hephaestus`:
 Cada vez que el compilador o la máquina virtual se encuentra con uno de estos errores, se muestra al usuario el mensaje de error apropiado y se detiene la compilación o la ejecución.
 
 ### 3. Descripción del compilador
-
 En esta sección se describen todos los componentes que forman parte del compilador como el lenguaje que se utilizó, el análisis léxico y sintáctico, generación de código intermedio, análisis semántico y el proceso de administración de memoria.
 
 #### 3.1 Equipo de cómputo, lenguaje y utilerías usadas en el proyecto   
-
 El equipo de cómputo que se utilizo para desarrollar el compilador: dos Macbook Pros. El lenguage utilizado es `Ruby` y la herramienta utilizada es `antlr`. Antlr es una herramineta que te permite crear el scanner y el parser.
 
 #### 3.2 Descripción del Análisis de Léxico
@@ -584,4 +549,28 @@ A continuación se muestra la gramática formal de `Hephaestus`:
   ```
 #### 3.4 Descripción de Generación de Código Intermedio y Análisis Semántico
 
+**Código de operación y direcciones virtuales asociadas**
+
+**Código de operación y direcciones virtuales asociadas**
+
+**Diagramas de Sintaxis con las acciones correspondientes**
+
+**Descripción de las acciones semánticas y de código**
+
+**Tabla de consideraciones semánticas**
+
 #### 3.5 Descripción del proceso Administración de Memoria
+**Especificación gráfica de las estructuras**
+
+### 4. Descripción de la máquina virtual
+
+#### 4.1 Equipo de cómputo, lenguaje y utilerías usadas en el proyecto
+### 5. Descripción del proceso Administración de Memoria
+#### 5.1Especificación gráfica de las estructuras
+
+#### 5.2Asociación hecha entre las direcciones virtuales y las reales
+
+### 5. Pruebas del funcionamiento del lenguaje
+#### 5.1 Pruebas que comprueben el funcionamiento del proyecto
+
+### 6. Listados documentados del proyecto
