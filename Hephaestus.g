@@ -214,7 +214,7 @@ expression
   : exp ( ( GREATER { \$quads.add_operator($GREATER.text) }
           | GREATEQ { \$quads.add_operator($GREATEQ.text) }
           | LESS { \$quads.add_operator($LESS.text) }
-          | LEQ { \$quads.add_operator($LQ.text) }
+          | LEQ { \$quads.add_operator($LEQ.text) }
           | NEQ { \$quads.add_operator($NEQ.text) }
           | EQ { \$quads.add_operator($EQ.text) }
           ) exp

@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.5
 # Ruby runtime library version: 1.10.0
 # Input grammar file: Hephaestus.g
-# Generated at: 2017-11-20 20:04:14
+# Generated at: 2017-11-20 20:49:25
 #
 
 # ~~~> start load path setup
@@ -1984,8 +1984,9 @@ module Hephaestus
       __GREATER20__ = nil
       __GREATEQ21__ = nil
       __LESS22__ = nil
-      __NEQ23__ = nil
-      __EQ24__ = nil
+      __LEQ23__ = nil
+      __NEQ24__ = nil
+      __EQ25__ = nil
 
 
       begin
@@ -2046,28 +2047,28 @@ module Hephaestus
 
         when 4
           # at line 217:13: LEQ
-          match( LEQ, TOKENS_FOLLOWING_LEQ_IN_expression_2066 )
+          __LEQ23__ = match( LEQ, TOKENS_FOLLOWING_LEQ_IN_expression_2066 )
 
           # --> action
-           $quads.add_operator($LQ.text) 
+           $quads.add_operator(__LEQ23__.text) 
           # <-- action
 
 
         when 5
           # at line 218:13: NEQ
-          __NEQ23__ = match( NEQ, TOKENS_FOLLOWING_NEQ_IN_expression_2082 )
+          __NEQ24__ = match( NEQ, TOKENS_FOLLOWING_NEQ_IN_expression_2082 )
 
           # --> action
-           $quads.add_operator(__NEQ23__.text) 
+           $quads.add_operator(__NEQ24__.text) 
           # <-- action
 
 
         when 6
           # at line 219:13: EQ
-          __EQ24__ = match( EQ, TOKENS_FOLLOWING_EQ_IN_expression_2098 )
+          __EQ25__ = match( EQ, TOKENS_FOLLOWING_EQ_IN_expression_2098 )
 
           # --> action
-           $quads.add_operator(__EQ24__.text) 
+           $quads.add_operator(__EQ25__.text) 
           # <-- action
 
 
@@ -2110,8 +2111,8 @@ module Hephaestus
       # trace_in( __method__, 25 )
 
 
-      __PLUS25__ = nil
-      __MINUS26__ = nil
+      __PLUS26__ = nil
+      __MINUS27__ = nil
 
 
       begin
@@ -2146,19 +2147,19 @@ module Hephaestus
           case alt_28
           when 1
             # at line 225:14: PLUS
-            __PLUS25__ = match( PLUS, TOKENS_FOLLOWING_PLUS_IN_exp_2148 )
+            __PLUS26__ = match( PLUS, TOKENS_FOLLOWING_PLUS_IN_exp_2148 )
 
             # --> action
-             $quads.add_operator(__PLUS25__.text) 
+             $quads.add_operator(__PLUS26__.text) 
             # <-- action
 
 
           when 2
             # at line 226:14: MINUS
-            __MINUS26__ = match( MINUS, TOKENS_FOLLOWING_MINUS_IN_exp_2165 )
+            __MINUS27__ = match( MINUS, TOKENS_FOLLOWING_MINUS_IN_exp_2165 )
 
             # --> action
-             $quads.add_operator(__MINUS26__.text) 
+             $quads.add_operator(__MINUS27__.text) 
             # <-- action
 
 
@@ -2205,8 +2206,8 @@ module Hephaestus
       # trace_in( __method__, 26 )
 
 
-      __MULT27__ = nil
-      __DIV28__ = nil
+      __MULT28__ = nil
+      __DIV29__ = nil
 
 
       begin
@@ -2241,19 +2242,19 @@ module Hephaestus
           case alt_30
           when 1
             # at line 232:16: MULT
-            __MULT27__ = match( MULT, TOKENS_FOLLOWING_MULT_IN_term_2217 )
+            __MULT28__ = match( MULT, TOKENS_FOLLOWING_MULT_IN_term_2217 )
 
             # --> action
-             $quads.add_operator(__MULT27__.text) 
+             $quads.add_operator(__MULT28__.text) 
             # <-- action
 
 
           when 2
             # at line 233:16: DIV
-            __DIV28__ = match( DIV, TOKENS_FOLLOWING_DIV_IN_term_2236 )
+            __DIV29__ = match( DIV, TOKENS_FOLLOWING_DIV_IN_term_2236 )
 
             # --> action
-             $quads.add_operator(__DIV28__.text) 
+             $quads.add_operator(__DIV29__.text) 
             # <-- action
 
 
@@ -2300,9 +2301,9 @@ module Hephaestus
       # trace_in( __method__, 27 )
 
 
-      __ID29__ = nil
-      __LPAR30__ = nil
-      value31 = nil
+      __ID30__ = nil
+      __LPAR31__ = nil
+      value32 = nil
 
 
       begin
@@ -2326,10 +2327,10 @@ module Hephaestus
       case alt_33
       when 1
         # at line 239:5: ID ( dim_struct )?
-        __ID29__ = match( ID, TOKENS_FOLLOWING_ID_IN_factor_2286 )
+        __ID30__ = match( ID, TOKENS_FOLLOWING_ID_IN_factor_2286 )
 
         # --> action
-         $quads.add_id(__ID29__.text, nil) 
+         $quads.add_id(__ID30__.text, nil) 
         # <-- action
 
         # at line 239:42: ( dim_struct )?
@@ -2343,7 +2344,7 @@ module Hephaestus
         when 1
           # at line 239:44: dim_struct
           # --> action
-           $dim_aux = __ID29__.text 
+           $dim_aux = __ID30__.text 
           # <-- action
 
           @state.following.push( TOKENS_FOLLOWING_dim_struct_IN_factor_2294 )
@@ -2353,16 +2354,16 @@ module Hephaestus
         end
 
         # --> action
-         $quads.check_dim(__ID29__.text) 
+         $quads.check_dim(__ID30__.text) 
         # <-- action
 
 
       when 2
         # at line 240:7: LPAR super_expression RPAR
-        __LPAR30__ = match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_2307 )
+        __LPAR31__ = match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_2307 )
 
         # --> action
-         $quads.add_false_bottom(__LPAR30__.text) 
+         $quads.add_false_bottom(__LPAR31__.text) 
         # <-- action
 
         @state.following.push( TOKENS_FOLLOWING_super_expression_IN_factor_2311 )
@@ -2378,11 +2379,11 @@ module Hephaestus
       when 3
         # at line 241:7: value
         @state.following.push( TOKENS_FOLLOWING_value_IN_factor_2323 )
-        value31 = value
+        value32 = value
         @state.following.pop
 
         # --> action
-         $quads.add_id(nil, ( value31 && @input.to_s( value31.start, value31.stop ) )) 
+         $quads.add_id(nil, ( value32 && @input.to_s( value32.start, value32.stop ) )) 
         # <-- action
 
 
