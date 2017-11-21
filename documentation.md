@@ -33,3 +33,13 @@
 5. Pruebas del funcionamiento del lenguaje
   1. Pruebas que comprueben el funcionamiento del proyecto
 6. Listados documentados del proyecto
+
+### 1. Descripción del proyecto
+#### 1.1 Propósito, Objetivos y Alcance del Proyecto
+**Visión:**
+La visión de `Hephaestus` es crear un lenguaje básico orientado a objetos que le permita al usuario entender las funciones básicas de este tipo de lenguajes de programación.
+
+**Objetivo:**
+`Hephaestus` fue desarrollado con el objetivo de crear un lenguaje de programación con la funcionalidad básica de un lenguaje orientado a objetos. Creemos que el distintivo de este lenguaje es que la sintaxis es basada en palabras genéricas como las típicamente utilizadas en pseudocódigo por lo que le será fácil al usuario comprender los conceptos que el lenguaje maneja.
+
+**Alcance del Proyecto:**
