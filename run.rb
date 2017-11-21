@@ -1,7 +1,7 @@
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-file_name = "Tests/recursiveFibonacci.hep"
+file_name = "Tests/university.hep"
 
 puts "Starting compilation..."
 input = ANTLR3::FileStream.new(file_name)

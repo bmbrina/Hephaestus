@@ -42,7 +42,7 @@ program classes:
 
   define name as String.
 
-  name = jorge@getName(). 
+  name = jorge@getName().
 
   print( name ).
   print(jorge@getGrade()).

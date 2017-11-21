@@ -39,9 +39,14 @@ class Program
   end
 
   def inherits_class_context(parent_class)
-    parent_context = @main_context.classes_directory.classes[parent_class].context
-    @current_context.functions_directory.functions = parent_context.functions_directory.functions.clone
-    @current_context.variables_directory.variables = parent_context.variables_directory.variables.clone
+    if @main_context.classes_directory.classes[parent_class] != nil
+      parent_context = @main_context.classes_directory.classes[parent_class].context
+      @current_context.functions_directory.functions = parent_context.functions_directory.functions.clone
+      @current_context.variables_directory.variables = parent_context.variables_directory.variables.clone
+    else
+      puts "ERROR: the class #{parent_class} doesn't exist."
+      exit
+    end
   end
 
   def add_function(header, parameters, return_type)
