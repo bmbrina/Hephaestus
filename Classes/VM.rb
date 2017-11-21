@@ -68,58 +68,86 @@ class VM
       return_func(quad.left_side)
     when 'ENDFUNC'
       endfunc()
+    when 'VERIFICAR'
+      verify_limits(quad.left_side, quad.right_side, quad.result)
     end
   end
 
   def add(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) + get_value(right);
   end
 
   def subtract(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) - get_value(right);
   end
 
   def multiply(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) * get_value(right);
   end
 
   def divide(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left).to_f / get_value(right).to_f;
   end
 
   def greater_than(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) > get_value(right);
   end
 
   def greateq_than(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) >= get_value(right)
   end
 
   def less_than(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) < get_value(right);
   end
 
   def leq_than(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) <= get_value(right)
   end
 
   def equal(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) == get_value(right);
   end
 
   def not_equal(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) != get_value(right);
   end
 
   def and_op(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) && get_value(right)
   end
 
   def or_op(left, right, temp)
+    left = get_dir(left)
+    right = get_dir(right)
     @current_context[temp] = get_value(left) || get_value(right)
   end
 
   def assign(result, var)
+    var = get_dir(var)
+    result = get_dir(result)
     @current_context[var] = get_value(result)
   end
 
@@ -179,10 +207,28 @@ class VM
   end
 
   def writing(value)
+    value = get_dir(value)
     puts get_value(value)
   end
 
+  def verify_limits(value, limit1, limit2)
+    value = get_value(value)
+    if !value.between?(limit1, limit2)
+      puts "ERROR: #{value} is out of bounds."
+      exit
+    end
+  end
+
   # --- Helpers
+  def get_dir(var)
+    if var[0] == '('
+      dir = parse_constant(var)
+      @current_context[dir.to_i]
+    else
+      var
+    end
+  end
+
   def parse_type(type, var)
     if type == "Integer"
       "Fixnum"
@@ -199,7 +245,13 @@ class VM
   end
 
   def parse_constant(value)
-    value.gsub("%", "")
+    if value[0] == "("
+      value = value.gsub("(", "")
+      value = value.gsub(")", "")
+      value
+    else
+      value.gsub("%", "")
+    end
   end
 
   def get_value(value)
