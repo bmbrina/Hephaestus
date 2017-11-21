@@ -1,8 +1,17 @@
-program write:
-  define a as Integer.
+function Integer fibonacci(Integer a):
+  if(a < 2):
+    a = 1 .
+  else:
+    a = fibonacci(a - 2) + fibonacci(a - 1).
+  end if
+ return a.
+end function
 
-  print("Teclea un número").
-  a = read().
-  print(a).
+
+program recursiveFibonacci:
+
+  define res as Integer.
+  res = fibonacci(10).
+  print(res).
 
 end program

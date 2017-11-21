@@ -103,7 +103,7 @@ class QuadrupleFactory
     end
   end
 
-  def is_expresion_pending()
+  def is_expression_pending()
     if @operators_stack.last() == '>' || @operators_stack.last() == '<' || @operators_stack.last() == '==' ||
        @operators_stack.last() == '==' || @operators_stack.last() == '<>' || @operators_stack.last() == 'and' ||
        @operators_stack.last() == 'or'
@@ -180,7 +180,6 @@ class QuadrupleFactory
     position = @jumps_stack.pop()
     quad = Quadruple.new('GOTO', nil, nil, position)
     @program.add_quadruples(quad)
-    @jumps_stack.push(@program.counter)
     @program.counter += 1
   end
 

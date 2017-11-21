@@ -1,0 +1,25 @@
+class Person:
+  define name as String.
+
+  function Void setName(String personName):
+    name = personName.
+  end function
+
+  function String getName():
+    return name.
+  end function
+
+end class
+
+
+program classes:
+
+  define jorge as Person.
+
+  jorge@setName("jorge").
+
+  define name as String.
+
+  print( jorge@getName() ).
+
+end program

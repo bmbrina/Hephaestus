@@ -8,6 +8,7 @@ class VM
     @quad_no = 0
     @return_stack = []
     @new_context = {}
+    @object_contexts = {}
     start()
   end
 
@@ -50,7 +51,7 @@ class VM
     when 'print'
       writing(quad.left_side)
     when 'ERA'
-      era(quad.result)
+      era(quad.left_side, quad.result)
     when 'PARAM'
       param(quad.left_side, quad.result)
     when 'GOSUB'
@@ -104,10 +105,20 @@ class VM
     end
   end
 
-  def era(func_name)
+  def era(object_name, func_name)
     @func_stack.push(func_name)
     @memory_stack.push(@current_context)
-    @new_context = {}
+
+    if object_name == nil
+      @new_context = {}
+    else
+      if @object_contexts[object_name] == nil
+        @object_contexts[object_name] = {}
+        @new_context = @object_contexts[object_name]
+      else
+        @new_context = @object_contexts[object_name]
+      end
+    end 
   end
 
   def param(value, param)
