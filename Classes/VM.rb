@@ -76,31 +76,31 @@ class VM
   def add(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) + get_value(right);
+    @current_context[temp] = get_value(left) + get_value(right)
   end
 
   def subtract(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) - get_value(right);
+    @current_context[temp] = get_value(left) - get_value(right)
   end
 
   def multiply(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) * get_value(right);
+    @current_context[temp] = get_value(left) * get_value(right)
   end
 
   def divide(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left).to_f / get_value(right).to_f;
+    @current_context[temp] = get_value(left).to_f / get_value(right).to_f
   end
 
   def greater_than(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) > get_value(right);
+    @current_context[temp] = get_value(left) > get_value(right)
   end
 
   def greateq_than(left, right, temp)
@@ -112,7 +112,7 @@ class VM
   def less_than(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) < get_value(right);
+    @current_context[temp] = get_value(left) < get_value(right)
   end
 
   def leq_than(left, right, temp)
@@ -124,13 +124,13 @@ class VM
   def equal(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) == get_value(right);
+    @current_context[temp] = get_value(left) == get_value(right)
   end
 
   def not_equal(left, right, temp)
     left = get_dir(left)
     right = get_dir(right)
-    @current_context[temp] = get_value(left) != get_value(right);
+    @current_context[temp] = get_value(left) != get_value(right)
   end
 
   def and_op(left, right, temp)
