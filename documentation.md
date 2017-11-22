@@ -91,178 +91,12 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
   - **Casos de prueba:**
 
   * *Fibonacci y Factorial iterativo*: Programas para probar los estatutos condicionales (*if-else*) y el estatuto cíclico (*while*).
-    - Ejemplo de Factorial iterativo:
 
-    ```
-      program factorial:
-
-        define n as Integer = 10 .
-        define factorial as Integer = 1 .
-        define i as Integer = 1 .
-
-        while(i <= n):
-         factorial = factorial * i.
-         i = i + 1 .
-        end while
-
-        print(factorial).
-
-      end program
-    ```
-    ```
-      Starting compilation...
-      Compilation finished successfully.
-      Starting execution...
-      3628800
-      Program finished successfully.
-    ```
   * *Fibonacci y Factorial recursivo*: Programas para probar el uso de *funciones recursivas*.
-    - Ejemplo de Fibonacci recursivo:
-    ```
-      function Integer fibonacci(Integer a):
-        if(a <= 2):
-          a = 1 .
-        else:
-          a = fibonacci(a - 2) + fibonacci(a - 1).
-        end if
-       return a.
-      end function
 
-      program recursiveFibonacci:
-        define res as Integer.
-        res = fibonacci(20).
-        print(res).
-      end program
-    ```
-    ```
-    Starting compilation...
-    Compilation finished successfully.
-    Starting execution...
-    6765
-    Program finished successfully.
-    ```
   * *Find y Sort*: Programas para probar las operaciones sobre vectores (*variable dimensionadas*).
-    - Ejemplo de Sort:
-    ```
-      program bubbleSort:
-        define arr as Integer[5].
-        define n as Integer = 5 .
 
-        arr[0] = 5 .
-        arr[1] = 1 .
-        arr[2] = 4 .
-        arr[3] = 2 .
-        arr[4] = 8 .
-
-        define i as Integer = 0 .
-        define aux as Integer.
-        define j as Integer = 0 .
-
-        while(i < n - 1):
-          j = 0 .
-          while(j < n - i - 1):
-            if (arr[j] > arr[j+1]):
-              aux = arr[j].
-              arr[j] = arr[j+1].
-              arr[j+1] = aux.
-            end if
-            j = j + 1 .
-          end while
-          i = i + 1 .
-        end while
-
-        i = 0 .
-
-        print("Sorted array:").
-        while(i < n):
-          print(arr[i]).
-          i = i + 1 .
-        end while
-      end program
-    ```
-    ```
-    Starting compilation...
-    Compilation finished successfully.
-    Starting execution...
-    "Sorted array:"
-    1
-    2
-    4
-    5
-    8
-    Program finished successfully.
-    ```
   * *Multiplcación de matrices*: Un programa paraprobar las operaciones sobre matrices (*variable dimensionada*).
-  ```
-    program matrixMultiplication:
-      define mat1 as Integer[3,3].
-      define mat2 as Integer[3,3].
-      define result as Integer[3,3].
-
-      mat1[0,0] = 3 .
-      mat1[0,1] = 7 .
-      mat1[0,2] = 4 .
-      mat1[1,0] = 1 .
-      mat1[1,1] = 9 .
-      mat1[1,2] = 9 .
-      mat1[2,0] = 5 .
-      mat1[2,1] = 4 .
-      mat1[2,2] = 2 .
-
-      mat2[0,0] = 4 .
-      mat2[0,1] = 2 .
-      mat2[0,2] = 1 .
-      mat2[1,0] = 8 .
-      mat2[1,1] = 2 .
-      mat2[1,2] = 9 .
-      mat2[2,0] = 10 .
-      mat2[2,1] = 1 .
-      mat2[2,2] = 7 .
-
-      define i as Integer = 0 .
-      define j as Integer = 0 .
-      define k as Integer = 0 .
-
-      while(i < 3):
-        j = 0 .
-        while(j < 3):
-          k = 0 .
-          result[i,j] = 0 .
-          while(k < 3):
-            result[i,j] = result[i,j] + (mat1[i,k] * mat2[k,j]).
-            k = k + 1 .
-          end while
-          j = j + 1 .
-        end while
-        i = i + 1 .
-      end while
-
-      i = 0 .
-      while(i < 3):
-        j = 0 .
-        while(j < 3):
-          print(result[i,j]).
-          j = j + 1 .
-        end while
-        i = i + 1 .
-      end while
-    end program
-  ```
-  ```
-  Starting compilation...
-  Compilation finished successfully.
-  Starting execution...
-  108
-  24
-  94
-  166
-  29
-  145
-  72
-  20
-  55
-  Program finished successfully.
-  ```
 
   * *Universidad*: Un programa que muestra la funcionalidad orientada a objetos (*Clases, Herencia y Objetos*) que tiene `Hephaestus`.
 
@@ -808,10 +642,8 @@ Para la consideraciones semánticas creamos una clase `SemanticsCube`, para crea
 [1, 1, 16]=>1, [1, 1, 13]=>1, [1, 1, 14]=>1, [1, 1, 15]=>1, [1, 0, 13]=>1, [1, 0, 14]=>1, [1, 0, 15]=>1, [1, 0, 16]=>1, [3, 3, 13]=>3}
 ```
 
-
 #### 3.5 Descripción del proceso Administración de Memoria
-
-En estas sección se muestran las estructuras más relevantes del programa.
+En estas sección se muestran las estructuras más relevantes utilizadas dentro de la compilación del programa.
 
 **Especificación gráfica de las estructuras**
 
@@ -864,10 +696,203 @@ En este apartado hablaremos del proceso que se llevo a cabo para crea la máquin
 Al igual que en el compilador, el equipo de cómputo que se utilizo para desarrollar la máquina virtual: dos Macbook Pros. El lenguaje utilizado es `Ruby` y en este caso no utilizamos herramientas externas.
 
 #### 4.2 Descripción del proceso Administración de Memoria
+En estas sección se muestran las estructuras más relevantes utilizadas dentro de la ejecución del programa.
+
 ##### 4.2.1 Especificación gráfica de las estructuras
+Al momento de ejecutar el programa la memoria es una pila de hashes que contiene como llave una dirección virtual. La llave también puede ser un String, esto significa que es el valor de un parámetro o el valor de retorno de una función.
+
+- Ejemplo:
+```
+  {
+      "param0"=>15,
+      1001=>15,
+      1002=>false,
+      1003=>13,
+      "fibonacci"=>233,
+      1004=>233,
+      1005=>14
+  }
+```
+
 ##### 4.2.2 Asociación hecha entre las direcciones virtuales y las reales
+En la etapa de compilación, cada vez que creamos una variable o un temporal le asignamos una dirección de memoria. Cada vez que el compilador detectaba una constante se le concatenaba un `%` para que poder identificarlos en la máquina virtual.
+
+Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que recibir los cuádruplos. Al llegar a ejecución se le asignan valores a esas direcciones virtuales.
 
 ### 5. Pruebas del funcionamiento del lenguaje
-#### 5.1 Pruebas que comprueben el funcionamiento del proyecto
+
+* *Factorial iterativo*: Programas para probar los estatutos condicionales (*if-else*) y el estatuto cíclico (*while*).
+  - Ejemplo de Factorial iterativo:
+
+  ```
+    program factorial:
+
+      define n as Integer = 10 .
+      define factorial as Integer = 1 .
+      define i as Integer = 1 .
+
+      while(i <= n):
+       factorial = factorial * i.
+       i = i + 1 .
+      end while
+
+      print(factorial).
+
+    end program
+  ```
+  ```
+    Starting compilation...
+    Compilation finished successfully.
+    Starting execution...
+    3628800
+    Program finished successfully.
+  ```
+* *Fibonacci recursivo*:
+  ```
+    function Integer fibonacci(Integer a):
+      if(a <= 2):
+        a = 1 .
+      else:
+        a = fibonacci(a - 2) + fibonacci(a - 1).
+      end if
+     return a.
+    end function
+
+    program recursiveFibonacci:
+      define res as Integer.
+      res = fibonacci(20).
+      print(res).
+    end program
+  ```
+  ```
+  Starting compilation...
+  Compilation finished successfully.
+  Starting execution...
+  6765
+  Program finished successfully.
+  ```
+* *Sort*:
+  ```
+    program bubbleSort:
+      define arr as Integer[5].
+      define n as Integer = 5 .
+
+      arr[0] = 5 .
+      arr[1] = 1 .
+      arr[2] = 4 .
+      arr[3] = 2 .
+      arr[4] = 8 .
+
+      define i as Integer = 0 .
+      define aux as Integer.
+      define j as Integer = 0 .
+
+      while(i < n - 1):
+        j = 0 .
+        while(j < n - i - 1):
+          if (arr[j] > arr[j+1]):
+            aux = arr[j].
+            arr[j] = arr[j+1].
+            arr[j+1] = aux.
+          end if
+          j = j + 1 .
+        end while
+        i = i + 1 .
+      end while
+
+      i = 0 .
+
+      print("Sorted array:").
+      while(i < n):
+        print(arr[i]).
+        i = i + 1 .
+      end while
+    end program
+  ```
+  ```
+  Starting compilation...
+  Compilation finished successfully.
+  Starting execution...
+  "Sorted array:"
+  1
+  2
+  4
+  5
+  8
+  Program finished successfully.
+  ```
+* *Multiplcación de matrices*:
+```
+  program matrixMultiplication:
+    define mat1 as Integer[3,3].
+    define mat2 as Integer[3,3].
+    define result as Integer[3,3].
+
+    mat1[0,0] = 3 .
+    mat1[0,1] = 7 .
+    mat1[0,2] = 4 .
+    mat1[1,0] = 1 .
+    mat1[1,1] = 9 .
+    mat1[1,2] = 9 .
+    mat1[2,0] = 5 .
+    mat1[2,1] = 4 .
+    mat1[2,2] = 2 .
+
+    mat2[0,0] = 4 .
+    mat2[0,1] = 2 .
+    mat2[0,2] = 1 .
+    mat2[1,0] = 8 .
+    mat2[1,1] = 2 .
+    mat2[1,2] = 9 .
+    mat2[2,0] = 10 .
+    mat2[2,1] = 1 .
+    mat2[2,2] = 7 .
+
+    define i as Integer = 0 .
+    define j as Integer = 0 .
+    define k as Integer = 0 .
+
+    while(i < 3):
+      j = 0 .
+      while(j < 3):
+        k = 0 .
+        result[i,j] = 0 .
+        while(k < 3):
+          result[i,j] = result[i,j] + (mat1[i,k] * mat2[k,j]).
+          k = k + 1 .
+        end while
+        j = j + 1 .
+      end while
+      i = i + 1 .
+    end while
+
+    i = 0 .
+    while(i < 3):
+      j = 0 .
+      while(j < 3):
+        print(result[i,j]).
+        j = j + 1 .
+      end while
+      i = i + 1 .
+    end while
+  end program
+```
+```
+Starting compilation...
+Compilation finished successfully.
+Starting execution...
+108
+24
+94
+166
+29
+145
+72
+20
+55
+Program finished successfully.
+```
+
+* *Universidad*:
 
 ### 6. Listados documentados del proyecto
