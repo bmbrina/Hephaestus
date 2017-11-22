@@ -16,10 +16,16 @@ die() {
 }
 
 if [ "$hephaestus_command" == "run" ]; then
-  if [ -e "$PWD/Tests/$hephaestus_file" ]; then
-    run_file
-    die
+  if [ echo "gem list antlr3 -i"]; then
+    if [ -e "$PWD/Tests/$hephaestus_file" ]; then
+      run_file
+      die
+    else
+      die 'Hephaestus file not found.'
+    fi
   else
-    die 'Hephaestus file not found.'
+    echo "Installing antlr3"
+    eval gem install antlr3
+    echo "Antlr is now installed, try to run again."
   fi
 fi
