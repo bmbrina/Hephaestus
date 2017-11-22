@@ -409,7 +409,7 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 
 #### 3.3 Descripción del Análisis de Sintaxis
 A continuación se muestra la gramática formal de `Hephaestus`:
-  ```
+  ```antlr
   start
     : ( r_class )* ( function )* program
     ;
@@ -552,6 +552,12 @@ A continuación se muestra la gramática formal de `Hephaestus`:
 **Código de operación y direcciones virtuales asociadas**
 
 **Diagramas de Sintaxis con las acciones correspondientes**
+En esta parte mostraremos los diagramas de sintaxis de `Hephaestus`, indicando que hace cada punto neurálgico, en caso de que tenga uno.
+
+**START**:
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/start.png?raw=true "Start")
+1. Al comenzar a leer un archivo `.hep` se genera el cuádruplo `goto` al `program` en el código.
 
 **Descripción de las acciones semánticas y de código**
 
