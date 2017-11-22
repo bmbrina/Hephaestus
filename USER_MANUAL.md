@@ -210,6 +210,6 @@ Una vez instalado el proyecto, esta listo para codificar en `Hephaestus`. Ya que
 
 Para poder compilar y ejecutar el programa es necesario correr el siguiente comando en la terminal:
 ```
-$ hephaestus <file_name>.hep
+$ hephaestus run <file_name>.hep
 ```
 Con este comando inicia la compilación y posteriormente la ejecución de su código en caso de que no existan errores.
