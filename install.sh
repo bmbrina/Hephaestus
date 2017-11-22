@@ -1,4 +1,4 @@
-git clone https://github.com/bmbrina/Hephaestus.git chmod +x  ~/.hephaestus
+git clone https://github.com/bmbrina/Hephaestus.git ~/.hephaestus
 
 hephaestus=$(echo $PATH | grep hephaestus)
 
@@ -10,7 +10,7 @@ if [ -z $hephaestus ]; then
 fi
 
 echo 'Installing dependencies...'
-eval gem install antlr3
+eval sudo gem install antlr3
 
 echo 'Hephaestus is now installed!'
 echo 'Restart your terminal to start and happy coding!'
