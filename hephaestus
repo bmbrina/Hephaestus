@@ -3,8 +3,8 @@
 hephaestus_command=$1
 hephaestus_file=$2
 
-#! run="ruby $PWD/main.rb $PWD/Tests/$hephaestus_file"
-run="ruby $HOME/.hephaestus/main.rb $PWD/Tests/$hephaestus_file"
+run="ruby $PWD/main.rb $PWD/Tests/$hephaestus_file"
+#!run="ruby $HOME/.hephaestus/main.rb $PWD/Tests/$hephaestus_file"
 
 run_file() {
   echo "Compiling $hephaestus_file"
@@ -17,10 +17,15 @@ die() {
 }
 
 if [ "$hephaestus_command" == "run" ]; then
-  if [ -e "$PWD/Tests/$hephaestus_file" ]; then
-    run_file
-    die
+  if [ `gem list lunchy -i` ]; then
+    if [ -e "$PWD/Tests/$hephaestus_file" ]; then
+      run_file
+      die
+    else
+      die 'Hephaestus file not found.'
+    fi
   else
-    die 'Hephaestus file not found.'
+    echo "Please run bundle install and run again."
+    die
   fi
 fi
