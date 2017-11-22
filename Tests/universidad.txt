@@ -14,6 +14,11 @@ end class
 class Student inherits Person:
   define grade as Float.
 
+  function Void init(Float studentGrade, String personName):
+    grade = studentGrade.
+    name = personName.
+  end function
+
   function Void setGrade(Float studentGrade):
     grade = studentGrade.
   end function
@@ -24,23 +29,23 @@ class Student inherits Person:
 
 end class
 
-class Teacher inherits Person:
-
-end class
-
-
-program universidad:
+program University:
 
   define jorge as Student.
+  jorge@setName("Jorge").
+  jorge@setGrade(100.0).
 
-  jorge@setName("jorge").
-  jorge@setGrade(40.2).
+  define barbara as Student.
+  barbara@setName("Barbara").
+  barbara@setGrade(100.0).
 
-  define name as String.
+  define steve as Student.
+  steve@init(100.0,"Steve").
 
-  name = jorge@getName().
+  print(steve@getName()).
+  print(steve@getGrade()).
 
-  print( name ).
-  print(jorge@getGrade()).
+  print(jorge@getName()).
+  print(barbara@getName()).
 
 end program
