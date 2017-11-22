@@ -1,8 +1,8 @@
 git clone https://github.com/bmbrina/Hephaestus.git ~/.hephaestus
 
-`chmod +x /.hephaestus`
-
 hephaestus=$(echo $PATH | grep hephaestus)
+
+`chmod +x hephaestus`
 
 if [ -z $hephaestus ]; then
     echo 'Adding Hephaestus to your path...'
