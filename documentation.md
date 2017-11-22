@@ -549,9 +549,11 @@ A continuación se muestra la gramática formal de `Hephaestus`:
   ```
 #### 3.4 Descripción de Generación de Código Intermedio y Análisis Semántico
 
-**Código de operación y direcciones virtuales asociadas**
+**3.4.2Código de operación y direcciones virtuales asociadas**
 
-**Diagramas de Sintaxis con las acciones correspondientes**
+  Para la generación de código de operación usamos cuádruplos. Usamos diferentes tipos de cuádruplos para las acciones que se deban realizar. La descripción de los diferentes cuádruplos se pueden encontrar más adelante en la documentación. Para las direcciones virtuales usamos hashs (diccionarios en ruby), para separar contextos creamos objetos de tipo `Context`. Cada `Context` tiene su propio hash de direcciones virtuales.
+
+  **3.4.2 Diagramas de Sintaxis con las acciones correspondientes**
 En esta parte mostraremos los diagramas de sintaxis de `Hephaestus`, indicando que hace cada punto neurálgico, en caso de que tenga uno.
 
 **START**:
@@ -559,12 +561,85 @@ En esta parte mostraremos los diagramas de sintaxis de `Hephaestus`, indicando q
 ![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/start.png?raw=true "Start")
 1. Al comenzar a leer un archivo `.hep` se genera el cuádruplo `goto` al `program` en el código.
 
-**Descripción de las acciones semánticas y de código**
+**3.4.3 Descripción de las acciones semánticas y de código**
 
-**Tabla de consideraciones semánticas**
+**3.4.4 Tabla de consideraciones semánticas**
+
+  Para la consideraciones semánticas creamos una clase `SemanticsCube`, para crear el cubo usamos un hashs con llaves, las llaves son arreglos de 3 casillas, la primer posición y la segunda siendo tipos y la tercera siendo logical operator o math operators.
+
+|Types| Reference |
+|-----| ------|
+| Integer| 0 |
+| Float | 1 |
+| Bool | 2 |
+| String | 3 |
+| Void | 4 |
+
+|Logical Operators| Reference |
+| ---- | ------ |
+|== | 5 |
+|> | 6 |
+|>= | 7 |
+|< | 8 |
+|<= | 9 |
+|<> | 10 |
+|and | 11 |
+|or | 12 |
+
+|Math Operators| Reference |
+| --- | ---|
+|+ | 13|
+|- | 14 |
+|\* | 15|
+|   | 16|
+
+|Unique| Reference |
+| ---- | --------- |
+| = | 17 |
+
+Cubo semantico
+
+```
+{[0, 0, 5]=>2, [0, 0, 6]=>2, [0, 0, 7]=>2, [0, 0, 8]=>2, [0, 0, 9]=>2, [0, 0, 10]=>2, [0, 0, 11]=>2, [0, 0, 12]=>2, [0, 0, 17]=>0,
+[1, 1, 5]=>2, [1, 1, 6]=>2, [1, 1, 7]=>2, [1, 1, 8]=>2, [1, 1, 9]=>2, [1, 1, 10]=>2, [1, 1, 11]=>2, [1, 1, 12]=>2, [1, 1, 17]=>1,
+[2, 2, 5]=>2, [2, 2, 6]=>2, [2, 2, 7]=>2, [2, 2, 8]=>2, [2, 2, 9]=>2, [2, 2, 10]=>2, [2, 2, 11]=>2, [2, 2, 12]=>2, [2, 2, 17]=>2,
+[3, 3, 5]=>2, [3, 3, 6]=>2, [3, 3, 7]=>2, [3, 3, 8]=>2, [3, 3, 9]=>2, [3, 3, 10]=>2, [3, 3, 11]=>2, [3, 3, 12]=>2, [3, 3, 17]=>3,
+[4, 4, 5]=>2, [4, 4, 6]=>2, [4, 4, 7]=>2, [4, 4, 8]=>2, [4, 4, 9]=>2, [4, 4, 10]=>2, [4, 4, 11]=>2, [4, 4, 12]=>2, [4, 4, 17]=>4,
+[0, 1, 17]=>1, [0, 0, 16]=>1, [0, 0, 13]=>0, [0, 0, 14]=>0, [0, 0, 15]=>0, [0, 1, 13]=>1, [0, 1, 14]=>1, [0, 1, 15]=>1, [0, 1, 16]=>1,
+[1, 1, 16]=>1, [1, 1, 13]=>1, [1, 1, 14]=>1, [1, 1, 15]=>1, [1, 0, 13]=>1, [1, 0, 14]=>1, [1, 0, 15]=>1, [1, 0, 16]=>1, [3, 3, 13]=>3}
+```
+
 
 #### 3.5 Descripción del proceso Administración de Memoria
+
+En estas sección se muestran las estructuras más relevantes del programa.
+
 **Especificación gráfica de las estructuras**
+
+
+*Directorio de Clases*
+
+ | Name | Inherits_of | context |
+ | ---- | ----------- | ------- |
+
+ * `Name` indica el nombre de la clase.
+ * `Inherits_of` indica la clase padre, si no existe es null.
+ * `Context` el contexto de la clase, aqui se encuentra, el directorio de funciones de la clase
+
+*Directorio de Funciones*
+
+| Funtion_name | parameters | return_type | quad_number |
+| ------------ | ----------- | ---------- | ----------- |
+
+*Directorito de variabels*
+
+| Name | type | memory |
+| ---- | ---- | ------ |
+
+*Context*
+
+ | Name | Context_type |
+ | ---- | ------------ |
 
 ### 4. Descripción de la máquina virtual
 
