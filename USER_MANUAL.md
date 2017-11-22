@@ -198,3 +198,8 @@ Ejemplo:
 ```
 
 # Instalación
+Para poder instalar el proyecto, es necesario tener la última versión de `Hephaestus` la cual puedes obtener del repositorio [oficial](https://github.com/bmbrina/Hephaestus).
+
+Puedes bajar el `.zip` o copiarlo a tu máquina con el comando `git clone`.
+
+*Nota: para usar el comando `git clone`, ese necesario tener `git` instalado en tu máquina.*
