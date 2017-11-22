@@ -1,4 +1,4 @@
-git clone https://github.com/bmbrina/Hephaestus.git chmod +x ~/.hephaestus
+git clone https://github.com/bmbrina/Hephaestus.git ~/.hephaestus
 
 hephaestus=$(echo $PATH | grep hephaestus)
 
@@ -10,4 +10,4 @@ if [ -z $hephaestus ]; then
 fi
 
 echo 'Hephaestus is installed!'
-echo 'Restart your terminal to start coding!'
+echo 'Restart your terminal to start and happy coding!'
