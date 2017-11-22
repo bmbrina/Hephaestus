@@ -1,6 +1,3 @@
-- Reflexiones
-- Caso de prueba de Objetos
-
 ### 1. Descripción del proyecto
 #### 1.1 Propósito, Objetivos y Alcance del Proyecto
 **Visión:**
