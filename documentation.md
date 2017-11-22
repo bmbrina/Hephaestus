@@ -1,4 +1,4 @@
-método- Reflexiones
+- Reflexiones
 - Caso de prueba de Objetos
 
 ### 1. Descripción del proyecto
@@ -816,30 +816,47 @@ En estas sección se muestran las estructuras más relevantes del programa.
 
 **Especificación gráfica de las estructuras**
 
-
 *Directorio de Clases*
 
  | Name | Inherits_of | context |
  | ---- | ----------- | ------- |
+ |      |             |         ||
 
  * `Name` indica el nombre de la clase.
- * `Inherits_of` indica la clase padre, si no existe es null.
- * `Context` el contexto de la clase, aqui se encuentra, el directorio de funciones de la clase
+ * `Inherits_of` indica la clase padre, si no existe es nulo.
+ * `Context` el contexto de la clase, aquí se encuentra el directorio de funciones y tabla de variables de la clase.
 
 *Directorio de Funciones*
 
-| Funtion_name | parameters | return_type | quad_number |
-| ------------ | ----------- | ---------- | ----------- |
+| Funtion_name | Parameters | Return_type | Quad_number |
+| ------------ | ---------- | ----------  | ----------- |
+|              |            |             |             ||
 
-*Directorito de variabels*
+* `Function_name` indica el nombre de la función.
+* `Parameters` guarda un arreglo de los parametros.
+* `Return_type` indica el tipo de retorno.
+* `Quad_number` indica el número de cuádruplo en el que comienza la función.
 
-| Name | type | memory |
-| ---- | ---- | ------ |
+*Directorio de variables*
+
+| Name | Type | Memory | Is_dim | Structures|
+| ---- | ---- | ------ | ------ | --------- |
+|      |      |        |        |           ||
+
+* `Name` indica el nombre de la variable.
+* `Type` indica el tipo de la variable.
+* `Memory` indica la dirección de memoria de la variable.
+* `Is_dim` es `true` si la variable es dimensionada, si no es nulo.
+* `Structures` si la variable es dimensionada, contiene un arreglo con las estructuras dimensionales.
 
 *Context*
 
  | Name | Context_type |
  | ---- | ------------ |
+ |      |              ||
+
+ * `Name` indica el nombre del contexto.
+ * `Context_type` indica el tipo del contexto (*función, clase, globalr*).
 
 ### 4. Descripción de la máquina virtual
 
