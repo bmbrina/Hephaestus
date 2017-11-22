@@ -9,8 +9,5 @@ if [ -z $hephaestus ]; then
     echo 'export PATH="$HOME/.hephaestus:$PATH"' >> ~/.zshrc
 fi
 
-echo 'Installing dependencies...'
-eval sudo gem install antlr3
-
 echo 'Hephaestus is now installed!'
 echo 'Restart your terminal to start and happy coding!'
