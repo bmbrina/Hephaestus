@@ -498,9 +498,9 @@ En esta parte mostraremos los diagramas de sintaxis de `Hephaestus`, indicando q
 
 3. Agrega el `=` a la pila de operadores.
 
-4. Genera el estatuto de asignación.
+4. Genera el cuádruplo de asignación.
 
-5. Genera el estatuto de asignación, no revisa tipos por ser input del usuario.
+5. Genera el cuádruplo de asignación, no revisa tipos por ser input del usuario.
 
 **13. DIMENSION STRUCTURE**
 
