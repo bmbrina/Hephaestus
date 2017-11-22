@@ -896,3 +896,490 @@ Program finished successfully.
 * *Universidad*:
 
 ### 6. Listados documentados del proyecto
+
+#### Program Class, only relevant functions are shown.
+
+  ```ruby
+  #######################
+  # Description: This class is the most important, it handles the memory counter,
+  # it stores the quadruple and manages the contexts
+  # Parameters: ( main_context, type:Context),
+  # (current_context, type:Context, description: ths context changes depending if
+  # the class program is generating cuadruples for a class a function or a module),
+  # (past_context, type:Context, description: the parent context of the current context),
+  # ( quadruples,type:array),
+  # ( memory_counter, Int, description: counter of the virtual memories assigned to variables)
+  # Return value: N/A
+  # Error handling: If necessary, each function handles its own errors.
+  #######################
+  class Program
+
+    def initialize()
+    end
+
+    def set_next_memory()
+    end
+
+    def reset_context()
+    end
+
+    def reset_class_context()
+    end
+
+     #######################
+     # Description: Adds a class to classes_directory in the current context and
+     # changes the current_context the new class context
+     # Parameters: (name, type:String), (inherits_of, type:String)
+     # Return value: N/A
+     # Error handling: Verifies that the class to be added does not exist
+     #######################
+     def add_class(name, inherits_of)
+      if @current_context.classes_directory.classes[name] != nil
+        puts "ERROR: redefinition of class #{name}."
+        exit
+      else
+        @current_context.classes_directory.register(name, inherits_of, Context.new("#{name} context", "class"))
+        @current_context = @current_context.classes_directory.classes[name].context
+      end
+    end
+
+    #######################
+    # Description: Adds the parent class functions and variables to the new class
+    # Parameters: (parent_class, type:String)
+    # Return value: N/A
+    # Error handling: Verifies that the parent class exists
+    #######################
+    def inherits_class_context(parent_class)
+      if @main_context.classes_directory.classes[parent_class] != nil
+        parent_context = @main_context.classes_directory.classes[parent_class].context
+        @current_context.functions_directory.functions = parent_context.functions_directory.functions.clone
+        @current_context.variables_directory.variables = parent_context.variables_directory.variables.clone
+      else
+        puts "ERROR: the class #{parent_class} doesn't exist."
+        exit
+      end
+    end
+
+    #######################
+    # Description: Adds a function to function_directory in the current context
+    # Parameters: (header, type:String), (parameters, type:String), (return_type, type:String)
+    # Return value: N/A
+    # Error handling: Verifies that the funtion to be added does not exist
+    #######################
+    def add_function(header, parameters, return_type)
+      if @current_context.functions_directory.functions[header] != nil
+        puts "ERROR: redefinition of function #{header}."
+        exit
+      else
+        @current_context.functions_directory.register(header, parameters, return_type, @quadruples.count)
+        params = @current_context.functions_directory.functions[header].parameters
+        @past_context = @current_context
+        @current_context = Context.new("#{header} context", "function")
+        params.each_with_index do | param , index |
+          set_next_memory()
+          @current_context.variables_directory.register(param.name, param.type, @memory_counter)
+          quad = Quadruple.new("=", "param#{index}", nil, @memory_counter)
+          add_quadruples(quad)
+          @counter += 1
+        end
+
+      end
+    end
+
+    #######################
+    # Description: Adds a variable to variables_directory in the current context
+    # Parameters: (name, type:String), (type, type:String)
+    # Return value: N/A
+    # Error handling: Verifies that the variable to be added does not exist
+    #######################
+    def add_variable(name, type)
+      if @current_context.variables_directory.variables[name] != nil
+        puts "ERROR: redefinition of variable #{name}."
+        exit
+      else
+        @current_context.variables_directory.register(name, type, @memory_counter)
+        set_next_memory()
+      end
+    end
+
+    def add_dim_variable(name, type, is_dim)
+    end
+
+    def add_quadruples(quad)
+    end
+
+    def finish()
+    end
+
+    def print_quadruples()
+    end
+
+  end
+
+  ```
+
+```ruby
+
+#######################
+# Description: This class has the objective to create quadruples and solve neuralgic points code,
+# it handles many issues and verifies semantic considerations with the SemanticCube class. It also
+# communicates with the class program to see in which context to look. To start the quadruple factory,
+# the class needs to know about the class progrma.
+# Parameters: (program, type:Program)
+# Return value: N/A
+# Error handling: It handles many errors including all semantic considerations.
+#######################
+class QuadrupleFactory
+  attr_accessor :param_index
+
+  def initialize(program)
+  end
+
+  def goto_program()
+  end
+
+  def add_id(id, value)
+  end
+
+  def add_false_bottom(parentesis)
+  end
+
+  def remove_false_bottom()
+  end
+
+  def find_variable(id)
+  end
+
+  def get_variable(id)
+  end
+
+  def add_operator(operator)
+  end
+
+  def is_term_pending()
+  end
+
+  #######################
+  # Description: Checks if an exp operation is pending
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def is_exp_pending()
+    if @operators_stack.last() == '+' || @operators_stack.last() == '-'
+      generate_quad()
+    end
+  end
+
+  def is_expression_pending()
+  end
+
+
+  def is_super_expression_pending()
+  end
+
+  #######################
+  # Description: Generates a read quadruple
+  # Parameters: (id, type: String)
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def read(id)
+    var_type = get_variable(id).type
+    quad = Quadruple.new('read', "%", @memory_stack.last(), var_type)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+  end
+
+
+  def assgn_read()
+  end
+
+  #######################
+  # Description: Generates a print quadruple
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def write()
+    @ids_stack.pop()
+    temp = @memory_stack.pop()
+    type = @types_stack.pop()
+    quad = Quadruple.new('print', temp, nil, nil)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+  end
+
+  #######################
+  # Description: Generates a gotof quadruple for a subrutine
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: Throws an error if the result isn't Bool.
+  #######################
+  def gotof()
+    type = @types_stack.pop()
+    if type == "Bool"
+      @ids_stack.pop()
+      result = @memory_stack.pop()
+
+      quad = Quadruple.new('GOTOF', result, nil, nil)
+      @program.add_quadruples(quad)
+      @jumps_stack.push(@program.counter)
+      @program.counter += 1
+    else
+      puts "ERROR: type mismatched, expecting Bool got #{type}."
+      exit
+    end
+  end
+
+  def fill_program_quad()
+  end
+
+  def fill_quad()
+  end
+
+  #######################
+  # Description: Generates a goto quadruple for a subrutine
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def goto()
+    quad = Quadruple.new('GOTO', nil, nil, nil)
+    @program.add_quadruples(quad)
+    fill_quad()
+    @jumps_stack.push(@program.counter)
+    @program.counter += 1
+  end
+
+  def add_jump()
+  end
+
+  def goto_while()
+  end
+
+  def variable_exists?(id)
+  end
+
+  def function_exists?(id)
+  end
+
+  def method_exists?(var_name, func_name)
+  end
+
+  #######################
+  # Description: Generates an era quadruple for a function call
+  # Parameters: (func_name, type:String)
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def era(func_name)
+    return_type = @program.past_context.functions_directory.functions[func_name].return_type
+    @ids_stack.push(func_name)
+    @memory_stack.push(func_name)
+    @types_stack.push(return_type)
+    quad = Quadruple.new('ERA', nil, nil, func_name)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+    @param_index = 0
+  end
+
+  def era_method(id, method_name)
+  end
+
+
+  def parameter(func_name)
+  end
+
+  def verify_func_param_count(func_name)
+  end
+
+  #######################
+  # Description: Generates a gosub quadruple for a function call
+  # Parameters: (func_name, type:String)
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def go_sub(func_name)
+    quad_number = @program.past_context.functions_directory.functions[func_name].quad_number
+    quad = Quadruple.new('GOSUB', func_name, quad_number, nil)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+  end
+
+  def go_sub_method(id, method_name)
+  end
+
+  def get_return_value()
+  end
+
+  #######################
+  # Description: Generates a return quadruple when a function finishes
+  # Parameters: (func_name, type:String)
+  # Return value: N/A
+  # Error handling: Throws an error if the return type is different from the one
+  # specified in the function declaration
+  #######################
+  def return(func_name)
+    func_type = @program.past_context.functions_directory.functions[func_name].return_type
+    @ids_stack.pop()
+    temp = @memory_stack.pop()
+    temp_type = @types_stack.pop()
+
+    if func_type != temp_type
+      puts "ERROR: expected return type of #{func_type}, got #{temp_type}."
+      exit
+    else
+      quad = Quadruple.new('return', temp, nil, nil)
+      @program.add_quadruples(quad)
+      @program.counter += 1
+    end
+  end
+
+  def end_function()
+  end
+
+  def method_parameter(var_name, func_name)
+  end
+
+  def verify_method_param_count(var_name, func_name)
+  end
+
+  def assgn_quad()
+  end
+
+  def check_dim(id)
+  end
+
+  def is_dim()
+  end
+
+  #######################
+  # Description: Generates quadruples to access a dimensional variable
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: Throws an error if you try to access a dimensional variable
+  # with the wrong dimensions
+  #######################
+  def generate_limit_quad()
+    id = @ids_stack.last()
+    memory_id = @memory_stack.last()
+    dim = @dim_stack.last()[1]
+    dim_id = @dim_stack.last()[0]
+    var_dim_structures = get_variable(dim_id).dim_structures
+    if var_dim_structures[dim] == nil
+      puts "ERROR: wrong dimension size for #{dim_id}."
+      exit
+    end
+    limit = var_dim_structures[dim].limit
+    m = var_dim_structures[dim].m
+    quad = Quadruple.new("VERIFICAR", memory_id, 0, limit)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+    if var_dim_structures[dim + 1] != nil
+      @ids_stack.pop()
+      aux = @memory_stack.pop()
+      @types_stack.pop()
+      @program.set_next_memory()
+      temp = @program.memory_counter
+      quad = Quadruple.new('*', aux, "%#{m}", temp)
+      @program.add_quadruples(quad)
+      @program.counter += 1
+      @ids_stack.push(temp)
+      @memory_stack.push(temp)
+      @types_stack.push('Integer')
+    elsif dim > 0
+      @ids_stack.pop()
+      aux2 = @memory_stack.pop()
+      @types_stack.pop()
+      @ids_stack.pop()
+      aux1 = @memory_stack.pop()
+      @types_stack.pop()
+      @program.set_next_memory()
+      temp = @program.memory_counter
+      quad = Quadruple.new('+', aux1, aux2, temp)
+      @program.add_quadruples(quad)
+      @program.counter += 1
+      @ids_stack.push(temp)
+      @memory_stack.push(temp)
+      @types_stack.push('Integer')
+    end
+  end
+
+  def update_dim()
+  end
+
+  def verify_dim_access()
+  end
+
+  #######################
+  # Description: Generates a quadruple to access the value in a stored virtual
+  # memory direction
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
+  def generate_dim_quads()
+    verify_dim_access()
+    @ids_stack.pop()
+    aux = @memory_stack.pop()
+    @types_stack.pop()
+    dim_id = @dim_stack.last()[0]
+    dim_dir = get_variable(dim_id).memory_dir
+    @program.set_next_memory()
+    temp = @program.memory_counter
+    quad = Quadruple.new('+', aux, "%#{dim_dir}", temp)
+    @program.add_quadruples(quad)
+    @program.counter += 1
+    @ids_stack.push("(#{temp})")
+    @memory_stack.push("(#{temp})")
+    id_type = get_variable(dim_id).type
+    @types_stack.push(id_type)
+    remove_false_bottom()
+    @dim_stack.pop()
+  end
+
+private
+  #######################
+  # Description: Generates quadruples for operations (arithmetic and logical)
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: Throws an error if you try to do an operation with invalid
+  # variable types
+  #######################
+  def generate_quad()
+    operator = @operators_stack.pop()
+    operator_type = @sem_cube.convert[operator]
+    @ids_stack.pop()
+    right_side = @memory_stack.pop()
+    right_side_type = @sem_cube.convert[@types_stack.pop()]
+    @ids_stack.pop()
+    left_side = @memory_stack.pop()
+    left_side_type = @sem_cube.convert[@types_stack.pop()]
+    type_res = @sem_cube.semantic_cube[[left_side_type, right_side_type, operator_type]]
+    if type_res != nil
+      @program.set_next_memory()
+      temp = @program.memory_counter
+      quad = Quadruple.new(operator, left_side, right_side, temp)
+      @program.add_quadruples(quad)
+
+      @ids_stack.push(temp)
+      @memory_stack.push(temp)
+
+      @types_stack.push(@sem_cube.invert[type_res])
+      current_context = @program.current_context
+      current_context.variables_directory.register(temp, @sem_cube.invert[type_res], @program.memory_counter)
+      @program.counter += 1
+    else
+      puts "ERROR: variable type mismatched, received: #{left_side} and #{right_side}."
+      exit
+    end
+  end
+
+  def extract_value(value)
+  end
+
+  def match_value(value)
+  end
+end
+```
