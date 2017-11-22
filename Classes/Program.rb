@@ -173,7 +173,7 @@ class Program
   # Error handling: N/A
   #######################
   def finish()
-    print_quadruples()
+    #print_quadruples()
     File.open("quads.hep", "w+") do | f |
       @quadruples.each_with_index { | quad, index | f.puts("#{index}. #{quad.operator}, #{quad.left_side}, #{quad.right_side}, #{quad.result}") }
     end
