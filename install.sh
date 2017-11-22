@@ -2,8 +2,6 @@ git clone https://github.com/bmbrina/Hephaestus.git ~/.hephaestus
 
 hephaestus=$(echo $PATH | grep hephaestus)
 
-`chmod +x hephaestus`
-
 if [ -z $hephaestus ]; then
     echo 'Adding Hephaestus to your path...'
     echo 'export PATH="$HOME/.hephaestus:$PATH"' >> ~/.bash_profile
