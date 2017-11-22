@@ -180,7 +180,7 @@ El orden es muy importante en `Hephaestus`, un archivo `.hep` debe tener primero
 Ejemplo:
 ```
   class Student:
-    define grade as String.
+    define grade as Integer.
 
     function Void setGrade(Integer studentGrade):
       grade = studentGrade.
@@ -193,7 +193,8 @@ Ejemplo:
 
   program clase:
     define jorge as Student.
-    jorge@setGrade(add(50+70)).
+    define addition as Integer = add( 50 , 70).
+    jorge@setGrade(addition).
   end program
 ```
 

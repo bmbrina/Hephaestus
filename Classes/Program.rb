@@ -173,6 +173,9 @@ class Program
   #######################
   def finish()
     print_quadruples()
+    File.open("quads.hep", "w+") do | f |
+      @quadruples.each_with_index { | quad, index | f.puts("#{index}. #{quad.operator}, #{quad.left_side}, #{quad.right_side}, #{quad.result}") }
+    end
     puts "Compilation finished successfully."
     VM.new(@quadruples)
   end

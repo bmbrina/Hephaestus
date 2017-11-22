@@ -1,0 +1,53 @@
+0. GOTO, , , 16
+1. =, param0, , 1002
+2. =, 1002, , 1000
+3. ENDFUNC, , , 
+4. return, 1000, , 
+5. ENDFUNC, , , 
+6. =, param0, , 1004
+7. =, param1, , 1005
+8. =, 1004, , 1002
+9. =, 1005, , 1000
+10. ENDFUNC, , , 
+11. =, param0, , 1006
+12. =, 1006, , 1002
+13. ENDFUNC, , , 
+14. return, 1002, , 
+15. ENDFUNC, , , 
+16. ERA, jorge, , setName
+17. PARAM, %"Jorge", , param0
+18. GOSUB, setName, 1, 
+19. =, setName, , 1008
+20. ERA, jorge, , setGrade
+21. PARAM, %100.0, , param0
+22. GOSUB, setGrade, 11, 
+23. =, setGrade, , 1009
+24. ERA, barbara, , setName
+25. PARAM, %"Barbara", , param0
+26. GOSUB, setName, 1, 
+27. =, setName, , 1011
+28. ERA, barbara, , setGrade
+29. PARAM, %100.0, , param0
+30. GOSUB, setGrade, 11, 
+31. =, setGrade, , 1012
+32. ERA, steve, , init
+33. PARAM, %100.0, , param0
+34. PARAM, %"Steve", , param1
+35. GOSUB, init, 6, 
+36. =, init, , 1014
+37. ERA, steve, , getName
+38. GOSUB, getName, 4, 
+39. =, getName, , 1015
+40. print, 1015, , 
+41. ERA, steve, , getGrade
+42. GOSUB, getGrade, 14, 
+43. =, getGrade, , 1016
+44. print, 1016, , 
+45. ERA, jorge, , getName
+46. GOSUB, getName, 4, 
+47. =, getName, , 1017
+48. print, 1017, , 
+49. ERA, barbara, , getName
+50. GOSUB, getName, 4, 
+51. =, getName, , 1018
+52. print, 1018, , 
