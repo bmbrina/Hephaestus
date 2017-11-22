@@ -199,11 +199,10 @@ Ejemplo:
 ```
 
 # Instalación
-Para poder instalar el proyecto, es necesario tener la última versión de `Hephaestus` la cual puedes obtener del repositorio [oficial](https://github.com/bmbrina/Hephaestus).
-
-Puedes bajar el `.zip` o copiarlo a tu máquina con el comando `git clone`.
-
-*Nota: para usar el comando `git clone`, ese necesario tener `git` instalado en tu máquina.*
+Para poder instalar el proyecto, es necesario correr el siguiente comando en la terminal:
+```
+$ curl -L https://raw.githubusercontent.com/bmbrina/Hephaestus/master/install.sh | sh
+```
 
 Para correr el proyecto es necesario tener instalada la gema de `antlr3`, en caso de no tenerla, correr el sigueinte comando en la terminal:
 

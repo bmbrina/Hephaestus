@@ -166,9 +166,9 @@ class Program
   end
 
   #######################
-  # Description: Finishes compilation and starts execution
+  # Description: Finishes compilation, saves quadruples to .hep file and starts execution
   # Parameters: N/A
-  # Return value: N/A
+  # Return value: .hep file
   # Error handling: N/A
   #######################
   def finish()

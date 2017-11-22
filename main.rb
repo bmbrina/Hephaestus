@@ -1,10 +1,11 @@
+#!/usr/bin/env ruby
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-file_name = "Tests/universidad.txt"
+file_name = ARGV[0]
+#"universidad.hep"
 
-puts "Starting compilation..."
-input = ANTLR3::FileStream.new(file_name)
+input = ANTLR3::FileStream.new("Tests/#{file_name}")
 $lexer = Hephaestus::Lexer.new( input )
 
 def printTokens()
@@ -17,5 +18,5 @@ end
 
 #printTokens()
 
-parser = open(file_name) { | f | Hephaestus::Parser.new( f ) }
+parser = open("Tests/#{file_name}") { | f | Hephaestus::Parser.new( f ) }
 parser.start
