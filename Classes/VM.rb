@@ -359,11 +359,12 @@ class VM
   # the type of the variable to be assigned
   #######################
   def reading(var, var_type)
-    aux = gets.chomp
-    aux_class = convert_to_type(aux).class
+    aux = $stdin.gets.chomp
+    temp = convert_to_type(aux)
+    aux_class = temp.class
     type = parse_type(var_type, aux)
     if aux_class.to_s == type
-      @current_context[var] = aux
+      @current_context[var] = temp
     else
       puts "ERROR: variable type mismatched, expected #{var_type} and got #{aux_class}."
       exit
@@ -378,7 +379,12 @@ class VM
   #######################
   def writing(value)
     value = get_dir(value)
-    puts get_value(value)
+    value = get_value(value)
+    if value[0] == "\""
+      value = value.gsub("\"", "")
+      value = value.gsub("\"", "")
+    end
+    puts value
   end
 
   #######################

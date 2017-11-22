@@ -1,5 +1,4 @@
 program find:
-
   define arr as Integer[5].
   define size as Integer = 5 .
   define i as Integer = 0 .
@@ -9,8 +8,10 @@ program find:
   arr[3] = 5 .
   arr[4] = 8 .
 
-  define numberToFind as Integer = 8 .
-  define position as Integer. 
+  print("Qué numero quieres encontrar?").
+  define numberToFind as Integer.
+  numberToFind = read().
+  define position as Integer.
   define numberFound as Bool = false.
 
   while (i < size):
@@ -22,7 +23,7 @@ program find:
   end while
 
   if(numberFound == true):
-    print("Number found at: ").
+    print("Number encontrado en la posición:").
     print(position).
   else:
     print("Number not found").

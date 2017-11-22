@@ -2,7 +2,6 @@ require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
 file_name = ARGV[0]
-
 input = ANTLR3::FileStream.new(file_name)
 $lexer = Hephaestus::Lexer.new( input )
 
