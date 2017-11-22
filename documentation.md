@@ -1,4 +1,4 @@
-- Reflexiones
+método- Reflexiones
 - Caso de prueba de Objetos
 
 ### 1. Descripción del proyecto
@@ -549,55 +549,255 @@ A continuación se muestra la gramática formal de `Hephaestus`:
   ```
 #### 3.4 Descripción de Generación de Código Intermedio y Análisis Semántico
 
-**3.4.2Código de operación y direcciones virtuales asociadas**
 
-  Para la generación de código de operación usamos cuádruplos. Usamos diferentes tipos de cuádruplos para las acciones que se deban realizar. La descripción de los diferentes cuádruplos se pueden encontrar más adelante en la documentación. Para las direcciones virtuales usamos hashs (diccionarios en ruby), para separar contextos creamos objetos de tipo `Context`. Cada `Context` tiene su propio hash de direcciones virtuales.
+##### 3.4.1 Código de operación y direcciones virtuales asociadas
 
-  **3.4.2 Diagramas de Sintaxis con las acciones correspondientes**
+  Para la generación de código de operación usamos cuádruplos. Usamos diferentes tipos de cuádruplos para las acciones que se deban realizar. La descripción de los diferentes cuádruplos se pueden encontrar más adelante en la documentación. Para las direcciones virtuales usamos hashes (diccionarios en `Ruby`), para separar contextos creamos objetos de tipo `Context`. Cada `Context` tiene su propio hash de direcciones virtuales.
+
+#####  3.4.2 Diagramas de Sintaxis con las acciones correspondientes**
 En esta parte mostraremos los diagramas de sintaxis de `Hephaestus`, indicando que hace cada punto neurálgico, en caso de que tenga uno.
 
-**START**:
+**1. START**
 
 ![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/start.png?raw=true "Start")
-1. Al comenzar a leer un archivo `.hep` se genera el cuádruplo `goto` al `program` en el código.
+1. Al comenzar a leer un archivo `.hep` se genera el cuádruplo `GOTO` al `program` en el código y guarda el contador de cuádruplos en la pila de saltos.
 
-**3.4.3 Descripción de las acciones semánticas y de código**
+**2. CLASS**
 
-**3.4.4 Tabla de consideraciones semánticas**
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/class.png?raw=true "Class")
 
-  Para la consideraciones semánticas creamos una clase `SemanticsCube`, para crear el cubo usamos un hashs con llaves, las llaves son arreglos de 3 casillas, la primer posición y la segunda siendo tipos y la tercera siendo logical operator o math operators.
+1. Verifica que no exista una clase con el mismo nombre, agrega la clase al directorio de clases.
 
-|Types| Reference |
-|-----| ------|
-| Integer| 0 |
-| Float | 1 |
-| Bool | 2 |
-| String | 3 |
-| Void | 4 |
+2. Verificar si existe la clase padre, agregar su directorio de variables y de funciones a la clase nueva.
 
-|Logical Operators| Reference |
-| ---- | ------ |
-|== | 5 |
-|> | 6 |
-|>= | 7 |
-|< | 8 |
-|<= | 9 |
-|<> | 10 |
-|and | 11 |
-|or | 12 |
+3. Reiniciar el contexto de la clase
 
-|Math Operators| Reference |
-| --- | ---|
-|+ | 13|
-|- | 14 |
-|\* | 15|
-|   | 16|
+**3. FUNCTION**
 
-|Unique| Reference |
-| ---- | --------- |
-| = | 17 |
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/function.png?raw=true "Function")
 
-Cubo semantico
+1. Verifica que no exista una función con el mismo nombre, agrega la función al directorio de funciones.
+
+2. Genera cuádruplo de return.
+
+3. Reiniciar el contexto de la función
+
+**4. PROGRAM**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/program.png?raw=true "Program")
+
+1.  Llena el primer cuádruplo (goto) con el numero del cuádruplo.
+
+2.  Termina la generación de cuádruplos y la compilación.
+
+**5. DIM_DEC**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/dim_dec.png?raw=true "Dim_Dec")
+
+1. Verifica que no exista alguna variable con el mismo nombre, agrega la variable a la tabla de variables y llena el campo `is_dim`  con `true`.
+
+2. Crea un estructura de dimensión y se la agrega a la variable.
+
+3. Agrega el limite a la estructura correspondiente y calcula su respectiva *R*.
+
+4. Guarda la última *R* calculada como el tamaño de la variable dimensionada y calcula la *M* de cada estructura. Como los arreglos tienen un solo limite, le asigna 0 a la *M* de la última estructura.
+
+5. Reinicia la *R*.
+
+**6. VAR_DEC**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/var_dec.png?raw=true "Var_Dec")
+
+1. Verifica que no exista alguna variable con el mismo nombre, agrega la variable a la tabla de variables.
+
+2. Agrega el id a la pila de ids y agrega el `=` a la pila de operadores.
+
+3. Genera el estatuto de asignación.
+
+4. Genera el estatuto de asignación, no revisa tipos por ser input del usuario.
+
+**7. PARAMETERS**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/parameters.png?raw=true "Parameters")
+
+**8. ESTATUTE**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/estatute.png?raw=true "Estatute")
+
+**9. METHOD CALL**
+
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/method_call.png?raw=true "Method_Call")
+
+1. Verifica si el método existe.
+
+2. Se genera el cuádruplo `ERA`
+
+3. Obtiene el valor de retorno, si hay uno.
+
+**10. FUNCTION CALL**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/function_call.png?raw=true "Function_Call")
+
+1. Verifica si la función existe.
+
+2. Se genera el cuádruplo `ERA`
+
+3. Obtiene el valor de retorno, si hay uno.
+
+**11. CALL PARAMETERS**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/call_parameters.png?raw=true "Call_Parameters")
+
+1. Genera el cuádruplo `PARAMETER` para pasar los valores a la función.
+
+2. Verifica la cantidad de parametros que se están pasando.
+
+3. Genera el cuácuádruplo `GOSUB`.
+
+**12. ASSIGNMENT**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/assignment.png?raw=true "Assignment")
+
+1. Verifica que la variable exista, agrega el id a la pila de ids.
+
+2. Si la variable es dimensionada, verifica que los corchetes estén presentes.
+
+3. Agrega el `=` a la pila de operadores.
+
+4. Genera el estatuto de asignación.
+
+5. Genera el estatuto de asignación, no revisa tipos por ser input del usuario.
+
+**13. DIMENSION STRUCTURE**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/dim_struct.png?raw=true "Dim_Struct")
+
+1. Verifica que la variable sea dimensionada.
+
+2. Genera el cuádruplo `VERIFICAR`.
+
+3. Incrementa la dimensión de la variable.
+
+4. Genera los cuádruplos para accesar a una variable dimensionada.
+
+**14. CONDITION**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/condition.png?raw=true "Condition")
+
+1. Saca el tipo del último ID, verifica que sea Bool. Genera cuádruplo `GOTOF` y agrega el contador actual a la pila de saltos.
+
+2. Genera el cuádruplo `GOTO`, saca el último valor de la pila de saltos y rellena el cuádruplo correspondiente con el contador actual + 1.
+
+3. Saca el último valor de la pila de saltos y rellena el cuádruplo correspondiente con el contador actual.
+
+**15. WHILE**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/while.png?raw=true "While")
+
+1. Agrega el contador actual a la pila de saltos.
+
+2. Genera el cuádruplo `GOTO`, saca el último valor de la pila de saltos y rellena el cuádruplo correspondiente con el contador actual + 1.
+
+3. Saca el último valor de la pila de saltos y rellena el cuádruplo correspondiente. Genera el cuádruplo `GOTO` y lo rellena con el último valor de la pila de saltos.
+
+**16. BLOCK**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/block.png?raw=true "Block")
+
+**17. READING**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/reading.png?raw=true "Reading")
+
+1. Genera el cuádruplo `read`.
+
+**18. WRITING**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/writing.png?raw=true "Writing")
+
+1. Saca el último id de la pila de ids y genera el cuádruplo `print`.
+
+**19. SUPER EXPRESSION**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/super_expression.png?raw=true "Super_Expression")
+
+1. Agregar operador a la pila de operadores.
+
+2. Revisar si hay alguna operación de este tipo pendiente. Si lo hay genera cuádruplo con el último operador de la pila de operadores y los últimos dos ids de la pila de ids.
+**20. EXPRESSION**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/expression.png?raw=true "Expression")
+
+1. Agregar operador a la pila de operadores.
+
+2. Revisar si hay alguna operación de este tipo pendiente. Si lo hay genera cuádruplo con el último operador de la pila de operadores y los últimos dos ids de la pila de ids.
+
+**21. EXP**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/exp.png?raw=true "Exp")
+
+1. Revisar si hay alguna operación de este tipo pendiente. Si lo hay genera cuádruplo con el último operador de la pila de operadores y los últimos dos ids de la pila de ids.
+
+2. Agregar operador a la pila de operadores.
+
+**22. TERM**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/term.png?raw=true "Term")
+
+1. Revisar si hay alguna operación de este tipo pendiente. Si lo hay genera cuádruplo con el último operador de la pila de operadores y los últimos dos ids de la pila de ids.
+
+2. Agregar operador a la pila de operadores.
+
+**23. FACTOR**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/factor.png?raw=true "Factor")
+
+1. Agrega id a la pila de ids.
+
+2. Agregar fondo falso a la pila de operadores.
+
+3. Quitar fondo falso de la pila de operadores.
+
+**24. TYPE**
+
+![alt text](https://github.com/bmbrina/Hephaestus/blob/45d99cd71dfa4375fe5f9d7f51b00f582796e81f/Diagrams/type.png?raw=true "Type")
+
+
+##### 3.4.3 Tabla de consideraciones semánticas
+
+Para la consideraciones semánticas creamos una clase `SemanticsCube`, para crear el cubo usamos un hashes con llaves, las llaves son arreglos de 3 casillas, la primera y  segunda posición siendo tipos y la tercera siendo operadores.
+
+|Tipos    | Referencia |
+| :----:  | :------:   |
+| Integer | 0          |
+| Float   | 1          |
+| Bool    | 2          |
+| String  | 3          |
+| Void    | 4          |
+
+|Operadores lógicos| Referencia |
+| :----:           | :-----:    |
+| ==               | 5          |
+| >                | 6          |
+| >=               | 7          |
+| <                | 8          |
+| <=               | 9          |
+| <>               | 10         |
+| and              | 11         |
+| or               | 12         |
+
+|Operadores aritméticos| Referencia|
+| :---:                | :---:      |
+| +                    | 13         |
+| -                    | 14         |
+| \                    | 15         |
+| *                    | 16         |
+
+|Operadores Unarios| Referencia |
+| :---:            | :---------:|
+| =                | 17         |
+
+**Cubo semántico:**
 
 ```
 {[0, 0, 5]=>2, [0, 0, 6]=>2, [0, 0, 7]=>2, [0, 0, 8]=>2, [0, 0, 9]=>2, [0, 0, 10]=>2, [0, 0, 11]=>2, [0, 0, 12]=>2, [0, 0, 17]=>0,
@@ -644,10 +844,9 @@ En estas sección se muestran las estructuras más relevantes del programa.
 ### 4. Descripción de la máquina virtual
 
 #### 4.1 Equipo de cómputo, lenguaje y utilerías usadas en el proyecto
-### 5. Descripción del proceso Administración de Memoria
-#### 5.1Especificación gráfica de las estructuras
-
-#### 5.2Asociación hecha entre las direcciones virtuales y las reales
+#### 4.2 Descripción del proceso Administración de Memoria
+##### 4.2.1 Especificación gráfica de las estructuras
+##### 4.2.2 Asociación hecha entre las direcciones virtuales y las reales
 
 ### 5. Pruebas del funcionamiento del lenguaje
 #### 5.1 Pruebas que comprueben el funcionamiento del proyecto
