@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+hephaestus_command=$1
+hephaestus_file=$2
+
+run="ruby $HOME/Documents/ITESM/SeptimoSemestre/Compiladores/Hephaestus/main.rb $PWD/Tests/$hephaestus_file"
+
+run_file() {
+  echo "Compiling $hephaestus_file"
+  $run
+}
+
+die() {
+  echo "$1"
+  exit
+}
+
+if [ "$hephaestus_command" == "run" ]; then
+  if [ -e "$PWD/Tests/$hephaestus_file" ]; then
+    run_file
+    die
+  else
+    die 'Hephaestus file not found.'
+  fi
+fi

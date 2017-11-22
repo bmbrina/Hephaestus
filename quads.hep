@@ -1,0 +1,26 @@
+0. GOTO, , , 20
+1. =, param0, , 1001
+2. <=, 1001, %2, 1002
+3. GOTOF, 1002, , 6
+4. =, %1, , 1001
+5. GOTO, , , 18
+6. ERA, , , fibonacci
+7. -, 1001, %2, 1003
+8. PARAM, 1003, , param0
+9. GOSUB, fibonacci, 1, 
+10. =, fibonacci, , 1004
+11. ERA, , , fibonacci
+12. -, 1001, %1, 1005
+13. PARAM, 1005, , param0
+14. GOSUB, fibonacci, 1, 
+15. =, fibonacci, , 1006
+16. +, 1004, 1006, 1007
+17. =, 1007, , 1001
+18. return, 1001, , 
+19. ENDFUNC, , , 
+20. ERA, , , fibonacci
+21. PARAM, %15, , param0
+22. GOSUB, fibonacci, 1, 
+23. =, fibonacci, , 1009
+24. =, 1009, , 1007
+25. print, 1007, , 

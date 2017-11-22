@@ -1,0 +1,51 @@
+class Person:
+  define name as String.
+
+  function Void setName(String personName):
+    name = personName.
+  end function
+
+  function String getName():
+    return name.
+  end function
+
+end class
+
+class Student inherits Person:
+  define grade as Float.
+
+  function Void init(Float studentGrade, String personName):
+    grade = studentGrade.
+    name = personName.
+  end function
+
+  function Void setGrade(Float studentGrade):
+    grade = studentGrade.
+  end function
+
+  function Float getGrade():
+    return grade.
+  end function
+
+end class
+
+program University:
+
+  define jorge as Student.
+  jorge@setName("Jorge").
+  jorge@setGrade(100.0).
+
+  define barbara as Student.
+  barbara@setName("Barbara").
+  barbara@setGrade(100.0).
+
+  define steve as Student.
+  steve@init(100.0,"Steve").
+
+  print(steve@getName()).
+  print(steve@getGrade()).
+
+  print(jorge@getName()).
+  print(barbara@getName()).
+
+end program

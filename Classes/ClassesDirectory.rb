@@ -1,16 +1,41 @@
 require_relative "HephaestusClass"
 
+#######################
+# Description: ClassesDirectory, contains the classes of the main context
+# Parameters: N/A
+# Return value: N/A
+# Error handling: N/A
+#######################
 class ClassesDirectory
   attr_accessor :classes
 
+  #######################
+  # Description: Initializes ClassesDirectory
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
   def initialize()
     @classes = {}
   end
 
+  #######################
+  # Description: Creates a new class and adds it to classes
+  # Parameters: (name, type: String), (inherits_of, type: String),
+  # (context, type:Context)
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
   def register(name, inherits_of, context)
     @classes[name] = HephaestusClass.new(name, inherits_of, context)
   end
 
+  #######################
+  # Description: Prints classes with their attributes, for debugging purposes
+  # Parameters: N/A
+  # Return value: N/A
+  # Error handling: N/A
+  #######################
   def print_classes()
     puts "\tClasses directory:"
 
