@@ -1,4 +1,4 @@
-cómodo### 1. Descripción del proyecto
+### 1. Descripción del proyecto
 #### 1.1 Propósito, Objetivos y Alcance del Proyecto
 **Visión:**
 La visión de `Hephaestus` es crear un lenguaje básico orientado a objetos que le permita al usuario entender las funciones básicas de este tipo de lenguajes de programación.
@@ -117,11 +117,21 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
 
   - *Generación de código y máquina virtual faltante*: En la ultima etapa del proyecto, se trabajo en la generación de código para los objetos de clase y en la ejecución de clases. Ademas se crearon pruebas y se arreglaron errores encontrados en las pruebas.
 
-**Reflexión de Bárbara Martínez**
+**Reflexión Bárbara Martínez**
+
+  Emprender este proyecto fue un gran reto personal, ya que tuve la oportunidad de combinar varias áreas de conocimiento que he adquirido a lo largo de la carrera. Tuvimos un comienzo difícil al tardar en que nos aceptaran la propuesta, pero una vez aceptada tuvimos un buen desenlace en el desarrollo del compilador. Me gusto usar el lenguaje Ruby en el proyecto para poder familiarizarme con él ya que no lo había usado antes, me di cuenta que es un lenguaje muy fácil de aprender y me gustaría volver a trabajar con él en el futuro cercano. Por otro lado, una cosa que disfrute mucho de la clase es que conforme íbamos aprendiendo sobre un tema, al mismo tiempo lo aplicábamos sobre nuestro proyecto, esto me ayudo a consolidar el conocimiento de la clase. Finalmente, me di cuenta que para proyectos de esta magnitud, es esencial saber cómo organizar tu tiempo y que, por lo tanto, el mayor aprendizaje que me llevo es no dejar las cosas para el último minuto.
+
+  <br/>
+  <br/>
+  | Firma Bárbara Martínez |
 
 **Reflexión Jorge Elizondo**
 
-  Para mi el proyecto fue un reto, es difícil hacer un proyecto tan grande y tan importante. Sin embargo hay algo en hacer tu propio lenguaje que llamo mi atención, como inventar la sintaxis y ver como el lenguaje se hace mucho mas amigable de utilizar. Me gusto la idea que la clase de Diseño de compiladores este fuertemente basada en el proyecto final, de esa forma creo yo, logre aprender mucho mejor los conceptos vistos en clase. Una lección que me llevo es que para proyectos grandes manejar el tiempo adecuadamente es esencial, hace el proyecto mucho más cómodo. Aprendi bastante del lenguaje Ruby, empece sabiendo lo basico del el pero después de programar mucho más de 1000 lineas en Ruby, me siento un experto aunque no lo sea :) . 
+  Para mi el proyecto fue un reto, es difícil hacer un proyecto tan grande y tan importante. Sin embargo hay algo en hacer tu propio lenguaje que llamo mi atención, como inventar la sintaxis y ver como el lenguaje se hace mucho mas amigable de utilizar. Me gusto la idea que la clase de Diseño de compiladores este fuertemente basada en el proyecto final, de esa forma creo yo, logre aprender mucho mejor los conceptos vistos en clase. Una lección que me llevo es que para proyectos grandes manejar el tiempo adecuadamente es esencial, hace el proyecto mucho más cómodo. Aprendi bastante del lenguaje Ruby, empece sabiendo lo básico del el pero después de programar mucho más de 1000 lineas en Ruby, me siento un experto aunque no lo sea :) .
+
+  <br/>
+  <br/>
+  | Firma Jorge Elizondo |
 
 ### 2. Descripción del lenguaje
 En esta sección hablaremos acerca del lenguaje desarrollado; su nombre, principales características y los posibles errores que pueden surgir en compilación y ejecución.
