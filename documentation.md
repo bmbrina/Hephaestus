@@ -343,7 +343,7 @@ Cada vez que el compilador o la máquina virtual se encuentra con uno de estos e
 En esta sección se describen todos los componentes que forman parte del compilador como el lenguaje que se utilizó, el análisis léxico y sintáctico, generación de código intermedio, análisis semántico y el proceso de administración de memoria.
 
 #### 3.1 Equipo de cómputo, lenguaje y utilerías usadas en el proyecto   
-El equipo de cómputo que se utilizo para desarrollar el compilador: dos Macbook Pros. El lenguage utilizado es `Ruby` y la herramienta utilizada es `antlr`. Antlr es una herramineta que te permite crear el scanner y el parser.
+El equipo de cómputo que se utilizo para desarrollar el compilador: dos Macbook Pros. El lenguaje utilizado es `Ruby` y la herramienta utilizada es `antlr`. Antlr es una herramineta que te permite crear el scanner y el parser.
 
 #### 3.2 Descripción del Análisis de Léxico
 A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regulares de los tipos de datos, los tokens y las palabras reservadas del lenguaje.
@@ -548,7 +548,6 @@ A continuación se muestra la gramática formal de `Hephaestus`:
 
   ```
 #### 3.4 Descripción de Generación de Código Intermedio y Análisis Semántico
-
 
 ##### 3.4.1 Código de operación y direcciones virtuales asociadas
 
@@ -856,11 +855,14 @@ En estas sección se muestran las estructuras más relevantes del programa.
  |      |              ||
 
  * `Name` indica el nombre del contexto.
- * `Context_type` indica el tipo del contexto (*función, clase, globalr*).
+ * `Context_type` indica el tipo del contexto (*función, clase, global*).
 
 ### 4. Descripción de la máquina virtual
+En este apartado hablaremos del proceso que se llevo a cabo para crea la máquina virtual, las herramientas utilizadas y la información que recibe.
 
 #### 4.1 Equipo de cómputo, lenguaje y utilerías usadas en el proyecto
+Al igual que en el compilador, el equipo de cómputo que se utilizo para desarrollar la máquina virtual: dos Macbook Pros. El lenguaje utilizado es `Ruby` y en este caso no utilizamos herramientas externas.
+
 #### 4.2 Descripción del proceso Administración de Memoria
 ##### 4.2.1 Especificación gráfica de las estructuras
 ##### 4.2.2 Asociación hecha entre las direcciones virtuales y las reales
