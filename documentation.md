@@ -117,9 +117,23 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
 
   - *Generación de código y máquina virtual faltante*: En la ultima etapa del proyecto, se trabajo en la generación de código para los objetos de clase y en la ejecución de clases. Ademas se crearon pruebas y se arreglaron errores encontrados en las pruebas.
 
-**Reflexión de Bárbara Martínez**
+**Reflexión Bárbara Martínez**
+
+  Emprender este proyecto fue un gran reto personal, ya que tuve la oportunidad de combinar varias áreas de conocimiento que he adquirido a lo largo de la carrera. Tuvimos un comienzo difícil al tardar en que nos aceptaran la propuesta, pero una vez aceptada tuvimos un buen desenlace en el desarrollo del compilador. Me gusto usar el lenguaje Ruby en el proyecto para poder familiarizarme con él ya que no lo había usado antes, me di cuenta que es un lenguaje muy fácil de aprender y me gustaría volver a trabajar con él en el futuro cercano. Por otro lado, una cosa que disfrute mucho de la clase es que conforme íbamos aprendiendo sobre un tema, al mismo tiempo lo aplicábamos sobre nuestro proyecto, esto me ayudo a consolidar el conocimiento de la clase. Finalmente, me di cuenta que para proyectos de esta magnitud, es esencial saber cómo organizar tu tiempo y que, por lo tanto, el mayor aprendizaje que me llevo es no dejar las cosas para el último minuto.
+
+  <br/>
+  <br/>
+  <br/>
+  | Firma Bárbara Martínez |
 
 **Reflexión Jorge Elizondo**
+
+  Para mi el proyecto fue un reto, es difícil hacer un proyecto tan grande y tan importante. Sin embargo hay algo en hacer tu propio lenguaje que llamo mi atención, como inventar la sintaxis y ver como el lenguaje se hace mucho mas amigable de utilizar. Me gusto la idea que la clase de Diseño de compiladores este fuertemente basada en el proyecto final, de esa forma creo yo, logre aprender mucho mejor los conceptos vistos en clase. Una lección que me llevo es que para proyectos grandes manejar el tiempo adecuadamente es esencial, hace el proyecto mucho más cómodo. Aprendi bastante del lenguaje Ruby, empece sabiendo lo básico del el pero después de programar mucho más de 1000 lineas en Ruby, me siento un experto aunque no lo sea :) .
+
+  <br/>
+  <br/>
+  <br/>
+  | Firma Jorge Elizondo |
 
 ### 2. Descripción del lenguaje
 En esta sección hablaremos acerca del lenguaje desarrollado; su nombre, principales características y los posibles errores que pueden surgir en compilación y ejecución.
@@ -738,6 +752,21 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
     end program
   ```
   ```
+  0: GOTO, , , 1
+  1: =, %10, , 1000
+  2: =, %1, , 1001
+  3: =, %1, , 1002
+  4: <=, 1002, 1000, 1004
+  5: GOTOF, 1004, , 11
+  6: *, 1001, 1002, 1005
+  7: =, 1005, , 1001
+  8: +, 1002, %1, 1006
+  9: =, 1006, , 1002
+  10: GOTO, , , 4
+  11: print, 1001, ,
+  ```
+
+  ```
     Starting compilation...
     Compilation finished successfully.
     Starting execution...
@@ -760,6 +789,34 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
       res = fibonacci(20).
       print(res).
     end program
+  ```
+  ```
+    0: GOTO, , , 20
+    1: =, param0, , 1001
+    2: <=, 1001, %2, 1002
+    3: GOTOF, 1002, , 6
+    4: =, %1, , 1001
+    5: GOTO, , , 18
+    6: ERA, , , fibonacci
+    7: -, 1001, %2, 1003
+    8: PARAM, 1003, , param0
+    9: GOSUB, fibonacci, 1,
+    10: =, fibonacci, , 1004
+    11: ERA, , , fibonacci
+    12: -, 1001, %1, 1005
+    13: PARAM, 1005, , param0
+    14: GOSUB, fibonacci, 1,
+    15: =, fibonacci, , 1006
+    16: +, 1004, 1006, 1007
+    17: =, 1007, , 1001
+    18: return, 1001, ,
+    19: ENDFUNC, , ,
+    20: ERA, , , fibonacci
+    21: PARAM, %15, , param0
+    22: GOSUB, fibonacci, 1,
+    23: =, fibonacci, , 1009
+    24: =, 1009, , 1007
+    25: print, 1007, ,
   ```
   ```
   Starting compilation...
@@ -805,6 +862,72 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
         i = i + 1 .
       end while
     end program
+  ```
+
+  ```
+    0: GOTO, , , 1
+    1: =, %5, , 1005
+    2: VERIFICAR, %0, 0, 4
+    3: +, %0, %1000, 1007
+    4: =, %5, , (1007)
+    5: VERIFICAR, %1, 0, 4
+    6: +, %1, %1000, 1008
+    7: =, %1, , (1008)
+    8: VERIFICAR, %2, 0, 4
+    9: +, %2, %1000, 1009
+    10: =, %4, , (1009)
+    11: VERIFICAR, %3, 0, 4
+    12: +, %3, %1000, 1010
+    13: =, %2, , (1010)
+    14: VERIFICAR, %4, 0, 4
+    15: +, %4, %1000, 1011
+    16: =, %8, , (1011)
+    17: =, %0, , 1011
+    18: =, %0, , 1013
+    19: -, 1005, %1, 1015
+    20: <, 1011, 1015, 1016
+    21: GOTOF, 1016, , 53
+    22: =, %0, , 1013
+    23: -, 1005, 1011, 1017
+    24: -, 1017, %1, 1018
+    25: <, 1013, 1018, 1019
+    26: GOTOF, 1019, , 50
+    27: VERIFICAR, 1013, 0, 4
+    28: +, 1013, %1000, 1020
+    29: +, 1013, %1, 1021
+    30: VERIFICAR, 1021, 0, 4
+    31: +, 1021, %1000, 1022
+    32: >, (1020), (1022), 1023
+    33: GOTOF, 1023, , 47
+    34: VERIFICAR, 1013, 0, 4
+    35: +, 1013, %1000, 1024
+    36: =, (1024), , 1012
+    37: VERIFICAR, 1013, 0, 4
+    38: +, 1013, %1000, 1025
+    39: +, 1013, %1, 1026
+    40: VERIFICAR, 1026, 0, 4
+    41: +, 1026, %1000, 1027
+    42: =, (1027), , (1025)
+    43: +, 1013, %1, 1028
+    44: VERIFICAR, 1028, 0, 4
+    45: +, 1028, %1000, 1029
+    46: =, 1012, , (1029)
+    47: +, 1013, %1, 1030
+    48: =, 1030, , 1013
+    49: GOTO, , , 23
+    50: +, 1011, %1, 1031
+    51: =, 1031, , 1011
+    52: GOTO, , , 19
+    53: =, %0, , 1011
+    54: print, %"Sorted array:", ,
+    55: <, 1011, 1005, 1032
+    56: GOTOF, 1032, , 63
+    57: VERIFICAR, 1011, 0, 4
+    58: +, 1011, %1000, 1033
+    59: print, (1033), ,
+    60: +, 1011, %1, 1034
+    61: =, 1034, , 1011
+    62: GOTO, , , 55
   ```
   ```
   Starting compilation...
@@ -873,6 +996,184 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
       i = i + 1 .
     end while
   end program
+```
+```
+    0: GOTO, , , 1
+    1: VERIFICAR, %0, 0, 2
+    2: *, %0, %3, 1028
+    3: VERIFICAR, %0, 0, 2
+    4: +, 1028, %0, 1029
+    5: +, 1029, %1000, 1030
+    6: =, %3, , (1030)
+    7: VERIFICAR, %0, 0, 2
+    8: *, %0, %3, 1031
+    9: VERIFICAR, %1, 0, 2
+    10: +, 1031, %1, 1032
+    11: +, 1032, %1000, 1033
+    12: =, %7, , (1033)
+    13: VERIFICAR, %0, 0, 2
+    14: *, %0, %3, 1034
+    15: VERIFICAR, %2, 0, 2
+    16: +, 1034, %2, 1035
+    17: +, 1035, %1000, 1036
+    18: =, %4, , (1036)
+    19: VERIFICAR, %1, 0, 2
+    20: *, %1, %3, 1037
+    21: VERIFICAR, %0, 0, 2
+    22: +, 1037, %0, 1038
+    23: +, 1038, %1000, 1039
+    24: =, %1, , (1039)
+    25: VERIFICAR, %1, 0, 2
+    26: *, %1, %3, 1040
+    27: VERIFICAR, %1, 0, 2
+    28: +, 1040, %1, 1041
+    29: +, 1041, %1000, 1042
+    30: =, %9, , (1042)
+    31: VERIFICAR, %1, 0, 2
+    32: *, %1, %3, 1043
+    33: VERIFICAR, %2, 0, 2
+    34: +, 1043, %2, 1044
+    35: +, 1044, %1000, 1045
+    36: =, %9, , (1045)
+    37: VERIFICAR, %2, 0, 2
+    38: *, %2, %3, 1046
+    39: VERIFICAR, %0, 0, 2
+    40: +, 1046, %0, 1047
+    41: +, 1047, %1000, 1048
+    42: =, %5, , (1048)
+    43: VERIFICAR, %2, 0, 2
+    44: *, %2, %3, 1049
+    45: VERIFICAR, %1, 0, 2
+    46: +, 1049, %1, 1050
+    47: +, 1050, %1000, 1051
+    48: =, %4, , (1051)
+    49: VERIFICAR, %2, 0, 2
+    50: *, %2, %3, 1052
+    51: VERIFICAR, %2, 0, 2
+    52: +, 1052, %2, 1053
+    53: +, 1053, %1000, 1054
+    54: =, %2, , (1054)
+    55: VERIFICAR, %0, 0, 2
+    56: *, %0, %3, 1055
+    57: VERIFICAR, %0, 0, 2
+    58: +, 1055, %0, 1056
+    59: +, 1056, %1009, 1057
+    60: =, %4, , (1057)
+    61: VERIFICAR, %0, 0, 2
+    62: *, %0, %3, 1058
+    63: VERIFICAR, %1, 0, 2
+    64: +, 1058, %1, 1059
+    65: +, 1059, %1009, 1060
+    66: =, %2, , (1060)
+    67: VERIFICAR, %0, 0, 2
+    68: *, %0, %3, 1061
+    69: VERIFICAR, %2, 0, 2
+    70: +, 1061, %2, 1062
+    71: +, 1062, %1009, 1063
+    72: =, %1, , (1063)
+    73: VERIFICAR, %1, 0, 2
+    74: *, %1, %3, 1064
+    75: VERIFICAR, %0, 0, 2
+    76: +, 1064, %0, 1065
+    77: +, 1065, %1009, 1066
+    78: =, %8, , (1066)
+    79: VERIFICAR, %1, 0, 2
+    80: *, %1, %3, 1067
+    81: VERIFICAR, %1, 0, 2
+    82: +, 1067, %1, 1068
+    83: +, 1068, %1009, 1069
+    84: =, %2, , (1069)
+    85: VERIFICAR, %1, 0, 2
+    86: *, %1, %3, 1070
+    87: VERIFICAR, %2, 0, 2
+    88: +, 1070, %2, 1071
+    89: +, 1071, %1009, 1072
+    90: =, %9, , (1072)
+    91: VERIFICAR, %2, 0, 2
+    92: *, %2, %3, 1073
+    93: VERIFICAR, %0, 0, 2
+    94: +, 1073, %0, 1074
+    95: +, 1074, %1009, 1075
+    96: =, %10, , (1075)
+    97: VERIFICAR, %2, 0, 2
+    98: *, %2, %3, 1076
+    99: VERIFICAR, %1, 0, 2
+    100: +, 1076, %1, 1077
+    101: +, 1077, %1009, 1078
+    102: =, %1, , (1078)
+    103: VERIFICAR, %2, 0, 2
+    104: *, %2, %3, 1079
+    105: VERIFICAR, %2, 0, 2
+    106: +, 1079, %2, 1080
+    107: +, 1080, %1009, 1081
+    108: =, %7, , (1081)
+    109: =, %0, , 1081
+    110: =, %0, , 1082
+    111: =, %0, , 1083
+    112: <, 1081, %3, 1085
+    113: GOTOF, 1085, , 158
+    114: =, %0, , 1082
+    115: <, 1082, %3, 1086
+    116: GOTOF, 1086, , 155
+    117: =, %0, , 1083
+    118: VERIFICAR, 1081, 0, 2
+    119: *, 1081, %3, 1087
+    120: VERIFICAR, 1082, 0, 2
+    121: +, 1087, 1082, 1088
+    122: +, 1088, %1018, 1089
+    123: =, %0, , (1089)
+    124: <, 1083, %3, 1090
+    125: GOTOF, 1090, , 152
+    126: VERIFICAR, 1081, 0, 2
+    127: *, 1081, %3, 1091
+    128: VERIFICAR, 1082, 0, 2
+    129: +, 1091, 1082, 1092
+    130: +, 1092, %1018, 1093
+    131: VERIFICAR, 1081, 0, 2
+    132: *, 1081, %3, 1094
+    133: VERIFICAR, 1082, 0, 2
+    134: +, 1094, 1082, 1095
+    135: +, 1095, %1018, 1096
+    136: VERIFICAR, 1081, 0, 2
+    137: *, 1081, %3, 1097
+    138: VERIFICAR, 1083, 0, 2
+    139: +, 1097, 1083, 1098
+    140: +, 1098, %1000, 1099
+    141: VERIFICAR, 1083, 0, 2
+    142: *, 1083, %3, 1100
+    143: VERIFICAR, 1082, 0, 2
+    144: +, 1100, 1082, 1101
+    145: +, 1101, %1009, 1102
+    146: *, (1099), (1102), 1103
+    147: +, (1096), 1103, 1104
+    148: =, 1104, , (1093)
+    149: +, 1083, %1, 1105
+    150: =, 1105, , 1083
+    151: GOTO, , , 124
+    152: +, 1082, %1, 1106
+    153: =, 1106, , 1082
+    154: GOTO, , , 115
+    155: +, 1081, %1, 1107
+    156: =, 1107, , 1081
+    157: GOTO, , , 112
+    158: =, %0, , 1081
+    159: <, 1081, %3, 1108
+    160: GOTOF, 1108, , 176
+    161: =, %0, , 1082
+    162: <, 1082, %3, 1109
+    163: GOTOF, 1109, , 173
+    164: VERIFICAR, 1081, 0, 2
+    165: *, 1081, %3, 1110
+    166: VERIFICAR, 1082, 0, 2
+    167: +, 1110, 1082, 1111
+    168: +, 1111, %1018, 1112
+    169: print, (1112), ,
+    170: +, 1082, %1, 1113
+    171: =, 1113, , 1082
+    172: GOTO, , , 162
+    173: +, 1081, %1, 1114
+    174: =, 1114, , 1081
+    175: GOTO, , , 159
 ```
 ```
 Starting compilation...
@@ -944,6 +1245,72 @@ program University:
   print(barbara@getName()).
 
 end program
+```
+
+```
+0: GOTO, , , 16
+1: =, param0, , 1002
+2: =, 1002, , 1000
+3: ENDFUNC, , ,
+4: return, 1000, ,
+5: ENDFUNC, , ,
+6: =, param0, , 1004
+7: =, param1, , 1005
+8: =, 1004, , 1002
+9: =, 1005, , 1000
+10: ENDFUNC, , ,
+11: =, param0, , 1006
+12: =, 1006, , 1002
+13: ENDFUNC, , ,
+14: return, 1002, ,
+15: ENDFUNC, , ,
+16: ERA, jorge, , setName
+17: PARAM, %"Jorge", , param0
+18: GOSUB, setName, 1,
+19: =, setName, , 1008
+20: ERA, jorge, , setGrade
+21: PARAM, %100.0, , param0
+22: GOSUB, setGrade, 11,
+23: =, setGrade, , 1009
+24: ERA, barbara, , setName
+25: PARAM, %"Barbara", , param0
+26: GOSUB, setName, 1,
+27: =, setName, , 1011
+28: ERA, barbara, , setGrade
+29: PARAM, %100.0, , param0
+30: GOSUB, setGrade, 11,
+31: =, setGrade, , 1012
+32: ERA, steve, , init
+33: PARAM, %100.0, , param0
+34: PARAM, %"Steve", , param1
+35: GOSUB, init, 6,
+36: =, init, , 1014
+37: ERA, steve, , getName
+38: GOSUB, getName, 4,
+39: =, getName, , 1015
+40: print, 1015, ,
+41: ERA, steve, , getGrade
+42: GOSUB, getGrade, 14,
+43: =, getGrade, , 1016
+44: print, 1016, ,
+45: ERA, jorge, , getName
+46: GOSUB, getName, 4,
+47: =, getName, , 1017
+48: print, 1017, ,
+49: ERA, barbara, , getName
+50: GOSUB, getName, 4,
+51: =, getName, , 1018
+52: print, 1018, ,
+```
+```
+  Compilation finished successfully.
+  Starting execution...
+  "Steve"
+  100.0
+  "Jorge"
+  "Barbara"
+  Program finished successfully.
+
 ```
 
 ### 6. Listados documentados del proyecto

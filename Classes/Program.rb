@@ -166,7 +166,8 @@ class Program
   end
 
   #######################
-  # Description: Finishes compilation, saves quadruples to .hep file and starts execution
+  # Description: Finishes compilation, saves quadruples to quads.hep file
+  # and starts execution
   # Parameters: N/A
   # Return value: .hep file
   # Error handling: N/A
