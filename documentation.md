@@ -551,8 +551,6 @@ A continuación se muestra la gramática formal de `Hephaestus`:
 
 **Código de operación y direcciones virtuales asociadas**
 
-**Código de operación y direcciones virtuales asociadas**
-
 **Diagramas de Sintaxis con las acciones correspondientes**
 
 **Descripción de las acciones semánticas y de código**

@@ -163,7 +163,7 @@ method_call
   ;
 
 method_call_2
-  : ID { \$func_aux = $ID.text } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters { \$quads.method_exists?(\$method_aux, $ID.text) }
+  : ID { \$func_aux = $ID.text } { \$quads.method_exists?(\$method_aux, $ID.text) } { \$quads.era_method(\$method_aux, $ID.text) } method_call_parameters
   ;
 
 method_call_parameters
@@ -171,12 +171,12 @@ method_call_parameters
   ;
 
 assignment
-  : ID { \$assgn_aux = $ID.text} { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN  { \$quads.add_operator($ASGN.text) } { \$quads.variable_exists?($ID.text) } ( super_expression { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) ) DOT
+  : ID { \$assgn_aux = $ID.text} { \$quads.variable_exists?($ID.text) } { \$quads.add_id($ID.text, nil) } ( { \$dim_aux = $ID.text } dim_struct )? { \$quads.check_dim($ID.text) } ( ASGN { \$quads.add_operator($ASGN.text) } ( super_expression { \$quads.assgn_quad() } | reading { \$quads.assgn_read() } ) ) DOT
   ;
 
 condition
   : IF LPAR super_expression RPAR { \$quads.gotof() } COLON ( estatute )* ( ELSE { \$quads.goto() } block
-                                                                                             | R_END ) { \$quads.fill_program_quad() } IF
+                                                                          | R_END ) { \$quads.fill_program_quad() } IF
   ;
 
 while_loop
