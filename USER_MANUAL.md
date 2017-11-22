@@ -199,23 +199,17 @@ Ejemplo:
 ```
 
 # Instalación
-Para poder instalar el proyecto, es necesario tener la última versión de `Hephaestus` la cual puedes obtener del repositorio [oficial](https://github.com/bmbrina/Hephaestus).
-
-Puedes bajar el `.zip` o copiarlo a tu máquina con el comando `git clone`.
-
-*Nota: para usar el comando `git clone`, ese necesario tener `git` instalado en tu máquina.*
-
-Para correr el proyecto es necesario tener instalada la gema de `antlr3`, en caso de no tenerla, correr el sigueinte comando en la terminal:
-
+Para poder instalar el proyecto, es necesario correr el siguiente comando en la terminal:
 ```
-$ gem install antlr3
+$ curl -L https://raw.githubusercontent.com/bmbrina/Hephaestus/master/install.sh | sh
 ```
-Una vez instalada la gema, esta listo para codificar en `Hephaestus`. Ya que tenga su código listo, se debe guardar en un archivo con extensión `.hep`.
+
+Una vez instalado el proyecto, esta listo para codificar en `Hephaestus`. Ya que tenga su código listo, se debe guardar en un archivo con extensión `.hep`.
 
 *Nota: para más información sobre el lenguaje, se puede consultar la documentación completa.*
 
 Para poder compilar y ejecutar el programa es necesario correr el siguiente comando en la terminal:
 ```
-$
+$ hephaestus <file_name>.hep
 ```
 Con este comando inicia la compilación y posteriormente la ejecución de su código en caso de que no existan errores.

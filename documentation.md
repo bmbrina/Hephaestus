@@ -74,7 +74,7 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
   | **Propósito**       | Ejecutar el programa del usuario |
   | **Precondiciones**  | No haber errores de compilación |
   | **Postcondiciones** | Mostrar el resultado de la ejecución del programa |
-  | **Flujo Normal**    | <ol><li>Muestra mensaje de que comenzó la ejecución</li><li>Ejecutar el programa</li><li> Mostrar el resultado del programa</li></ol> 
+  | **Flujo Normal**    | <ol><li>Muestra mensaje de que comenzó la ejecución</li><li>Ejecutar el programa</li><li> Mostrar el resultado del programa</li></ol>
 
 #### 1.3 Descripción de los principales Test Cases
 

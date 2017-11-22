@@ -1,9 +1,8 @@
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-file_name = "Tests/universidad.hep"
+file_name = ARGV[0]
 
-puts "Starting compilation..."
 input = ANTLR3::FileStream.new(file_name)
 $lexer = Hephaestus::Lexer.new( input )
 
