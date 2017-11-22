@@ -1,7 +1,7 @@
 require_relative 'HephaestusLexer'
 require_relative 'HephaestusParser'
 
-file_name = "Tests/recursiveFibonacci.txt"
+file_name = "Tests/universidad.txt"
 
 puts "Starting compilation..."
 input = ANTLR3::FileStream.new(file_name)
