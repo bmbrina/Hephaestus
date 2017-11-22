@@ -36,8 +36,7 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
 
   - **Principales casos de uso:**
 
-
-  || Descripción |
+  | | |
   | :-----------------  | :----------|
   | **Nombre**          | Compilar código con error y mostrar el error |
   | **ID**              | CU01 |
@@ -45,10 +44,9 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
   | **Propósito**       | Terminar la compilación del programa en cuanto encuentre un error y mostrarlo al usuario|
   | **Precondiciones**  | El usuario tiene un archivo `.heph` con el código que desea compilar |
   | **Postcondiciones** | Se detiene la compilación y despliega un mensaje de error.|
-  | **Flujo Normal**    | <ol><li>Ingresar el nombre del archivo</li><li>Compilar el programa</li><li>Se detecta un error y para la compilación</li><li>Muestra el error al usuario</li></ol> |
-  | **Flujo Alterno**   | N/A|
+  | **Flujo Normal**    | <ol><li>Ingresar el nombre del archivo</li><li>Compilar el programa</li><li>Se detecta un error y para la compilación</li><li>Muestra el error al usuario</li></ol>
 
-  || Descripción |
+  | | |
   | :-----------------  | :----------|
   | **Nombre**          | Compilar código sin error |
   | **ID**              | CU02 |
@@ -56,21 +54,19 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
   | **Propósito**       | Generar el código compilado|
   | **Precondiciones**  | No haber errores en el archivo `.heph`|
   | **Postcondiciones** | Se despliega un mensaje indicando que el archivo compilo exitosamente|
-  | **Flujo Normal**    | <ol><li>Se Ingresa el nombre del archivo `.heph` del programa a compilar</li><li>Compilar el programa</li><li> Se genera el codigo compilado</li></ol> |
-  | **Flujo Alterno**   | N/A |
+  | **Flujo Normal**    | <ol><li>Se Ingresa el nombre del archivo `.heph` del programa a compilar</li><li>Compilar el programa</li><li> Se genera el código compilado</li></ol>
 
-  || Descripción |
+  | | |
   | :-----------------  | :----------|
-  | **Nombre**          | Ejecutar código con error y mostrar el error |
+  | **Nombre**          | Ejecutar código con error y mostrar el error    |
   | **ID**              | CU03        |
-  | **Requerimientos**  | RF18, RF19|
+  | **Requerimientos**  | RF18, RF19
   | **Propósito**       | Detener la ejecución del programa cuando se encuentra un error y mostrarlo al usuario|
   | **Precondiciones**  | La máquina virtual recibió los cuádruplos de la compilación.|
   | **Postcondiciones** | Se detiene la ejecución y despliega un mensaje de error. |
-  | **Flujo Normal**    | <ol><li>Muestra mensaje de que comenzó la ejecución</li><li>Ejecuta el programa</li><li>Se detecta un error y para la ejecución</li><li>Muestra el error al usuario</li></ol> |
-  | **Flujo Alterno**   | N/A |
+  | **Flujo Normal**    | <ol><li>Muestra mensaje de que comenzó la ejecución</li><li>Ejecuta el programa</li><li>Se detecta un error y para la ejecución</li><li>Muestra el error al usuario</li></ol>
 
-  || Descripción |
+  | | |
   | :-----------------  | :----------|
   | **Nombre**          | Ejecutar código sin error |
   | **ID**              | CU04      |
@@ -78,8 +74,7 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
   | **Propósito**       | Ejecutar el programa del usuario |
   | **Precondiciones**  | No haber errores de compilación |
   | **Postcondiciones** | Mostrar el resultado de la ejecución del programa |
-  | **Flujo Normal**    | <ol><li>Muestra mensaje de que comenzó la ejecución</li><li>Ejecutar el programa</li><li> Mostrar el resultado del programa</li></ol> |
-  | **Flujo Alterno**   | N/A |
+  | **Flujo Normal**    | <ol><li>Muestra mensaje de que comenzó la ejecución</li><li>Ejecutar el programa</li><li> Mostrar el resultado del programa</li></ol>
 
 #### 1.3 Descripción de los principales Test Cases
 
@@ -254,144 +249,145 @@ A continuación se muestra el léxico de `Hephaestus` es decir: expresiones regu
 
 #### 3.3 Descripción del Análisis de Sintaxis
 A continuación se muestra la gramática formal de `Hephaestus`:
-  ```antlr
-  start
-    : ( r_class )* ( function )* program
-    ;
 
-  r_class
-    : R_CLASS ID heritage? COLON ( function | dim_dec | var_dec )* R_END R_CLASS
-    ;
+```
+    start
+      : ( r_class )* ( function )* program
+      ;
 
-  heritage
-    :  HER ID
-    ;
+    r_class
+      : R_CLASS ID heritage? COLON ( function | dim_dec | var_dec )* R_END R_CLASS
+      ;
 
-  program
-    : PROGRAM  ID COLON ( estatute | dim_dec | var_dec )* R_END PROGRAM
-    ;
+    heritage
+      :  HER ID
+      ;
 
-  dim_dec
-    : DEFINE ID AS type LBRACK INTEGER ( mat_dim )? RBRACK DOT
-    ;
+    program
+      : PROGRAM  ID COLON ( estatute | dim_dec | var_dec )* R_END PROGRAM
+      ;
 
-  mat_dim
-    : COMMA INTEGER
-    ;
+    dim_dec
+      : DEFINE ID AS type LBRACK INTEGER ( mat_dim )? RBRACK DOT
+      ;
 
-  dim_struct
-    : LBRACK exp ( COMMA exp )? RBRACK
-    ;
+    mat_dim
+      : COMMA INTEGER
+      ;
 
-  var_dec
-    : DEFINE ID AS type ( ASGN ( super_expression | reading ) )? DOT
-    ;
+    dim_struct
+      : LBRACK exp ( COMMA exp )? RBRACK
+      ;
 
-  function
-    : FUNCTION ( type ) ID parameters COLON ( estatute | var_dec | dim_dec)* ( RETURN super_expression DOT )? R_END FUNCTION
-    ;
+    var_dec
+      : DEFINE ID AS type ( ASGN ( super_expression | reading ) )? DOT
+      ;
 
-  parameters
-    : LPAR ( type ID ( COMMA type ID )* )? RPAR
-    ;
+    function
+      : FUNCTION ( type ) ID parameters COLON ( estatute | var_dec | dim_dec)* ( RETURN super_expression DOT )? R_END FUNCTION
+      ;
 
-  estatute
-    : assignment
-    | condition
-    | while_loop
-    | writing
-    | method_call DOT
-    | func_call DOT
-    ;
+    parameters
+      : LPAR ( type ID ( COMMA type ID )* )? RPAR
+      ;
 
-  method_call
-    : ID OBJ method_call_2
-    ;
+    estatute
+      : assignment
+      | condition
+      | while_loop
+      | writing
+      | method_call DOT
+      | func_call DOT
+      ;
 
-  method_call_2
-    : ID method_call_parameters
-    ;
+    method_call
+      : ID OBJ method_call_2
+      ;
 
-  method_call_parameters
-    : LPAR ( ( super_expression ) ( COMMA ( super_expression ) )* )? RPAR
-    ;
+    method_call_2
+      : ID method_call_parameters
+      ;
 
-  assignment
-    : ID ( dim_struct )? ( ASGN  ( super_expression | reading  ) ) DOT
-    ;
+    method_call_parameters
+      : LPAR ( ( super_expression ) ( COMMA ( super_expression ) )* )? RPAR
+      ;
 
-  condition
-    : IF LPAR super_expression RPAR COLON ( estatute )* ( ELSE  block| R_END ) IF
-    ;
+    assignment
+      : ID ( dim_struct )? ( ASGN  ( super_expression | reading  ) ) DOT
+      ;
 
-  while_loop
-    : WHILE LPAR super_expression RPAR block WHILE
-    ;
+    condition
+      : IF LPAR super_expression RPAR COLON ( estatute )* ( ELSE  block| R_END ) IF
+      ;
 
-  block
-    : COLON ( estatute )*  R_END
-    ;
+    while_loop
+      : WHILE LPAR super_expression RPAR block WHILE
+      ;
 
-  reading
-    : READ LPAR RPAR
-    ;
+    block
+      : COLON ( estatute )*  R_END
+      ;
 
-  writing
-    : PRINT LPAR super_expression RPAR DOT
-    ;
+    reading
+      : READ LPAR RPAR
+      ;
 
-  func_call
-    : ID func_call_parameters
-    ;
+    writing
+      : PRINT LPAR super_expression RPAR DOT
+      ;
 
-  func_call_parameters
-    : LPAR ( ( super_expression ) ( COMMA ( super_expression ) )* )? RPAR}
-    ;
+    func_call
+      : ID func_call_parameters
+      ;
 
-  super_expression
-    : expression ( ( AND | OR ) expression )?
-    ;
+    func_call_parameters
+      : LPAR ( ( super_expression ) ( COMMA ( super_expression ) )* )? RPAR}
+      ;
 
-  expression
-    : exp ( ( GREATER
-            | GREATEQ
-            | LESS     
-            | LEQ
-            | NEQ
-            | EQ
-            ) exp
-          )?
-    ;
+    super_expression
+      : expression ( ( AND | OR ) expression )?
+      ;
 
-  exp
-    : term ( ( PLUS | MINUS ) term )*
-    ;
+    expression
+      : exp ( ( GREATER
+              | GREATEQ
+              | LESS     
+              | LEQ
+              | NEQ
+              | EQ
+              ) exp
+            )?
+      ;
 
-  term
-    : factor ( ( MULT | DIV ) factor )*
-    ;
+    exp
+      : term ( ( PLUS | MINUS ) term )*
+      ;
 
-  factor
-    : ID  (  dim_struct )? | LPAR super_expression RPAR | value | func_call| method_call
-    ;
+    term
+      : factor ( ( MULT | DIV ) factor )*
+      ;
 
-  type
-    : R_STRING
-    | R_BOOL
-    | R_FLOAT
-    | R_INTEGER
-    | VOID
-    | ID
-    ;
+    factor
+      : ID  (  dim_struct )? | LPAR super_expression RPAR | value | func_call| method_call
+      ;
 
-  value
-    : STRING
-    | FLOAT
-    | INTEGER
-    | BOOL
-    ;
+    type
+      : R_STRING
+      | R_BOOL
+      | R_FLOAT
+      | R_INTEGER
+      | VOID
+      | ID
+      ;
 
-  ```
+    value
+      : STRING
+      | FLOAT
+      | INTEGER
+      | BOOL
+      ;
+
+```
 #### 3.4 Descripción de Generación de Código Intermedio y Análisis Semántico
 
 ##### 3.4.1 Código de operación y direcciones virtuales asociadas
@@ -662,7 +658,6 @@ En estas sección se muestran las estructuras más relevantes utilizadas dentro 
 
  | Name | Inherits_of | context |
  | ---- | ----------- | ------- |
- |      |             |         ||
 
  * `Name` indica el nombre de la clase.
  * `Inherits_of` indica la clase padre, si no existe es nulo.
@@ -672,7 +667,6 @@ En estas sección se muestran las estructuras más relevantes utilizadas dentro 
 
 | Funtion_name | Parameters | Return_type | Quad_number |
 | ------------ | ---------- | ----------  | ----------- |
-|              |            |             |             ||
 
 * `Function_name` indica el nombre de la función.
 * `Parameters` guarda un arreglo de los parametros.
@@ -683,7 +677,6 @@ En estas sección se muestran las estructuras más relevantes utilizadas dentro 
 
 | Name | Type | Memory | Is_dim | Structures|
 | ---- | ---- | ------ | ------ | --------- |
-|      |      |        |        |           ||
 
 * `Name` indica el nombre de la variable.
 * `Type` indica el tipo de la variable.
@@ -695,7 +688,6 @@ En estas sección se muestran las estructuras más relevantes utilizadas dentro 
 
  | Name | Context_type |
  | ---- | ------------ |
- |      |              ||
 
  * `Name` indica el nombre del contexto.
  * `Context_type` indica el tipo del contexto (*función, clase, global*).
@@ -713,6 +705,7 @@ En estas sección se muestran las estructuras más relevantes utilizadas dentro 
 Al momento de ejecutar el programa la memoria es una pila de hashes que contiene como llave una dirección virtual. La llave también puede ser un String, esto significa que es el valor de un parámetro o el valor de retorno de una función.
 
 - Ejemplo:
+
 ```
   {
       "param0"=>15,
@@ -732,10 +725,9 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
 
 ### 5. Pruebas del funcionamiento del lenguaje
 
-* *Factorial iterativo*: Programas para probar los estatutos condicionales (*if-else*) y el estatuto cíclico (*while*).
-  - Ejemplo de Factorial iterativo:
+* *Factorial iterativo*:
 
-  ```
+```
     program factorial:
 
       define n as Integer = 10 .
@@ -750,8 +742,8 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
       print(factorial).
 
     end program
-  ```
-  ```
+```
+```
   0: GOTO, , , 1
   1: =, %10, , 1000
   2: =, %1, , 1001
@@ -763,18 +755,19 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
   8: +, 1002, %1, 1006
   9: =, 1006, , 1002
   10: GOTO, , , 4
-  11: print, 1001, ,
-  ```
-
-  ```
+  11: print, 1001, ,  
+```
+```
     Starting compilation...
     Compilation finished successfully.
     Starting execution...
     3628800
     Program finished successfully.
-  ```
+```
+
 * *Fibonacci recursivo*:
-  ```
+
+```
     function Integer fibonacci(Integer a):
       if(a <= 2):
         a = 1 .
@@ -789,8 +782,8 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
       res = fibonacci(20).
       print(res).
     end program
-  ```
-  ```
+```
+```
     0: GOTO, , , 20
     1: =, param0, , 1001
     2: <=, 1001, %2, 1002
@@ -817,16 +810,18 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
     23: =, fibonacci, , 1009
     24: =, 1009, , 1007
     25: print, 1007, ,
+```
+```
+    Starting compilation...
+    Compilation finished successfully.
+    Starting execution...
+    6765
+    Program finished successfully.
   ```
-  ```
-  Starting compilation...
-  Compilation finished successfully.
-  Starting execution...
-  6765
-  Program finished successfully.
-  ```
+
 * *Sort*:
-  ```
+
+```
     program bubbleSort:
       define arr as Integer[5].
       define n as Integer = 5 .
@@ -862,9 +857,8 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
         i = i + 1 .
       end while
     end program
-  ```
-
-  ```
+```
+```
     0: GOTO, , , 1
     1: =, %5, , 1005
     2: VERIFICAR, %0, 0, 4
@@ -928,20 +922,22 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
     60: +, 1011, %1, 1034
     61: =, 1034, , 1011
     62: GOTO, , , 55
+```
+```
+    Starting compilation...
+    Compilation finished successfully.
+    Starting execution...
+    "Sorted array:"
+    1
+    2
+    4
+    5
+    8
+    Program finished successfully.
   ```
-  ```
-  Starting compilation...
-  Compilation finished successfully.
-  Starting execution...
-  "Sorted array:"
-  1
-  2
-  4
-  5
-  8
-  Program finished successfully.
-  ```
+
 * *Multiplcación de matrices*:
+
 ```
   program matrixMultiplication:
     define mat1 as Integer[3,3].
@@ -1176,131 +1172,130 @@ Esto de hizo con la finalidad de que la máquina virtual solamente tuviera que r
     175: GOTO, , , 159
 ```
 ```
-Starting compilation...
-Compilation finished successfully.
-Starting execution...
-108
-24
-94
-166
-29
-145
-72
-20
-55
-Program finished successfully.
+    Starting compilation...
+    Compilation finished successfully.
+    Starting execution...
+    108
+    24
+    94
+    166
+    29
+    145
+    72
+    20
+    55
+    Program finished successfully.
 ```
 
 * *Universidad*:
 
 ```
-class Person:
-  define name as String.
+  class Person:
+    define name as String.
 
-  function Void setName(String personName):
-    name = personName.
-  end function
+    function Void setName(String personName):
+      name = personName.
+    end function
 
-  function String getName():
-    return name.
-  end function
+    function String getName():
+      return name.
+    end function
 
-end class
+  end class
 
-class Student inherits Person:
-  define grade as Float.
+  class Student inherits Person:
+    define grade as Float.
 
-  function Void init(Float studentGrade, String personName):
-    grade = studentGrade.
-    name = personName.
-  end function
+    function Void init(Float studentGrade, String personName):
+      grade = studentGrade.
+      name = personName.
+    end function
 
-  function Void setGrade(Float studentGrade):
-    grade = studentGrade.
-  end function
+    function Void setGrade(Float studentGrade):
+      grade = studentGrade.
+    end function
 
-  function Float getGrade():
-    return grade.
-  end function
+    function Float getGrade():
+      return grade.
+    end function
 
-end class
+  end class
 
-program University:
+  program University:
 
-  define jorge as Student.
-  jorge@setName("Jorge").
-  jorge@setGrade(100.0).
+    define jorge as Student.
+    jorge@setName("Jorge").
+    jorge@setGrade(100.0).
 
-  define barbara as Student.
-  barbara@setName("Barbara").
-  barbara@setGrade(100.0).
+    define barbara as Student.
+    barbara@setName("Barbara").
+    barbara@setGrade(100.0).
 
-  define steve as Student.
-  steve@init(100.0,"Steve").
+    define steve as Student.
+    steve@init(100.0,"Steve").
 
-  print(steve@getName()).
-  print(steve@getGrade()).
+    print(steve@getName()).
+    print(steve@getGrade()).
 
-  print(jorge@getName()).
-  print(barbara@getName()).
+    print(jorge@getName()).
+    print(barbara@getName()).
 
-end program
+  end program
 ```
-
 ```
-0: GOTO, , , 16
-1: =, param0, , 1002
-2: =, 1002, , 1000
-3: ENDFUNC, , ,
-4: return, 1000, ,
-5: ENDFUNC, , ,
-6: =, param0, , 1004
-7: =, param1, , 1005
-8: =, 1004, , 1002
-9: =, 1005, , 1000
-10: ENDFUNC, , ,
-11: =, param0, , 1006
-12: =, 1006, , 1002
-13: ENDFUNC, , ,
-14: return, 1002, ,
-15: ENDFUNC, , ,
-16: ERA, jorge, , setName
-17: PARAM, %"Jorge", , param0
-18: GOSUB, setName, 1,
-19: =, setName, , 1008
-20: ERA, jorge, , setGrade
-21: PARAM, %100.0, , param0
-22: GOSUB, setGrade, 11,
-23: =, setGrade, , 1009
-24: ERA, barbara, , setName
-25: PARAM, %"Barbara", , param0
-26: GOSUB, setName, 1,
-27: =, setName, , 1011
-28: ERA, barbara, , setGrade
-29: PARAM, %100.0, , param0
-30: GOSUB, setGrade, 11,
-31: =, setGrade, , 1012
-32: ERA, steve, , init
-33: PARAM, %100.0, , param0
-34: PARAM, %"Steve", , param1
-35: GOSUB, init, 6,
-36: =, init, , 1014
-37: ERA, steve, , getName
-38: GOSUB, getName, 4,
-39: =, getName, , 1015
-40: print, 1015, ,
-41: ERA, steve, , getGrade
-42: GOSUB, getGrade, 14,
-43: =, getGrade, , 1016
-44: print, 1016, ,
-45: ERA, jorge, , getName
-46: GOSUB, getName, 4,
-47: =, getName, , 1017
-48: print, 1017, ,
-49: ERA, barbara, , getName
-50: GOSUB, getName, 4,
-51: =, getName, , 1018
-52: print, 1018, ,
+  0: GOTO, , , 16
+  1: =, param0, , 1002
+  2: =, 1002, , 1000
+  3: ENDFUNC, , ,
+  4: return, 1000, ,
+  5: ENDFUNC, , ,
+  6: =, param0, , 1004
+  7: =, param1, , 1005
+  8: =, 1004, , 1002
+  9: =, 1005, , 1000
+  10: ENDFUNC, , ,
+  11: =, param0, , 1006
+  12: =, 1006, , 1002
+  13: ENDFUNC, , ,
+  14: return, 1002, ,
+  15: ENDFUNC, , ,
+  16: ERA, jorge, , setName
+  17: PARAM, %"Jorge", , param0
+  18: GOSUB, setName, 1,
+  19: =, setName, , 1008
+  20: ERA, jorge, , setGrade
+  21: PARAM, %100.0, , param0
+  22: GOSUB, setGrade, 11,
+  23: =, setGrade, , 1009
+  24: ERA, barbara, , setName
+  25: PARAM, %"Barbara", , param0
+  26: GOSUB, setName, 1,
+  27: =, setName, , 1011
+  28: ERA, barbara, , setGrade
+  29: PARAM, %100.0, , param0
+  30: GOSUB, setGrade, 11,
+  31: =, setGrade, , 1012
+  32: ERA, steve, , init
+  33: PARAM, %100.0, , param0
+  34: PARAM, %"Steve", , param1
+  35: GOSUB, init, 6,
+  36: =, init, , 1014
+  37: ERA, steve, , getName
+  38: GOSUB, getName, 4,
+  39: =, getName, , 1015
+  40: print, 1015, ,
+  41: ERA, steve, , getGrade
+  42: GOSUB, getGrade, 14,
+  43: =, getGrade, , 1016
+  44: print, 1016, ,
+  45: ERA, jorge, , getName
+  46: GOSUB, getName, 4,
+  47: =, getName, , 1017
+  48: print, 1017, ,
+  49: ERA, barbara, , getName
+  50: GOSUB, getName, 4,
+  51: =, getName, , 1018
+  52: print, 1018, ,
 ```
 ```
   Compilation finished successfully.
@@ -1317,7 +1312,7 @@ end program
 
 #### Program Class, only relevant functions are shown.
 
-  ```ruby
+  ```
   #######################
   # Description: This class is the most important, it handles the memory counter,
   # it stores the quadruple and manages the contexts
@@ -1436,7 +1431,7 @@ end program
 
   ```
 
-```ruby
+```
 
 #######################
 # Description: This class has the objective to create quadruples and solve neuralgic points code,

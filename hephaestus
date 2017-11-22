@@ -3,7 +3,7 @@
 hephaestus_command=$1
 hephaestus_file=$2
 
-run="ruby $HOME/Playground/Compiladores/walnut/compiler/main.rb $PWD/$walnut_file"
+run="ruby $HOME/Documents/ITESM/SeptimoSemestre/Compiladores/Hephaestus/main.rb $PWD/Tests/$hephaestus_file"
 
 run_file() {
   echo "Compiling $hephaestus_file"
@@ -16,10 +16,10 @@ die() {
 }
 
 if [ "$hephaestus_command" == "run" ]; then
-  if [ ! -f $hephaestus file ]; then
-    die '$hephaestus_file not found'
-  else
+  if [ -e "$PWD/Tests/$hephaestus_file" ]; then
     run_file
     die
+  else
+    die 'Hephaestus file not found.'
   fi
 fi

@@ -49,8 +49,8 @@ class Program
   # Error handling: N/A
   #######################
   def reset_context()
-     puts "\n** FUNCTION #{@current_context.name} **\n"
-     @current_context.print_tables()
+     #puts "\n** FUNCTION #{@current_context.name} **\n"
+     #@current_context.print_tables()
     @current_context = @past_context
   end
 
@@ -62,8 +62,8 @@ class Program
   # Error handling: N/A
   #######################
   def reset_class_context()
-    puts "\n** CLASS #{@current_context.name} **\n"
-    @current_context.print_tables()
+    #puts "\n** CLASS #{@current_context.name} **\n"
+    #@current_context.print_tables()
     @current_context = @main_context
   end
 
@@ -173,7 +173,7 @@ class Program
   # Error handling: N/A
   #######################
   def finish()
-    print_quadruples()
+    #print_quadruples()
     File.open("quads.hep", "w+") do | f |
       @quadruples.each_with_index { | quad, index | f.puts("#{index}. #{quad.operator}, #{quad.left_side}, #{quad.right_side}, #{quad.result}") }
     end

@@ -1,4 +1,4 @@
-git clone https://github.com/bmbrina/Hephaestus.git ~/.hephaestus
+git clone https://github.com/bmbrina/Hephaestus.git chmod +x ~/.hephaestus
 
 hephaestus=$(echo $PATH | grep hephaestus)
 
