@@ -1,4 +1,4 @@
-### 1. Descripción del proyecto
+cómodo### 1. Descripción del proyecto
 #### 1.1 Propósito, Objetivos y Alcance del Proyecto
 **Visión:**
 La visión de `Hephaestus` es crear un lenguaje básico orientado a objetos que le permita al usuario entender las funciones básicas de este tipo de lenguajes de programación.
@@ -120,6 +120,8 @@ El compilador debe de cumplir con los requerimientos del servicio que proporcion
 **Reflexión de Bárbara Martínez**
 
 **Reflexión Jorge Elizondo**
+
+  Para mi el proyecto fue un reto, es difícil hacer un proyecto tan grande y tan importante. Sin embargo hay algo en hacer tu propio lenguaje que llamo mi atención, como inventar la sintaxis y ver como el lenguaje se hace mucho mas amigable de utilizar. Me gusto la idea que la clase de Diseño de compiladores este fuertemente basada en el proyecto final, de esa forma creo yo, logre aprender mucho mejor los conceptos vistos en clase. Una lección que me llevo es que para proyectos grandes manejar el tiempo adecuadamente es esencial, hace el proyecto mucho más cómodo. Aprendi bastante del lenguaje Ruby, empece sabiendo lo basico del el pero después de programar mucho más de 1000 lineas en Ruby, me siento un experto aunque no lo sea :) . 
 
 ### 2. Descripción del lenguaje
 En esta sección hablaremos acerca del lenguaje desarrollado; su nombre, principales características y los posibles errores que pueden surgir en compilación y ejecución.
