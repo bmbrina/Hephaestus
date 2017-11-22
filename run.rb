@@ -3,6 +3,7 @@ require_relative 'HephaestusParser'
 
 file_name = "Tests/recursiveFibonacci.txt"
 
+puts "Starting compilation..."
 input = ANTLR3::FileStream.new(file_name)
 $lexer = Hephaestus::Lexer.new( input )
 
