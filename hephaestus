@@ -16,7 +16,7 @@ die() {
 }
 
 if [ "$hephaestus_command" == "run" ]; then
-  if [ `gem list lunchy -i` ]; then
+  if [ `gem list antlr3 -i` ]; then
     if [ -e "$PWD/Tests/$hephaestus_file" ]; then
       run_file
       die
