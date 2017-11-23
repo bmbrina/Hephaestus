@@ -31,9 +31,8 @@
 30. +, 1006, %1, 1019
 31. =, 1019, , 1006
 32. GOTO, , , 22
-33. ==, 1014, %true, 1020
-34. GOTOF, 1020, , 38
-35. print, %"Number encontrado en la posición:", , 
-36. print, 1013, , 
-37. GOTO, , , 39
-38. print, %"Number not found", , 
+33. GOTOF, 1014, , 37
+34. print, %"Número encontrado en la posición:", , 
+35. print, 1013, , 
+36. GOTO, , , 38
+37. print, %"Número no econtrado", , 

@@ -8,7 +8,7 @@ program find:
   arr[3] = 5 .
   arr[4] = 8 .
 
-  print("Qué numero quieres encontrar?").
+  print("Qué número quieres encontrar?").
   define numberToFind as Integer.
   numberToFind = read().
   define position as Integer.
@@ -22,11 +22,11 @@ program find:
     i = i + 1 .
   end while
 
-  if(numberFound == true):
+  if(numberFound):
     print("Número encontrado en la posición:").
     print(position).
   else:
-    print("Number not found").
+    print("Número no econtrado").
   end if
 
 end program
