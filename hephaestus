@@ -24,7 +24,8 @@ if [ "$hephaestus_command" == "run" ]; then
       die 'Hephaestus file not found.'
     fi
   else
-    echo "Please run bundle install and run again."
+    echo "Missing dependencies."
+    echo "Please run bundle install and try again."
     die
   fi
 fi
