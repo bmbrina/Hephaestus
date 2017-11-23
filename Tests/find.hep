@@ -23,7 +23,7 @@ program find:
   end while
 
   if(numberFound == true):
-    print("Number encontrado en la posición:").
+    print("Número encontrado en la posición:").
     print(position).
   else:
     print("Number not found").

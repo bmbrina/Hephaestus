@@ -11,7 +11,7 @@ end function
 program recursiveFibonacci:
 
   define res as Integer.
-  res = fibonacci(15).
+  res = fibonacci(30).
   print(res).
 
 end program
